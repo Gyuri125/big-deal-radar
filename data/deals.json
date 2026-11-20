@@ -16,6 +16,7 @@
     "deal": "Minden jegy 1690 Ft – 2D, 3D, IMAX, 4DX, ScreenX is",
     "normal_price": 3100,
     "deal_price": 1690,
+    "price_note": "A normál 2D jegy árához képest; a 4DX/IMAX is ugyanannyi ebben az akcióban.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.cinemacity.hu",
@@ -34,6 +35,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "mozi",
@@ -61,6 +63,7 @@
     "deal": "6 terem, 30 film, egyetlen karszalag",
     "normal_price": null,
     "deal_price": null,
+    "price_note": "Egy karszalag több filmre; a normál jegyek összege ennél magasabb lehet.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmozi.hu",
@@ -74,6 +77,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "mozi",
@@ -101,6 +105,7 @@
     "deal": "~30 magyarországi art mozi, premier előtti filmek, kedvezményes jegy",
     "normal_price": null,
     "deal_price": null,
+    "price_note": "A jegyár mozinként 1800–3100 Ft; nem mindenhol jár kedvezménnyel.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmoziegyesulet.hu",
@@ -119,6 +124,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "mozi",
@@ -146,6 +152,7 @@
     "deal": "Egy jegy, közel 4 óra, extra produkciók, kulisszajárás",
     "normal_price": null,
     "deal_price": null,
+    "price_note": "Egy jegy a kibővített műsorra; a normál cirkuszi jegy árától eltérhet.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://fovarosinagycirkusz.hu",
@@ -164,6 +171,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -191,6 +199,7 @@
     "deal": "Egy karszalag, 100+ múzeum és kulturális helyszín, egész éjjel",
     "normal_price": null,
     "deal_price": 3000,
+    "price_note": "A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://muzej.hu",
@@ -209,6 +218,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "muzeum",
@@ -236,6 +246,7 @@
     "deal": "Egy jegy, 3+ program, ~50 színház, kulisszajárás, nyílt próba",
     "normal_price": null,
     "deal_price": 8000,
+    "price_note": "Egy jegy 3+ programra; a normál színházjegy ennél gyakran többe kerül.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://bpsze.hu",
@@ -254,6 +265,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -281,6 +293,7 @@
     "deal": "3 fogás fix áron, 6900 / 8900 / 10900 Ft-tól",
     "normal_price": null,
     "deal_price": 6900,
+    "price_note": "A normál menü ára éttermenként 12–25 ezer Ft körül van; a Restaurant Week menü fix ár.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://etteremhet.hu",
@@ -299,6 +312,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "gasztro",
@@ -326,6 +340,7 @@
     "deal": "3 fogás fix áron, 150–230 étterem, Michelin-ajánlásokkal",
     "normal_price": null,
     "deal_price": 6900,
+    "price_note": "A normál menü ára éttermenként 12–25 ezer Ft körül van; a Restaurant Week menü fix ár.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://etteremhet.hu",
@@ -344,6 +359,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "gasztro",
@@ -371,6 +387,7 @@
     "deal": "A legjobb 28 étterem visszatér a nyertes menükkel",
     "normal_price": null,
     "deal_price": 6900,
+    "price_note": "A normál menü ára éttermenként 12–25 ezer Ft körül van; a Restaurant Week menü fix ár.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://etteremhet.hu",
@@ -389,6 +406,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "gasztro",
@@ -416,6 +434,7 @@
     "deal": "Éjszakai fürdőzés, DJ, szauna, tűzzsonglőr – országos helyszínek",
     "normal_price": null,
     "deal_price": null,
+    "price_note": "A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül.",
     "currency": "HUF",
     "location": "Országos",
     "source_url": "https://www.furdoszovetseg.hu",
@@ -434,6 +453,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "országos",
       "kultura",
@@ -461,6 +481,7 @@
     "deal": "Esti állatkerti programok, látványetetések, koncertek",
     "normal_price": null,
     "deal_price": 8000,
+    "price_note": "Külön esti jegy; a nappali jegy és bérlet nem érvényes.",
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://zoobudapest.com",
@@ -479,6 +500,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -506,6 +528,7 @@
     "deal": "Ingyenesen nyitott házak, épületbejárások, városi séták",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": "A legtöbb program ingyenes; egyes vezetések regisztrációhoz kötöttek.",
     "currency": null,
     "location": "Budapest",
     "source_url": "https://budapest100.hu",
@@ -524,6 +547,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -551,6 +575,7 @@
     "deal": "Ingyenes belépés 80+ erőműbe, vízműbe, hulladékkezelőbe",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://eromuvekejszakaja.hu",
@@ -564,6 +589,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -591,6 +617,7 @@
     "deal": "Ingyenesen látogatható műemlékek, kulisszák mögötti programok",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -604,6 +631,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -631,6 +659,7 @@
     "deal": "Ingyenes laborlátogatások, tudományos programok országszerte",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -644,6 +673,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -671,6 +701,7 @@
     "deal": "Ingyenes templomlátogatás, vezetések, koncertek",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -684,6 +715,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -711,6 +743,7 @@
     "deal": "Ingyenes templomi koncertek, kiállítások, vezetések",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://arssacra.hu",
@@ -724,6 +757,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -751,6 +785,7 @@
     "deal": "Ingyenes programok, rendhagyó nyitvatartás, beiratkozás",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -764,6 +799,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -792,6 +828,7 @@
     "deal": "Sok ingyenes tárlatvezetés, program, kedvezmény",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://museum.hu",
@@ -805,6 +842,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "muzeum",
@@ -832,6 +870,7 @@
     "deal": "Akciók, ingyenes programok, múzeumi éjszaka",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://icom.hu",
@@ -845,6 +884,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "muzeum",
@@ -874,6 +914,7 @@
     "deal": "Állami múzeumok ingyenes belépéssel",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://www.museum.hu",
@@ -887,6 +928,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "muzeum",
@@ -914,6 +956,7 @@
     "deal": "Ingyenes és kedvezményes programok országszerte",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -927,6 +970,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -954,6 +998,7 @@
     "deal": "Egyes színházak nyílt napja, akciós jegyek",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -967,6 +1012,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -994,6 +1040,7 @@
     "deal": "Nyitóhétvége ingyenes szabadtéri koncertek",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://btf.hu",
@@ -1007,6 +1054,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -1035,6 +1083,7 @@
     "deal": "Ingyenes szabadtéri koncertek, színházi estek",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -1048,6 +1097,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -1073,6 +1123,7 @@
     "deal": "Hallgatói koncertek ingyen vagy kedvezményesen",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://zeneakademia.hu",
@@ -1086,6 +1137,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -1110,6 +1162,7 @@
     "deal": "Ingyenes bepillantás, egyes koncertek kedvezményesen",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://mupa.hu",
@@ -1123,6 +1176,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -1147,6 +1201,7 @@
     "deal": "Free walking tour, borravalós városnézés",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -1160,6 +1215,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -1186,6 +1242,7 @@
     "deal": "Ingyenes országos túranap, 143 szakasz",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Országos",
     "source_url": "https://kektura.hu",
@@ -1199,6 +1256,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "országos",
       "kultura",
@@ -1226,6 +1284,7 @@
     "deal": "Ingyenes esti túra, erdei programok",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://fataj.hu",
@@ -1239,6 +1298,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -1264,6 +1324,7 @@
     "deal": "Másnapi színházjegyek féláron, minden este 21:00-tól",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.maesteszinhaz.hu",
@@ -1277,6 +1338,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -1301,6 +1363,7 @@
     "deal": "Töredékár a normál jegyhez képest; diák- és nyugdíjas kedvezmény",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://opera.hu",
@@ -1314,6 +1377,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -1338,6 +1402,7 @@
     "deal": "Több budapesti art mozi olcsóbb jegyet ad hétfőnként",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmozi.hu",
@@ -1351,6 +1416,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "mozi",
@@ -1375,6 +1441,7 @@
     "deal": "~1800–2200 Ft a normál ~3100 Ft helyett",
     "normal_price": 3100,
     "deal_price": 1800,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.cinemacity.hu",
@@ -1388,6 +1455,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "mozi",
@@ -1412,6 +1480,7 @@
     "deal": "10 mozijegy egy csomagban, kedvezményes áron",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
@@ -1425,6 +1494,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "mozi",
@@ -1453,6 +1523,7 @@
     "deal": "Ingyenes vagy olcsó kertmozi-vetítések",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -1466,6 +1537,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "mozi",
@@ -1490,6 +1562,7 @@
     "deal": "Könyvtárak, kulturális központok, fesztiválok ingyenes vetítései",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -1503,6 +1576,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "mozi",
@@ -1527,6 +1601,7 @@
     "deal": "Galériák ingyenes megnyitói, gyakran fogadással",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -1540,6 +1615,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -1567,6 +1643,7 @@
     "deal": "Sok ingyenes kiállítás, városi fotóséták",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": null,
@@ -1580,6 +1657,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "kultura",
@@ -1605,6 +1683,7 @@
     "deal": "Ingyenes/kedvezményes családi programok",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Budapest",
     "source_url": "https://museum.hu",
@@ -1618,6 +1697,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "muzeum",
@@ -1644,6 +1724,7 @@
     "deal": "Kóstolók, barista verseny, belépővel sok kávé.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1657,6 +1738,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "access",
@@ -1684,6 +1766,7 @@
     "deal": "Kóstolójegyek, pincészetek, ingyenes koncertek.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1697,6 +1780,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "budapest",
       "gasztro",
@@ -1725,6 +1809,7 @@
     "deal": "Kézműves sörök, kóstolócsomagok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1738,6 +1823,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "access",
@@ -1770,6 +1856,7 @@
     "deal": "Kóstolók, mesterkurzusok, kedvezményes belépő.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1783,6 +1870,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "sale",
@@ -1811,6 +1899,7 @@
     "deal": "Kóstolók, workshopok, ajándékvásár.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1824,6 +1913,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "access",
@@ -1851,6 +1941,7 @@
     "deal": "Új ízek, akciós gombócok, családi programok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1864,6 +1955,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "sale",
@@ -1892,6 +1984,7 @@
     "deal": "Ingyenes programok, kóstolók, kézműves vásár.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -1905,6 +1998,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "free",
@@ -1932,6 +2026,7 @@
     "deal": "Országos halászléverseny, kóstolók, koncertek.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Baja",
     "source_url": null,
@@ -1945,6 +2040,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "access",
@@ -1972,6 +2068,7 @@
     "deal": "Bor, kenyér, balatoni hangulat, kóstolók.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Siófok",
     "source_url": null,
@@ -1985,6 +2082,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "gasztro",
       "access",
@@ -2010,6 +2108,7 @@
     "deal": "Mentett ételcsomagok 50–70% off",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.toogoodtogo.hu",
@@ -2023,6 +2122,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "gasztro",
@@ -2047,6 +2147,7 @@
     "deal": "20–50% off, 10–20 ezer Ft-os repjegyek",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": "https://wizzair.com",
@@ -2060,6 +2161,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "online",
       "utazas",
@@ -2083,6 +2185,7 @@
     "deal": "€9.99/€19.99 akciók, gyakran kedden.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
@@ -2096,6 +2199,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2122,6 +2226,7 @@
     "deal": "10–20% off a Global Pass-re.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2135,6 +2240,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2161,6 +2267,7 @@
     "deal": "30–40% off a téli bérletekre.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2174,6 +2281,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2197,6 +2305,7 @@
     "deal": "30–40% off, rugalmas lemondással.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2210,6 +2319,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2236,6 +2346,7 @@
     "deal": "30–50%-kal olcsóbb szállás, kevesebb tömeg.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Balaton",
     "source_url": null,
@@ -2249,6 +2360,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2272,6 +2384,7 @@
     "deal": "30–50% off a kapunál fizetett árhoz képest.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
@@ -2285,6 +2398,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2308,6 +2422,7 @@
     "deal": "Nyugdíjasoknak ingyenes országos utazás",
     "normal_price": null,
     "deal_price": 0,
+    "price_note": null,
     "currency": null,
     "location": "Országos",
     "source_url": "https://www.mavcsoport.hu",
@@ -2321,6 +2436,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "országos",
       "utazas",
@@ -2344,6 +2460,7 @@
     "deal": "Diákigazolvánnyal félárú vonatjegy.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2357,6 +2474,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2380,6 +2498,7 @@
     "deal": "Vonat/repülő csoportos ár, feltöltés előtti helyek.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2393,6 +2512,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "utazas",
       "sale",
@@ -2418,6 +2538,7 @@
     "deal": "20–70% off, elektronika, ruha, utazás",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2431,6 +2552,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "vasarlas",
@@ -2456,6 +2578,7 @@
     "deal": "Online shopok akciói, kuponok, ingyenes szállítás",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
@@ -2469,6 +2592,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "online",
       "vasarlas",
@@ -2494,6 +2618,7 @@
     "deal": "Kínai webshopok extra kuponjai.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
@@ -2507,6 +2632,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2533,6 +2659,7 @@
     "deal": "Prime-tagoknak extra akciók.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2546,6 +2673,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2571,6 +2699,7 @@
     "deal": "Téli ruha, elektronika, bútor.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2584,6 +2713,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2610,6 +2740,7 @@
     "deal": "Nyaralás, ruha, kertészet.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2623,6 +2754,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2648,6 +2780,7 @@
     "deal": "~20% kedvezmény, dedikálások.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2661,6 +2794,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2687,6 +2821,7 @@
     "deal": "Akciós könyvek, kiadói standok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2700,6 +2835,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2727,6 +2863,7 @@
     "deal": "Limitált vinyl, ingyenes képregények.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2745,6 +2882,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "free",
@@ -2769,6 +2907,7 @@
     "deal": "MediaMarkt/eMAG/Alza márkanapok, outlet 50–70%.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2792,6 +2931,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "vasarlas",
       "sale",
@@ -2815,6 +2955,7 @@
     "deal": "10–30 ezer Ft jóváírás, feltételekkel.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
@@ -2828,6 +2969,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "penzugy",
       "money",
@@ -2851,6 +2993,7 @@
     "deal": "1–5% visszatérítés, 0% kamat akciók.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -2864,6 +3007,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "penzugy",
       "money",
@@ -2887,6 +3031,7 @@
     "deal": "Revolut/Wise/bankok 5–15 ezer Ft.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
@@ -2900,6 +3045,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "penzugy",
       "money",
@@ -2925,6 +3071,7 @@
     "deal": "A befizetés 20%-a visszajár, max. ~150 ezer Ft",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
@@ -2938,6 +3085,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "penzugy",
@@ -2963,6 +3111,7 @@
     "deal": "A befizetés 10%-a visszajár, max. ~75 ezer Ft",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
@@ -2976,6 +3125,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "penzugy",
@@ -3001,6 +3151,7 @@
     "deal": "A befizetés 20%-a visszajár, max. ~100 ezer Ft",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
@@ -3014,6 +3165,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "penzugy",
@@ -3042,6 +3194,7 @@
     "deal": "Akár 50% / 6 millió Ft vissza nem térítendő támogatás",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3055,6 +3208,7 @@
       }
     ],
     "confidence": "needs-check",
+    "last_checked": null,
     "tags": [
       "budapest",
       "penzugy",
@@ -3082,6 +3236,7 @@
     "deal": "Több millió Ft támogatás villanyautóra.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3095,6 +3250,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "penzugy",
       "money",
@@ -3122,6 +3278,7 @@
     "deal": "Napelem + tároló támogatás.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3135,6 +3292,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "penzugy",
       "money",
@@ -3158,6 +3316,7 @@
     "deal": "Adómentes keret, felette 15% kedvezményes adózás",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
@@ -3171,6 +3330,7 @@
       }
     ],
     "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "penzugy",
@@ -3201,6 +3361,7 @@
     "deal": "Mellrák, méhnyakrák, prosztata szűrés 0 Ft.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3214,6 +3375,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3239,6 +3401,7 @@
     "deal": "Patikákban ingyenes mérés, tanácsadás.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3252,6 +3415,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3275,6 +3439,7 @@
     "deal": "Plázákban, céges programokon ingyenes szűrések.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3288,6 +3453,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3311,6 +3477,7 @@
     "deal": "Fogorvosi kar szűrőnapjai, iskolai programok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3324,6 +3491,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3347,6 +3515,7 @@
     "deal": "Optikusok szűrőhetei, ingyenes látásvizsgálat.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3360,6 +3529,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3385,6 +3555,7 @@
     "deal": "Edzőtermek ingyenes próbaórái, tagsági akciók.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3398,6 +3569,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3428,6 +3600,7 @@
     "deal": "Kedvezményes belépők, csomagok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3441,6 +3614,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3464,6 +3638,7 @@
     "deal": "Nevezés 30–50% off, Budapest Maraton/félmaraton.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3477,6 +3652,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3502,6 +3678,7 @@
     "deal": "Ingyenes reggeli a bringásoknak, kerékpáros programok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3515,6 +3692,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3540,6 +3718,7 @@
     "deal": "Ingyenes programok, városi bringázás, akciók.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3553,6 +3732,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "egeszseg",
       "free",
@@ -3576,6 +3756,7 @@
     "deal": "Fürdők, múzeumok, éttermek szülinapi ajándéka.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3589,6 +3770,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "budapest",
       "csalad",
@@ -3617,6 +3799,7 @@
     "deal": "Olcsóbb belépő, kevesebb tömeg.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3630,6 +3813,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "sale",
@@ -3654,6 +3838,7 @@
     "deal": "Szülinaposnak ingyen/kedvezmény, kísérővel.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3667,6 +3852,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "sale",
@@ -3699,6 +3885,7 @@
     "deal": "Kedvezményes napijegy, családi csomag.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3712,6 +3899,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "sale",
@@ -3736,6 +3924,7 @@
     "deal": "20–40% off, kevésbé zsúfolt.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3749,6 +3938,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "sale",
@@ -3773,6 +3963,7 @@
     "deal": "50% off, diákcsomagok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3786,6 +3977,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "sale",
@@ -3810,6 +4002,7 @@
     "deal": "Családi bérlet, gyerekjegy, matiné.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3823,6 +4016,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "access",
@@ -3847,6 +4041,7 @@
     "deal": "Ingyenes gyerekfelügyelet vásárlás alatt.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3860,6 +4055,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "free",
@@ -3884,6 +4080,7 @@
     "deal": "Ingyenes foglalkozások, mesedélutánok.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3897,6 +4094,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "free",
@@ -3924,6 +4122,7 @@
     "deal": "10–30% off nyári táborokra.",
     "normal_price": null,
     "deal_price": null,
+    "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
@@ -3937,6 +4136,7 @@
       }
     ],
     "confidence": "unverified",
+    "last_checked": null,
     "tags": [
       "csalad",
       "sale",

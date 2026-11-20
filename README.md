@@ -44,6 +44,11 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **minden dealhez legalább egy forrás**, ahol releváns, több is; a részletek ablakban listázva,
 - **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
 - **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
+- **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, Ingyenes, 5 ezer alatt, 10 ezer alatt,
+- **naptárnézet** havi bontásban, hónap-naptár letöltéssel,
+- **egyedi deal-oldalak** SEO-val, OG képpel és Event structured data-val,
+- **PWA**: telepíthető, offline is működik,
+- **hibabejelentés** GitHub Issue-val, heti linkellenőrzéssel,
 - naponta **Discord digestet** küld,
 - Telegramhoz előkészített, de opcionális csatornával rendelkezik,
 - a laptopon és GitHub Actionsben is ugyanazt a pipeline-t futtatja.
@@ -342,6 +347,7 @@ Három workflow van:
 | `pipeline.yml` | Naponta 3x + kézzel | Validál, digestet küld, buildel, deployol, szükség esetén commitol |
 | `deploy.yml` | `main` pushra, ha data/site változik | Buildel és Pagesre deployol |
 | `ci.yml` | PR és `main` push (kivéve data) | Lint, teszt, titokellenőrzés, build |
+| `link-check.yml` | Hetente + kézzel | Forráslinkek ellenőrzése, hiba esetén Discord-riasztás |
 
 A napi cron **UTC-ben** van:
 
@@ -388,6 +394,7 @@ Egy deal így néz ki a `data/deals.json`-ban:
   "deal": "Minden jegy 1690 Ft – 2D, 3D, IMAX, 4DX, ScreenX is",
   "normal_price": 3100,
   "deal_price": 1690,
+  "price_note": "A normál 2D jegy árához képest; a 4DX/IMAX is ugyanannyi.",
   "currency": "HUF",
   "location": "Budapest",
   "source_url": "https://www.cinemacity.hu",
@@ -406,6 +413,7 @@ Egy deal így néz ki a `data/deals.json`-ban:
     }
   ],
   "confidence": "verified",
+  "last_checked": "2026-11-20",
   "tags": ["kultura", "flat", "budapest"],
   "notes": "2026-ban október 8–11. között.",
   "featured": true
@@ -423,6 +431,8 @@ Egy deal így néz ki a `data/deals.json`-ban:
 | `month` / `months` | Havi szűréshez, akkor is, ha nincs pontos dátum |
 | `confidence` | `verified`, `needs-check`, `unverified` |
 | `normal_price` / `deal_price` | A megtakarítás számításához |
+| `price_note` | Ha nincs pontos normál ár, itt magyarázzuk az árat |
+| `last_checked` | Utolsó kézi ellenőrzés dátuma |
 | `source_url` | Hivatalos forrás / cikk linkje |
 | `booking_url` | Jegyvásárlás vagy foglalás linkje |
 | `booking_note` | Hogyan és mikor érdemes előre venni/foglalni |
@@ -432,8 +442,9 @@ Egy deal így néz ki a `data/deals.json`-ban:
 
 1. Írd be a `budapesti-100-big-deal.md` táblázatába.
 2. Ha pontos dátumot, árat vagy foglalási adatot akarsz hozzáadni, tedd a `data/overrides.json`-ba.
-3. A forrásokat a `data/sources.json`-ba, a program/ünnepi címkéket a `data/tags.json`-ba tedd.
-4. Futtasd:
+3. A forrásokat a `data/sources.json`-ba, a program/ünnepi címkéket a `data/tags.json`-ba, az ármagyarázatot a `data/price-notes.json`-ba tedd.
+4. Az ellenőrzés dátumát a `data/meta.json`-ban frissítsd.
+5. Futtasd:
 
 ```bash
 npm run import
@@ -480,12 +491,66 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 
 ---
 
+## Naptár és heti terv
+
+A főoldalon a **Lista / Naptár** kapcsolóval havi nézetre válthatsz.
+
+- A naptárban csak a **pontos dátumú** dealek jelennek meg.
+- A cellákban a dealek kattinthatók, megnyitják a részleteket.
+- **Hónap naptárba** gombbal az adott hónap összes eseménye letölthető ICS-ben.
+- A **Következő 7 nap naptárba** gomb a következő hét eseményeit tölti le.
+- A **Ma / Hétvége / 7 nap** szűrők gyorsan leszűkítik a listát.
+- Az **Ár** szűrők: Ingyenes, 5 ezer alatt, 10 ezer alatt, 10 ezer felett.
+
+A **Heti top 5** doboz a szerkesztői válogatást mutatja a legnagyobb dobásokból.
+
+---
+
+## Egyedi deal-oldalak és SEO
+
+Minden dealhez külön statikus oldal készül:
+
+```text
+https://gyuri125.github.io/big-deal-radar/deal/cinema-city-filmunnep/
+```
+
+Ezek az oldalak:
+
+- külön címmel és leírással rendelkeznek,
+- **OG / Twitter kártyát** kapnak (egyedi OG képpel),
+- **schema.org Event** structured data-t tartalmaznak (dátum, helyszín, ár, jegyvásárlási link),
+- a **Megosztás** gombbal másolható / megosztható a link,
+- a részletek ablakból is megnyithatók.
+
+A `sitemap.xml` automatikusan elkészül, a `robots.txt` pedig hivatkozik rá.
+
+---
+
+## PWA
+
+Az oldal telepíthető telefonra:
+
+- manifest + ikonok,
+- service worker,
+- offline elérés a korábban betöltött tartalomhoz.
+
+---
+
+## Hibabejelentés és linkellenőrzés
+
+- Minden deal részleteinél van **„Hibát jelentek”** gomb, ami előre kitöltött GitHub Issue-t nyit.
+- A **heti linkellenőrzés** GitHub Actions workflow (`link-check.yml`) végigfut a forrásokon.
+- Ha broken linket talál, Discordra megy a riasztás.
+- Kézzel: `npm run check:links`.
+
+---
+
 ## Parancsok
 
 | Parancs | Mit csinál? |
 |---|---|
 | `npm run dev` | Helyi Vite fejlesztői szerver |
-| `npm run build` | Éles build a `dist/` mappába |
+| `npm run build` | Éles build + deal-oldalak + OG képek + sitemap |
 | `npm run import` | Markdown + overrides → `data/deals.json` |
 | `npm run validate` | Adatbázis validálása |
 | `npm run daily` | Napi pipeline (digest + build) |
@@ -553,12 +618,15 @@ big-deal-radar/
 ├─ .github/workflows/
 │  ├─ pipeline.yml        # napi adatfrissítés + digest + deploy
 │  ├─ deploy.yml          # push → Pages deploy
+│  ├─ link-check.yml      # heti linkellenőrzés
 │  └─ ci.yml              # lint, teszt, titokellenőrzés, build
 ├─ data/
 │  ├─ deals.json          # 100 deal (generált a markdownból)
 │  ├─ overrides.json      # top dealek pontos dátumai/árai/foglalási adatai
 │  ├─ sources.json        # dealenkénti források, cikkek, jegyvásárlás
 │  ├─ tags.json           # program / ünnepi / évfordulós címkék
+│  ├─ price-notes.json    # ármagyarázatok
+│  ├─ meta.json           # utolsó ellenőrzés dátuma
 │  └─ state.json          # generált, gitignore-olt
 ├─ public/
 │  └─ status.json         # generált, gitignore-olt
@@ -566,6 +634,7 @@ big-deal-radar/
 │  ├─ import-markdown.ts  # markdown → JSON
 │  ├─ check-secrets.ts    # titokszivárgás-ellenőrzés
 │  ├─ check-links.ts      # forráslinkek ellenőrzése
+│  ├─ build-deal-pages.ts # egyedi deal-oldalak, OG képek, sitemap
 │  ├─ daily.ps1           # Task Scheduler belépő
 │  ├─ install-task.ps1    # 08:00 / 12:00 / 20:00 telepítés
 │  └─ remove-task.ps1     # feladatok törlése
@@ -590,11 +659,18 @@ big-deal-radar/
 
 ## Roadmap
 
-- [ ] A 100 dealből a maradék 66-hoz pontos dátum és forrás.
+- [x] Saját lista, prioritás, naptár-emlékeztető.
+- [x] Minden dealhez forrás, több forrás, hover tooltip.
+- [x] Naptárnézet, Ma / Hétvége / 7 nap és ár szerinti szűrők.
+- [x] Heti top 5, egyedi deal-oldalak, OG képek, Event structured data.
+- [x] PWA, offline mód, megosztható linkek.
+- [x] Heti linkellenőrzés és hibabejelentés.
+- [ ] A maradék 66 dealhez pontos dátum, ahol lehet.
+- [ ] A 22 keresőlinkes dealhez konkrét hivatalos forrás.
+- [ ] Normál árak feltöltése a top 30-hoz.
+- [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.
 - [ ] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).
-- [ ] Naptárnézet a weboldalon.
-- [ ] „Értesíts, ha nyílik a foglalás” funkció.
-- [ ] Közösségi szavazás: „megérte?” / „nem érte meg”.
+- [ ] Közösségi szavazás: „megérte?” / „nem érte meg” (backend kell hozzá).
 - [ ] Telegram bot élesítése, ha lesz token.
 - [ ] Angol nyelvű verzió (opcionális).
 

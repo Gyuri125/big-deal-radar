@@ -90,17 +90,14 @@ async function main(): Promise<void> {
 
   await Promise.all(Array.from({ length: concurrency }, worker));
 
-  const blocked = results.filter(
-    (result) =>
-      result.status === 401 || result.status === 403 || result.status === 429
+  const blockedStatuses = new Set<number | 'ERR'>([401, 403, 429, 511]);
+  const blocked = results.filter((result) =>
+    blockedStatuses.has(result.status)
   );
   const failed = results.filter(
     (result) =>
       result.status === 'ERR' ||
-      (result.status >= 400 &&
-        result.status !== 401 &&
-        result.status !== 403 &&
-        result.status !== 429)
+      (result.status >= 400 && !blockedStatuses.has(result.status))
   );
   const redirected = results.filter(
     (result) =>

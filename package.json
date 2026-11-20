@@ -6,7 +6,7 @@
   "description": "Napi magyar és budapesti deal-radar – GitHub Pages oldal, Discord értesítéssel.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsx scripts/build-deal-pages.ts",
     "preview": "vite preview",
     "import": "tsx scripts/import-markdown.ts",
     "daily": "tsx src/cli.ts daily",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "sharp": "^0.35.5",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "vite": "^8.3.8",

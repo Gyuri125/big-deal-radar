@@ -16,6 +16,8 @@ const markdownPath = path.join(root, 'budapesti-100-big-deal.md');
 const overridesPath = path.join(root, 'data', 'overrides.json');
 const sourcesPath = path.join(root, 'data', 'sources.json');
 const tagsPath = path.join(root, 'data', 'tags.json');
+const metaPath = path.join(root, 'data', 'meta.json');
+const priceNotesPath = path.join(root, 'data', 'price-notes.json');
 const outputPath = path.join(root, 'data', 'deals.json');
 
 const PROGRAM_CATEGORIES = new Set<DealCategory>([
@@ -188,6 +190,7 @@ function parseRows(markdown: string): Deal[] {
         deal: dealText,
         normal_price: null,
         deal_price: null,
+        price_note: null,
         currency: 'HUF',
         location,
         source_url: null,
@@ -195,6 +198,7 @@ function parseRows(markdown: string): Deal[] {
         booking_note: null,
         sources: [],
         confidence: 'unverified',
+        last_checked: null,
         tags: Array.from(
           new Set([
             section.category,
@@ -228,6 +232,19 @@ function loadTagOverrides(): Record<string, string[]> {
   if (!fs.existsSync(tagsPath)) return {};
   const raw = fs.readFileSync(tagsPath, 'utf8');
   return JSON.parse(raw) as Record<string, string[]>;
+}
+
+function loadLastChecked(): string | null {
+  if (!fs.existsSync(metaPath)) return null;
+  const raw = fs.readFileSync(metaPath, 'utf8');
+  const meta = JSON.parse(raw) as { last_checked?: string };
+  return meta.last_checked ?? null;
+}
+
+function loadPriceNotes(): Record<string, string> {
+  if (!fs.existsSync(priceNotesPath)) return {};
+  const raw = fs.readFileSync(priceNotesPath, 'utf8');
+  return JSON.parse(raw) as Record<string, string>;
 }
 
 function mergeSources(
@@ -341,11 +358,20 @@ function main() {
     }
   }
 
+  const lastChecked = loadLastChecked();
+  const priceNotes = loadPriceNotes();
   const withTags = merged.map((deal) => {
     const tags = new Set(deal.tags);
     if (PROGRAM_CATEGORIES.has(deal.category)) tags.add('program');
     for (const tag of tagOverrides[deal.id] ?? []) tags.add(tag);
-    return { ...deal, tags: [...tags] };
+    return {
+      ...deal,
+      tags: [...tags],
+      price_note: deal.price_note ?? priceNotes[deal.id] ?? null,
+      last_checked:
+        deal.last_checked ??
+        (deal.confidence === 'verified' ? lastChecked : null),
+    };
   });
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });

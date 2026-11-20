@@ -45,6 +45,7 @@ export interface Deal {
   deal: string;
   normal_price: number | null;
   deal_price: number | null;
+  price_note: string | null;
   currency: 'HUF' | 'EUR' | null;
   location: string;
   source_url: string | null;
@@ -52,6 +53,7 @@ export interface Deal {
   booking_note: string | null;
   sources: DealSource[];
   confidence: Confidence;
+  last_checked: string | null;
   tags: string[];
   notes: string | null;
   featured: boolean;

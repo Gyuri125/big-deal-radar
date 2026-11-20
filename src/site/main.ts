@@ -27,6 +27,9 @@ import {
 type StatusKind = 'live' | 'upcoming' | 'past' | 'continuous' | 'unknown';
 type SortMode = 'next' | 'value' | 'title';
 type Focus = 'all' | 'mozi' | 'gasztro' | 'program' | 'unnep' | 'free';
+type TimeFilter = 'all' | 'today' | 'weekend' | 'next7';
+type BudgetFilter = 'all' | 'free' | 'under5' | 'under10' | 'over10';
+type ViewMode = 'list' | 'calendar';
 
 interface EnrichedDeal extends Deal {
   effective: EffectiveDate | null;
@@ -77,6 +80,21 @@ const FOCUS_FILTERS: Array<{ value: Focus; label: string }> = [
   { value: 'free', label: '🆓 Ingyenes' },
 ];
 
+const TIME_FILTERS: Array<{ value: TimeFilter; label: string }> = [
+  { value: 'all', label: 'Mind' },
+  { value: 'today', label: 'Ma' },
+  { value: 'weekend', label: 'Hétvége' },
+  { value: 'next7', label: '7 nap' },
+];
+
+const BUDGET_FILTERS: Array<{ value: BudgetFilter; label: string }> = [
+  { value: 'all', label: 'Mind' },
+  { value: 'free', label: 'Ingyenes' },
+  { value: 'under5', label: '5 ezer alatt' },
+  { value: 'under10', label: '10 ezer alatt' },
+  { value: 'over10', label: '10 ezer felett' },
+];
+
 const TYPE_FILTERS: Array<{ value: 'all' | DealType; label: string }> = [
   { value: 'all', label: 'Mind' },
   { value: 'flat', label: '★ Prémium' },
@@ -105,6 +123,10 @@ const state = {
   visible: 24,
   watchlistOnly: false,
   focus: 'all' as Focus,
+  time: 'all' as TimeFilter,
+  budget: 'all' as BudgetFilter,
+  view: 'list' as ViewMode,
+  calendarMonth: new Date(now.getFullYear(), now.getMonth(), 1),
 };
 
 let watchlist: Watchlist = loadWatchlist();
@@ -381,6 +403,43 @@ function matchesFilters(deal: EnrichedDeal): boolean {
   if (state.focus === 'program' && !deal.tags.includes('program')) return false;
   if (state.focus === 'unnep' && !deal.tags.includes('unnep')) return false;
   if (state.focus === 'free' && deal.type !== 'free') return false;
+  if (state.time === 'today') {
+    if (!(deal.status === 'live' || deal.days === 0)) return false;
+  }
+  if (state.time === 'next7') {
+    if (deal.days === null || deal.days < 0 || deal.days > 7) return false;
+  }
+  if (state.time === 'weekend') {
+    if (!deal.effective) return false;
+    const start = startOfDay(deal.effective.start);
+    const end = startOfDay(deal.effective.end ?? deal.effective.start);
+    const today = startOfDay(now);
+    let isWeekend = false;
+    for (let offset = 0; offset <= 14; offset += 1) {
+      const day = addDays(today, offset);
+      if (
+        day >= start &&
+        day <= end &&
+        (day.getDay() === 0 || day.getDay() === 6)
+      ) {
+        isWeekend = true;
+        break;
+      }
+    }
+    if (!isWeekend) return false;
+  }
+  if (state.budget !== 'all') {
+    const price = deal.deal_price;
+    if (state.budget === 'free') {
+      if (deal.type !== 'free' && price !== 0) return false;
+    } else if (state.budget === 'under5') {
+      if (price === null || price > 5000) return false;
+    } else if (state.budget === 'under10') {
+      if (price === null || price > 10000) return false;
+    } else if (state.budget === 'over10') {
+      if (price === null || price <= 10000) return false;
+    }
+  }
   if (state.type !== 'all' && deal.type !== state.type) return false;
   if (state.category !== 'all' && deal.category !== state.category) return false;
   if (state.location !== 'all' && deal.location !== state.location) return false;
@@ -398,6 +457,8 @@ function hasActiveFilters(): boolean {
   return (
     state.watchlistOnly ||
     state.focus !== 'all' ||
+    state.time !== 'all' ||
+    state.budget !== 'all' ||
     state.query.trim().length > 0 ||
     state.type !== 'all' ||
     state.category !== 'all' ||
@@ -440,6 +501,70 @@ function monthDeals(): EnrichedDeal[] {
       const bDays = b.days ?? Number.MAX_SAFE_INTEGER;
       return aDays - bDays || a.title.localeCompare(b.title, 'hu');
     });
+}
+
+function datesForDealInMonth(
+  deal: EnrichedDeal,
+  year: number,
+  month: number
+): Array<{ start: Date; end: Date }> {
+  if (!deal.date_start) return [];
+
+  const refStart = parseISODate(deal.date_start);
+  const refEnd = deal.date_end ? parseISODate(deal.date_end) : null;
+  const startMonth = refStart.getMonth();
+  const startDay = refStart.getDate();
+  const endMonth = refEnd ? refEnd.getMonth() : null;
+  const endDay = refEnd ? refEnd.getDate() : null;
+  const endYearOffset = refEnd && endMonth! < startMonth ? 1 : 0;
+
+  const monthStart = new Date(year, month, 1);
+  const monthEnd = new Date(year, month + 1, 0, 23, 59, 59, 999);
+  const years =
+    deal.recurrence === 'oneoff'
+      ? [refStart.getFullYear()]
+      : [year - 1, year, year + 1];
+
+  const results: Array<{ start: Date; end: Date }> = [];
+  for (const candidateYear of years) {
+    const start = new Date(candidateYear, startMonth, startDay);
+    const end = refEnd
+      ? new Date(candidateYear + endYearOffset, endMonth!, endDay!)
+      : start;
+    if (start <= monthEnd && end >= monthStart) {
+      results.push({ start, end });
+    }
+  }
+
+  return results;
+}
+
+function dealInDay(deal: EnrichedDeal, day: Date): boolean {
+  const ranges = datesForDealInMonth(
+    deal,
+    day.getFullYear(),
+    day.getMonth()
+  );
+  const target = startOfDay(day).getTime();
+  return ranges.some(
+    (range) =>
+      target >= startOfDay(range.start).getTime() &&
+      target <= startOfDay(range.end).getTime()
+  );
+}
+
+function topDeals(): EnrichedDeal[] {
+  const featured = enriched
+    .filter((deal) => deal.featured && deal.effective)
+    .sort((a, b) => (a.days ?? 999) - (b.days ?? 999));
+
+  if (featured.length >= 5) return featured.slice(0, 5);
+
+  const rest = enriched
+    .filter((deal) => !deal.featured && deal.effective)
+    .sort((a, b) => (b.discount ?? 0) - (a.discount ?? 0));
+
+  return [...featured, ...rest].slice(0, 5);
 }
 
 function sectionMarkup(
@@ -503,6 +628,120 @@ function updateFilterButtons(): void {
     button.classList.toggle('active', active);
     button.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-time]').forEach((button) => {
+    const active = button.dataset.time === state.time;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-budget]').forEach((button) => {
+    const active = button.dataset.budget === state.budget;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((button) => {
+    const active = button.dataset.view === state.view;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+}
+
+function renderCalendar(): void {
+  const results = document.querySelector<HTMLElement>('#results');
+  if (!results) return;
+
+  const year = state.calendarMonth.getFullYear();
+  const month = state.calendarMonth.getMonth();
+  const monthStart = new Date(year, month, 1);
+  const monthEnd = new Date(year, month + 1, 0);
+  const monthTitle = new Intl.DateTimeFormat('hu-HU', {
+    year: 'numeric',
+    month: 'long',
+  }).format(monthStart);
+
+  const filtered = enriched.filter(matchesFilters);
+  const monthDeals = filtered.filter(
+    (deal) => datesForDealInMonth(deal, year, month).length > 0
+  );
+
+  const firstWeekday = (monthStart.getDay() + 6) % 7;
+  const daysInMonth = monthEnd.getDate();
+  const cells: string[] = [];
+
+  for (let i = 0; i < firstWeekday; i += 1) {
+    cells.push('<div class="cal-cell cal-empty" aria-hidden="true"></div>');
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(year, month, day);
+    const dayDeals = monthDeals.filter((deal) => dealInDay(deal, date));
+    const isToday =
+      startOfDay(date).getTime() === startOfDay(now).getTime();
+
+    const chips = dayDeals
+      .slice(0, 3)
+      .map(
+        (deal) => `
+          <button
+            class="cal-chip type-${deal.type}"
+            type="button"
+            data-action="calendar-deal"
+            data-id="${escapeHtml(deal.id)}"
+            title="${escapeHtml(deal.title)}"
+          >${escapeHtml(deal.title)}</button>
+        `
+      )
+      .join('');
+
+    const more =
+      dayDeals.length > 3
+        ? `<span class="cal-more">+${dayDeals.length - 3}</span>`
+        : '';
+
+    cells.push(`
+      <div class="cal-cell${isToday ? ' cal-today' : ''}">
+        <span class="cal-day">${day}</span>
+        ${chips}
+        ${more}
+      </div>
+    `);
+  }
+
+  while (cells.length % 7 !== 0) {
+    cells.push('<div class="cal-cell cal-empty" aria-hidden="true"></div>');
+  }
+
+  results.innerHTML = `
+    <section class="calendar-view">
+      <div class="cal-head">
+        <div>
+          <h2>${escapeHtml(monthTitle)}</h2>
+          <p>${monthDeals.length} esemény ebben a hónapban</p>
+        </div>
+        <div class="cal-nav">
+          <button class="btn btn-ghost" data-action="cal-prev" type="button">← Előző</button>
+          <button class="btn btn-ghost" data-action="cal-today" type="button">Ma</button>
+          <button class="btn btn-ghost" data-action="cal-next" type="button">Következő →</button>
+          <button class="btn btn-solid" data-action="ics-month" type="button" ${monthDeals.length > 0 ? '' : 'disabled'}>Hónap naptárba</button>
+        </div>
+      </div>
+
+      <div class="cal-scroll">
+        <div class="cal-weekdays">
+          ${['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V']
+            .map((day) => `<span>${day}</span>`)
+            .join('')}
+        </div>
+        <div class="cal-grid">${cells.join('')}</div>
+      </div>
+
+      <p class="cal-note">
+        A naptárban csak a pontos dátumú dealek vannak. A „havi / évente” jelöléssel szereplő dealek a listában találhatók.
+      </p>
+    </section>
+  `;
 }
 
 function renderResults(): void {
@@ -510,6 +749,11 @@ function renderResults(): void {
   if (!results) return;
 
   updateWatchCount();
+
+  if (state.view === 'calendar') {
+    renderCalendar();
+    return;
+  }
 
   const filtered = sortDeals(enriched.filter(matchesFilters), state.sort);
 
@@ -556,15 +800,35 @@ function renderResults(): void {
 
   const upcoming = upcomingDeals();
   const month = monthDeals();
+  const top = topDeals();
   const all = sortDeals(filtered, state.sort).slice(0, state.visible);
 
-  results.innerHTML = [
+  const upcomingSection =
     sectionMarkup(
       'Most és a következő 7 napban',
       'Ami éppen él, vagy 7 napon belül kezdődik.',
       upcoming,
       'Nincs aktuális vagy 7 napon belüli esemény. Nézd a havi listát vagy a teljes kínálatot.'
-    ),
+    ) +
+    (upcoming.length > 0
+      ? `
+        <div class="section-actions">
+          <button class="btn btn-ghost" data-action="ics-upcoming" type="button">
+            Következő 7 nap naptárba
+          </button>
+        </div>
+      `
+      : '');
+
+  results.innerHTML = [
+    top.length > 0
+      ? sectionMarkup(
+          'Heti top 5',
+          'Szerkesztői válogatás – a legnagyobb dobások.',
+          top
+        )
+      : '',
+    upcomingSection,
     month.length > 0
       ? sectionMarkup(
           `${monthLabel(now.getMonth() + 1)} – havi radar`,
@@ -634,6 +898,49 @@ function renderDebug(): void {
     )}</pre>
   `;
   document.querySelector('footer')?.before(debug);
+}
+
+function dealPageUrl(id: string): string {
+  const base = window.location.href.split('?')[0].replace(/[^/]*$/, '');
+  return `${base}deal/${encodeURIComponent(id)}/`;
+}
+
+function fallbackCopy(text: string): boolean {
+  try {
+    const input = document.createElement('textarea');
+    input.value = text;
+    input.style.position = 'fixed';
+    input.style.opacity = '0';
+    input.style.pointerEvents = 'none';
+    document.body.appendChild(input);
+    input.focus();
+    input.select();
+    const copied = document.execCommand('copy');
+    input.remove();
+    return copied;
+  } catch {
+    return false;
+  }
+}
+
+async function copyText(text: string): Promise<boolean> {
+  if (navigator.clipboard) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      return fallbackCopy(text);
+    }
+  }
+  return fallbackCopy(text);
+}
+
+function reportIssueUrl(deal: EnrichedDeal): string {
+  const title = encodeURIComponent(`Hiba: ${deal.title}`);
+  const body = encodeURIComponent(
+    `Deal: ${deal.title}\nOldal: ${dealPageUrl(deal.id)}\n\nMit tapasztaltál?\n- Hibás ár:\n- Halott link:\n- Hibás dátum:\n\nKérlek, írd le röviden.`
+  );
+  return `https://github.com/Gyuri125/big-deal-radar/issues/new?title=${title}&body=${body}`;
 }
 
 function repoUrl(): string {
@@ -717,6 +1024,10 @@ function renderShell(): void {
           autocomplete="off"
           aria-label="Keresés a dealek között"
         />
+        <div class="view-toggle" role="group" aria-label="Nézet">
+          <button class="chip active" type="button" data-view="list" aria-pressed="true">Lista</button>
+          <button class="chip" type="button" data-view="calendar" aria-pressed="false">Naptár</button>
+        </div>
       </div>
 
       <div class="filter-block focus-block">
@@ -730,6 +1041,28 @@ function renderShell(): void {
                 data-focus="${filter.value}"
                 aria-pressed="false"
               >${filter.label}</button>
+            `
+          ).join('')}
+        </div>
+      </div>
+
+      <div class="filter-block">
+        <span class="filter-label">Mikor</span>
+        <div class="chips" id="time-filters">
+          ${TIME_FILTERS.map(
+            (filter) => `
+              <button class="chip" type="button" data-time="${filter.value}" aria-pressed="false">${filter.label}</button>
+            `
+          ).join('')}
+        </div>
+      </div>
+
+      <div class="filter-block">
+        <span class="filter-label">Ár</span>
+        <div class="chips" id="budget-filters">
+          ${BUDGET_FILTERS.map(
+            (filter) => `
+              <button class="chip" type="button" data-budget="${filter.value}" aria-pressed="false">${filter.label}</button>
             `
           ).join('')}
         </div>
@@ -863,6 +1196,13 @@ function openDialog(id: string): void {
     `
     : `<div><span>Ár</span><strong>${deal.type === 'free' ? 'Ingyenes' : 'A forrásban'}</strong></div>`;
 
+  const confidenceLabel =
+    deal.confidence === 'verified'
+      ? `Ellenőrzött${deal.last_checked ? ` · ${formatHuDate(parseISODate(deal.last_checked))}` : ''}`
+      : deal.confidence === 'needs-check'
+        ? 'Ellenőrizendő'
+        : 'Nem ellenőrzött';
+
   const priorityButtons = [1, 2, 3]
     .map(
       (value) => `
@@ -884,6 +1224,7 @@ function openDialog(id: string): void {
   const sources = sourcesMarkup(deal);
 
   dialogEl.dataset.dealId = deal.id;
+  history.replaceState(null, '', `?deal=${encodeURIComponent(deal.id)}`);
   dialogEl.innerHTML = `
     <div class="dialog-head">
       <div>
@@ -908,13 +1249,18 @@ function openDialog(id: string): void {
 
     <div class="dialog-grid">
       ${priceCells}
-      <div><span>Bizonyosság</span><strong>${deal.confidence === 'verified' ? 'Ellenőrzött' : deal.confidence === 'needs-check' ? 'Ellenőrizendő' : 'Nem ellenőrzött'}</strong></div>
+      <div><span>Bizonyosság</span><strong>${confidenceLabel}</strong></div>
       ${
         deal.booking_opens
           ? `<div><span>Foglalás nyílik</span><strong>${formatHuDate(parseISODate(deal.booking_opens))}</strong></div>`
           : ''
       }
     </div>
+    ${
+      deal.price_note
+        ? `<p class="dialog-price-note">${escapeHtml(deal.price_note)}</p>`
+        : ''
+    }
     ${
       deal.booking_note
         ? `<p class="dialog-booking-note"><strong>Jegyvásárlás:</strong> ${escapeHtml(deal.booking_note)}</p>`
@@ -934,6 +1280,8 @@ function openDialog(id: string): void {
     <div class="dialog-actions">
       <button class="btn btn-solid" data-dialog-action="ics" type="button" ${deal.effective ? '' : 'disabled'}>Naptárba emlékeztetővel</button>
       ${bookingLink}
+      <button class="btn btn-ghost" data-dialog-action="share" type="button">Megosztás</button>
+      <a class="btn btn-ghost" href="${reportIssueUrl(deal)}" target="_blank" rel="noopener">Hibát jelentek</a>
     </div>
     ${
       deal.effective
@@ -974,11 +1322,14 @@ function alarmLines(summary: string): string[] {
   ]);
 }
 
-function eventLines(deal: EnrichedDeal): string[] {
-  if (!deal.effective) return [];
+function eventLines(
+  deal: EnrichedDeal,
+  override?: { start: Date; end: Date }
+): string[] {
+  const start = override?.start ?? deal.effective?.start;
+  if (!start) return [];
+  const end = override?.end ?? deal.effective?.end ?? start;
 
-  const start = deal.effective.start;
-  const end = deal.effective.end ?? start;
   const lines = [
     'BEGIN:VEVENT',
     `UID:${deal.id}@big-deal-radar`,
@@ -995,7 +1346,7 @@ function eventLines(deal: EnrichedDeal): string[] {
     'END:VEVENT',
   ];
 
-  if (deal.booking_opens) {
+  if (deal.booking_opens && !override) {
     const bookingDate = parseISODate(deal.booking_opens);
     lines.push(
       'BEGIN:VEVENT',
@@ -1068,7 +1419,7 @@ function downloadWatchlistIcs(): void {
     'VERSION:2.0',
     'PRODID:-//Big-deal radar//HU',
     'CALSCALE:GREGORIAN',
-    ...watched.flatMap(eventLines),
+    ...watched.flatMap((deal) => eventLines(deal)),
     'END:VCALENDAR',
   ].join('\r\n');
 
@@ -1076,6 +1427,65 @@ function downloadWatchlistIcs(): void {
   showToast(
     `${watched.length} követett deal hozzáadva a naptárhoz, emlékeztetőkkel.`
   );
+}
+
+function downloadUpcomingIcs(): void {
+  const deals = upcomingDeals().filter((deal) => deal.effective);
+
+  if (deals.length === 0) {
+    showToast('Nincs dátumos esemény a következő 7 napban.');
+    return;
+  }
+
+  const content = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Big-deal radar//HU',
+    'CALSCALE:GREGORIAN',
+    ...deals.flatMap((deal) => eventLines(deal)),
+    'END:VCALENDAR',
+  ].join('\r\n');
+
+  downloadBlob(content, 'big-deal-radar-kovetkezo-7-nap.ics');
+  showToast(
+    `${deals.length} esemény hozzáadva a naptárhoz, emlékeztetőkkel.`
+  );
+}
+
+function downloadMonthIcs(year: number, month: number): void {
+  const deals = enriched.filter(matchesFilters);
+  const events: string[] = [];
+
+  for (const deal of deals) {
+    for (const range of datesForDealInMonth(deal, year, month)) {
+      events.push(...eventLines(deal, range));
+    }
+  }
+
+  if (events.length === 0) {
+    showToast('Ebben a hónapban nincs dátumos deal a jelenlegi szűrésben.');
+    return;
+  }
+
+  const content = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Big-deal radar//HU',
+    'CALSCALE:GREGORIAN',
+    ...events,
+    'END:VCALENDAR',
+  ].join('\r\n');
+
+  const monthName = new Intl.DateTimeFormat('hu-HU', {
+    year: 'numeric',
+    month: 'long',
+  }).format(new Date(year, month, 1));
+
+  downloadBlob(
+    content,
+    `big-deal-radar-${year}-${String(month + 1).padStart(2, '0')}.ics`
+  );
+  showToast(`${monthName} naptárba letöltve.`);
 }
 
 const linkTooltip = document.createElement('div');
@@ -1177,6 +1587,40 @@ function handleAction(action: string, target: HTMLElement): void {
     return;
   }
 
+  if (action === 'cal-prev' || action === 'cal-next' || action === 'cal-today') {
+    const year = state.calendarMonth.getFullYear();
+    const month = state.calendarMonth.getMonth();
+    if (action === 'cal-prev') {
+      state.calendarMonth = new Date(year, month - 1, 1);
+    } else if (action === 'cal-next') {
+      state.calendarMonth = new Date(year, month + 1, 1);
+    } else {
+      state.calendarMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    }
+    renderResults();
+    return;
+  }
+
+  if (action === 'ics-month') {
+    downloadMonthIcs(
+      state.calendarMonth.getFullYear(),
+      state.calendarMonth.getMonth()
+    );
+    return;
+  }
+
+  if (action === 'ics-upcoming') {
+    downloadUpcomingIcs();
+    return;
+  }
+
+  if (action === 'calendar-deal') {
+    const id = target.closest<HTMLElement>('[data-action="calendar-deal"]')
+      ?.dataset.id;
+    if (id) openDialog(id);
+    return;
+  }
+
   if (action === 'jump-flat') {
     state.type = 'flat';
     state.category = 'all';
@@ -1186,6 +1630,8 @@ function handleAction(action: string, target: HTMLElement): void {
     state.visible = 24;
     state.watchlistOnly = false;
     state.focus = 'all';
+    state.time = 'all';
+    state.budget = 'all';
 
     const search = document.querySelector<HTMLInputElement>('#search');
     const location = document.querySelector<HTMLSelectElement>('#location-filter');
@@ -1206,6 +1652,8 @@ function handleAction(action: string, target: HTMLElement): void {
 
     if (state.watchlistOnly) {
       state.focus = 'all';
+      state.time = 'all';
+      state.budget = 'all';
       state.type = 'all';
       state.category = 'all';
       state.location = 'all';
@@ -1243,6 +1691,30 @@ function handleAction(action: string, target: HTMLElement): void {
 appRoot.addEventListener('click', (event) => {
   const target = event.target as HTMLElement;
 
+  const viewButton = target.closest<HTMLButtonElement>('[data-view]');
+  if (viewButton) {
+    state.view = viewButton.dataset.view as ViewMode;
+    updateFilterButtons();
+    renderResults();
+    return;
+  }
+
+  const timeButton = target.closest<HTMLButtonElement>('[data-time]');
+  if (timeButton) {
+    state.time = timeButton.dataset.time as TimeFilter;
+    updateFilterButtons();
+    renderResults();
+    return;
+  }
+
+  const budgetButton = target.closest<HTMLButtonElement>('[data-budget]');
+  if (budgetButton) {
+    state.budget = budgetButton.dataset.budget as BudgetFilter;
+    updateFilterButtons();
+    renderResults();
+    return;
+  }
+
   const focusButton = target.closest<HTMLButtonElement>('[data-focus]');
   if (focusButton) {
     state.focus = focusButton.dataset.focus as Focus;
@@ -1251,6 +1723,8 @@ appRoot.addEventListener('click', (event) => {
     state.location = 'all';
     state.query = '';
     state.watchlistOnly = false;
+    state.time = 'all';
+    state.budget = 'all';
     state.visible = 24;
 
     const search = document.querySelector<HTMLInputElement>('#search');
@@ -1340,9 +1814,47 @@ dialogEl.addEventListener('click', (event) => {
     return;
   }
 
+  if (action === 'share') {
+    const dealId = dialogEl.dataset.dealId;
+    const deal = dealId ? enriched.find((item) => item.id === dealId) : null;
+    if (!deal) return;
+
+    const url = dealPageUrl(deal.id);
+    void (async () => {
+      const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      if (navigator.share && isMobile) {
+        try {
+          await navigator.share({ title: deal.title, text: deal.deal, url });
+          return;
+        } catch {
+          // A felhasználó bezárta a megosztást; essünk vissza a linkmásolásra.
+        }
+      }
+
+      const copied = await copyText(url);
+      showToast(
+        copied
+          ? 'Link másolva a vágólapra.'
+          : 'A linket nem sikerült vágólapra tenni – nyisd meg a deal oldalát.'
+      );
+      if (!copied) {
+        window.open(url, '_blank', 'noopener');
+      }
+    })();
+    return;
+  }
+
   if (action === 'ics') {
     const dealId = dialogEl.dataset.dealId;
     if (dealId) downloadIcs(dealId);
+  }
+});
+
+dialogEl.addEventListener('close', () => {
+  if (new URLSearchParams(window.location.search).has('deal')) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('deal');
+    history.replaceState(null, '', url);
   }
 });
 
@@ -1356,6 +1868,14 @@ async function fetchStatus(): Promise<void> {
   }
 }
 
+function openDealFromQuery(): void {
+  const id = new URLSearchParams(window.location.search).get('deal');
+  if (!id) return;
+  if (enriched.some((deal) => deal.id === id)) {
+    openDialog(id);
+  }
+}
+
 async function init(): Promise<void> {
   renderShell();
   renderStats();
@@ -1365,6 +1885,15 @@ async function init(): Promise<void> {
   renderFooter();
   updateStatusBanner();
   renderDebug();
+  openDealFromQuery();
 }
 
 void init();
+
+if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+  window.addEventListener('load', () => {
+    void navigator.serviceWorker.register('./sw.js').catch(() => {
+      // A service worker hibája ne befolyásolja az oldal működését.
+    });
+  });
+}

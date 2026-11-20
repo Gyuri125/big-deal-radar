@@ -40,6 +40,7 @@ const dealSchema = z.object({
   deal: z.string().min(1),
   normal_price: z.number().nonnegative().nullable(),
   deal_price: z.number().nonnegative().nullable(),
+  price_note: z.string().nullable(),
   currency: z.enum(['HUF', 'EUR']).nullable(),
   location: z.string().min(1),
   source_url: z.string().url().nullable(),
@@ -53,6 +54,7 @@ const dealSchema = z.object({
     })
   ),
   confidence: z.enum(['verified', 'unverified', 'needs-check']),
+  last_checked: isoDate.nullable(),
   tags: z.array(z.string()),
   notes: z.string().nullable(),
   featured: z.boolean(),
