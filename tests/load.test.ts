@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { loadDeals, summarize } from '../src/pipeline/load';
 
 describe('deal adatbázis', () => {
-  it('betölti a 100 dealet', () => {
+  it('betölti a dealeket', () => {
     const { deals } = loadDeals();
-    expect(deals.length).toBe(100);
+    expect(deals.length).toBeGreaterThanOrEqual(100);
   });
 
   it('minden dealnek van egyedi azonosítója és címe', () => {

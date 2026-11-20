@@ -16,6 +16,7 @@ const markdownPath = path.join(root, 'budapesti-100-big-deal.md');
 const overridesPath = path.join(root, 'data', 'overrides.json');
 const sourcesPath = path.join(root, 'data', 'sources.json');
 const tagsPath = path.join(root, 'data', 'tags.json');
+const titlesPath = path.join(root, 'data', 'titles.json');
 const metaPath = path.join(root, 'data', 'meta.json');
 const priceNotesPath = path.join(root, 'data', 'price-notes.json');
 const outputPath = path.join(root, 'data', 'deals.json');
@@ -42,6 +43,7 @@ const SECTION_MAP: Array<{
   { test: /Pénzügy/, category: 'penzugy', fallbackType: 'money' },
   { test: /Egészség/, category: 'egeszseg', fallbackType: 'free' },
   { test: /Család/, category: 'csalad', fallbackType: 'access' },
+  { test: /Új ünnepi/, category: 'kultura', fallbackType: 'free' },
 ];
 
 const MONTHS: Record<string, number> = {
@@ -234,6 +236,12 @@ function loadTagOverrides(): Record<string, string[]> {
   return JSON.parse(raw) as Record<string, string[]>;
 }
 
+function loadTitleOverrides(): Record<string, string> {
+  if (!fs.existsSync(titlesPath)) return {};
+  const raw = fs.readFileSync(titlesPath, 'utf8');
+  return JSON.parse(raw) as Record<string, string>;
+}
+
 function loadLastChecked(): string | null {
   if (!fs.existsSync(metaPath)) return null;
   const raw = fs.readFileSync(metaPath, 'utf8');
@@ -358,9 +366,21 @@ function main() {
     }
   }
 
+  const titleOverrides = loadTitleOverrides();
+  for (const id of Object.keys(titleOverrides)) {
+    if (!parsedIds.has(id)) {
+      console.warn(`⚠️  A titles.json-ban szereplő id nem található: ${id}`);
+    }
+  }
+
+  const titled = merged.map((deal) => ({
+    ...deal,
+    title: titleOverrides[deal.id] ?? deal.title,
+  }));
+
   const lastChecked = loadLastChecked();
   const priceNotes = loadPriceNotes();
-  const withTags = merged.map((deal) => {
+  const withTags = titled.map((deal) => {
     const tags = new Set(deal.tags);
     if (PROGRAM_CATEGORIES.has(deal.category)) tags.add('program');
     for (const tag of tagOverrides[deal.id] ?? []) tags.add(tag);

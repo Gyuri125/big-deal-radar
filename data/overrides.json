@@ -533,5 +533,77 @@
   },
   "budapest-borfesztival": {
     "type": "access"
+  },
+  "budapest-coffee-festival": {
+    "date_start": "2026-09-21",
+    "date_end": "2026-09-27",
+    "source_url": "https://bpcoffeeweek.hu/",
+    "booking_url": "https://bpcoffeeweek.hu/",
+    "booking_note": "A Budapest Coffee Week keretében 80+ kávézó kínál speciality italokat; a Kávéútlevél a helyszíneken kapható.",
+    "confidence": "verified",
+    "notes": "2026. szeptember 21–27. A város több pontján zajlik, nincs egyetlen fő helyszín."
+  },
+  "budapest-sorfesztival": {
+    "date_start": "2026-09-01",
+    "date_end": "2026-09-06",
+    "source_url": "https://www.sorfesztival.hu/",
+    "booking_note": "A belépés ingyenes; a sörfogyasztáshoz fesztiválpohár kell (4999/5999 Ft).",
+    "price_note": "A belépés ingyenes; a pohár 4999 vagy 5999 Ft.",
+    "confidence": "verified",
+    "notes": "2026. szeptember 1–6., Szabadság tér."
+  },
+  "halaszlefozo-fesztival-baja": {
+    "date_start": "2026-07-09",
+    "date_end": "2026-07-12",
+    "source_url": "https://www.fesztivalportal.hu/gasztronomiai-fesztival/bajai-halfozo-fesztival",
+    "booking_note": "A Szentháromság téri főző- és gasztroprogramok ingyenesek; a Petőfi-szigeti koncertek jegyváltásosak.",
+    "price_note": "A belvárosi főzőprogramok ingyenesek; a szigeti koncertek külön jegyet igényelnek.",
+    "confidence": "verified",
+    "notes": "2026. július 9–12., Baja. 2026-ban 30. jubileumi népünnepély."
+  },
+  "muemlekek-napja": {
+    "date_start": "2026-09-19",
+    "date_end": "2026-09-20",
+    "source_url": "https://oroksegnapok.gov.hu/",
+    "booking_note": "A legtöbb helyszín ingyenes; egyes programok regisztrációhoz kötöttek.",
+    "confidence": "verified",
+    "notes": "2026. szeptember 19–20. Kulturális Örökség Napjai néven."
+  },
+  "magyar-film-napja": {
+    "category": "mozi",
+    "type": "access",
+    "date_start": "2026-04-30",
+    "date_end": "2026-04-30",
+    "source_url": "https://www.magyarfilmnapja.hu/",
+    "booking_note": "A vetítésekre a mozik saját jegypénztárában vagy online lehet jegyet venni.",
+    "confidence": "verified",
+    "price_note": "A vetítések ára mozinként változik; a programok egy része ingyenes.",
+    "notes": "Április 30. – a magyar film napja, országos mozis program."
+  },
+  "kave-napja-coffee-day": {
+    "category": "gasztro",
+    "type": "sale",
+    "date_start": "2026-10-10",
+    "date_end": "2026-10-10",
+    "deal": "Korlátlan kávékóstolás, 30+ kiállító, workshopok",
+    "normal_price": 5900,
+    "deal_price": 4900,
+    "currency": "HUF",
+    "source_url": "https://kavenapja.hu/",
+    "booking_url": "https://kavenapja.hu/",
+    "booking_note": "Early bird 4900 Ft, a helyszínen 5900 Ft; érdemes előre venni.",
+    "confidence": "verified",
+    "price_note": "Early bird 4900 Ft, helyszíni jegy 5900 Ft.",
+    "notes": "2026. október 10., Millenáris D csarnok. 14. Kávé Napja."
+  },
+  "tajhazak-es-szabadteri-muzeumok-napja": {
+    "category": "kultura",
+    "type": "free",
+    "date_start": "2026-04-26",
+    "date_end": "2026-04-26",
+    "source_url": "https://tajhazszovetseg.hu/tajhazak-napja-esemenysorozat",
+    "booking_note": "A legtöbb tájház ingyenesen látogatható; egyes programok regisztrációhoz kötöttek.",
+    "confidence": "verified",
+    "notes": "Országos tájházi nap, jellemzően április utolsó vasárnapja."
   }
 }

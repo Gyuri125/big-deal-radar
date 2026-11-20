@@ -545,5 +545,26 @@
       "url": "https://www.google.com/search?q=otthonfel%C3%BAj%C3%ADt%C3%A1si%20t%C3%A1mogat%C3%A1s%202026",
       "type": "search"
     }
+  ],
+  "budapest-coffee-festival": [
+    {
+      "label": "We Love Budapest ajánló",
+      "url": "https://welovebudapest.com/cikk/2026/09/09/budapest-coffee-week-2026-kavezok-programok",
+      "type": "article"
+    }
+  ],
+  "budapest-sorfesztival": [
+    {
+      "label": "BudAPPest ajánló",
+      "url": "https://budappest.hu/sorkulonlegessegek-es-fesztivalhangulat-tizedszer-jon-a-belvarosi-sorfesztival",
+      "type": "article"
+    }
+  ],
+  "halaszlefozo-fesztival-baja": [
+    {
+      "label": "Programturizmus ajánló",
+      "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
+      "type": "article"
+    }
   ]
 }

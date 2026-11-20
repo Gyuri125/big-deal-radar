@@ -177,6 +177,16 @@
 
 ---
 
+## 11. Új ünnepi / évfordulós programok (101–103)
+
+| # | Esemény | Mikor | Mi a deal |
+|---|---------|-------|-----------|
+| 101 | Magyar Film Napja | Április 30. | Országszerte magyar filmek a mozikban, különprogramok |
+| 102 | Kávé Napja / Coffee Day | Október 10. | Millenáris, korlátlan kávékóstolás, early bird 4900 Ft |
+| 103 | Tájházak és Szabadtéri Múzeumok Napja | Április | Ingyenes tájházi programok országszerte |
+
+---
+
 ## Bónusz: 10 külföldi, ha később nemzetközire is nyitnál
 
 1. **USA National Park free days** – évi 5–6 nap, ingyenes belépés a nemzeti parkokba.

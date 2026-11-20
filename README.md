@@ -6,7 +6,7 @@
 >
 > **Élő oldal:** [https://gyuri125.github.io/big-deal-radar/](https://gyuri125.github.io/big-deal-radar/)
 >
-> **Minőség:** Lighthouse 100/100/100 (Accessibility, Best Practices, SEO) · 11 automata teszt · titokszivárgás-ellenőrzés minden CI futásban.
+> **Minőség:** Lighthouse 100/100/100 (Accessibility, Best Practices, SEO) · 12 automata teszt · titokszivárgás-ellenőrzés minden CI futásban.
 
 A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor nem 10%-ot adnak, hanem 4 napig **minden mozijegy ugyanannyi**, a 4DX is. Ilyen még a Múzeumok Éjszakája, a Színházak Éjszakája, a Restaurant Week, a Corvin Mozi Éjszaka vagy a Budapest100.
 
@@ -35,7 +35,7 @@ A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor 
 
 Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 
-- 100 magyar/budapesti deal-ötletet tart nyilván,
+- 100+ magyar/budapesti deal-ötletet tart nyilván,
 - a következő 7 nap eseményeit és a havi radarot mutatja,
 - szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
@@ -154,7 +154,7 @@ TZ=Europe/Budapest
 
 ### 4. Adatok betöltése
 
-A 100-as lista a `budapesti-100-big-deal.md` fájlban van. A top dealek pontos dátumát, árát és forrását a `data/overrides.json` adja hozzá.
+A 100+ lista a `budapesti-100-big-deal.md` fájlban van. A top dealek pontos dátumát, árát és forrását a `data/overrides.json` adja hozzá; a forrásokat, címkéket és ármagyarázatokat külön adatfájlok egészítik ki.
 
 ```bash
 npm run import
@@ -443,8 +443,9 @@ Egy deal így néz ki a `data/deals.json`-ban:
 1. Írd be a `budapesti-100-big-deal.md` táblázatába.
 2. Ha pontos dátumot, árat vagy foglalási adatot akarsz hozzáadni, tedd a `data/overrides.json`-ba.
 3. A forrásokat a `data/sources.json`-ba, a program/ünnepi címkéket a `data/tags.json`-ba, az ármagyarázatot a `data/price-notes.json`-ba tedd.
-4. Az ellenőrzés dátumát a `data/meta.json`-ban frissítsd.
-5. Futtasd:
+4. Ha a deal neve pontosításra szorul, a `data/titles.json`-ban írd felül.
+5. Az ellenőrzés dátumát a `data/meta.json`-ban frissítsd.
+6. Futtasd:
 
 ```bash
 npm run import
@@ -621,10 +622,11 @@ big-deal-radar/
 │  ├─ link-check.yml      # heti linkellenőrzés
 │  └─ ci.yml              # lint, teszt, titokellenőrzés, build
 ├─ data/
-│  ├─ deals.json          # 100 deal (generált a markdownból)
+│  ├─ deals.json          # 100+ deal (generált a markdownból)
 │  ├─ overrides.json      # top dealek pontos dátumai/árai/foglalási adatai
 │  ├─ sources.json        # dealenkénti források, cikkek, jegyvásárlás
 │  ├─ tags.json           # program / ünnepi / évfordulós címkék
+│  ├─ titles.json         # dealnevek pontosítása (pl. Coffee Week)
 │  ├─ price-notes.json    # ármagyarázatok
 │  ├─ meta.json           # utolsó ellenőrzés dátuma
 │  └─ state.json          # generált, gitignore-olt
@@ -665,8 +667,8 @@ big-deal-radar/
 - [x] Heti top 5, egyedi deal-oldalak, OG képek, Event structured data.
 - [x] PWA, offline mód, megosztható linkek.
 - [x] Heti linkellenőrzés és hibabejelentés.
-- [ ] A maradék 66 dealhez pontos dátum, ahol lehet.
-- [ ] A 22 keresőlinkes dealhez konkrét hivatalos forrás.
+- [ ] A maradék 63 dealhez pontos dátum, ahol lehet.
+- [ ] A 18 keresőlinkes dealhez konkrét hivatalos forrás.
 - [ ] Normál árak feltöltése a top 30-hoz.
 - [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.
 - [ ] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).

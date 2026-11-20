@@ -49,7 +49,7 @@ async function checkOne(url: string, dealTitles: string[]): Promise<LinkCheck> {
     const response = await fetch(url, {
       method: 'GET',
       redirect: 'follow',
-      signal: AbortSignal.timeout(15_000),
+      signal: AbortSignal.timeout(25_000),
       headers: {
         'User-Agent':
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36',

@@ -602,7 +602,7 @@
   },
   {
     "id": "muemlekek-napja",
-    "title": "Műemlékek Napja",
+    "title": "Kulturális Örökség Napjai",
     "category": "kultura",
     "type": "free",
     "timing": "Szeptember",
@@ -614,24 +614,29 @@
       9
     ],
     "recurrence": "annual",
-    "deal": "Ingyenesen látogatható műemlékek, kulisszák mögötti programok",
+    "deal": "Ingyenesen látogatható műemlékek, kulisszák.",
     "normal_price": null,
-    "deal_price": 0,
+    "deal_price": null,
     "price_note": null,
-    "currency": null,
+    "currency": "HUF",
     "location": "Budapest",
-    "source_url": null,
+    "source_url": "https://oroksegnapok.gov.hu/",
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A legtöbb helyszín ingyenes; egyes programok regisztrációhoz kötöttek.",
     "sources": [
       {
         "label": "Keresés",
         "url": "https://www.google.com/search?q=M%C5%B1eml%C3%A9kek%20Napja%202026",
         "type": "search"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://oroksegnapok.gov.hu/",
+        "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -639,7 +644,7 @@
       "program",
       "unnep"
     ],
-    "notes": "Szeptemberi hétvége; a pontos dátum évente változik.",
+    "notes": "2026. szeptember 19–20. Kulturális Örökség Napjai néven.",
     "featured": false
   },
   {
@@ -1709,16 +1714,17 @@
   },
   {
     "id": "budapest-coffee-festival",
-    "title": "Budapest Coffee Festival",
+    "title": "Budapest Coffee Week",
     "category": "gasztro",
     "type": "access",
     "timing": "Október",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-09-21",
+    "date_end": "2026-09-27",
     "booking_opens": null,
-    "month": 10,
+    "month": 9,
     "months": [
-      10
+      10,
+      9
     ],
     "recurrence": "annual",
     "deal": "Kóstolók, barista verseny, belépővel sok kávé.",
@@ -1727,26 +1733,31 @@
     "price_note": null,
     "currency": "HUF",
     "location": "Budapest",
-    "source_url": null,
-    "booking_url": null,
-    "booking_note": null,
+    "source_url": "https://bpcoffeeweek.hu/",
+    "booking_url": "https://bpcoffeeweek.hu/",
+    "booking_note": "A Budapest Coffee Week keretében 80+ kávézó kínál speciality italokat; a Kávéútlevél a helyszíneken kapható.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Budapest%20Coffee%20Festival%202026",
-        "type": "search"
+        "label": "We Love Budapest ajánló",
+        "url": "https://welovebudapest.com/cikk/2026/09/09/budapest-coffee-week-2026-kavezok-programok",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://bpcoffeeweek.hu/",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "gasztro",
       "access",
-      "budapest",
       "program",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #41",
+    "notes": "2026. szeptember 21–27. A város több pontján zajlik, nincs egyetlen fő helyszín.",
     "featured": false
   },
   {
@@ -1793,45 +1804,51 @@
   },
   {
     "id": "budapest-sorfesztival",
-    "title": "Budapest Sörfesztivál",
+    "title": "Belvárosi Sörfesztivál",
     "category": "gasztro",
     "type": "access",
     "timing": "Május/június",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-09-01",
+    "date_end": "2026-09-06",
     "booking_opens": null,
-    "month": 5,
+    "month": 9,
     "months": [
       5,
-      6
+      6,
+      9
     ],
     "recurrence": "annual",
     "deal": "Kézműves sörök, kóstolócsomagok.",
     "normal_price": null,
     "deal_price": null,
-    "price_note": null,
+    "price_note": "A belépés ingyenes; a pohár 4999 vagy 5999 Ft.",
     "currency": "HUF",
     "location": "Budapest",
-    "source_url": null,
+    "source_url": "https://www.sorfesztival.hu/",
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A belépés ingyenes; a sörfogyasztáshoz fesztiválpohár kell (4999/5999 Ft).",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Budapest%20S%C3%B6rfesztiv%C3%A1l%202026",
-        "type": "search"
+        "label": "BudAPPest ajánló",
+        "url": "https://budappest.hu/sorkulonlegessegek-es-fesztivalhangulat-tizedszer-jon-a-belvarosi-sorfesztival",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.sorfesztival.hu/",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "gasztro",
       "access",
-      "budapest",
       "program",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #43",
+    "notes": "2026. szeptember 1–6., Szabadság tér.",
     "featured": false
   },
   {
@@ -2011,12 +2028,12 @@
   },
   {
     "id": "halaszlefozo-fesztival-baja",
-    "title": "Halászléfőző Fesztivál, Baja",
+    "title": "Bajai Halászléfőző Népünnepély",
     "category": "gasztro",
     "type": "access",
     "timing": "Július",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-07-09",
+    "date_end": "2026-07-12",
     "booking_opens": null,
     "month": 7,
     "months": [
@@ -2026,29 +2043,34 @@
     "deal": "Országos halászléverseny, kóstolók, koncertek.",
     "normal_price": null,
     "deal_price": null,
-    "price_note": null,
+    "price_note": "A belvárosi főzőprogramok ingyenesek; a szigeti koncertek külön jegyet igényelnek.",
     "currency": "HUF",
     "location": "Baja",
-    "source_url": null,
+    "source_url": "https://www.fesztivalportal.hu/gasztronomiai-fesztival/bajai-halfozo-fesztival",
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A Szentháromság téri főző- és gasztroprogramok ingyenesek; a Petőfi-szigeti koncertek jegyváltásosak.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Baja%20hal%C3%A1szl%C3%A9f%C5%91z%C5%91%20fesztiv%C3%A1l%202026",
-        "type": "search"
+        "label": "Programturizmus ajánló",
+        "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.fesztivalportal.hu/gasztronomiai-fesztival/bajai-halfozo-fesztival",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "baja",
       "gasztro",
       "access",
-      "baja",
       "program",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #48",
+    "notes": "2026. július 9–12., Baja. 2026-ban 30. jubileumi népünnepély.",
     "featured": false
   },
   {
@@ -4144,6 +4166,132 @@
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #100",
+    "featured": false
+  },
+  {
+    "id": "magyar-film-napja",
+    "title": "Magyar Film Napja",
+    "category": "mozi",
+    "type": "access",
+    "timing": "Április 30.",
+    "date_start": "2026-04-30",
+    "date_end": "2026-04-30",
+    "booking_opens": null,
+    "month": 4,
+    "months": [
+      4
+    ],
+    "recurrence": "annual",
+    "deal": "Országszerte magyar filmek a mozikban, különprogramok",
+    "normal_price": null,
+    "deal_price": null,
+    "price_note": "A vetítések ára mozinként változik; a programok egy része ingyenes.",
+    "currency": "HUF",
+    "location": "Budapest",
+    "source_url": "https://www.magyarfilmnapja.hu/",
+    "booking_url": null,
+    "booking_note": "A vetítésekre a mozik saját jegypénztárában vagy online lehet jegyet venni.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.magyarfilmnapja.hu/",
+        "type": "official"
+      }
+    ],
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
+    "tags": [
+      "budapest",
+      "mozi",
+      "access",
+      "program",
+      "unnep"
+    ],
+    "notes": "Április 30. – a magyar film napja, országos mozis program.",
+    "featured": false
+  },
+  {
+    "id": "kave-napja-coffee-day",
+    "title": "Kávé Napja / Coffee Day",
+    "category": "gasztro",
+    "type": "sale",
+    "timing": "Október 10.",
+    "date_start": "2026-10-10",
+    "date_end": "2026-10-10",
+    "booking_opens": null,
+    "month": 10,
+    "months": [
+      10
+    ],
+    "recurrence": "annual",
+    "deal": "Korlátlan kávékóstolás, 30+ kiállító, workshopok",
+    "normal_price": 5900,
+    "deal_price": 4900,
+    "price_note": "Early bird 4900 Ft, helyszíni jegy 5900 Ft.",
+    "currency": "HUF",
+    "location": "Budapest",
+    "source_url": "https://kavenapja.hu/",
+    "booking_url": "https://kavenapja.hu/",
+    "booking_note": "Early bird 4900 Ft, a helyszínen 5900 Ft; érdemes előre venni.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://kavenapja.hu/",
+        "type": "official"
+      }
+    ],
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
+    "tags": [
+      "budapest",
+      "gasztro",
+      "sale",
+      "program",
+      "unnep"
+    ],
+    "notes": "2026. október 10., Millenáris D csarnok. 14. Kávé Napja.",
+    "featured": false
+  },
+  {
+    "id": "tajhazak-es-szabadteri-muzeumok-napja",
+    "title": "Tájházak és Szabadtéri Múzeumok Napja",
+    "category": "kultura",
+    "type": "free",
+    "timing": "Április",
+    "date_start": "2026-04-26",
+    "date_end": "2026-04-26",
+    "booking_opens": null,
+    "month": 4,
+    "months": [
+      4
+    ],
+    "recurrence": "annual",
+    "deal": "Ingyenes tájházi programok országszerte",
+    "normal_price": null,
+    "deal_price": null,
+    "price_note": null,
+    "currency": "HUF",
+    "location": "Budapest",
+    "source_url": "https://tajhazszovetseg.hu/tajhazak-napja-esemenysorozat",
+    "booking_url": null,
+    "booking_note": "A legtöbb tájház ingyenesen látogatható; egyes programok regisztrációhoz kötöttek.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://tajhazszovetseg.hu/tajhazak-napja-esemenysorozat",
+        "type": "official"
+      }
+    ],
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
+    "tags": [
+      "budapest",
+      "kultura",
+      "free",
+      "program",
+      "unnep"
+    ],
+    "notes": "Országos tájházi nap, jellemzően április utolsó vasárnapja.",
     "featured": false
   }
 ]
