@@ -492,6 +492,20 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 
 ---
 
+## Adatállapot
+
+A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
+
+- **103 deal**
+- **121 forrás**
+- **40 dátumos**
+- **40 ellenőrzött**
+- **18 keresőlinkes** (ezeknél még nincs stabil hivatalos oldal)
+
+Ez nem reklám, hanem átláthatóság: a keresőlinkes dealeket folyamatosan pontosítjuk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.
+
+---
+
 ## Naptár és heti terv
 
 A főoldalon a **Lista / Naptár** kapcsolóval havi nézetre válthatsz.

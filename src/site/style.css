@@ -739,6 +739,73 @@ a {
   margin-top: 24px;
 }
 
+.data-quality {
+  max-width: var(--max);
+  margin: 0 auto 24px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 253, 248, 0.72);
+}
+
+.dq-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dq-head h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.dq-head p {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.dq-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--line);
+}
+
+.dq-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px;
+  background: var(--paper);
+}
+
+.dq-grid strong {
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.dq-grid span {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.dq-note {
+  margin: 14px 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: 1.2fr 1fr auto;
@@ -1545,6 +1612,21 @@ a {
   .site-footer {
     margin: 0 18px 18px;
     padding: 22px;
+  }
+
+  .data-quality {
+    margin-left: 18px;
+    margin-right: 18px;
+    padding: 18px;
+  }
+
+  .dq-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dq-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .dialog-grid {

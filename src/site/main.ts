@@ -857,6 +857,41 @@ function renderResults(): void {
   }
 }
 
+function renderDataQuality(): void {
+  const element = document.querySelector<HTMLElement>('#data-quality');
+  if (!element) return;
+
+  const total = enriched.length;
+  const sources = enriched.reduce((sum, deal) => sum + deal.sources.length, 0);
+  const dated = enriched.filter((deal) => deal.date_start).length;
+  const verified = enriched.filter(
+    (deal) => deal.confidence === 'verified'
+  ).length;
+  const searchOnly = enriched.filter(
+    (deal) => deal.sources.length === 1 && deal.sources[0].type === 'search'
+  ).length;
+
+  element.innerHTML = `
+    <div class="dq-head">
+      <div>
+        <h2>Adatállapot</h2>
+        <p>Átláthatóan mutatjuk, hol tartunk – és mit érdemes még pontosítani.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://github.com/Gyuri125/big-deal-radar/issues/new" target="_blank" rel="noopener">Hibát jelentek</a>
+    </div>
+    <div class="dq-grid">
+      <div><strong>${total}</strong><span>deal</span></div>
+      <div><strong>${sources}</strong><span>forrás</span></div>
+      <div><strong>${dated}</strong><span>dátumos</span></div>
+      <div><strong>${verified}</strong><span>ellenőrzött</span></div>
+      <div><strong>${searchOnly}</strong><span>keresőlink</span></div>
+    </div>
+    <p class="dq-note">
+      A keresőlinkes dealeknél még nincs stabil hivatalos oldal; ezeket folyamatosan pontosítjuk. Az adatok évente változnak, ezért a részleteket mindig a forrásnál ellenőrizd.
+    </p>
+  `;
+}
+
 function renderFooter(): void {
   const footer = document.querySelector<HTMLElement>('#footer-status');
   if (!footer) return;
@@ -1139,6 +1174,8 @@ function renderShell(): void {
     </section>
 
     <main id="results" class="results"></main>
+
+    <section class="data-quality" id="data-quality"></section>
 
     <footer class="site-footer">
       <div class="footer-brand">
@@ -1898,6 +1935,7 @@ async function init(): Promise<void> {
   renderResults();
   await fetchStatus();
   renderFooter();
+  renderDataQuality();
   updateStatusBanner();
   renderDebug();
   openDealFromQuery();
