@@ -393,6 +393,18 @@ Egy deal így néz ki a `data/deals.json`-ban:
   "source_url": "https://www.cinemacity.hu",
   "booking_url": "https://www.cinemacity.hu",
   "booking_note": "A jegyvásárlás online és a pénztárakban is lehetséges.",
+  "sources": [
+    {
+      "label": "Hivatalos oldal",
+      "url": "https://www.cinemacity.hu",
+      "type": "official"
+    },
+    {
+      "label": "PC Guru cikk",
+      "url": "https://www.pcguru.hu/...",
+      "type": "article"
+    }
+  ],
   "confidence": "verified",
   "tags": ["kultura", "flat", "budapest"],
   "notes": "2026-ban október 8–11. között.",
@@ -414,12 +426,14 @@ Egy deal így néz ki a `data/deals.json`-ban:
 | `source_url` | Hivatalos forrás / cikk linkje |
 | `booking_url` | Jegyvásárlás vagy foglalás linkje |
 | `booking_note` | Hogyan és mikor érdemes előre venni/foglalni |
+| `sources` | Több forrás: hivatalos, jegy, cikk, keresés |
 
 ### Hogyan kerül be új deal?
 
 1. Írd be a `budapesti-100-big-deal.md` táblázatába.
-2. Ha pontos dátumot, árat vagy forrást akarsz hozzáadni, tedd a `data/overrides.json`-ba.
-3. Futtasd:
+2. Ha pontos dátumot, árat vagy foglalási adatot akarsz hozzáadni, tedd a `data/overrides.json`-ba.
+3. A forrásokat a `data/sources.json`-ba, a program/ünnepi címkéket a `data/tags.json`-ba tedd.
+4. Futtasd:
 
 ```bash
 npm run import
