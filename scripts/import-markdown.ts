@@ -218,6 +218,16 @@ function mergeOverrides(
       tags: override.tags ?? deal.tags,
     };
 
+    merged.tags = Array.from(
+      new Set([
+        ...merged.tags.filter(
+          (tag) => tag !== deal.category && tag !== deal.type
+        ),
+        merged.category,
+        merged.type,
+      ])
+    );
+
     if (merged.date_start) {
       const month = Number(merged.date_start.slice(5, 7));
       if (Number.isFinite(month)) {
@@ -238,6 +248,14 @@ function main() {
   const markdown = fs.readFileSync(markdownPath, 'utf8');
   const parsed = parseRows(markdown);
   const overrides = loadOverrides();
+
+  const parsedIds = new Set(parsed.map((deal) => deal.id));
+  for (const id of Object.keys(overrides)) {
+    if (!parsedIds.has(id)) {
+      console.warn(`⚠️  Az overridesban szereplő id nem található a markdownban: ${id}`);
+    }
+  }
+
   const merged = mergeOverrides(parsed, overrides);
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });

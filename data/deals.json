@@ -2,7 +2,7 @@
   {
     "id": "cinema-city-filmunnep",
     "title": "Cinema City Filmünnep",
-    "category": "kultura",
+    "category": "mozi",
     "type": "flat",
     "timing": "Október eleje, 4 nap",
     "date_start": "2026-10-08",
@@ -21,9 +21,9 @@
     "source_url": "https://www.cinemacity.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "flat",
-      "budapest"
+      "budapest",
+      "mozi",
+      "flat"
     ],
     "notes": "2026-ban október 8–11. között. Évente változó, de jellemzően 4 napos őszi akció.",
     "featured": true
@@ -31,7 +31,7 @@
   {
     "id": "corvin-mozi-ejszaka",
     "title": "Corvin Mozi Éjszaka",
-    "category": "kultura",
+    "category": "mozi",
     "type": "flat",
     "timing": "November közepe",
     "date_start": "2026-11-14",
@@ -50,9 +50,9 @@
     "source_url": "https://artmozi.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "flat",
-      "budapest"
+      "budapest",
+      "mozi",
+      "flat"
     ],
     "notes": "2026. november 14. Egy karszalaggal egész éjjel válogathatsz a vetítések közül.",
     "featured": true
@@ -60,7 +60,7 @@
   {
     "id": "europai-art-mozi-nap",
     "title": "Európai Art Mozi Nap",
-    "category": "kultura",
+    "category": "mozi",
     "type": "sale",
     "timing": "November 22. körül",
     "date_start": "2026-11-22",
@@ -79,9 +79,9 @@
     "source_url": "https://artmoziegyesulet.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "sale",
-      "budapest"
+      "budapest",
+      "mozi",
+      "sale"
     ],
     "notes": "2026. november 22. Az Urániában 3100 Ft, több moziban 1800–2500 Ft körül.",
     "featured": true
@@ -108,9 +108,9 @@
     "source_url": "https://fovarosinagycirkusz.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "flat",
-      "budapest"
+      "flat"
     ],
     "notes": "2026. július 11., Fővárosi Nagycirkusz. Évente országos programsorozat.",
     "featured": true
@@ -118,7 +118,7 @@
   {
     "id": "muzeumok-ejszakaja",
     "title": "Múzeumok Éjszakája",
-    "category": "kultura",
+    "category": "muzeum",
     "type": "flat",
     "timing": "Június 20. körül",
     "date_start": "2026-06-20",
@@ -137,9 +137,9 @@
     "source_url": "https://muzej.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "flat",
-      "budapest"
+      "budapest",
+      "muzeum",
+      "flat"
     ],
     "notes": "2026. június 20. A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft felnőtt, 1500 Ft gyerek.",
     "featured": true
@@ -166,9 +166,9 @@
     "source_url": "https://bpsze.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "flat",
-      "budapest"
+      "flat"
     ],
     "notes": "2026. március 21. A jegy 3 regisztrációhoz kötött programra jogosít, a többit szabadon látogathatod.",
     "featured": true
@@ -195,9 +195,9 @@
     "source_url": "https://etteremhet.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "flat",
-      "budapest"
+      "flat"
     ],
     "notes": "2026 tavaszi kiadás. Az árak kategóriától függenek; a szervizdíj benne van.",
     "featured": true
@@ -224,9 +224,9 @@
     "source_url": "https://etteremhet.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "flat",
-      "budapest"
+      "flat"
     ],
     "notes": "2026 őszi kiadás. A Costes Michelin-csillagos menüje 17 900 Ft volt.",
     "featured": true
@@ -253,9 +253,9 @@
     "source_url": "https://etteremhet.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "flat",
-      "budapest"
+      "flat"
     ],
     "notes": "2026. november 13–22. Az őszi Restaurant Week legjobb éttermei.",
     "featured": true
@@ -282,9 +282,9 @@
     "source_url": "https://www.furdoszovetseg.hu",
     "confidence": "verified",
     "tags": [
+      "országos",
       "kultura",
-      "flat",
-      "országos"
+      "flat"
     ],
     "notes": "2026. július 25. A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül.",
     "featured": true
@@ -311,9 +311,9 @@
     "source_url": "https://zoobudapest.com",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "flat",
-      "budapest"
+      "flat"
     ],
     "notes": "2026. augusztus 28. Külön esti jegy; a nappali jegy és bérlet nem érvényes.",
     "featured": true
@@ -340,9 +340,9 @@
     "source_url": "https://budapest100.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "2026. május 9–10. 41 épület, több mint 200 program; egyes vezetések regisztrációhoz kötöttek.",
     "featured": true
@@ -369,9 +369,9 @@
     "source_url": "https://eromuvekejszakaja.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "2026. október 16. Regisztráció október 1-jén nyílt; a népszerű helyek azonnal beteltek.",
     "featured": true
@@ -398,9 +398,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Szeptemberi hétvége; a pontos dátum évente változik.",
     "featured": false
@@ -427,9 +427,9 @@
     "source_url": null,
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Szeptember utolsó péntekje; 2026-ban szeptember 25.",
     "featured": false
@@ -456,9 +456,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Szeptemberi hétvége; a pontos dátum évente változik.",
     "featured": false
@@ -485,9 +485,9 @@
     "source_url": "https://arssacra.hu",
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Szeptemberi fesztivál; a program egy része ingyenes.",
     "featured": false
@@ -514,9 +514,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Október eleji péntek; a pontos dátum évente változik.",
     "featured": false
@@ -524,7 +524,7 @@
   {
     "id": "muzeumok-oszi-fesztivalja",
     "title": "Múzeumok Őszi Fesztiválja",
-    "category": "kultura",
+    "category": "muzeum",
     "type": "free",
     "timing": "Október–november",
     "date_start": "2026-10-15",
@@ -544,9 +544,9 @@
     "source_url": "https://museum.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "free",
-      "budapest"
+      "budapest",
+      "muzeum",
+      "free"
     ],
     "notes": "2026. október közepe – november közepe.",
     "featured": false
@@ -554,7 +554,7 @@
   {
     "id": "muzeumok-nemzetkozi-napja",
     "title": "Múzeumok Nemzetközi Napja",
-    "category": "kultura",
+    "category": "muzeum",
     "type": "free",
     "timing": "Május 18.",
     "date_start": "2026-05-18",
@@ -573,9 +573,9 @@
     "source_url": "https://icom.hu",
     "confidence": "needs-check",
     "tags": [
-      "kultura",
-      "free",
-      "budapest"
+      "budapest",
+      "muzeum",
+      "free"
     ],
     "notes": "Május 18. Nem minden múzeum ingyenes; érdemes előre nézni a programot.",
     "featured": false
@@ -583,7 +583,7 @@
   {
     "id": "nemzeti-unnepi-muzeumok",
     "title": "Nemzeti ünnepi múzeumok",
-    "category": "kultura",
+    "category": "muzeum",
     "type": "free",
     "timing": "Márc. 15., aug. 20., okt. 23.",
     "date_start": "2026-03-15",
@@ -604,9 +604,9 @@
     "source_url": "https://www.museum.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "free",
-      "budapest"
+      "budapest",
+      "muzeum",
+      "free"
     ],
     "notes": "Március 15., augusztus 20. és október 23. – több állami múzeum ingyenes.",
     "featured": false
@@ -633,9 +633,9 @@
     "source_url": null,
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Január 22. Számos intézmény ingyenes programmal készül.",
     "featured": false
@@ -662,9 +662,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Március 27. Nem országos, mindenhol érvényes akció; színházanként változik.",
     "featured": false
@@ -691,9 +691,9 @@
     "source_url": "https://btf.hu",
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Áprilisi fesztivál; a nyitóhétvége programjai jellemzően ingyenesek.",
     "featured": false
@@ -721,9 +721,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Nyári szezon; a szabadtéri programok egy része ingyenes.",
     "featured": false
@@ -748,9 +748,9 @@
     "source_url": "https://zeneakademia.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Egész évben, naptár szerint; érdemes a Zeneakadémia programját figyelni.",
     "featured": false
@@ -775,9 +775,9 @@
     "source_url": "https://mupa.hu",
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Évente több alkalmas; a pontos program a Müpa oldalán.",
     "featured": false
@@ -802,9 +802,9 @@
     "source_url": null,
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Egész évben, több szolgáltatóval; a borravaló nem kötelező, de szokás.",
     "featured": false
@@ -831,9 +831,9 @@
     "source_url": "https://kektura.hu",
     "confidence": "verified",
     "tags": [
+      "országos",
       "kultura",
-      "free",
-      "országos"
+      "free"
     ],
     "notes": "2026. október 10. A teljes Kéktúra útvonal egy nap alatt.",
     "featured": false
@@ -860,9 +860,9 @@
     "source_url": "https://fataj.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "2026-ban első alkalommal, a Hárs-hegyen.",
     "featured": false
@@ -887,9 +887,9 @@
     "source_url": "https://www.maesteszinhaz.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Nem éves esemény, hanem napi last-minute piactér; a kínálat naponta változik.",
     "featured": false
@@ -914,9 +914,9 @@
     "source_url": "https://opera.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "kultura",
-      "access",
-      "budapest"
+      "access"
     ],
     "notes": "Az állóhelyek és diákjegyek elérhetősége előadásonként változik.",
     "featured": false
@@ -924,7 +924,7 @@
   {
     "id": "art-mozi-kedvezmenyes-hetfo",
     "title": "Art mozi kedvezményes hétfő",
-    "category": "kultura",
+    "category": "mozi",
     "type": "sale",
     "timing": "Hétfőnként",
     "date_start": null,
@@ -941,9 +941,9 @@
     "source_url": "https://artmozi.hu",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "sale",
-      "budapest"
+      "budapest",
+      "mozi",
+      "sale"
     ],
     "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
     "featured": false
@@ -951,7 +951,7 @@
   {
     "id": "cinema-city-kedvezmenyes-nap",
     "title": "Cinema City kedvezményes nap",
-    "category": "kultura",
+    "category": "mozi",
     "type": "access",
     "timing": "Kedd/szerda",
     "date_start": null,
@@ -968,9 +968,9 @@
     "source_url": "https://www.cinemacity.hu",
     "confidence": "needs-check",
     "tags": [
-      "kultura",
-      "access",
-      "budapest"
+      "budapest",
+      "mozi",
+      "access"
     ],
     "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat.",
     "featured": false
@@ -978,7 +978,7 @@
   {
     "id": "csaladi-tizes-moziberlet",
     "title": "Családi TIZES mozibérlet",
-    "category": "kultura",
+    "category": "mozi",
     "type": "sale",
     "timing": "Egész évben",
     "date_start": null,
@@ -995,9 +995,9 @@
     "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
     "confidence": "verified",
     "tags": [
-      "kultura",
-      "sale",
-      "budapest"
+      "budapest",
+      "mozi",
+      "sale"
     ],
     "notes": "A Cinema City családi bérlete; 2D filmekre, naponta max. 4 jegy váltható be.",
     "featured": false
@@ -1005,7 +1005,7 @@
   {
     "id": "szabadteri-mozi",
     "title": "Szabadtéri mozi",
-    "category": "kultura",
+    "category": "mozi",
     "type": "free",
     "timing": "Nyár",
     "date_start": null,
@@ -1026,9 +1026,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
-      "kultura",
-      "free",
-      "budapest"
+      "budapest",
+      "mozi",
+      "free"
     ],
     "notes": "Nyáron több budapesti helyszínen; a program évente változik.",
     "featured": false
@@ -1036,7 +1036,7 @@
   {
     "id": "ingyenes-filmvetitesek",
     "title": "Ingyenes filmvetítések",
-    "category": "kultura",
+    "category": "mozi",
     "type": "access",
     "timing": "Egész évben",
     "date_start": null,
@@ -1053,9 +1053,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
-      "kultura",
-      "access",
-      "budapest"
+      "budapest",
+      "mozi",
+      "access"
     ],
     "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni.",
     "featured": false
@@ -1080,9 +1080,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Hetente több galéria; a program a galériák oldalán.",
     "featured": false
@@ -1110,9 +1110,9 @@
     "source_url": null,
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "kultura",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Tavaszi fesztivál; a kiállítások egy része ingyenes.",
     "featured": false
@@ -1120,7 +1120,7 @@
   {
     "id": "muzeumok-csaladi-vasarnapja",
     "title": "Múzeumok családi vasárnapja",
-    "category": "kultura",
+    "category": "muzeum",
     "type": "free",
     "timing": "Havonta",
     "date_start": null,
@@ -1137,9 +1137,9 @@
     "source_url": "https://museum.hu",
     "confidence": "needs-check",
     "tags": [
-      "kultura",
-      "free",
-      "budapest"
+      "budapest",
+      "muzeum",
+      "free"
     ],
     "notes": "Havonta több múzeumban; a program helyszínenként változik.",
     "featured": false
@@ -1433,9 +1433,9 @@
     "source_url": "https://www.toogoodtogo.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "gasztro",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő.",
     "featured": false
@@ -1460,9 +1460,9 @@
     "source_url": "https://wizzair.com",
     "confidence": "needs-check",
     "tags": [
+      "online",
       "utazas",
-      "sale",
-      "online"
+      "sale"
     ],
     "notes": "Rendszeres keddi/heti akciók; a feltételek gyorsan változnak.",
     "featured": false
@@ -1658,9 +1658,9 @@
     "source_url": "https://www.mavcsoport.hu",
     "confidence": "verified",
     "tags": [
+      "országos",
       "utazas",
-      "free",
-      "országos"
+      "free"
     ],
     "notes": "65 év feletti magyar állampolgároknak, 2. osztályon, belföldi járatokon.",
     "featured": false
@@ -1741,9 +1741,9 @@
     "source_url": null,
     "confidence": "verified",
     "tags": [
+      "budapest",
       "vasarlas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "2026. november 27. (Black Friday) és november 30. (Cyber Monday).",
     "featured": false
@@ -1770,9 +1770,9 @@
     "source_url": null,
     "confidence": "verified",
     "tags": [
+      "online",
       "vasarlas",
-      "free",
-      "online"
+      "free"
     ],
     "notes": "2026. november 30.",
     "featured": false
@@ -2113,9 +2113,9 @@
     "source_url": "https://nav.gov.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
     "notes": "Év végi befizetés; a pontos szabályokat és maximumot minden évben ellenőrizni kell.",
     "featured": false
@@ -2142,9 +2142,9 @@
     "source_url": "https://nav.gov.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
     "notes": "Év végi befizetés; a pontos maximum évente változhat.",
     "featured": false
@@ -2171,9 +2171,9 @@
     "source_url": "https://nav.gov.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
     "notes": "Önkéntes nyugdíj-előtakarékossági számla; évente ellenőrizni kell.",
     "featured": false
@@ -2203,9 +2203,9 @@
     "source_url": "https://www.otthonfelujitas.hu",
     "confidence": "needs-check",
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
     "notes": "Időszakos állami program; a pályázati feltételek és a keret évente változnak.",
     "featured": false
@@ -2292,9 +2292,9 @@
     "source_url": "https://nav.gov.hu",
     "confidence": "verified",
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
     "notes": "A SZÉP-kártya éves kerete és adózása jogszabályfüggő.",
     "featured": false

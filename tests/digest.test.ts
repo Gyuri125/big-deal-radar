@@ -35,6 +35,18 @@ describe('napi digest', () => {
     expect(digest.upcoming[0].days).toBe(2);
   });
 
+  it('a folyamatban lévő eseményt is beteszi', () => {
+    const liveDeal: Deal = {
+      ...deal,
+      date_start: '2026-11-18',
+      date_end: '2026-11-22',
+    };
+    const digest = buildDigest([liveDeal], new Date(2026, 10, 20));
+
+    expect(digest.upcoming).toHaveLength(1);
+    expect(digest.upcoming[0].days).toBeLessThan(0);
+  });
+
   it('a szöveges digest tartalmazza a címet és a linket', () => {
     const digest = buildDigest([deal], new Date(2026, 10, 20));
     const text = toPlainText(digest, 'https://example.github.io/big-deal-radar/');
@@ -47,6 +59,6 @@ describe('napi digest', () => {
     const digest = buildDigest([], new Date(2026, 10, 20));
     const text = toPlainText(digest, 'https://example.com');
 
-    expect(text).toContain('Nincs pontos dátumos esemény');
+    expect(text).toContain('Nincs aktuális vagy 7 napon belüli esemény');
   });
 });

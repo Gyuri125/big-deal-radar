@@ -193,6 +193,29 @@ A titkokat a GitHubon kell beállítani:
 
 > **Fontos:** a Discord webhook és a Telegram token **soha nem kerülhet a frontend kódba**. Csak a pipeline használja.
 
+### Discord webhook beállítása
+
+1. Discordban nyisd meg a csatornát, ahová az értesítéseket akarod.
+2. **Edit Channel → Integrations → Webhooks → New Webhook**.
+3. Másold ki a webhook URL-t.
+4. Tedd be a `.env`-be `DISCORD_WEBHOOK_URL` néven, vagy GitHubon a repository secretbe.
+5. Teszteld:
+
+```bash
+npm run test-notify
+```
+
+### Telegram (opcionális)
+
+A Telegram egyelőre **placeholder**. Ha később szeretnéd:
+
+1. A [@BotFather](https://t.me/BotFather) segítségével készíts botot.
+2. Kérd le a bot tokent.
+3. Add meg a `TELEGRAM_BOT_TOKEN` és `TELEGRAM_CHAT_ID` értékeket.
+4. A kód már készen áll rá: `src/notifiers/telegram.ts`.
+
+Ha nincs beállítva, a pipeline csak egy figyelmeztetést ír a logba, és megy tovább.
+
 ### Biztonsági ellenőrzés
 
 ```bash
@@ -277,6 +300,27 @@ https://<felhasznalonev>.github.io/<repo-nev>/
 > **Miért publikus?** Ingyenes GitHub-fiók esetén a GitHub Pages csak publikus repóból működik. Ha privát kell, akkor GitHub Pro/Team vagy Cloudflare Pages/Netlify lehet a megoldás. A titkok így is biztonságban vannak: GitHub Secretsben, nem a kódban.
 
 Ha a `SITE_URL` repository variable-t beállítod, a digestben és a weboldalon is a saját linked jelenik meg.
+
+### Első push GitHubra
+
+A projekt lokálisan már git repo, de a remote-ot neked kell beállítani:
+
+```bash
+git remote add origin https://github.com/<felhasznalonev>/<repo-nev>.git
+git push -u origin main
+```
+
+Ha még nincs commit:
+
+```bash
+git init -b main
+git add .
+git commit -m "feat: Big-deal radar alapverzió"
+git remote add origin https://github.com/<felhasznalonev>/<repo-nev>.git
+git push -u origin main
+```
+
+> A repó neve legyen például `big-deal-radar`. Ha más nevet használsz, a `SITE_URL`-t és a Pages URL-t is annak megfelelően állítsd.
 
 ---
 

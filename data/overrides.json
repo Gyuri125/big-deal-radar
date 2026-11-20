@@ -9,7 +9,8 @@
     "source_url": "https://www.cinemacity.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026-ban október 8–11. között. Évente változó, de jellemzően 4 napos őszi akció."
+    "notes": "2026-ban október 8–11. között. Évente változó, de jellemzően 4 napos őszi akció.",
+    "category": "mozi"
   },
   "corvin-mozi-ejszaka": {
     "date_start": "2026-11-14",
@@ -18,7 +19,8 @@
     "source_url": "https://artmozi.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. november 14. Egy karszalaggal egész éjjel válogathatsz a vetítések közül."
+    "notes": "2026. november 14. Egy karszalaggal egész éjjel válogathatsz a vetítések közül.",
+    "category": "mozi"
   },
   "europai-art-mozi-nap": {
     "date_start": "2026-11-22",
@@ -27,7 +29,8 @@
     "source_url": "https://artmoziegyesulet.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. november 22. Az Urániában 3100 Ft, több moziban 1800–2500 Ft körül."
+    "notes": "2026. november 22. Az Urániában 3100 Ft, több moziban 1800–2500 Ft körül.",
+    "category": "mozi"
   },
   "cirkuszok-ejszakaja": {
     "date_start": "2026-07-11",
@@ -48,7 +51,8 @@
     "source_url": "https://muzej.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. június 20. A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft felnőtt, 1500 Ft gyerek."
+    "notes": "2026. június 20. A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft felnőtt, 1500 Ft gyerek.",
+    "category": "muzeum"
   },
   "budapesti-szinhazak-ejszakaja": {
     "date_start": "2026-03-21",
@@ -197,7 +201,8 @@
     "currency": null,
     "source_url": "https://museum.hu",
     "confidence": "verified",
-    "notes": "2026. október közepe – november közepe."
+    "notes": "2026. október közepe – november közepe.",
+    "category": "muzeum"
   },
   "muzeumok-nemzetkozi-napja": {
     "date_start": "2026-05-18",
@@ -207,7 +212,8 @@
     "currency": null,
     "source_url": "https://icom.hu",
     "confidence": "needs-check",
-    "notes": "Május 18. Nem minden múzeum ingyenes; érdemes előre nézni a programot."
+    "notes": "Május 18. Nem minden múzeum ingyenes; érdemes előre nézni a programot.",
+    "category": "muzeum"
   },
   "nemzeti-unnepi-muzeumok": {
     "date_start": "2026-03-15",
@@ -217,7 +223,8 @@
     "currency": null,
     "source_url": "https://www.museum.hu",
     "confidence": "verified",
-    "notes": "Március 15., augusztus 20. és október 23. – több állami múzeum ingyenes."
+    "notes": "Március 15., augusztus 20. és október 23. – több állami múzeum ingyenes.",
+    "category": "muzeum"
   },
   "a-magyar-kultura-napja": {
     "date_start": "2026-01-22",
@@ -328,7 +335,8 @@
     "deal": "Több budapesti art mozi olcsóbb jegyet ad hétfőnként",
     "source_url": "https://artmozi.hu",
     "confidence": "verified",
-    "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni."
+    "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
+    "category": "mozi"
   },
   "cinema-city-kedvezmenyes-nap": {
     "recurrence": "weekly",
@@ -338,14 +346,16 @@
     "currency": "HUF",
     "source_url": "https://www.cinemacity.hu",
     "confidence": "needs-check",
-    "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat."
+    "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat.",
+    "category": "mozi"
   },
   "csaladi-tizes-moziberlet": {
     "recurrence": "continuous",
     "deal": "10 mozijegy egy csomagban, kedvezményes áron",
     "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
     "confidence": "verified",
-    "notes": "A Cinema City családi bérlete; 2D filmekre, naponta max. 4 jegy váltható be."
+    "notes": "A Cinema City családi bérlete; 2D filmekre, naponta max. 4 jegy váltható be.",
+    "category": "mozi"
   },
   "szabadteri-mozi": {
     "recurrence": "annual",
@@ -354,7 +364,8 @@
     "currency": null,
     "source_url": null,
     "confidence": "needs-check",
-    "notes": "Nyáron több budapesti helyszínen; a program évente változik."
+    "notes": "Nyáron több budapesti helyszínen; a program évente változik.",
+    "category": "mozi"
   },
   "ingyenes-filmvetitesek": {
     "recurrence": "continuous",
@@ -363,7 +374,8 @@
     "currency": null,
     "source_url": null,
     "confidence": "needs-check",
-    "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni."
+    "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni.",
+    "category": "mozi"
   },
   "ingyenes-kiallitasmegnyitok": {
     "recurrence": "weekly",
@@ -391,7 +403,8 @@
     "currency": null,
     "source_url": "https://museum.hu",
     "confidence": "needs-check",
-    "notes": "Havonta több múzeumban; a program helyszínenként változik."
+    "notes": "Havonta több múzeumban; a program helyszínenként változik.",
+    "category": "muzeum"
   },
   "black-friday": {
     "date_start": "2026-11-27",

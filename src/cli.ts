@@ -41,7 +41,7 @@ function shouldNotify(
   if (now.getHours() < 10) return true;
   if (digest.booking.length > 0) return true;
   return digest.upcoming.some(
-    (item) => item.days !== null && item.days <= 3
+    (item) => item.days !== null && item.days >= 0 && item.days <= 3
   );
 }
 
@@ -162,9 +162,11 @@ async function daily(flags: Flags): Promise<void> {
 
   if (digest.upcoming.length > 0) {
     for (const item of digest.upcoming) {
-      logger.info(
-        `Következő: ${item.deal.title} – ${item.dateLabel} (${item.days} nap)`
-      );
+      const when =
+        item.days !== null && item.days < 0
+          ? 'folyamatban'
+          : `${item.days} nap`;
+      logger.info(`Következő: ${item.deal.title} – ${item.dateLabel} (${when})`);
     }
   } else {
     logger.info('Nincs pontos dátumos esemény a következő 7 napban.');

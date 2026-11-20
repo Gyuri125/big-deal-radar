@@ -69,10 +69,12 @@ const TYPE_FILTERS: Array<{ value: 'all' | DealType; label: string }> = [
 
 const CATEGORY_FILTERS: Array<{ value: 'all' | DealCategory; label: string }> = [
   { value: 'all', label: 'Minden kategória' },
-  ...Object.entries(CATEGORY_LABELS).map(([value, label]) => ({
-    value: value as DealCategory,
-    label,
-  })),
+  ...Object.entries(CATEGORY_LABELS)
+    .filter(([value]) => deals.some((deal) => deal.category === value))
+    .map(([value, label]) => ({
+      value: value as DealCategory,
+      label,
+    })),
 ];
 
 const state = {
@@ -152,7 +154,7 @@ function typeLabel(type: DealType): string {
 }
 
 function statusLabel(deal: EnrichedDeal): string {
-  if (deal.status === 'live') return 'MA';
+  if (deal.status === 'live') return 'MOST';
   if (deal.status === 'upcoming' && deal.days !== null) {
     if (deal.days === 0) return 'MA';
     if (deal.days === 1) return 'HOLNAP';
@@ -257,24 +259,34 @@ function hasActiveFilters(): boolean {
 
 function upcomingDeals(): EnrichedDeal[] {
   return enriched
-    .filter(
-      (deal) =>
+    .filter((deal) => {
+      if (deal.status === 'live') return true;
+      return (
+        deal.status === 'upcoming' &&
         deal.days !== null &&
         deal.days >= 0 &&
-        deal.days <= 7 &&
-        (deal.status === 'upcoming' || deal.status === 'live')
-    )
-    .sort((a, b) => (a.days ?? 99) - (b.days ?? 99));
+        deal.days <= 7
+      );
+    })
+    .sort((a, b) => {
+      if (a.status === 'live' && b.status !== 'live') return -1;
+      if (b.status === 'live' && a.status !== 'live') return 1;
+      return (a.days ?? 99) - (b.days ?? 99);
+    });
 }
 
 function monthDeals(): EnrichedDeal[] {
   const currentMonth = now.getMonth() + 1;
+  const currentYear = now.getFullYear();
   const upcomingIds = new Set(upcomingDeals().map((deal) => deal.id));
 
   return enriched
-    .filter(
-      (deal) => isInMonth(deal, currentMonth) && !upcomingIds.has(deal.id)
-    )
+    .filter((deal) => {
+      if (upcomingIds.has(deal.id)) return false;
+      if (!isInMonth(deal, currentMonth)) return false;
+      if (!deal.effective) return true;
+      return deal.effective.start.getFullYear() === currentYear;
+    })
     .sort((a, b) => {
       const aDays = a.days ?? Number.MAX_SAFE_INTEGER;
       const bDays = b.days ?? Number.MAX_SAFE_INTEGER;
@@ -372,10 +384,10 @@ function renderResults(): void {
 
   results.innerHTML = [
     sectionMarkup(
-      'Következő 7 nap',
-      'Ezekre érdemes most lecsapni.',
+      'Most és a következő 7 napban',
+      'Ami éppen él, vagy 7 napon belül kezdődik.',
       upcoming,
-      'Nincs pontos dátumos esemény a következő 7 napban. Nézd a havi listát vagy a teljes kínálatot.'
+      'Nincs aktuális vagy 7 napon belüli esemény. Nézd a havi listát vagy a teljes kínálatot.'
     ),
     month.length > 0
       ? sectionMarkup(
@@ -446,6 +458,17 @@ function renderDebug(): void {
     )}</pre>
   `;
   document.querySelector('footer')?.before(debug);
+}
+
+function repoUrl(): string {
+  if (window.location.hostname.endsWith('.github.io')) {
+    const owner = window.location.hostname.split('.')[0];
+    const repo = window.location.pathname.split('/').filter(Boolean)[0];
+    if (owner && repo) {
+      return `https://github.com/${owner}/${repo}`;
+    }
+  }
+  return 'https://github.com/';
 }
 
 function renderShell(): void {
@@ -576,7 +599,7 @@ function renderShell(): void {
       </div>
       <div id="footer-status" class="footer-status"></div>
       <div class="footer-links">
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="${escapeHtml(repoUrl())}" target="_blank" rel="noopener">GitHub</a>
         <a href="#results">Vissza a tetejére</a>
       </div>
     </footer>
@@ -722,7 +745,19 @@ function handleAction(action: string, target: HTMLElement): void {
 
   if (action === 'jump-flat') {
     state.type = 'flat';
+    state.category = 'all';
+    state.location = 'all';
+    state.query = '';
+    state.sort = 'next';
     state.visible = 24;
+
+    const search = document.querySelector<HTMLInputElement>('#search');
+    const location = document.querySelector<HTMLSelectElement>('#location-filter');
+    const sort = document.querySelector<HTMLSelectElement>('#sort-filter');
+    if (search) search.value = '';
+    if (location) location.value = 'all';
+    if (sort) sort.value = 'next';
+
     updateFilterButtons();
     renderResults();
     document.querySelector('#results')?.scrollIntoView({ behavior: 'smooth' });

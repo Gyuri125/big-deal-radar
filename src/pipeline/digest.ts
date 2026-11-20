@@ -81,8 +81,14 @@ export function buildDigest(deals: Deal[], now = new Date()): Digest {
 
   for (const deal of deals) {
     const item = toItem(deal, now);
+    const today = startOfDay(now);
+    const isLive = Boolean(
+      item.effective &&
+        item.effective.start <= today &&
+        (!item.effective.end || item.effective.end >= today)
+    );
 
-    if (item.days !== null && item.days >= 0 && item.days <= 7) {
+    if (isLive || (item.days !== null && item.days >= 0 && item.days <= 7)) {
       upcoming.push(item);
     }
 
@@ -137,7 +143,7 @@ function priceLine(deal: Deal): string {
 function itemLine(item: DigestItem): string {
   const { deal } = item;
   const price = priceLine(deal);
-  const parts = [`**${deal.title}**`, item.dateLabel, deal.deal];
+  const parts = [deal.title, item.dateLabel, deal.deal];
   if (price) parts.push(price);
   return parts.join(' • ');
 }
@@ -160,7 +166,7 @@ export function toDiscordEmbeds(digest: Digest, siteUrl: string): DiscordEmbed[]
 
   if (digest.upcoming.length > 0) {
     embeds.push({
-      title: '📅 Következő 7 nap',
+      title: '📅 Most és a következő 7 napban',
       description:
         'Ezekre érdemes most figyelni. A részletekért nyisd meg a radart.',
       color: 0xff6b35,
@@ -177,9 +183,9 @@ export function toDiscordEmbeds(digest: Digest, siteUrl: string): DiscordEmbed[]
     });
   } else {
     embeds.push({
-      title: '📅 Következő 7 nap',
+      title: '📅 Most és a következő 7 napban',
       description:
-        'Nincs pontos dátumos esemény a következő 7 napban. Nézd a havi radart, hátha ott van valami.',
+        'Nincs aktuális vagy 7 napon belüli esemény. Nézd a havi radart, hátha ott van valami.',
       color: 0xff6b35,
       footer,
       timestamp: digest.generatedAt,
@@ -246,9 +252,9 @@ export function toPlainText(digest: Digest, siteUrl: string): string {
   lines.push('BIG-DEAL RADAR – napi digest');
   lines.push('');
 
-  lines.push('📅 Következő 7 nap');
+  lines.push('📅 Most és a következő 7 napban');
   if (digest.upcoming.length === 0) {
-    lines.push('Nincs pontos dátumos esemény a következő 7 napban.');
+    lines.push('Nincs aktuális vagy 7 napon belüli esemény.');
   } else {
     for (const item of digest.upcoming.slice(0, 10)) {
       lines.push(`• ${itemLine(item)}`);
