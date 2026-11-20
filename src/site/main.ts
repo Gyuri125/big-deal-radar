@@ -6,6 +6,7 @@ import {
   diffDays,
   effectiveDateLabel,
   formatHuf,
+  formatHuDate,
   isInMonth,
   monthLabel,
   nextOccurrence,
@@ -655,6 +656,11 @@ function openDialog(id: string): void {
       <div><span>Deal ár</span><strong>${deal.deal_price !== null ? formatHuf(deal.deal_price) : '—'}</strong></div>
       <div><span>Megtakarítás</span><strong>${deal.discount !== null ? `${Math.round(deal.discount * 100)}%` : '—'}</strong></div>
       <div><span>Bizonyosság</span><strong>${deal.confidence === 'verified' ? 'Ellenőrzött' : deal.confidence === 'needs-check' ? 'Ellenőrizendő' : 'Nem ellenőrzött'}</strong></div>
+      ${
+        deal.booking_opens
+          ? `<div><span>Foglalás nyílik</span><strong>${formatHuDate(parseISODate(deal.booking_opens))}</strong></div>`
+          : ''
+      }
     </div>
     ${
       deal.notes

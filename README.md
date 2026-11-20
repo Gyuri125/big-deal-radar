@@ -405,16 +405,16 @@ Egy deal így néz ki a `data/deals.json`-ban:
 
 ### Hogyan kerül be új deal?
 
-1. Írd be a `budapesti-100-big-deal.md` táblázatába, **vagy**
-2. vedd fel közvetlenül a `data/deals.json`-ba, **vagy**
-3. add hozzá a `data/overrides.json`-hoz, ha egy meglévő tételt akarsz pontosítani.
-
-Majd:
+1. Írd be a `budapesti-100-big-deal.md` táblázatába.
+2. Ha pontos dátumot, árat vagy forrást akarsz hozzáadni, tedd a `data/overrides.json`-ba.
+3. Futtasd:
 
 ```bash
 npm run import
 npm run validate
 ```
+
+> A `data/deals.json` **generált kimenet**. Ha kézzel szerkeszted, ne futtasd utána az `npm run import`-ot, mert felülírja. A javasolt út a markdown + overrides.
 
 ---
 
