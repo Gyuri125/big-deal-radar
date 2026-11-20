@@ -131,6 +131,9 @@ const state = {
 
 let watchlist: Watchlist = loadWatchlist();
 
+const initialQuery = new URLSearchParams(window.location.search).get('q');
+if (initialQuery) state.query = initialQuery;
+
 function isWatched(id: string): boolean {
   return Boolean(watchlist[id]);
 }
@@ -1023,6 +1026,7 @@ function renderShell(): void {
           placeholder="Keresés: mozi, múzeum, ingyenes, Balaton..."
           autocomplete="off"
           aria-label="Keresés a dealek között"
+          value="${escapeHtml(state.query)}"
         />
         <div class="view-toggle" role="group" aria-label="Nézet">
           <button class="chip active" type="button" data-view="list" aria-pressed="true">Lista</button>
@@ -1224,7 +1228,9 @@ function openDialog(id: string): void {
   const sources = sourcesMarkup(deal);
 
   dialogEl.dataset.dealId = deal.id;
-  history.replaceState(null, '', `?deal=${encodeURIComponent(deal.id)}`);
+  const dialogUrl = new URL(window.location.href);
+  dialogUrl.searchParams.set('deal', deal.id);
+  history.replaceState(null, '', dialogUrl);
   dialogEl.innerHTML = `
     <div class="dialog-head">
       <div>
@@ -1768,6 +1774,15 @@ appRoot.addEventListener('input', (event) => {
   if (target.id !== 'search') return;
   state.query = target.value;
   state.visible = 24;
+
+  const url = new URL(window.location.href);
+  if (state.query.trim()) {
+    url.searchParams.set('q', state.query);
+  } else {
+    url.searchParams.delete('q');
+  }
+  history.replaceState(null, '', url);
+
   renderResults();
 });
 
