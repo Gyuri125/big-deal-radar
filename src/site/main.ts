@@ -1082,6 +1082,7 @@ const linkTooltip = document.createElement('div');
 linkTooltip.className = 'link-tooltip';
 linkTooltip.id = 'link-tooltip';
 linkTooltip.setAttribute('role', 'tooltip');
+linkTooltip.setAttribute('aria-label', 'Link előnézet');
 document.body.appendChild(linkTooltip);
 
 let linkTooltipTimer: number | undefined;

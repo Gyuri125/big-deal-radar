@@ -413,8 +413,8 @@ a {
 }
 
 .focus-block .chip.active {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: #b5471d;
+  border-color: #b5471d;
   color: #fff;
 }
 
