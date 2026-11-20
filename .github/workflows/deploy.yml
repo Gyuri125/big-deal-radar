@@ -51,6 +51,8 @@ jobs:
 
       - name: Pages konfigurálása
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Artifact feltöltése
         uses: actions/upload-pages-artifact@v3
