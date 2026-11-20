@@ -1,4 +1,4 @@
-# Big-deal radar – napi futás (Windows Task Schedulerhez)
+﻿# Big-deal radar – napi futás (Windows Task Schedulerhez)
 #
 # Használat:
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/daily.ps1
@@ -8,6 +8,7 @@
 
 $ErrorActionPreference = "Stop"
 $OutputEncoding = [System.Text.Encoding]::UTF8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
@@ -26,11 +27,28 @@ function Write-Log {
 Write-Log "=== Big-deal radar napi futás ==="
 Write-Log "Mappa: $root"
 
-try {
-    npm run daily -- --commit 2>&1 | Tee-Object -FilePath $logFile -Append
+# A Task Scheduler néha szűkebb PATH-tal indul, ezért megkeressük az npm-et.
+$npmCommand = Get-Command npm.cmd -ErrorAction SilentlyContinue
+if (-not $npmCommand) {
+    $npmCommand = Get-Command npm -ErrorAction SilentlyContinue
+}
+if (-not $npmCommand) {
+    Write-Log "=== HIBA: nem találom az npm parancsot. Telepítsd a Node.js-t, vagy indítsd kézzel. ==="
+    exit 1
+}
 
-    if ($LASTEXITCODE -ne 0) {
-        throw "A pipeline hibával lépett ki: $LASTEXITCODE"
+Write-Log "npm: $($npmCommand.Source)"
+
+try {
+    # cmd /c-n keresztül futtatjuk, így a natív stderr nem vált ki PowerShell NativeCommandError-t.
+    $ErrorActionPreference = "Continue"
+    $commandLine = "`"$($npmCommand.Source)`" run daily -- --commit 2>&1"
+    cmd /c $commandLine | Tee-Object -FilePath $logFile -Append
+    $exitCode = $LASTEXITCODE
+    $ErrorActionPreference = "Stop"
+
+    if ($exitCode -ne 0) {
+        throw "A pipeline hibával lépett ki: $exitCode"
     }
 
     Write-Log "=== Napi futás sikeres ==="

@@ -89,8 +89,12 @@ function hasDataChanges(): boolean {
       cwd: process.cwd(),
     });
     return out.trim().length > 0;
-  } catch {
-    return false;
+  } catch (error) {
+    throw new Error(
+      `Nem tudom olvasni a git állapotot. Git repo-e a mappa? Eredeti hiba: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
   }
 }
 
@@ -100,14 +104,40 @@ function commitAndPush(): void {
     return;
   }
 
+  try {
+    const remote = execSync('git remote get-url origin', {
+      encoding: 'utf8',
+      cwd: process.cwd(),
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+
+    if (!remote) {
+      throw new Error('nincs origin remote');
+    }
+  } catch {
+    throw new Error(
+      'Nincs beállítva git remote (origin). Előbb hozd létre a GitHub repót, majd: git remote add origin <url>'
+    );
+  }
+
   const date = new Date().toISOString().slice(0, 10);
   logger.info('Adatváltozás található – commit és push...');
-  execSync('git add data/', { stdio: 'inherit', cwd: process.cwd() });
-  execSync(`git commit -m "chore(data): napi frissítés ${date}"`, {
-    stdio: 'inherit',
-    cwd: process.cwd(),
-  });
-  execSync('git push', { stdio: 'inherit', cwd: process.cwd() });
+
+  try {
+    execSync('git add data/', { stdio: 'inherit', cwd: process.cwd() });
+    execSync(`git commit -m "chore(data): napi frissítés ${date}"`, {
+      stdio: 'inherit',
+      cwd: process.cwd(),
+    });
+    execSync('git push', { stdio: 'inherit', cwd: process.cwd() });
+  } catch (error) {
+    throw new Error(
+      `A commit/push nem sikerült. Ellenőrizd a git beállításokat és a jogosultságot. Eredeti hiba: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+  }
+
   logger.info('Adatváltozás felpusholva.');
 }
 

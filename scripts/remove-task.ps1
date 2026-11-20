@@ -1,4 +1,4 @@
-# Big-deal radar – napi feladatok eltávolítása a Windows Task Schedulerből.
+﻿# Big-deal radar – napi feladatok eltávolítása a Windows Task Schedulerből.
 
 $ErrorActionPreference = "Stop"
 
