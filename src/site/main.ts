@@ -635,7 +635,7 @@ function renderShell(): void {
       </div>
       <div class="how-step">
         <span class="step-num">3</span>
-        <div><strong>Naptárba</strong><p>7 nappal, 1 nappal és aznap emlékeztet.</p></div>
+        <div><strong>Naptárba</strong><p>14 nappal, 7 nappal, 1 nappal és aznap emlékeztet.</p></div>
       </div>
     </section>
 
@@ -851,7 +851,7 @@ function openDialog(id: string): void {
     </div>
     ${
       deal.effective
-        ? '<p class="dialog-hint">A naptárbejegyzés 7 nappal előtte, 1 nappal előtte és aznap emlékeztet.</p>'
+        ? '<p class="dialog-hint">A naptárbejegyzés 14 nappal előtte, 7 nappal előtte, 1 nappal előtte és aznap emlékeztet.</p>'
         : ''
     }
   `;
@@ -879,7 +879,7 @@ function escapeIcs(value: string): string {
 
 function alarmLines(summary: string): string[] {
   const description = escapeIcs(`Big-deal radar: ${summary}`);
-  return ['-P7D', '-P1D', 'PT0S'].flatMap((trigger) => [
+  return ['-P14D', '-P7D', '-P1D', 'PT0S'].flatMap((trigger) => [
     'BEGIN:VALARM',
     `TRIGGER:${trigger}`,
     'ACTION:DISPLAY',
@@ -959,7 +959,7 @@ function downloadIcs(id: string): void {
 
   downloadBlob(content, `${deal.id}.ics`);
   showToast(
-    'Naptárbejegyzés letöltve – 7 nappal előtte, 1 nappal előtte és aznap emlékeztet.'
+    'Naptárbejegyzés letöltve – 14 nappal előtte, 7 nappal előtte, 1 nappal előtte és aznap emlékeztet.'
   );
 }
 

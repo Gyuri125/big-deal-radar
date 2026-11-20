@@ -38,7 +38,7 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - 100 magyar/budapesti deal-ötletet tart nyilván,
 - a következő 7 nap eseményeit és a havi radarot mutatja,
 - szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
-- minden eseményhez **naptárba tehető ICS** fájlt ad, **7 nappal, 1 nappal és aznap** emlékeztetővel,
+- minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
 - **saját lista + prioritás** a böngészőben, regisztráció nélkül,
 - ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató,
 - naponta **Discord digestet** küld,
@@ -434,7 +434,7 @@ A cél, hogy ne az esemény napján szembesülj vele, hogy elment a lehetőség.
 1. **Napi digest** – a Discord megkapja a következő 7 nap eseményeit, a havi radarot és a jegyvásárlási/foglalási teendőket.
 2. **Saját listám** – a kártyákon a **☆** ikonnal követheted, ami érdekel. A lista a böngésződben tárolódik, nem kell hozzá regisztráció.
 3. **Prioritás** – a részletek ablakban 1–3 csillaggal jelölheted, mi a fontos. A saját listában prioritás szerint rendezve jelenik meg.
-4. **Naptárba emlékeztetővel** – a letöltött ICS nem csak egy esemény: **7 nappal előtte, 1 nappal előtte és aznap** is emlékeztet. Ez a legmegbízhatóbb védelem, mert a naptárad akkor is szól, ha a weboldalt nem nyitod meg.
+4. **Naptárba emlékeztetővel** – a letöltött ICS nem csak egy esemény: **14 nappal előtte, 7 nappal előtte, 1 nappal előtte és aznap** is emlékeztet. Ez a legmegbízhatóbb védelem, mert a naptárad akkor is szól, ha a weboldalt nem nyitod meg.
 5. **Jegyvásárlás / foglalás** – ahol van hivatalos link, a részletek ablakban külön gomb visz a jegyvásárlásra vagy foglalásra, a `booking_note` pedig elmagyarázza, mire figyelj.
 6. **Foglalásnyílás** – ha egy dealnél ismert a `booking_opens` dátum, a napi digest külön „Jegyvásárlás / foglalás” szekcióban jelzi, és a naptárba külön esemény is bekerül.
 
