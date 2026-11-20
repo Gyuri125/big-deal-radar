@@ -66,7 +66,7 @@ jobs:
           fi
 
       - name: Pages konfigurálása
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Artifact feltöltése
         uses: actions/upload-pages-artifact@v3
