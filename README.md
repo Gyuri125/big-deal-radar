@@ -38,7 +38,9 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - 100 magyar/budapesti deal-ötletet tart nyilván,
 - a következő 7 nap eseményeit és a havi radarot mutatja,
 - szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
-- minden eseményhez **naptárba tehető ICS** fájlt ad,
+- minden eseményhez **naptárba tehető ICS** fájlt ad, **7 nappal, 1 nappal és aznap** emlékeztetővel,
+- **saját lista + prioritás** a böngészőben, regisztráció nélkül,
+- ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató,
 - naponta **Discord digestet** küld,
 - Telegramhoz előkészített, de opcionális csatornával rendelkezik,
 - a laptopon és GitHub Actionsben is ugyanazt a pipeline-t futtatja.
