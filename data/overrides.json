@@ -1,0 +1,474 @@
+{
+  "cinema-city-filmunnep": {
+    "date_start": "2026-10-08",
+    "date_end": "2026-10-11",
+    "deal": "Minden jegy 1690 Ft – 2D, 3D, IMAX, 4DX, ScreenX is",
+    "normal_price": 3100,
+    "deal_price": 1690,
+    "currency": "HUF",
+    "source_url": "https://www.cinemacity.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026-ban október 8–11. között. Évente változó, de jellemzően 4 napos őszi akció."
+  },
+  "corvin-mozi-ejszaka": {
+    "date_start": "2026-11-14",
+    "date_end": "2026-11-14",
+    "deal": "6 terem, 30 film, egyetlen karszalag",
+    "source_url": "https://artmozi.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. november 14. Egy karszalaggal egész éjjel válogathatsz a vetítések közül."
+  },
+  "europai-art-mozi-nap": {
+    "date_start": "2026-11-22",
+    "date_end": "2026-11-22",
+    "deal": "~30 magyarországi art mozi, premier előtti filmek, kedvezményes jegy",
+    "source_url": "https://artmoziegyesulet.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. november 22. Az Urániában 3100 Ft, több moziban 1800–2500 Ft körül."
+  },
+  "cirkuszok-ejszakaja": {
+    "date_start": "2026-07-11",
+    "date_end": "2026-07-11",
+    "deal": "Egy jegy, közel 4 óra, extra produkciók, kulisszajárás",
+    "source_url": "https://fovarosinagycirkusz.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. július 11., Fővárosi Nagycirkusz. Évente országos programsorozat."
+  },
+  "muzeumok-ejszakaja": {
+    "date_start": "2026-06-20",
+    "date_end": "2026-06-20",
+    "deal": "Egy karszalag, 100+ múzeum és kulturális helyszín, egész éjjel",
+    "normal_price": null,
+    "deal_price": 3000,
+    "currency": "HUF",
+    "source_url": "https://muzej.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. június 20. A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft felnőtt, 1500 Ft gyerek."
+  },
+  "budapesti-szinhazak-ejszakaja": {
+    "date_start": "2026-03-21",
+    "date_end": "2026-03-21",
+    "deal": "Egy jegy, 3+ program, ~50 színház, kulisszajárás, nyílt próba",
+    "deal_price": 8000,
+    "currency": "HUF",
+    "source_url": "https://bpsze.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. március 21. A jegy 3 regisztrációhoz kötött programra jogosít, a többit szabadon látogathatod."
+  },
+  "restaurant-week-tavasz": {
+    "date_start": "2026-03-19",
+    "date_end": "2026-03-29",
+    "deal": "3 fogás fix áron, 6900 / 8900 / 10900 Ft-tól",
+    "normal_price": null,
+    "deal_price": 6900,
+    "currency": "HUF",
+    "source_url": "https://etteremhet.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026 tavaszi kiadás. Az árak kategóriától függenek; a szervizdíj benne van."
+  },
+  "restaurant-week-osz": {
+    "date_start": "2026-10-01",
+    "date_end": "2026-10-18",
+    "deal": "3 fogás fix áron, 150–230 étterem, Michelin-ajánlásokkal",
+    "normal_price": null,
+    "deal_price": 6900,
+    "currency": "HUF",
+    "source_url": "https://etteremhet.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026 őszi kiadás. A Costes Michelin-csillagos menüje 17 900 Ft volt."
+  },
+  "restaurant-week-extra": {
+    "date_start": "2026-11-13",
+    "date_end": "2026-11-22",
+    "deal": "A legjobb 28 étterem visszatér a nyertes menükkel",
+    "normal_price": null,
+    "deal_price": 6900,
+    "currency": "HUF",
+    "source_url": "https://etteremhet.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. november 13–22. Az őszi Restaurant Week legjobb éttermei."
+  },
+  "strandok-ejszakaja": {
+    "date_start": "2026-07-25",
+    "date_end": "2026-07-25",
+    "deal": "Éjszakai fürdőzés, DJ, szauna, tűzzsonglőr – országos helyszínek",
+    "source_url": "https://www.furdoszovetseg.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. július 25. A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül."
+  },
+  "allatkertek-ejszakaja": {
+    "date_start": "2026-08-28",
+    "date_end": "2026-08-28",
+    "deal": "Esti állatkerti programok, látványetetések, koncertek",
+    "deal_price": 8000,
+    "currency": "HUF",
+    "source_url": "https://zoobudapest.com",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. augusztus 28. Külön esti jegy; a nappali jegy és bérlet nem érvényes."
+  },
+  "budapest100": {
+    "date_start": "2026-05-09",
+    "date_end": "2026-05-10",
+    "deal": "Ingyenesen nyitott házak, épületbejárások, városi séták",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://budapest100.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. május 9–10. 41 épület, több mint 200 program; egyes vezetések regisztrációhoz kötöttek."
+  },
+  "eromuvek-ejszakaja": {
+    "date_start": "2026-10-16",
+    "date_end": "2026-10-16",
+    "deal": "Ingyenes belépés 80+ erőműbe, vízműbe, hulladékkezelőbe",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://eromuvekejszakaja.hu",
+    "confidence": "verified",
+    "featured": true,
+    "notes": "2026. október 16. Regisztráció október 1-jén nyílt; a népszerű helyek azonnal beteltek."
+  },
+  "muemlekek-napja": {
+    "date_start": "2026-09-19",
+    "date_end": "2026-09-20",
+    "deal": "Ingyenesen látogatható műemlékek, kulisszák mögötti programok",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Szeptemberi hétvége; a pontos dátum évente változik."
+  },
+  "kutatok-ejszakaja": {
+    "date_start": "2026-09-25",
+    "date_end": "2026-09-25",
+    "deal": "Ingyenes laborlátogatások, tudományos programok országszerte",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "verified",
+    "notes": "Szeptember utolsó péntekje; 2026-ban szeptember 25."
+  },
+  "nyitott-templomok-napja": {
+    "date_start": "2026-09-12",
+    "date_end": "2026-09-13",
+    "deal": "Ingyenes templomlátogatás, vezetések, koncertek",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Szeptemberi hétvége; a pontos dátum évente változik."
+  },
+  "ars-sacra-fesztival": {
+    "date_start": "2026-09-18",
+    "date_end": "2026-09-27",
+    "deal": "Ingyenes templomi koncertek, kiállítások, vezetések",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://arssacra.hu",
+    "confidence": "needs-check",
+    "notes": "Szeptemberi fesztivál; a program egy része ingyenes."
+  },
+  "konyvtarak-ejszakaja": {
+    "date_start": "2026-10-02",
+    "date_end": "2026-10-02",
+    "deal": "Ingyenes programok, rendhagyó nyitvatartás, beiratkozás",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Október eleji péntek; a pontos dátum évente változik."
+  },
+  "muzeumok-oszi-fesztivalja": {
+    "date_start": "2026-10-15",
+    "date_end": "2026-11-15",
+    "deal": "Sok ingyenes tárlatvezetés, program, kedvezmény",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://museum.hu",
+    "confidence": "verified",
+    "notes": "2026. október közepe – november közepe."
+  },
+  "muzeumok-nemzetkozi-napja": {
+    "date_start": "2026-05-18",
+    "date_end": "2026-05-18",
+    "deal": "Akciók, ingyenes programok, múzeumi éjszaka",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://icom.hu",
+    "confidence": "needs-check",
+    "notes": "Május 18. Nem minden múzeum ingyenes; érdemes előre nézni a programot."
+  },
+  "nemzeti-unnepi-muzeumok": {
+    "date_start": "2026-03-15",
+    "date_end": "2026-03-15",
+    "deal": "Állami múzeumok ingyenes belépéssel",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://www.museum.hu",
+    "confidence": "verified",
+    "notes": "Március 15., augusztus 20. és október 23. – több állami múzeum ingyenes."
+  },
+  "a-magyar-kultura-napja": {
+    "date_start": "2026-01-22",
+    "date_end": "2026-01-22",
+    "deal": "Ingyenes és kedvezményes programok országszerte",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "verified",
+    "notes": "Január 22. Számos intézmény ingyenes programmal készül."
+  },
+  "szinhazi-vilagnap": {
+    "date_start": "2026-03-27",
+    "date_end": "2026-03-27",
+    "deal": "Egyes színházak nyílt napja, akciós jegyek",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Március 27. Nem országos, mindenhol érvényes akció; színházanként változik."
+  },
+  "budapest-tavaszi-fesztival": {
+    "date_start": "2026-04-10",
+    "date_end": "2026-04-26",
+    "deal": "Nyitóhétvége ingyenes szabadtéri koncertek",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://btf.hu",
+    "confidence": "needs-check",
+    "notes": "Áprilisi fesztivál; a nyitóhétvége programjai jellemzően ingyenesek."
+  },
+  "budapest-nyari-fesztival": {
+    "date_start": "2026-06-01",
+    "date_end": "2026-08-31",
+    "deal": "Ingyenes szabadtéri koncertek, színházi estek",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Nyári szezon; a szabadtéri programok egy része ingyenes."
+  },
+  "zeneakademia-ingyenes-koncertek": {
+    "recurrence": "continuous",
+    "deal": "Hallgatói koncertek ingyen vagy kedvezményesen",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://zeneakademia.hu",
+    "confidence": "verified",
+    "notes": "Egész évben, naptár szerint; érdemes a Zeneakadémia programját figyelni."
+  },
+  "mupa-nyilt-nap-ingyenes-proba": {
+    "recurrence": "continuous",
+    "deal": "Ingyenes bepillantás, egyes koncertek kedvezményesen",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://mupa.hu",
+    "confidence": "needs-check",
+    "notes": "Évente több alkalmas; a pontos program a Müpa oldalán."
+  },
+  "ingyenes-varosi-setak": {
+    "recurrence": "continuous",
+    "deal": "Free walking tour, borravalós városnézés",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "verified",
+    "notes": "Egész évben, több szolgáltatóval; a borravaló nem kötelező, de szokás."
+  },
+  "kekturazas-napja": {
+    "date_start": "2026-10-10",
+    "date_end": "2026-10-10",
+    "deal": "Ingyenes országos túranap, 143 szakasz",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://kektura.hu",
+    "confidence": "verified",
+    "notes": "2026. október 10. A teljes Kéktúra útvonal egy nap alatt."
+  },
+  "erdok-ejszakaja": {
+    "date_start": "2026-09-04",
+    "date_end": "2026-09-04",
+    "deal": "Ingyenes esti túra, erdei programok",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://fataj.hu",
+    "confidence": "verified",
+    "notes": "2026-ban első alkalommal, a Hárs-hegyen."
+  },
+  "ma-este-szinhaz": {
+    "recurrence": "daily",
+    "deal": "Másnapi színházjegyek féláron, minden este 21:00-tól",
+    "normal_price": null,
+    "deal_price": null,
+    "currency": "HUF",
+    "source_url": "https://www.maesteszinhaz.hu",
+    "confidence": "verified",
+    "notes": "Nem éves esemény, hanem napi last-minute piactér; a kínálat naponta változik."
+  },
+  "opera-allohely-diakjegy": {
+    "recurrence": "continuous",
+    "deal": "Töredékár a normál jegyhez képest; diák- és nyugdíjas kedvezmény",
+    "source_url": "https://opera.hu",
+    "confidence": "verified",
+    "notes": "Az állóhelyek és diákjegyek elérhetősége előadásonként változik."
+  },
+  "art-mozi-kedvezmenyes-hetfo": {
+    "recurrence": "weekly",
+    "deal": "Több budapesti art mozi olcsóbb jegyet ad hétfőnként",
+    "source_url": "https://artmozi.hu",
+    "confidence": "verified",
+    "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni."
+  },
+  "cinema-city-kedvezmenyes-nap": {
+    "recurrence": "weekly",
+    "deal": "~1800–2200 Ft a normál ~3100 Ft helyett",
+    "normal_price": 3100,
+    "deal_price": 1800,
+    "currency": "HUF",
+    "source_url": "https://www.cinemacity.hu",
+    "confidence": "needs-check",
+    "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat."
+  },
+  "csaladi-tizes-moziberlet": {
+    "recurrence": "continuous",
+    "deal": "10 mozijegy egy csomagban, kedvezményes áron",
+    "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
+    "confidence": "verified",
+    "notes": "A Cinema City családi bérlete; 2D filmekre, naponta max. 4 jegy váltható be."
+  },
+  "szabadteri-mozi": {
+    "recurrence": "annual",
+    "deal": "Ingyenes vagy olcsó kertmozi-vetítések",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Nyáron több budapesti helyszínen; a program évente változik."
+  },
+  "ingyenes-filmvetitesek": {
+    "recurrence": "continuous",
+    "deal": "Könyvtárak, kulturális központok, fesztiválok ingyenes vetítései",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni."
+  },
+  "ingyenes-kiallitasmegnyitok": {
+    "recurrence": "weekly",
+    "deal": "Galériák ingyenes megnyitói, gyakran fogadással",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Hetente több galéria; a program a galériák oldalán."
+  },
+  "budapest-fotofesztival": {
+    "date_start": "2026-04-01",
+    "date_end": "2026-05-31",
+    "deal": "Sok ingyenes kiállítás, városi fotóséták",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": null,
+    "confidence": "needs-check",
+    "notes": "Tavaszi fesztivál; a kiállítások egy része ingyenes."
+  },
+  "muzeumok-csaladi-vasarnapja": {
+    "recurrence": "monthly",
+    "deal": "Ingyenes/kedvezményes családi programok",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://museum.hu",
+    "confidence": "needs-check",
+    "notes": "Havonta több múzeumban; a program helyszínenként változik."
+  },
+  "black-friday": {
+    "date_start": "2026-11-27",
+    "date_end": "2026-11-30",
+    "deal": "20–70% off, elektronika, ruha, utazás",
+    "source_url": null,
+    "confidence": "verified",
+    "notes": "2026. november 27. (Black Friday) és november 30. (Cyber Monday)."
+  },
+  "cyber-monday": {
+    "date_start": "2026-11-30",
+    "date_end": "2026-11-30",
+    "deal": "Online shopok akciói, kuponok, ingyenes szállítás",
+    "source_url": null,
+    "confidence": "verified",
+    "notes": "2026. november 30."
+  },
+  "wizz-air-heti-akciok": {
+    "recurrence": "weekly",
+    "deal": "20–50% off, 10–20 ezer Ft-os repjegyek",
+    "source_url": "https://wizzair.com",
+    "confidence": "needs-check",
+    "notes": "Rendszeres keddi/heti akciók; a feltételek gyorsan változnak."
+  },
+  "mav-65-ingyenes": {
+    "recurrence": "continuous",
+    "deal": "Nyugdíjasoknak ingyenes országos utazás",
+    "deal_price": 0,
+    "currency": null,
+    "source_url": "https://www.mavcsoport.hu",
+    "confidence": "verified",
+    "notes": "65 év feletti magyar állampolgároknak, 2. osztályon, belföldi járatokon."
+  },
+  "nyugdijpenztari-20-adojovairas": {
+    "date_start": "2026-12-31",
+    "date_end": "2026-12-31",
+    "deal": "A befizetés 20%-a visszajár, max. ~150 ezer Ft",
+    "source_url": "https://nav.gov.hu",
+    "confidence": "verified",
+    "notes": "Év végi befizetés; a pontos szabályokat és maximumot minden évben ellenőrizni kell."
+  },
+  "egeszsegpenztari-10-adojovairas": {
+    "date_start": "2026-12-31",
+    "date_end": "2026-12-31",
+    "deal": "A befizetés 10%-a visszajár, max. ~75 ezer Ft",
+    "source_url": "https://nav.gov.hu",
+    "confidence": "verified",
+    "notes": "Év végi befizetés; a pontos maximum évente változhat."
+  },
+  "nyesz-20-adojovairas": {
+    "date_start": "2026-12-31",
+    "date_end": "2026-12-31",
+    "deal": "A befizetés 20%-a visszajár, max. ~100 ezer Ft",
+    "source_url": "https://nav.gov.hu",
+    "confidence": "verified",
+    "notes": "Önkéntes nyugdíj-előtakarékossági számla; évente ellenőrizni kell."
+  },
+  "otthonfelujitasi-tamogatas": {
+    "date_start": "2026-12-31",
+    "date_end": "2026-12-31",
+    "deal": "Akár 50% / 6 millió Ft vissza nem térítendő támogatás",
+    "source_url": "https://www.otthonfelujitas.hu",
+    "confidence": "needs-check",
+    "notes": "Időszakos állami program; a pályázati feltételek és a keret évente változnak."
+  },
+  "szep-kartya-cafeteria": {
+    "recurrence": "continuous",
+    "deal": "Adómentes keret, felette 15% kedvezményes adózás",
+    "source_url": "https://nav.gov.hu",
+    "confidence": "verified",
+    "notes": "A SZÉP-kártya éves kerete és adózása jogszabályfüggő."
+  },
+  "too-good-to-go-munch": {
+    "recurrence": "daily",
+    "deal": "Mentett ételcsomagok 50–70% off",
+    "source_url": "https://www.toogoodtogo.hu",
+    "confidence": "verified",
+    "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő."
+  }
+}

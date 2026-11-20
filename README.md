@@ -1,0 +1,505 @@
+# Big-deal radar
+
+> **Ritka, nagy dobások. Nem a napi aprókedvezmények.**
+>
+> Budapest és Magyarország legjobb évente visszatérő dealjei egy helyen – szűrhető weboldalon, napi Discord-digesttel, GitHub Actions fallbackkel.
+
+A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor nem 10%-ot adnak, hanem 4 napig **minden mozijegy ugyanannyi**, a 4DX is. Ilyen még a Múzeumok Éjszakája, a Színházak Éjszakája, a Restaurant Week, a Corvin Mozi Éjszaka vagy a Budapest100.
+
+---
+
+## Tartalom
+
+- [Mi ez?](#mi-ez)
+- [A 4 deal-típus](#a-4-deal-típus)
+- [Hogyan működik?](#hogyan-működik)
+- [Gyors indítás](#gyors-indítás)
+- [Titkok és biztonság](#titkok-és-biztonság)
+- [Napi futás a laptopon](#napi-futás-a-laptopon)
+- [GitHub Pages beállítás](#github-pages-beállítás)
+- [GitHub Actions](#github-actions)
+- [Hibrid működés](#hibrid-működés)
+- [Adatmodell](#adatmodell)
+- [Parancsok](#parancsok)
+- [Hibakeresés](#hibakeresés)
+- [Mappastruktúra](#mappastruktúra)
+- [Roadmap](#roadmap)
+
+---
+
+## Mi ez?
+
+Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
+
+- 100 magyar/budapesti deal-ötletet tart nyilván,
+- a következő 7 nap eseményeit és a havi radarot mutatja,
+- szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
+- minden eseményhez **naptárba tehető ICS** fájlt ad,
+- naponta **Discord digestet** küld,
+- Telegramhoz előkészített, de opcionális csatornával rendelkezik,
+- a laptopon és GitHub Actionsben is ugyanazt a pipeline-t futtatja.
+
+A cél nem az, hogy minden akciót összegyűjtsön. Hanem hogy **időben elkapd a nagyokat**.
+
+---
+
+## A 4 deal-típus
+
+| Típus | Mit jelent | Példa |
+|---|---|---|
+| ★ **Prémium ugyanannyi** | Egy ár, a prémium is benne | Cinema City Filmünnep: 4DX = 2D |
+| 🎟️ **Egy jegy, sok helyszín** | Egy karszalag/jegy, több intézmény | Múzeumok Éjszakája, Corvin Mozi Éjszaka |
+| 🆓 **Ingyenes, de nagy értékű** | Olyan helyek nyílnak meg, ahová máskor fizetnél | Budapest100, Erőművek Éjszakája |
+| 💰 **Évi nagy pénzügyi dobás** | Támogatás, adójóváírás, banki bónusz | Nyugdíjpénztári 20%, otthonfelújítási támogatás |
+
+A weboldalon ezek a szűrők: **★ Prémium**, **Ingyenes**, **Akció**, **Pénzügy**, **Hozzáférés**.
+
+---
+
+## Hogyan működik?
+
+```mermaid
+flowchart LR
+  L[Laptop<br/>08:00 / 12:00 / 20:00] --> P[Napi pipeline]
+  A[GitHub Actions<br/>3x naponta] --> P
+  P --> D[(data/deals.json)]
+  P --> S[public/status.json]
+  D --> B[Vite build]
+  S --> B
+  B --> G[GitHub Pages]
+  P --> DC[Discord webhook]
+  P --> TG[Telegram placeholder]
+```
+
+```mermaid
+sequenceDiagram
+  participant L as Laptop
+  participant GH as GitHub
+  participant A as Actions
+  participant P as Pages
+  participant D as Discord
+
+  L->>L: npm run daily -- --commit
+  L->>D: napi digest
+  L->>GH: data commit (csak ha változott)
+  GH->>A: push → deploy.yml
+  A->>P: build + deploy
+
+  Note over A: 08:00 / 12:00 / 20:00 fallback
+  A->>D: digest vagy hiba
+  A->>P: friss build
+```
+
+A pipeline lépései:
+
+1. Beolvassa a `data/deals.json`-t.
+2. Zod-dal validálja a mezőket és az egyedi ID-ket.
+3. Kiszámolja a következő 7 napot, a havi radarot és a pénzügyi határidőket.
+4. Kiírja a `public/status.json`-t (a weboldal ezt jeleníti meg a láblécben).
+5. Discordra (és opcionálisan Telegramra) küldi a digestet.
+6. Buildinget készít a `dist/` mappába.
+7. Csak akkor commitol, ha a `data/` alatt tényleg változás történt.
+
+---
+
+## Gyors indítás
+
+### 1. Előfeltételek
+
+- Node.js 20+ (a projekt Node 24-gyel készült)
+- npm
+- Git
+
+### 2. Telepítés
+
+```bash
+npm install
+```
+
+### 3. Titkok beállítása
+
+```bash
+copy .env.example .env
+```
+
+Windows PowerShellben:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Töltsd ki a `.env`-et:
+
+```env
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+SITE_URL=https://felhasznalonev.github.io/big-deal-radar/
+TZ=Europe/Budapest
+```
+
+### 4. Adatok betöltése
+
+A 100-as lista a `budapesti-100-big-deal.md` fájlban van. A top dealek pontos dátumát, árát és forrását a `data/overrides.json` adja hozzá.
+
+```bash
+npm run import
+npm run validate
+```
+
+### 5. Helyi fejlesztés
+
+```bash
+npm run dev
+```
+
+Megnyílik a `http://localhost:5173`.
+
+### 6. Első dry-run
+
+```bash
+npm run daily -- --dry-run --verbose
+```
+
+Ez mindent kiszámol, de nem küld, nem ír és nem commitol.
+
+### 7. Éles próba
+
+```bash
+npm run daily -- --no-build --no-notify
+npm run build
+```
+
+---
+
+## Titkok és biztonság
+
+### Lokális fejlesztés
+
+A titkok a `.env` fájlban vannak. Ez **soha nem kerül a repóba**.
+
+### GitHub Actions
+
+A titkokat a GitHubon kell beállítani:
+
+**Settings → Secrets and variables → Actions → New repository secret**
+
+| Secret | Kötelező? | Mire kell? |
+|---|---|---|
+| `DISCORD_WEBHOOK_URL` | Igen, ha Discordot akarsz | Napi digest és hibaértesítés |
+| `TELEGRAM_BOT_TOKEN` | Nem | Telegram digest (placeholder) |
+| `TELEGRAM_CHAT_ID` | Nem | Telegram digest (placeholder) |
+| `SITE_URL` | Nem | A digestben megjelenő link; ha nincs, a workflow kiszámolja |
+
+> **Fontos:** a Discord webhook és a Telegram token **soha nem kerülhet a frontend kódba**. Csak a pipeline használja.
+
+### Biztonsági ellenőrzés
+
+```bash
+npm run check:secrets
+```
+
+Ez végigfut a tracked fájlokon, és megkeresi a Discord webhook / Telegram token mintákat, valamint azt, hogy a `.env` értékei nem szivárogtak-e ki.
+
+A `.gitignore` szigorú:
+
+- `.env`, `.env.*` (kivéve `.env.example`)
+- `node_modules/`, `dist/`, `logs/`, `coverage/`
+- `data/state.json`, `public/status.json` (generált)
+- IDE/OS fájlok
+
+---
+
+## Napi futás a laptopon
+
+### Telepítés
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-task.ps1
+```
+
+Ez három Windows Task Scheduler feladatot hoz létre:
+
+- `BigDealRadar-0800`
+- `BigDealRadar-1200`
+- `BigDealRadar-2000`
+
+A feladat a `scripts/daily.ps1`-t futtatja, ami:
+
+1. a projekt gyökerébe lép,
+2. logot ír a `logs/daily-YYYY-MM-DD.log` fájlba,
+3. lefuttatja a `npm run daily -- --commit` parancsot,
+4. hibánál nem némul el, hanem láthatóan elbukik.
+
+### Mikor küld értesítést?
+
+- **08:00:** teljes napi digest.
+- **12:00 és 20:00:** csak akkor, ha van 3 napon belüli esemény vagy foglalásnyitás. Így nem spam.
+- Kényszerített digest: `npm run daily -- --force-notify`.
+
+### Kézi futtatás
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/daily.ps1
+```
+
+Vagy közvetlenül:
+
+```bash
+npm run daily -- --commit
+```
+
+### Törlés
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/remove-task.ps1
+```
+
+### Ha a laptop ki van kapcsolva
+
+A Task Scheduler `StartWhenAvailable` beállítása miatt a feladat a következő bekapcsoláskor lefut. Emellett a GitHub Actions napi fallbackje is fut, tehát a Pages oldal nem marad üresen.
+
+---
+
+## GitHub Pages beállítás
+
+1. Hozz létre egy **publikus** GitHub repót.
+2. Pushold fel a projektet a `main` ágra.
+3. Menj a **Settings → Pages** menübe.
+4. A **Build and deployment → Source** legyen **GitHub Actions**.
+5. Futtasd a **Actions → Napi radar → Run workflow** parancsot egyszer kézzel.
+6. A deploy után az oldal itt lesz:
+
+```text
+https://<felhasznalonev>.github.io/<repo-nev>/
+```
+
+> **Miért publikus?** Ingyenes GitHub-fiók esetén a GitHub Pages csak publikus repóból működik. Ha privát kell, akkor GitHub Pro/Team vagy Cloudflare Pages/Netlify lehet a megoldás. A titkok így is biztonságban vannak: GitHub Secretsben, nem a kódban.
+
+Ha a `SITE_URL` repository variable-t beállítod, a digestben és a weboldalon is a saját linked jelenik meg.
+
+---
+
+## GitHub Actions
+
+Három workflow van:
+
+| Workflow | Mikor fut? | Mit csinál? |
+|---|---|---|
+| `pipeline.yml` | Naponta 3x + kézzel | Validál, digestet küld, buildel, deployol, szükség esetén commitol |
+| `deploy.yml` | `main` pushra, ha data/site változik | Buildel és Pagesre deployol |
+| `ci.yml` | PR és `main` push (kivéve data) | Lint, teszt, titokellenőrzés, build |
+
+A napi cron **UTC-ben** van:
+
+```yaml
+- cron: '0 7 * * *'   # 08:00 Budapest (téli idő)
+- cron: '0 11 * * *'  # 12:00 Budapest (téli idő)
+- cron: '0 19 * * *'  # 20:00 Budapest (téli idő)
+```
+
+Nyáron ezek 09:00 / 13:00 / 21:00 helyi idő szerint futnak, mert a cron nem kezeli a nyári időszámítást. Ez tudatos kompromisszum; a laptopos futás a pontos.
+
+---
+
+## Hibrid működés
+
+A laptop az elsődleges, a GitHub Actions a fallback.
+
+- A laptop **csak akkor commitol**, ha a `data/` alatt változás van. Napi üres commit nincs.
+- A laptop futása után a push triggereli a `deploy.yml`-t, tehát a Pages frissül.
+- Ha a laptop nem futott, a GitHub Actions 3x naponta lefut, és frissíti az oldalt.
+- A `public/status.json` és a `data/state.json` generált, ezért nincs a repóban.
+- A weboldal a `status.json`-ból mutatja az utolsó futást és a következő időpontokat.
+- Ha 48 óránál régebbi az adat, a weboldalon figyelmeztetés jelenik meg (a `status.json` időbélyege alapján).
+
+---
+
+## Adatmodell
+
+Egy deal így néz ki a `data/deals.json`-ban:
+
+```json
+{
+  "id": "cinema-city-filmunnep",
+  "title": "Cinema City Filmünnep",
+  "category": "kultura",
+  "type": "flat",
+  "timing": "Október eleje, 4 nap",
+  "date_start": "2026-10-08",
+  "date_end": "2026-10-11",
+  "booking_opens": null,
+  "month": 10,
+  "months": [10],
+  "recurrence": "annual",
+  "deal": "Minden jegy 1690 Ft – 2D, 3D, IMAX, 4DX, ScreenX is",
+  "normal_price": 3100,
+  "deal_price": 1690,
+  "currency": "HUF",
+  "location": "Budapest",
+  "source_url": "https://www.cinemacity.hu",
+  "confidence": "verified",
+  "tags": ["kultura", "flat", "budapest"],
+  "notes": "2026-ban október 8–11. között.",
+  "featured": true
+}
+```
+
+### Mezők
+
+| Mező | Jelentés |
+|---|---|
+| `type` | `flat`, `free`, `sale`, `money`, `access` |
+| `category` | `mozi`, `kultura`, `muzeum`, `gasztro`, `utazas`, `vasarlas`, `penzugy`, `egeszseg`, `csalad`, `egyeb` |
+| `recurrence` | `annual`, `monthly`, `weekly`, `daily`, `continuous`, `oneoff` |
+| `date_start` / `date_end` | Referenciadátum; éves eseménynél a következő előfordulást a kód számolja |
+| `month` / `months` | Havi szűréshez, akkor is, ha nincs pontos dátum |
+| `confidence` | `verified`, `needs-check`, `unverified` |
+| `normal_price` / `deal_price` | A megtakarítás számításához |
+
+### Hogyan kerül be új deal?
+
+1. Írd be a `budapesti-100-big-deal.md` táblázatába, **vagy**
+2. vedd fel közvetlenül a `data/deals.json`-ba, **vagy**
+3. add hozzá a `data/overrides.json`-hoz, ha egy meglévő tételt akarsz pontosítani.
+
+Majd:
+
+```bash
+npm run import
+npm run validate
+```
+
+---
+
+## Parancsok
+
+| Parancs | Mit csinál? |
+|---|---|
+| `npm run dev` | Helyi Vite fejlesztői szerver |
+| `npm run build` | Éles build a `dist/` mappába |
+| `npm run import` | Markdown + overrides → `data/deals.json` |
+| `npm run validate` | Adatbázis validálása |
+| `npm run daily` | Napi pipeline (digest + build) |
+| `npm run daily -- --dry-run --verbose` | Mindent kiszámol, de nem ír/küld/commitál |
+| `npm run daily -- --no-notify --no-build` | Csak státuszfrissítés |
+| `npm run daily -- --commit` | Pipeline + commit/push, ha van adatváltozás |
+| `npm run daily -- --force-notify` | Digest kényszerített küldése |
+| `npm run doctor` | Önellenőrzés: Node, env, adat, git |
+| `npm run test-notify` | Teszt Discord/Telegram üzenet |
+| `npm test` | Vitest tesztek |
+| `npm run lint` | TypeScript ellenőrzés |
+| `npm run check:secrets` | Titokszivárgás keresése |
+
+---
+
+## Hibakeresés
+
+| Tünet | Valószínű ok | Megoldás |
+|---|---|---|
+| `Nem találom a deal adatbázist` | Nincs `data/deals.json` | `npm run import` |
+| `A deal adatbázis hibás` | Rossz mező / hiányzó érték | A hibaüzenet megmondja a mezőt; javítsd, majd `npm run validate` |
+| Discord nem küld | Nincs `DISCORD_WEBHOOK_URL` | `.env` kitöltése, majd `npm run test-notify` |
+| Discord 401/404 | Hibás vagy törölt webhook | Új webhook a Discord csatorna beállításaiban |
+| Telegram nem küld | Nincs token/chat ID | Opcionális; hagyd üresen, vagy állítsd be |
+| A Pages nem frissül | Nincs beállítva a GitHub Actions source | Settings → Pages → Source: GitHub Actions |
+| A Pages 404 | Rossz reponév vagy privát repo | Ellenőrizd a `SITE_URL`-t és a repo láthatóságát |
+| A laptop nem commitol | Nincs adatváltozás | Ez normális; csak változás esetén commitol |
+| `git push` hiba | Nincs bejelentkezve / nincs jogosultság | `git remote -v`, `gh auth status`, SSH kulcs |
+| Az oldal üres | JS hiba | `npm run dev`, majd böngésző konzol; vagy `?debug=1` |
+| Régi dátumok | Az adat 2026-os referencia | Frissítsd a `date_start` mezőket az aktuális évre |
+
+### Debug mód
+
+Nyisd meg:
+
+```text
+http://localhost:5173/?debug=1
+```
+
+Ilyenkor a lábléc fölött megjelenik egy panel az adatokról, a státuszról és a számokról.
+
+### Doctor
+
+```bash
+npm run doctor
+```
+
+Ellenőrzi:
+
+- Node verzió,
+- `.env` megléte,
+- Discord webhook formátum,
+- Telegram beállítás,
+- adatbázis validitás,
+- git repo és remote,
+- státuszfájl.
+
+---
+
+## Mappastruktúra
+
+```text
+big-deal-radar/
+├─ .github/workflows/
+│  ├─ pipeline.yml        # napi adatfrissítés + digest + deploy
+│  ├─ deploy.yml          # push → Pages deploy
+│  └─ ci.yml              # lint, teszt, titokellenőrzés, build
+├─ data/
+│  ├─ deals.json          # 100 deal (generált a markdownból)
+│  ├─ overrides.json      # top dealek pontos dátumai/árai/forrásai
+│  └─ state.json          # generált, gitignore-olt
+├─ public/
+│  └─ status.json         # generált, gitignore-olt
+├─ scripts/
+│  ├─ import-markdown.ts  # markdown → JSON
+│  ├─ check-secrets.ts    # titokszivárgás-ellenőrzés
+│  ├─ daily.ps1           # Task Scheduler belépő
+│  ├─ install-task.ps1    # 08:00 / 12:00 / 20:00 telepítés
+│  └─ remove-task.ps1     # feladatok törlése
+├─ src/
+│  ├─ cli.ts              # daily / validate / doctor / test-notify
+│  ├─ config.ts           # .env + Zod
+│  ├─ types.ts            # Deal típusok
+│  ├─ pipeline/           # load, digest
+│  ├─ notifiers/          # discord, telegram
+│  ├─ site/               # main.ts, style.css
+│  └─ utils/              # dates, logger
+├─ tests/                 # Vitest tesztek
+├─ budapesti-100-big-deal.md
+├─ big-deal-otletek.md
+├─ index.html
+├─ package.json
+├─ tsconfig.json
+└─ vite.config.ts
+```
+
+---
+
+## Roadmap
+
+- [ ] A 100 dealből a maradék 66-hoz pontos dátum és forrás.
+- [ ] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).
+- [ ] Naptárnézet a weboldalon.
+- [ ] „Értesíts, ha nyílik a foglalás” funkció.
+- [ ] Közösségi szavazás: „megérte?” / „nem érte meg”.
+- [ ] Telegram bot élesítése, ha lesz token.
+- [ ] Angol nyelvű verzió (opcionális).
+
+---
+
+## Források
+
+A dátumok és árak 2026-os példák, és évente változnak. A részleteket mindig a hivatalos oldalon ellenőrizd:
+
+- Cinema City – [cinemacity.hu](https://www.cinemacity.hu)
+- Múzeumok Éjszakája – [muzej.hu](https://muzej.hu)
+- Budapesti Színházak Éjszakája – [bpsze.hu](https://bpsze.hu)
+- Restaurant Week – [etteremhet.hu](https://etteremhet.hu)
+- Budapest100 – [budapest100.hu](https://budapest100.hu)
+- Erőművek Éjszakája – [eromuvekejszakaja.hu](https://eromuvekejszakaja.hu)
+- Fővárosi Nagycirkusz – [fovarosinagycirkusz.hu](https://fovarosinagycirkusz.hu)
+
+---
+
+**Készült magyarul, magyar dealekhez.** 🇭🇺

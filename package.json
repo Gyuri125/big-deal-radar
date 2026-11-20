@@ -1,0 +1,35 @@
+{
+  "name": "big-deal-radar",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Napi magyar és budapesti deal-radar – GitHub Pages oldal, Discord értesítéssel.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "import": "tsx scripts/import-markdown.ts",
+    "daily": "tsx src/cli.ts daily",
+    "validate": "tsx src/cli.ts validate",
+    "doctor": "tsx src/cli.ts doctor",
+    "test-notify": "tsx src/cli.ts test-notify",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "check:secrets": "tsx scripts/check-secrets.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}
