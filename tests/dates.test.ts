@@ -22,6 +22,7 @@ const base: Deal = {
   source_url: null,
   booking_url: null,
   booking_note: null,
+  sources: [],
   confidence: 'verified',
   tags: ['kultura', 'flat'],
   notes: null,

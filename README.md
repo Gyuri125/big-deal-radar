@@ -41,6 +41,9 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
 - **saját lista + prioritás** a böngészőben, regisztráció nélkül,
 - ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató,
+- **minden dealhez legalább egy forrás**, ahol releváns, több is; a részletek ablakban listázva,
+- **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
+- **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
 - naponta **Discord digestet** küld,
 - Telegramhoz előkészített, de opcionális csatornával rendelkezik,
 - a laptopon és GitHub Actionsben is ugyanazt a pipeline-t futtatja.
@@ -442,6 +445,27 @@ A cél, hogy ne az esemény napján szembesülj vele, hogy elment a lehetőség.
 
 ---
 
+## Források, linkek és tooltip
+
+A `data/sources.json` minden dealhez forrásokat rendel. A részletek ablakban ezek listázva vannak:
+
+- **Hivatalos oldal** – a szervező oldala
+- **Jegyvásárlás / foglalás** – közvetlen jegy- vagy asztalfoglalás
+- **Cikk / ajánló** – háttérinformáció, összefoglaló
+- **Keresés** – ha nincs egyetlen hivatalos oldal, keresőlink (ezt később finomíthatjuk)
+
+Ha az egérrel **3 másodpercig** egy linken maradsz, lebegő tooltip mutatja a teljes URL-t, hogy lásd, hová visz. Mobilon a link koppintással nyílik.
+
+A linkek ellenőrzése:
+
+```bash
+npm run check:links
+```
+
+Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a botblokkokat. A botblokkolt oldalak böngészőből általában működnek.
+
+---
+
 ## Parancsok
 
 | Parancs | Mit csinál? |
@@ -460,6 +484,7 @@ A cél, hogy ne az esemény napján szembesülj vele, hogy elment a lehetőség.
 | `npm test` | Vitest tesztek |
 | `npm run lint` | TypeScript ellenőrzés |
 | `npm run check:secrets` | Titokszivárgás keresése |
+| `npm run check:links` | Forráslinkek ellenőrzése |
 
 ---
 
@@ -517,13 +542,16 @@ big-deal-radar/
 │  └─ ci.yml              # lint, teszt, titokellenőrzés, build
 ├─ data/
 │  ├─ deals.json          # 100 deal (generált a markdownból)
-│  ├─ overrides.json      # top dealek pontos dátumai/árai/forrásai
+│  ├─ overrides.json      # top dealek pontos dátumai/árai/foglalási adatai
+│  ├─ sources.json        # dealenkénti források, cikkek, jegyvásárlás
+│  ├─ tags.json           # program / ünnepi / évfordulós címkék
 │  └─ state.json          # generált, gitignore-olt
 ├─ public/
 │  └─ status.json         # generált, gitignore-olt
 ├─ scripts/
 │  ├─ import-markdown.ts  # markdown → JSON
 │  ├─ check-secrets.ts    # titokszivárgás-ellenőrzés
+│  ├─ check-links.ts      # forráslinkek ellenőrzése
 │  ├─ daily.ps1           # Task Scheduler belépő
 │  ├─ install-task.ps1    # 08:00 / 12:00 / 20:00 telepítés
 │  └─ remove-task.ps1     # feladatok törlése

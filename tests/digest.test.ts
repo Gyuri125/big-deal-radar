@@ -22,6 +22,7 @@ const deal: Deal = {
   source_url: 'https://example.com',
   booking_url: null,
   booking_note: null,
+  sources: [],
   confidence: 'verified',
   tags: ['mozi', 'flat'],
   notes: null,

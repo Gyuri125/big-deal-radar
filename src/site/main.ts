@@ -26,6 +26,7 @@ import {
 
 type StatusKind = 'live' | 'upcoming' | 'past' | 'continuous' | 'unknown';
 type SortMode = 'next' | 'value' | 'title';
+type Focus = 'all' | 'mozi' | 'gasztro' | 'program' | 'unnep' | 'free';
 
 interface EnrichedDeal extends Deal {
   effective: EffectiveDate | null;
@@ -67,6 +68,15 @@ const CATEGORY_LABELS: Record<DealCategory, string> = {
   egyeb: 'Egyéb',
 };
 
+const FOCUS_FILTERS: Array<{ value: Focus; label: string }> = [
+  { value: 'all', label: 'Mind' },
+  { value: 'mozi', label: '🎬 Mozi' },
+  { value: 'gasztro', label: '🍽️ Ételek' },
+  { value: 'program', label: '🎉 Programok' },
+  { value: 'unnep', label: '🎂 Ünnepek' },
+  { value: 'free', label: '🆓 Ingyenes' },
+];
+
 const TYPE_FILTERS: Array<{ value: 'all' | DealType; label: string }> = [
   { value: 'all', label: 'Mind' },
   { value: 'flat', label: '★ Prémium' },
@@ -94,6 +104,7 @@ const state = {
   sort: 'next' as SortMode,
   visible: 24,
   watchlistOnly: false,
+  focus: 'all' as Focus,
 };
 
 let watchlist: Watchlist = loadWatchlist();
@@ -223,6 +234,51 @@ function typeLabel(type: DealType): string {
   return TYPE_LABELS[type];
 }
 
+function sourceTypeLabel(type: Deal['sources'][number]['type']): string {
+  if (type === 'official') return 'Hivatalos';
+  if (type === 'ticket') return 'Jegy';
+  if (type === 'article') return 'Cikk';
+  return 'Keresés';
+}
+
+function domainOf(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return url;
+  }
+}
+
+function sourcesMarkup(deal: EnrichedDeal): string {
+  if (deal.sources.length === 0) {
+    return '<p class="muted">Forrás hamarosan.</p>';
+  }
+
+  return `
+    <div class="source-list">
+      ${deal.sources
+        .map(
+          (source) => `
+            <a
+              class="source-item"
+              href="${escapeHtml(source.url)}"
+              target="_blank"
+              rel="noopener"
+              data-link-preview="${escapeHtml(source.url)}"
+              data-link-label="${escapeHtml(source.label)}"
+            >
+              <span class="source-type source-${source.type}">${sourceTypeLabel(source.type)}</span>
+              <span class="source-label">${escapeHtml(source.label)}</span>
+              <span class="source-domain">${escapeHtml(domainOf(source.url))}</span>
+            </a>
+          `
+        )
+        .join('')}
+    </div>
+    <p class="source-hint">Tartsd az egeret a linken 3 mp-ig, és megmutatja a teljes URL-t.</p>
+  `;
+}
+
 function statusLabel(deal: EnrichedDeal): string {
   if (deal.status === 'live') return 'MOST';
   if (deal.status === 'upcoming' && deal.days !== null) {
@@ -320,6 +376,11 @@ function sortDeals(items: EnrichedDeal[], mode: SortMode): EnrichedDeal[] {
 
 function matchesFilters(deal: EnrichedDeal): boolean {
   if (state.watchlistOnly && !isWatched(deal.id)) return false;
+  if (state.focus === 'mozi' && deal.category !== 'mozi') return false;
+  if (state.focus === 'gasztro' && deal.category !== 'gasztro') return false;
+  if (state.focus === 'program' && !deal.tags.includes('program')) return false;
+  if (state.focus === 'unnep' && !deal.tags.includes('unnep')) return false;
+  if (state.focus === 'free' && deal.type !== 'free') return false;
   if (state.type !== 'all' && deal.type !== state.type) return false;
   if (state.category !== 'all' && deal.category !== state.category) return false;
   if (state.location !== 'all' && deal.location !== state.location) return false;
@@ -336,6 +397,7 @@ function matchesFilters(deal: EnrichedDeal): boolean {
 function hasActiveFilters(): boolean {
   return (
     state.watchlistOnly ||
+    state.focus !== 'all' ||
     state.query.trim().length > 0 ||
     state.type !== 'all' ||
     state.category !== 'all' ||
@@ -424,6 +486,12 @@ function renderStats(): void {
 }
 
 function updateFilterButtons(): void {
+  document.querySelectorAll<HTMLButtonElement>('[data-focus]').forEach((button) => {
+    const active = button.dataset.focus === state.focus;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
   document.querySelectorAll<HTMLButtonElement>('[data-filter-type]').forEach((button) => {
     const active = button.dataset.filterType === state.type;
     button.classList.toggle('active', active);
@@ -651,6 +719,22 @@ function renderShell(): void {
         />
       </div>
 
+      <div class="filter-block focus-block">
+        <span class="filter-label">Nekem</span>
+        <div class="chips" id="focus-filters">
+          ${FOCUS_FILTERS.map(
+            (filter) => `
+              <button
+                class="chip"
+                type="button"
+                data-focus="${filter.value}"
+                aria-pressed="false"
+              >${filter.label}</button>
+            `
+          ).join('')}
+        </div>
+      </div>
+
       <div class="filter-block">
         <span class="filter-label">Típus</span>
         <div class="chips" id="type-filters">
@@ -794,13 +878,10 @@ function openDialog(id: string): void {
     .join('');
 
   const bookingLink = deal.booking_url
-    ? `<a class="btn btn-solid" href="${escapeHtml(deal.booking_url)}" target="_blank" rel="noopener">Jegyvásárlás / foglalás</a>`
+    ? `<a class="btn btn-solid" href="${escapeHtml(deal.booking_url)}" target="_blank" rel="noopener" data-link-preview="${escapeHtml(deal.booking_url)}" data-link-label="Jegyvásárlás / foglalás">Jegyvásárlás / foglalás</a>`
     : '';
 
-  const sourceLink =
-    deal.source_url && deal.source_url !== deal.booking_url
-      ? `<a class="btn btn-ghost" href="${escapeHtml(deal.source_url)}" target="_blank" rel="noopener">Forrás</a>`
-      : '';
+  const sources = sourcesMarkup(deal);
 
   dialogEl.dataset.dealId = deal.id;
   dialogEl.innerHTML = `
@@ -844,10 +925,15 @@ function openDialog(id: string): void {
         ? `<p class="dialog-notes">${escapeHtml(deal.notes)}</p>`
         : ''
     }
+
+    <div class="dialog-sources">
+      <h3>Források <span>${deal.sources.length}</span></h3>
+      ${sources}
+    </div>
+
     <div class="dialog-actions">
       <button class="btn btn-solid" data-dialog-action="ics" type="button" ${deal.effective ? '' : 'disabled'}>Naptárba emlékeztetővel</button>
       ${bookingLink}
-      ${sourceLink || (!deal.booking_url ? '<span class="muted">Forrás hamarosan</span>' : '')}
     </div>
     ${
       deal.effective
@@ -992,6 +1078,86 @@ function downloadWatchlistIcs(): void {
   );
 }
 
+const linkTooltip = document.createElement('div');
+linkTooltip.className = 'link-tooltip';
+linkTooltip.id = 'link-tooltip';
+linkTooltip.setAttribute('role', 'tooltip');
+document.body.appendChild(linkTooltip);
+
+let linkTooltipTimer: number | undefined;
+let activeLink: HTMLElement | null = null;
+
+function showLinkTooltip(link: HTMLElement): void {
+  const url = link.dataset.linkPreview;
+  if (!url) return;
+
+  const label = link.dataset.linkLabel ?? 'Link';
+  activeLink = link;
+  linkTooltip.innerHTML = `<strong>${escapeHtml(label)}</strong><span>${escapeHtml(url)}</span>`;
+
+  const width = Math.min(380, window.innerWidth - 24);
+  const rect = link.getBoundingClientRect();
+  const left = Math.min(
+    Math.max(12, rect.left),
+    window.innerWidth - width - 12
+  );
+  const top = Math.min(rect.bottom + 10, window.innerHeight - 90);
+
+  linkTooltip.style.width = `${width}px`;
+  linkTooltip.style.left = `${left}px`;
+  linkTooltip.style.top = `${top}px`;
+  linkTooltip.classList.add('show');
+}
+
+function hideLinkTooltip(): void {
+  window.clearTimeout(linkTooltipTimer);
+  linkTooltip.classList.remove('show');
+  activeLink = null;
+}
+
+function scheduleLinkTooltip(link: HTMLElement, delay = 3000): void {
+  window.clearTimeout(linkTooltipTimer);
+  linkTooltip.classList.remove('show');
+  linkTooltipTimer = window.setTimeout(() => showLinkTooltip(link), delay);
+}
+
+document.addEventListener('mouseover', (event) => {
+  const target = (event.target as HTMLElement).closest<HTMLElement>(
+    '[data-link-preview]'
+  );
+  if (!target || activeLink === target) return;
+  scheduleLinkTooltip(target, 3000);
+});
+
+document.addEventListener('mouseout', (event) => {
+  const target = (event.target as HTMLElement).closest<HTMLElement>(
+    '[data-link-preview]'
+  );
+  if (!target) return;
+  const related = event.relatedTarget as Node | null;
+  if (related && target.contains(related)) return;
+  hideLinkTooltip();
+});
+
+document.addEventListener('focusin', (event) => {
+  const target = (event.target as HTMLElement).closest<HTMLElement>(
+    '[data-link-preview]'
+  );
+  if (!target) return;
+  scheduleLinkTooltip(target, 0);
+});
+
+document.addEventListener('focusout', (event) => {
+  const target = (event.target as HTMLElement).closest<HTMLElement>(
+    '[data-link-preview]'
+  );
+  if (!target) return;
+  hideLinkTooltip();
+});
+
+window.addEventListener('scroll', hideLinkTooltip, { passive: true });
+window.addEventListener('resize', hideLinkTooltip);
+
 let toastTimer: number | undefined;
 
 function showToast(message: string): void {
@@ -1018,6 +1184,7 @@ function handleAction(action: string, target: HTMLElement): void {
     state.sort = 'next';
     state.visible = 24;
     state.watchlistOnly = false;
+    state.focus = 'all';
 
     const search = document.querySelector<HTMLInputElement>('#search');
     const location = document.querySelector<HTMLSelectElement>('#location-filter');
@@ -1037,6 +1204,7 @@ function handleAction(action: string, target: HTMLElement): void {
     state.visible = 24;
 
     if (state.watchlistOnly) {
+      state.focus = 'all';
       state.type = 'all';
       state.category = 'all';
       state.location = 'all';
@@ -1074,8 +1242,29 @@ function handleAction(action: string, target: HTMLElement): void {
 appRoot.addEventListener('click', (event) => {
   const target = event.target as HTMLElement;
 
+  const focusButton = target.closest<HTMLButtonElement>('[data-focus]');
+  if (focusButton) {
+    state.focus = focusButton.dataset.focus as Focus;
+    state.type = 'all';
+    state.category = 'all';
+    state.location = 'all';
+    state.query = '';
+    state.watchlistOnly = false;
+    state.visible = 24;
+
+    const search = document.querySelector<HTMLInputElement>('#search');
+    const location = document.querySelector<HTMLSelectElement>('#location-filter');
+    if (search) search.value = '';
+    if (location) location.value = 'all';
+
+    updateFilterButtons();
+    renderResults();
+    return;
+  }
+
   const typeButton = target.closest<HTMLButtonElement>('[data-filter-type]');
   if (typeButton) {
+    state.focus = 'all';
     state.type = typeButton.dataset.filterType as 'all' | DealType;
     state.visible = 24;
     updateFilterButtons();
@@ -1085,6 +1274,7 @@ appRoot.addEventListener('click', (event) => {
 
   const categoryButton = target.closest<HTMLButtonElement>('[data-filter-category]');
   if (categoryButton) {
+    state.focus = 'all';
     state.category = categoryButton.dataset.filterCategory as 'all' | DealCategory;
     state.visible = 24;
     updateFilterButtons();

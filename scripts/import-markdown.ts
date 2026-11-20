@@ -5,6 +5,7 @@ import type {
   Deal,
   DealCategory,
   DealOverride,
+  DealSource,
   DealType,
   Recurrence,
 } from '../src/types';
@@ -13,7 +14,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const markdownPath = path.join(root, 'budapesti-100-big-deal.md');
 const overridesPath = path.join(root, 'data', 'overrides.json');
+const sourcesPath = path.join(root, 'data', 'sources.json');
+const tagsPath = path.join(root, 'data', 'tags.json');
 const outputPath = path.join(root, 'data', 'deals.json');
+
+const PROGRAM_CATEGORIES = new Set<DealCategory>([
+  'kultura',
+  'muzeum',
+  'csalad',
+  'gasztro',
+  'mozi',
+]);
 
 const SECTION_MAP: Array<{
   test: RegExp;
@@ -90,8 +101,10 @@ function inferType(text: string, fallback: DealType): DealType {
   if (fallback === 'money') return 'money';
   if (fallback === 'free') return 'free';
 
-  if (/ingyenes|\b0\s*ft\b|díjmentes/i.test(text)) return 'free';
-  if (/féláron|kedvezmény|%|akció|leárazás|olcsóbb/i.test(text)) return 'sale';
+  if (/féláron|kedvezmény|%|akció|leárazás|olcsóbb|kupon|off/i.test(text)) {
+    return 'sale';
+  }
+  if (/ingyenes|ingyen|díjmentes|\b0\s*ft\b/i.test(text)) return 'free';
   if (/egy jegy|karszalag|fix ár|ugyanannyi|egységes|egyetlen/i.test(text)) {
     return 'flat';
   }
@@ -180,6 +193,7 @@ function parseRows(markdown: string): Deal[] {
         source_url: null,
         booking_url: null,
         booking_note: null,
+        sources: [],
         confidence: 'unverified',
         tags: Array.from(
           new Set([
@@ -202,6 +216,56 @@ function loadOverrides(): Record<string, DealOverride> {
   if (!fs.existsSync(overridesPath)) return {};
   const raw = fs.readFileSync(overridesPath, 'utf8');
   return JSON.parse(raw) as Record<string, DealOverride>;
+}
+
+function loadSourceOverrides(): Record<string, DealSource[]> {
+  if (!fs.existsSync(sourcesPath)) return {};
+  const raw = fs.readFileSync(sourcesPath, 'utf8');
+  return JSON.parse(raw) as Record<string, DealSource[]>;
+}
+
+function loadTagOverrides(): Record<string, string[]> {
+  if (!fs.existsSync(tagsPath)) return {};
+  const raw = fs.readFileSync(tagsPath, 'utf8');
+  return JSON.parse(raw) as Record<string, string[]>;
+}
+
+function mergeSources(
+  deals: Deal[],
+  sourceOverrides: Record<string, DealSource[]>
+): Deal[] {
+  return deals.map((deal) => {
+    const sources: DealSource[] = [];
+    const add = (source: DealSource) => {
+      if (!sources.some((existing) => existing.url === source.url)) {
+        sources.push(source);
+      }
+    };
+
+    for (const source of sourceOverrides[deal.id] ?? []) add(source);
+    for (const source of deal.sources) add(source);
+    if (deal.source_url) {
+      add({ label: 'Hivatalos oldal', url: deal.source_url, type: 'official' });
+    }
+    if (deal.booking_url && deal.booking_url !== deal.source_url) {
+      add({
+        label: 'Jegyvásárlás / foglalás',
+        url: deal.booking_url,
+        type: 'ticket',
+      });
+    }
+    if (sources.length === 0) {
+      add({
+        label: 'Keresés',
+        url: `https://www.google.com/search?q=${encodeURIComponent(
+          `${deal.title} 2026`
+        )}`,
+        type: 'search',
+      });
+    }
+
+    return { ...deal, sources };
+  });
 }
 
 function mergeOverrides(
@@ -258,16 +322,46 @@ function main() {
     }
   }
 
-  const merged = mergeOverrides(parsed, overrides);
+  const sourceOverrides = loadSourceOverrides();
+  for (const id of Object.keys(sourceOverrides)) {
+    if (!parsedIds.has(id)) {
+      console.warn(`⚠️  A sources.json-ban szereplő id nem található: ${id}`);
+    }
+  }
+
+  const merged = mergeSources(
+    mergeOverrides(parsed, overrides),
+    sourceOverrides
+  );
+
+  const tagOverrides = loadTagOverrides();
+  for (const id of Object.keys(tagOverrides)) {
+    if (!parsedIds.has(id)) {
+      console.warn(`⚠️  A tags.json-ban szereplő id nem található: ${id}`);
+    }
+  }
+
+  const withTags = merged.map((deal) => {
+    const tags = new Set(deal.tags);
+    if (PROGRAM_CATEGORIES.has(deal.category)) tags.add('program');
+    for (const tag of tagOverrides[deal.id] ?? []) tags.add(tag);
+    return { ...deal, tags: [...tags] };
+  });
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, `${JSON.stringify(merged, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(outputPath, `${JSON.stringify(withTags, null, 2)}\n`, 'utf8');
 
-  const verified = merged.filter((d) => d.confidence === 'verified').length;
-  const dated = merged.filter((d) => d.date_start).length;
+  const verified = withTags.filter((d) => d.confidence === 'verified').length;
+  const dated = withTags.filter((d) => d.date_start).length;
+  const sourced = withTags.filter((d) => d.sources.length > 0).length;
+  const programs = withTags.filter((d) => d.tags.includes('program')).length;
+  const celebrations = withTags.filter((d) => d.tags.includes('unnep')).length;
 
-  console.log(`✅ ${merged.length} deal beolvasva.`);
-  console.log(`   Ebből dátumos: ${dated}, ellenőrzött: ${verified}`);
+  console.log(`✅ ${withTags.length} deal beolvasva.`);
+  console.log(
+    `   Ebből dátumos: ${dated}, ellenőrzött: ${verified}, forrással: ${sourced}`
+  );
+  console.log(`   Program: ${programs}, ünnepi/évfordulós: ${celebrations}`);
   console.log(`   Kimenet: ${path.relative(root, outputPath)}`);
 }
 

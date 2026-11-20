@@ -21,11 +21,25 @@
     "source_url": "https://www.cinemacity.hu",
     "booking_url": "https://www.cinemacity.hu",
     "booking_note": "A jegyvásárlás online és a pénztárakban is lehetséges. Érdemes elővételben venni, mert a népszerű időpontok betelnek.",
+    "sources": [
+      {
+        "label": "PC Guru cikk",
+        "url": "https://www.pcguru.hu/hirek/cinema-city-filmunnep-olcso-mozizas-felar-1690-forint-2d-3d-4xd-imax-filmek-marlasinger-/104246",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.cinemacity.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "mozi",
-      "flat"
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026-ban október 8–11. között. Évente változó, de jellemzően 4 napos őszi akció.",
     "featured": true
@@ -52,11 +66,20 @@
     "source_url": "https://artmozi.hu",
     "booking_url": "https://artmozi.hu",
     "booking_note": "A karszalagok elővételben kaphatók; a helyek limitáltak.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://artmozi.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "mozi",
-      "flat"
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026. november 14. Egy karszalaggal egész éjjel válogathatsz a vetítések közül.",
     "featured": true
@@ -83,11 +106,25 @@
     "source_url": "https://artmoziegyesulet.hu",
     "booking_url": "https://artmoziegyesulet.hu",
     "booking_note": "A vetítésekre a mozik saját oldalán lehet jegyet venni.",
+    "sources": [
+      {
+        "label": "Uránia esemény",
+        "url": "https://urania-nf.hu/esemenyek/3084/2026/11/22/_11th-european-arthouse-cinema-day-in-urania",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://artmoziegyesulet.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "mozi",
-      "sale"
+      "sale",
+      "program",
+      "unnep"
     ],
     "notes": "2026. november 22. Az Urániában 3100 Ft, több moziban 1800–2500 Ft körül.",
     "featured": true
@@ -114,11 +151,25 @@
     "source_url": "https://fovarosinagycirkusz.hu",
     "booking_url": "https://fovarosinagycirkusz.hu",
     "booking_note": "A jegyek a Fővárosi Nagycirkusz pénztárában és online kaphatók; érdemes előre venni.",
+    "sources": [
+      {
+        "label": "Fővárosi Nagycirkusz cikk",
+        "url": "https://fovarosinagycirkusz.hu/cirkuszok-ejszakaja-a-fovarosi-nagycirkuszban",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://fovarosinagycirkusz.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "flat"
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026. július 11., Fővárosi Nagycirkusz. Évente országos programsorozat.",
     "featured": true
@@ -145,11 +196,25 @@
     "source_url": "https://muzej.hu",
     "booking_url": "https://muzej.hu",
     "booking_note": "A karszalag elővételben is megvásárolható; a népszerű helyszínek betelnek.",
+    "sources": [
+      {
+        "label": "Museum.hu program",
+        "url": "https://www.museum.hu/muzeumokejszakaja",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://muzej.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "muzeum",
-      "flat"
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026. június 20. A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft felnőtt, 1500 Ft gyerek.",
     "featured": true
@@ -176,11 +241,25 @@
     "source_url": "https://bpsze.hu",
     "booking_url": "https://bpsze.hu",
     "booking_note": "A jegyek a Budapesti Színházak Éjszakája oldalán kaphatók; a regisztrációhoz kötött programok hamar betelnek.",
+    "sources": [
+      {
+        "label": "SZFE program",
+        "url": "https://szfe.hu/esemenyek/budapesti-szinhazak-ejszakaja/",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://bpsze.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "flat"
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026. március 21. A jegy 3 regisztrációhoz kötött programra jogosít, a többit szabadon látogathatod.",
     "featured": true
@@ -188,7 +267,7 @@
   {
     "id": "restaurant-week-tavasz",
     "title": "Restaurant Week tavasz",
-    "category": "kultura",
+    "category": "gasztro",
     "type": "flat",
     "timing": "Március",
     "date_start": "2026-03-19",
@@ -207,11 +286,25 @@
     "source_url": "https://etteremhet.hu",
     "booking_url": "https://etteremhet.hu",
     "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
+    "sources": [
+      {
+        "label": "BudAPPest ajánló",
+        "url": "https://budappest.com/budapest-restaurant-week-2026-how-to-eat-like-a-local-at-hungarys-best-tables",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://etteremhet.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
-      "kultura",
-      "flat"
+      "gasztro",
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026 tavaszi kiadás. Az árak kategóriától függenek; a szervizdíj benne van.",
     "featured": true
@@ -219,7 +312,7 @@
   {
     "id": "restaurant-week-osz",
     "title": "Restaurant Week ősz",
-    "category": "kultura",
+    "category": "gasztro",
     "type": "flat",
     "timing": "Október",
     "date_start": "2026-10-01",
@@ -238,11 +331,25 @@
     "source_url": "https://etteremhet.hu",
     "booking_url": "https://etteremhet.hu",
     "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
+    "sources": [
+      {
+        "label": "BudAPPest ajánló",
+        "url": "https://budappest.com/budapest-restaurant-week-2026-how-to-eat-like-a-local-at-hungarys-best-tables",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://etteremhet.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
-      "kultura",
-      "flat"
+      "gasztro",
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026 őszi kiadás. A Costes Michelin-csillagos menüje 17 900 Ft volt.",
     "featured": true
@@ -250,7 +357,7 @@
   {
     "id": "restaurant-week-extra",
     "title": "Restaurant Week EXTRA",
-    "category": "kultura",
+    "category": "gasztro",
     "type": "flat",
     "timing": "November",
     "date_start": "2026-11-13",
@@ -269,11 +376,25 @@
     "source_url": "https://etteremhet.hu",
     "booking_url": "https://etteremhet.hu",
     "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
+    "sources": [
+      {
+        "label": "BudAPPest ajánló",
+        "url": "https://budappest.com/budapest-restaurant-week-2026-how-to-eat-like-a-local-at-hungarys-best-tables",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://etteremhet.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
-      "kultura",
-      "flat"
+      "gasztro",
+      "flat",
+      "program",
+      "unnep"
     ],
     "notes": "2026. november 13–22. Az őszi Restaurant Week legjobb éttermei.",
     "featured": true
@@ -282,7 +403,7 @@
     "id": "strandok-ejszakaja",
     "title": "Strandok Éjszakája",
     "category": "kultura",
-    "type": "flat",
+    "type": "access",
     "timing": "Július utolsó szombatja",
     "date_start": "2026-07-25",
     "date_end": "2026-07-25",
@@ -300,11 +421,25 @@
     "source_url": "https://www.furdoszovetseg.hu",
     "booking_url": "https://www.furdoszovetseg.hu",
     "booking_note": "A jegyek fürdőnként eltérően, elővételben vagy a helyszínen kaphatók.",
+    "sources": [
+      {
+        "label": "Fürdőszövetség program",
+        "url": "https://www.furdoszovetseg.hu/programok/strandok-ejszakaja-2026-csatlakozo-furdok",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.furdoszovetseg.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "országos",
       "kultura",
-      "flat"
+      "access",
+      "program",
+      "unnep"
     ],
     "notes": "2026. július 25. A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül.",
     "featured": true
@@ -313,7 +448,7 @@
     "id": "allatkertek-ejszakaja",
     "title": "Állatkertek Éjszakája",
     "category": "kultura",
-    "type": "flat",
+    "type": "access",
     "timing": "Augusztus vége",
     "date_start": "2026-08-28",
     "date_end": "2026-08-28",
@@ -331,11 +466,25 @@
     "source_url": "https://zoobudapest.com",
     "booking_url": "https://zoobudapest.com",
     "booking_note": "Külön esti jegy; érdemes online elővételben venni.",
+    "sources": [
+      {
+        "label": "Állatkert program",
+        "url": "https://zoobudapest.com/programok/allatkertek-ejszakaja-2026",
+        "type": "article"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://zoobudapest.com",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "flat"
+      "access",
+      "program",
+      "unnep"
     ],
     "notes": "2026. augusztus 28. Külön esti jegy; a nappali jegy és bérlet nem érvényes.",
     "featured": true
@@ -362,11 +511,25 @@
     "source_url": "https://budapest100.hu",
     "booking_url": "https://budapest100.hu",
     "booking_note": "A legtöbb program ingyenes; egyes vezetések regisztrációhoz kötöttek.",
+    "sources": [
+      {
+        "label": "Budapest100 programok",
+        "url": "https://budapest100.hu/programok",
+        "type": "official"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://budapest100.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "2026. május 9–10. 41 épület, több mint 200 program; egyes vezetések regisztrációhoz kötöttek.",
     "featured": true
@@ -393,11 +556,20 @@
     "source_url": "https://eromuvekejszakaja.hu",
     "booking_url": "https://eromuvekejszakaja.hu",
     "booking_note": "Ingyenes, de regisztrációhoz kötött; a népszerű helyszínek azonnal betelnek.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://eromuvekejszakaja.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "2026. október 16. Regisztráció október 1-jén nyílt; a népszerű helyek azonnal beteltek.",
     "featured": true
@@ -424,11 +596,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=M%C5%B1eml%C3%A9kek%20Napja%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Szeptemberi hétvége; a pontos dátum évente változik.",
     "featured": false
@@ -455,11 +636,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Kutatók Éjszakája",
+        "url": "https://kutatokejszakaja.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Szeptember utolsó péntekje; 2026-ban szeptember 25.",
     "featured": false
@@ -486,11 +676,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Nyitott%20Templomok%20Napja%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Szeptemberi hétvége; a pontos dátum évente változik.",
     "featured": false
@@ -517,11 +716,20 @@
     "source_url": "https://arssacra.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://arssacra.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Szeptemberi fesztivál; a program egy része ingyenes.",
     "featured": false
@@ -548,11 +756,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=K%C3%B6nyvt%C3%A1rak%20%C3%89jszak%C3%A1ja%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Október eleji péntek; a pontos dátum évente változik.",
     "featured": false
@@ -580,11 +797,20 @@
     "source_url": "https://museum.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://museum.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "muzeum",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "2026. október közepe – november közepe.",
     "featured": false
@@ -611,11 +837,20 @@
     "source_url": "https://icom.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://icom.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "muzeum",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Május 18. Nem minden múzeum ingyenes; érdemes előre nézni a programot.",
     "featured": false
@@ -644,11 +879,20 @@
     "source_url": "https://www.museum.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.museum.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "muzeum",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Március 15., augusztus 20. és október 23. – több állami múzeum ingyenes.",
     "featured": false
@@ -675,11 +919,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Kultúra.hu",
+        "url": "https://kultura.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Január 22. Számos intézmény ingyenes programmal készül.",
     "featured": false
@@ -706,11 +959,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Sz%C3%ADnh%C3%A1zi%20vil%C3%A1gnap%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Március 27. Nem országos, mindenhol érvényes akció; színházanként változik.",
     "featured": false
@@ -737,11 +999,20 @@
     "source_url": "https://btf.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://btf.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Áprilisi fesztivál; a nyitóhétvége programjai jellemzően ingyenesek.",
     "featured": false
@@ -769,11 +1040,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Budapest%20Ny%C3%A1ri%20Fesztiv%C3%A1l%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Nyári szezon; a szabadtéri programok egy része ingyenes.",
     "featured": false
@@ -798,11 +1078,19 @@
     "source_url": "https://zeneakademia.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://zeneakademia.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program"
     ],
     "notes": "Egész évben, naptár szerint; érdemes a Zeneakadémia programját figyelni.",
     "featured": false
@@ -827,11 +1115,19 @@
     "source_url": "https://mupa.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://mupa.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program"
     ],
     "notes": "Évente több alkalmas; a pontos program a Müpa oldalán.",
     "featured": false
@@ -856,11 +1152,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=free%20walking%20tour%20Budapest%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program"
     ],
     "notes": "Egész évben, több szolgáltatóval; a borravaló nem kötelező, de szokás.",
     "featured": false
@@ -887,11 +1191,20 @@
     "source_url": "https://kektura.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://kektura.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "országos",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "2026. október 10. A teljes Kéktúra útvonal egy nap alatt.",
     "featured": false
@@ -918,11 +1231,20 @@
     "source_url": "https://fataj.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://fataj.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "2026-ban első alkalommal, a Hárs-hegyen.",
     "featured": false
@@ -947,11 +1269,19 @@
     "source_url": "https://www.maesteszinhaz.hu",
     "booking_url": "https://www.maesteszinhaz.hu",
     "booking_note": "Minden este 21:00-tól a másnapi előadások féláron.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.maesteszinhaz.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "sale"
+      "sale",
+      "program"
     ],
     "notes": "Nem éves esemény, hanem napi last-minute piactér; a kínálat naponta változik.",
     "featured": false
@@ -976,11 +1306,19 @@
     "source_url": "https://opera.hu",
     "booking_url": "https://opera.hu",
     "booking_note": "Az állóhelyek és diákjegyek előadásonként, a jegyértékesítésben elérhetők.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://opera.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "kultura",
-      "access"
+      "access",
+      "program"
     ],
     "notes": "Az állóhelyek és diákjegyek elérhetősége előadásonként változik.",
     "featured": false
@@ -1005,11 +1343,19 @@
     "source_url": "https://artmozi.hu",
     "booking_url": "https://artmozi.hu",
     "booking_note": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://artmozi.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "mozi",
-      "sale"
+      "sale",
+      "program"
     ],
     "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
     "featured": false
@@ -1018,7 +1364,7 @@
     "id": "cinema-city-kedvezmenyes-nap",
     "title": "Cinema City kedvezményes nap",
     "category": "mozi",
-    "type": "access",
+    "type": "sale",
     "timing": "Kedd/szerda",
     "date_start": null,
     "date_end": null,
@@ -1034,11 +1380,19 @@
     "source_url": "https://www.cinemacity.hu",
     "booking_url": "https://www.cinemacity.hu",
     "booking_note": "A kedvezményes napokról a mozi oldalán érdemes tájékozódni.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.cinemacity.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "mozi",
-      "access"
+      "sale",
+      "program"
     ],
     "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat.",
     "featured": false
@@ -1063,11 +1417,19 @@
     "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
     "booking_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
     "booking_note": "A bérlet online és a pénztárakban is megvásárolható.",
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "mozi",
-      "sale"
+      "sale",
+      "program"
     ],
     "notes": "A Cinema City családi bérlete; 2D filmekre, naponta max. 4 jegy váltható be.",
     "featured": false
@@ -1096,11 +1458,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Budapest Film",
+        "url": "https://www.budapestfilm.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "mozi",
-      "free"
+      "free",
+      "program"
     ],
     "notes": "Nyáron több budapesti helyszínen; a program évente változik.",
     "featured": false
@@ -1109,7 +1479,7 @@
     "id": "ingyenes-filmvetitesek",
     "title": "Ingyenes filmvetítések",
     "category": "mozi",
-    "type": "access",
+    "type": "free",
     "timing": "Egész évben",
     "date_start": null,
     "date_end": null,
@@ -1125,11 +1495,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Fővárosi Szabó Ervin Könyvtár",
+        "url": "https://www.fszek.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "mozi",
-      "access"
+      "free",
+      "program"
     ],
     "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni.",
     "featured": false
@@ -1154,11 +1532,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Artportal",
+        "url": "https://artportal.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program"
     ],
     "notes": "Hetente több galéria; a program a galériák oldalán.",
     "featured": false
@@ -1186,11 +1572,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Budapest Fotófesztivál",
+        "url": "https://budapestfotofesztival.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "kultura",
-      "free"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Tavaszi fesztivál; a kiállítások egy része ingyenes.",
     "featured": false
@@ -1199,7 +1594,7 @@
     "id": "muzeumok-csaladi-vasarnapja",
     "title": "Múzeumok családi vasárnapja",
     "category": "muzeum",
-    "type": "free",
+    "type": "access",
     "timing": "Havonta",
     "date_start": null,
     "date_end": null,
@@ -1215,11 +1610,19 @@
     "source_url": "https://museum.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://museum.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
       "muzeum",
-      "free"
+      "access",
+      "program"
     ],
     "notes": "Havonta több múzeumban; a program helyszínenként változik.",
     "featured": false
@@ -1246,11 +1649,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Budapest%20Coffee%20Festival%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "access",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #41",
     "featured": false
@@ -1259,7 +1671,7 @@
     "id": "budapest-borfesztival",
     "title": "Budapest Borfesztivál",
     "category": "gasztro",
-    "type": "free",
+    "type": "access",
     "timing": "Szeptember",
     "date_start": null,
     "date_end": null,
@@ -1277,11 +1689,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Budapest Borfesztivál",
+        "url": "https://www.borfesztival.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
+      "budapest",
       "gasztro",
-      "free",
-      "budapest"
+      "access",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #42",
     "featured": false
@@ -1309,11 +1730,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Budapest%20S%C3%B6rfesztiv%C3%A1l%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "access",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #43",
     "featured": false
@@ -1345,11 +1775,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Pálinkafesztivál",
+        "url": "https://palinkafesztival.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "sale",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #44",
     "featured": false
@@ -1377,11 +1816,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Csokoládéfesztivál",
+        "url": "https://csokoladefesztival.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "access",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #45",
     "featured": false
@@ -1408,11 +1856,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Fagylalt Napja",
+        "url": "https://www.fagylalt.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "sale",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #46",
     "featured": false
@@ -1440,11 +1897,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Boraszat.hu",
+        "url": "https://www.boraszat.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "free",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #47",
     "featured": false
@@ -1471,11 +1937,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Baja%20hal%C3%A1szl%C3%A9f%C5%91z%C5%91%20fesztiv%C3%A1l%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "access",
-      "baja"
+      "baja",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #48",
     "featured": false
@@ -1502,11 +1977,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Siófok",
+        "url": "https://siofok.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "gasztro",
       "access",
-      "siófok"
+      "siófok",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #49",
     "featured": false
@@ -1531,11 +2015,19 @@
     "source_url": "https://www.toogoodtogo.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.toogoodtogo.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
       "gasztro",
-      "sale"
+      "sale",
+      "program"
     ],
     "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő.",
     "featured": false
@@ -1560,6 +2052,13 @@
     "source_url": "https://wizzair.com",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://wizzair.com",
+        "type": "official"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "online",
@@ -1589,6 +2088,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Ryanair",
+        "url": "https://www.ryanair.com/hu/hu",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1621,6 +2127,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Interrail",
+        "url": "https://www.interrail.com/en",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1653,6 +2166,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Sielok.hu",
+        "url": "https://www.sielok.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1682,6 +2202,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Szallas.hu",
+        "url": "https://www.szallas.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1714,6 +2241,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Szallas.hu – Balaton",
+        "url": "https://www.szallas.hu/balaton",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1743,6 +2277,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Budapest Airport",
+        "url": "https://www.bud.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1772,6 +2313,13 @@
     "source_url": "https://www.mavcsoport.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://www.mavcsoport.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "országos",
@@ -1801,6 +2349,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "MÁV-csoport",
+        "url": "https://www.mavcsoport.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1830,6 +2385,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "MÁV-csoport",
+        "url": "https://www.mavcsoport.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1861,6 +2423,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Black Friday",
+        "url": "https://www.blackfriday.com/",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -1874,7 +2443,7 @@
     "id": "cyber-monday",
     "title": "Cyber Monday",
     "category": "vasarlas",
-    "type": "free",
+    "type": "sale",
     "timing": "Black Friday után",
     "date_start": "2026-11-30",
     "date_end": "2026-11-30",
@@ -1892,11 +2461,18 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Cyber%20Monday%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "online",
       "vasarlas",
-      "free"
+      "sale"
     ],
     "notes": "2026. november 30.",
     "featured": false
@@ -1923,6 +2499,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "AliExpress",
+        "url": "https://www.aliexpress.com/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1955,6 +2538,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Amazon",
+        "url": "https://www.amazon.com/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1986,6 +2576,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=janu%C3%A1ri+le%C3%A1raz%C3%A1sok+2026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -2018,6 +2615,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=ny%C3%A1ri+szezonv%C3%A9gi+le%C3%A1raz%C3%A1s+2026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -2049,11 +2653,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Ünnepi Könyvhét",
+        "url": "https://unnepikonyvhet.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
       "sale",
-      "budapest"
+      "budapest",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #67",
     "featured": false
@@ -2080,11 +2692,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Budapesti%20K%C3%B6nyvfesztiv%C3%A1l%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
       "sale",
-      "budapest"
+      "budapest",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #68",
     "featured": false
@@ -2112,11 +2732,24 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Record Store Day",
+        "url": "https://recordstoreday.com/",
+        "type": "official"
+      },
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Free%20Comic%20Book%20Day%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
       "free",
-      "budapest"
+      "budapest",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #69",
     "featured": false
@@ -2141,6 +2774,23 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "MediaMarkt",
+        "url": "https://www.mediamarkt.hu/",
+        "type": "official"
+      },
+      {
+        "label": "eMAG",
+        "url": "https://www.emag.hu/",
+        "type": "official"
+      },
+      {
+        "label": "Alza",
+        "url": "https://www.alza.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -2170,6 +2820,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Bankmonitor",
+        "url": "https://www.bankmonitor.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2199,6 +2856,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Bankmonitor – hitelkártyák",
+        "url": "https://www.bankmonitor.hu/hitelkartya/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2228,6 +2892,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Revolut",
+        "url": "https://www.revolut.com/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2259,6 +2930,13 @@
     "source_url": "https://nav.gov.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://nav.gov.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2290,6 +2968,13 @@
     "source_url": "https://nav.gov.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://nav.gov.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2321,6 +3006,13 @@
     "source_url": "https://nav.gov.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://nav.gov.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2352,9 +3044,16 @@
     "deal_price": null,
     "currency": "HUF",
     "location": "Budapest",
-    "source_url": "https://www.otthonfelujitas.hu",
+    "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=otthonfel%C3%BAj%C3%ADt%C3%A1si%20t%C3%A1mogat%C3%A1s%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -2388,6 +3087,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=z%C3%B6ld+aut%C3%B3+t%C3%A1mogat%C3%A1s+2026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2421,6 +3127,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=napenergia+t%C3%A1mogat%C3%A1s+2026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2450,6 +3163,13 @@
     "source_url": "https://nav.gov.hu",
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://nav.gov.hu",
+        "type": "official"
+      }
+    ],
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2486,6 +3206,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Nemzeti Népegészségügyi Központ",
+        "url": "https://www.nnk.gov.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2517,6 +3244,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=v%C3%A9rnyom%C3%A1sm%C3%A9r%C3%A9s%20h%C3%B3napja%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2546,6 +3280,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Nemzeti Népegészségügyi Központ",
+        "url": "https://www.nnk.gov.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2575,6 +3316,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Magyar Orvosi Kamara",
+        "url": "https://www.mok.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2604,6 +3352,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=ingyenes%20szemvizsg%C3%A1lat%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2635,6 +3390,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=fitness+ingyenes+pr%C3%B3bah%C3%A9t+2026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2671,6 +3433,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Magyar Fürdőszövetség",
+        "url": "https://www.furdoszovetseg.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2700,6 +3469,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Budapest%20Maraton%20early%20bird%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2731,6 +3507,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Kerékpárosklub",
+        "url": "https://www.kerekparosklub.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2762,6 +3545,13 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Európai Mobilitási Hét",
+        "url": "https://www.mobilityweek.eu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2775,7 +3565,7 @@
     "id": "szulinapi-ingyen-belepo",
     "title": "Szülinapi ingyen belépő",
     "category": "csalad",
-    "type": "access",
+    "type": "free",
     "timing": "Egész évben",
     "date_start": null,
     "date_end": null,
@@ -2791,11 +3581,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=sz%C3%BClinapi+ingyen+bel%C3%A9p%C5%91+Budapest+2026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
+      "budapest",
       "csalad",
-      "access",
-      "budapest"
+      "free",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #91",
     "featured": false
@@ -2823,11 +3622,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Fővárosi Állat- és Növénykert",
+        "url": "https://zoobudapest.com/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "sale",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #92",
     "featured": false
@@ -2852,11 +3659,20 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Aquaworld",
+        "url": "https://aquaworld.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "sale",
-      "budapest"
+      "budapest",
+      "program",
+      "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #93",
     "featured": false
@@ -2888,11 +3704,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Keresés",
+        "url": "https://www.google.com/search?q=Vid%C3%A1mpark%20szezonnyit%C3%B3%202026",
+        "type": "search"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "sale",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #94",
     "featured": false
@@ -2917,11 +3741,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Szabadulószoba.hu",
+        "url": "https://www.szabaduloszoba.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "sale",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #95",
     "featured": false
@@ -2946,11 +3778,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Bowling.hu",
+        "url": "https://www.bowling.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "sale",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #96",
     "featured": false
@@ -2975,11 +3815,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Cinema City",
+        "url": "https://www.cinemacity.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "access",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #97",
     "featured": false
@@ -3004,11 +3852,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "IKEA Magyarország",
+        "url": "https://www.ikea.com/hu/hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "free",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #98",
     "featured": false
@@ -3033,11 +3889,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Fővárosi Szabó Ervin Könyvtár",
+        "url": "https://www.fszek.hu/",
+        "type": "official"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "free",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #99",
     "featured": false
@@ -3065,11 +3929,19 @@
     "source_url": null,
     "booking_url": null,
     "booking_note": null,
+    "sources": [
+      {
+        "label": "Táborfigyelő",
+        "url": "https://www.taborfigyelo.hu/",
+        "type": "article"
+      }
+    ],
     "confidence": "unverified",
     "tags": [
       "csalad",
       "sale",
-      "budapest"
+      "budapest",
+      "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #100",
     "featured": false

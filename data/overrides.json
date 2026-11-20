@@ -89,7 +89,8 @@
     "featured": true,
     "notes": "2026 tavaszi kiadás. Az árak kategóriától függenek; a szervizdíj benne van.",
     "booking_url": "https://etteremhet.hu",
-    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek."
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
+    "category": "gasztro"
   },
   "restaurant-week-osz": {
     "date_start": "2026-10-01",
@@ -103,7 +104,8 @@
     "featured": true,
     "notes": "2026 őszi kiadás. A Costes Michelin-csillagos menüje 17 900 Ft volt.",
     "booking_url": "https://etteremhet.hu",
-    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek."
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
+    "category": "gasztro"
   },
   "restaurant-week-extra": {
     "date_start": "2026-11-13",
@@ -117,7 +119,8 @@
     "featured": true,
     "notes": "2026. november 13–22. Az őszi Restaurant Week legjobb éttermei.",
     "booking_url": "https://etteremhet.hu",
-    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek."
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
+    "category": "gasztro"
   },
   "strandok-ejszakaja": {
     "date_start": "2026-07-25",
@@ -128,7 +131,8 @@
     "featured": true,
     "notes": "2026. július 25. A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül.",
     "booking_url": "https://www.furdoszovetseg.hu",
-    "booking_note": "A jegyek fürdőnként eltérően, elővételben vagy a helyszínen kaphatók."
+    "booking_note": "A jegyek fürdőnként eltérően, elővételben vagy a helyszínen kaphatók.",
+    "type": "access"
   },
   "allatkertek-ejszakaja": {
     "date_start": "2026-08-28",
@@ -141,7 +145,8 @@
     "featured": true,
     "notes": "2026. augusztus 28. Külön esti jegy; a nappali jegy és bérlet nem érvényes.",
     "booking_url": "https://zoobudapest.com",
-    "booking_note": "Külön esti jegy; érdemes online elővételben venni."
+    "booking_note": "Külön esti jegy; érdemes online elővételben venni.",
+    "type": "access"
   },
   "budapest100": {
     "date_start": "2026-05-09",
@@ -381,7 +386,8 @@
     "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat.",
     "category": "mozi",
     "booking_url": "https://www.cinemacity.hu",
-    "booking_note": "A kedvezményes napokról a mozi oldalán érdemes tájékozódni."
+    "booking_note": "A kedvezményes napokról a mozi oldalán érdemes tájékozódni.",
+    "type": "sale"
   },
   "csaladi-tizes-moziberlet": {
     "recurrence": "continuous",
@@ -411,7 +417,8 @@
     "source_url": null,
     "confidence": "needs-check",
     "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni.",
-    "category": "mozi"
+    "category": "mozi",
+    "type": "free"
   },
   "ingyenes-kiallitasmegnyitok": {
     "recurrence": "weekly",
@@ -440,7 +447,8 @@
     "source_url": "https://museum.hu",
     "confidence": "needs-check",
     "notes": "Havonta több múzeumban; a program helyszínenként változik.",
-    "category": "muzeum"
+    "category": "muzeum",
+    "type": "access"
   },
   "black-friday": {
     "date_start": "2026-11-27",
@@ -502,7 +510,7 @@
     "date_start": "2026-12-31",
     "date_end": "2026-12-31",
     "deal": "Akár 50% / 6 millió Ft vissza nem térítendő támogatás",
-    "source_url": "https://www.otthonfelujitas.hu",
+    "source_url": null,
     "confidence": "needs-check",
     "notes": "Időszakos állami program; a pályázati feltételek és a keret évente változnak."
   },
@@ -519,5 +527,11 @@
     "source_url": "https://www.toogoodtogo.hu",
     "confidence": "verified",
     "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő."
+  },
+  "szulinapi-ingyen-belepo": {
+    "type": "free"
+  },
+  "budapest-borfesztival": {
+    "type": "access"
   }
 }

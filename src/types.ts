@@ -14,6 +14,14 @@ export type DealType = 'flat' | 'free' | 'sale' | 'money' | 'access';
 
 export type Confidence = 'verified' | 'unverified' | 'needs-check';
 
+export type SourceType = 'official' | 'ticket' | 'article' | 'search';
+
+export interface DealSource {
+  label: string;
+  url: string;
+  type: SourceType;
+}
+
 export type Recurrence =
   | 'annual'
   | 'monthly'
@@ -42,6 +50,7 @@ export interface Deal {
   source_url: string | null;
   booking_url: string | null;
   booking_note: string | null;
+  sources: DealSource[];
   confidence: Confidence;
   tags: string[];
   notes: string | null;

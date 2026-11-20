@@ -45,6 +45,13 @@ const dealSchema = z.object({
   source_url: z.string().url().nullable(),
   booking_url: z.string().url().nullable(),
   booking_note: z.string().nullable(),
+  sources: z.array(
+    z.object({
+      label: z.string().min(1),
+      url: z.string().url(),
+      type: z.enum(['official', 'ticket', 'article', 'search']),
+    })
+  ),
   confidence: z.enum(['verified', 'unverified', 'needs-check']),
   tags: z.array(z.string()),
   notes: z.string().nullable(),
