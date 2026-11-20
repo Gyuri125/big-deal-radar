@@ -40,6 +40,8 @@ export interface Deal {
   currency: 'HUF' | 'EUR' | null;
   location: string;
   source_url: string | null;
+  booking_url: string | null;
+  booking_note: string | null;
   confidence: Confidence;
   tags: string[];
   notes: string | null;

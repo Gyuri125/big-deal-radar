@@ -20,6 +20,8 @@ const base: Deal = {
   currency: 'HUF',
   location: 'Budapest',
   source_url: null,
+  booking_url: null,
+  booking_note: null,
   confidence: 'verified',
   tags: ['kultura', 'flat'],
   notes: null,

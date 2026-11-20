@@ -10,7 +10,9 @@
     "confidence": "verified",
     "featured": true,
     "notes": "2026-ban október 8–11. között. Évente változó, de jellemzően 4 napos őszi akció.",
-    "category": "mozi"
+    "category": "mozi",
+    "booking_url": "https://www.cinemacity.hu",
+    "booking_note": "A jegyvásárlás online és a pénztárakban is lehetséges. Érdemes elővételben venni, mert a népszerű időpontok betelnek."
   },
   "corvin-mozi-ejszaka": {
     "date_start": "2026-11-14",
@@ -20,7 +22,9 @@
     "confidence": "verified",
     "featured": true,
     "notes": "2026. november 14. Egy karszalaggal egész éjjel válogathatsz a vetítések közül.",
-    "category": "mozi"
+    "category": "mozi",
+    "booking_url": "https://artmozi.hu",
+    "booking_note": "A karszalagok elővételben kaphatók; a helyek limitáltak."
   },
   "europai-art-mozi-nap": {
     "date_start": "2026-11-22",
@@ -30,7 +34,9 @@
     "confidence": "verified",
     "featured": true,
     "notes": "2026. november 22. Az Urániában 3100 Ft, több moziban 1800–2500 Ft körül.",
-    "category": "mozi"
+    "category": "mozi",
+    "booking_url": "https://artmoziegyesulet.hu",
+    "booking_note": "A vetítésekre a mozik saját oldalán lehet jegyet venni."
   },
   "cirkuszok-ejszakaja": {
     "date_start": "2026-07-11",
@@ -39,7 +45,9 @@
     "source_url": "https://fovarosinagycirkusz.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. július 11., Fővárosi Nagycirkusz. Évente országos programsorozat."
+    "notes": "2026. július 11., Fővárosi Nagycirkusz. Évente országos programsorozat.",
+    "booking_url": "https://fovarosinagycirkusz.hu",
+    "booking_note": "A jegyek a Fővárosi Nagycirkusz pénztárában és online kaphatók; érdemes előre venni."
   },
   "muzeumok-ejszakaja": {
     "date_start": "2026-06-20",
@@ -52,7 +60,9 @@
     "confidence": "verified",
     "featured": true,
     "notes": "2026. június 20. A karszalag ára helyszínenként eltérhet; több helyen 3000 Ft felnőtt, 1500 Ft gyerek.",
-    "category": "muzeum"
+    "category": "muzeum",
+    "booking_url": "https://muzej.hu",
+    "booking_note": "A karszalag elővételben is megvásárolható; a népszerű helyszínek betelnek."
   },
   "budapesti-szinhazak-ejszakaja": {
     "date_start": "2026-03-21",
@@ -63,7 +73,9 @@
     "source_url": "https://bpsze.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. március 21. A jegy 3 regisztrációhoz kötött programra jogosít, a többit szabadon látogathatod."
+    "notes": "2026. március 21. A jegy 3 regisztrációhoz kötött programra jogosít, a többit szabadon látogathatod.",
+    "booking_url": "https://bpsze.hu",
+    "booking_note": "A jegyek a Budapesti Színházak Éjszakája oldalán kaphatók; a regisztrációhoz kötött programok hamar betelnek."
   },
   "restaurant-week-tavasz": {
     "date_start": "2026-03-19",
@@ -75,7 +87,9 @@
     "source_url": "https://etteremhet.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026 tavaszi kiadás. Az árak kategóriától függenek; a szervizdíj benne van."
+    "notes": "2026 tavaszi kiadás. Az árak kategóriától függenek; a szervizdíj benne van.",
+    "booking_url": "https://etteremhet.hu",
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek."
   },
   "restaurant-week-osz": {
     "date_start": "2026-10-01",
@@ -87,7 +101,9 @@
     "source_url": "https://etteremhet.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026 őszi kiadás. A Costes Michelin-csillagos menüje 17 900 Ft volt."
+    "notes": "2026 őszi kiadás. A Costes Michelin-csillagos menüje 17 900 Ft volt.",
+    "booking_url": "https://etteremhet.hu",
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek."
   },
   "restaurant-week-extra": {
     "date_start": "2026-11-13",
@@ -99,7 +115,9 @@
     "source_url": "https://etteremhet.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. november 13–22. Az őszi Restaurant Week legjobb éttermei."
+    "notes": "2026. november 13–22. Az őszi Restaurant Week legjobb éttermei.",
+    "booking_url": "https://etteremhet.hu",
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek."
   },
   "strandok-ejszakaja": {
     "date_start": "2026-07-25",
@@ -108,7 +126,9 @@
     "source_url": "https://www.furdoszovetseg.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. július 25. A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül."
+    "notes": "2026. július 25. A jegyárak fürdőnként eltérnek; Aquaworld 10 000 Ft, Paskál 4700 Ft körül.",
+    "booking_url": "https://www.furdoszovetseg.hu",
+    "booking_note": "A jegyek fürdőnként eltérően, elővételben vagy a helyszínen kaphatók."
   },
   "allatkertek-ejszakaja": {
     "date_start": "2026-08-28",
@@ -119,7 +139,9 @@
     "source_url": "https://zoobudapest.com",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. augusztus 28. Külön esti jegy; a nappali jegy és bérlet nem érvényes."
+    "notes": "2026. augusztus 28. Külön esti jegy; a nappali jegy és bérlet nem érvényes.",
+    "booking_url": "https://zoobudapest.com",
+    "booking_note": "Külön esti jegy; érdemes online elővételben venni."
   },
   "budapest100": {
     "date_start": "2026-05-09",
@@ -130,7 +152,9 @@
     "source_url": "https://budapest100.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. május 9–10. 41 épület, több mint 200 program; egyes vezetések regisztrációhoz kötöttek."
+    "notes": "2026. május 9–10. 41 épület, több mint 200 program; egyes vezetések regisztrációhoz kötöttek.",
+    "booking_url": "https://budapest100.hu",
+    "booking_note": "A legtöbb program ingyenes; egyes vezetések regisztrációhoz kötöttek."
   },
   "eromuvek-ejszakaja": {
     "date_start": "2026-10-16",
@@ -141,7 +165,9 @@
     "source_url": "https://eromuvekejszakaja.hu",
     "confidence": "verified",
     "featured": true,
-    "notes": "2026. október 16. Regisztráció október 1-jén nyílt; a népszerű helyek azonnal beteltek."
+    "notes": "2026. október 16. Regisztráció október 1-jén nyílt; a népszerű helyek azonnal beteltek.",
+    "booking_url": "https://eromuvekejszakaja.hu",
+    "booking_note": "Ingyenes, de regisztrációhoz kötött; a népszerű helyszínek azonnal betelnek."
   },
   "muemlekek-napja": {
     "date_start": "2026-09-19",
@@ -321,14 +347,18 @@
     "currency": "HUF",
     "source_url": "https://www.maesteszinhaz.hu",
     "confidence": "verified",
-    "notes": "Nem éves esemény, hanem napi last-minute piactér; a kínálat naponta változik."
+    "notes": "Nem éves esemény, hanem napi last-minute piactér; a kínálat naponta változik.",
+    "booking_url": "https://www.maesteszinhaz.hu",
+    "booking_note": "Minden este 21:00-tól a másnapi előadások féláron."
   },
   "opera-allohely-diakjegy": {
     "recurrence": "continuous",
     "deal": "Töredékár a normál jegyhez képest; diák- és nyugdíjas kedvezmény",
     "source_url": "https://opera.hu",
     "confidence": "verified",
-    "notes": "Az állóhelyek és diákjegyek elérhetősége előadásonként változik."
+    "notes": "Az állóhelyek és diákjegyek elérhetősége előadásonként változik.",
+    "booking_url": "https://opera.hu",
+    "booking_note": "Az állóhelyek és diákjegyek előadásonként, a jegyértékesítésben elérhetők."
   },
   "art-mozi-kedvezmenyes-hetfo": {
     "recurrence": "weekly",
@@ -336,7 +366,9 @@
     "source_url": "https://artmozi.hu",
     "confidence": "verified",
     "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
-    "category": "mozi"
+    "category": "mozi",
+    "booking_url": "https://artmozi.hu",
+    "booking_note": "Mozinként eltérő; érdemes az adott mozi műsorát nézni."
   },
   "cinema-city-kedvezmenyes-nap": {
     "recurrence": "weekly",
@@ -347,7 +379,9 @@
     "source_url": "https://www.cinemacity.hu",
     "confidence": "needs-check",
     "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat.",
-    "category": "mozi"
+    "category": "mozi",
+    "booking_url": "https://www.cinemacity.hu",
+    "booking_note": "A kedvezményes napokról a mozi oldalán érdemes tájékozódni."
   },
   "csaladi-tizes-moziberlet": {
     "recurrence": "continuous",
@@ -355,7 +389,9 @@
     "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
     "confidence": "verified",
     "notes": "A Cinema City családi bérlete; 2D filmekre, naponta max. 4 jegy váltható be.",
-    "category": "mozi"
+    "category": "mozi",
+    "booking_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
+    "booking_note": "A bérlet online és a pénztárakban is megvásárolható."
   },
   "szabadteri-mozi": {
     "recurrence": "annual",

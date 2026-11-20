@@ -28,6 +28,7 @@ export interface Digest {
     upcoming: number;
     month: number;
     money: number;
+    booking: number;
   };
 }
 
@@ -107,14 +108,39 @@ export function buildDigest(deals: Deal[], now = new Date()): Digest {
   const upcomingIds = new Set(upcoming.map((item) => item.deal.id));
   const filteredMonth = month.filter((item) => !upcomingIds.has(item.deal.id));
 
-  const booking: DigestItem[] = deals
-    .filter((deal) => {
-      if (!deal.booking_opens) return false;
+  const bookingById = new Map<string, DigestItem>();
+  const today = startOfDay(now);
+
+  for (const deal of deals) {
+    let shouldInclude = false;
+
+    if (deal.booking_opens) {
       const bookingDate = new Date(`${deal.booking_opens}T00:00:00`);
       const diff = daysUntil(bookingDate, now);
-      return diff >= 0 && diff <= 14;
-    })
-    .map((deal) => toItem(deal, now));
+      if (diff >= 0 && diff <= 14) shouldInclude = true;
+    }
+
+    if (deal.booking_url) {
+      const item = toItem(deal, now);
+      const isLive = Boolean(
+        item.effective &&
+          item.effective.start <= today &&
+          (!item.effective.end || item.effective.end >= today)
+      );
+      if (
+        isLive ||
+        (item.days !== null && item.days >= 0 && item.days <= 30)
+      ) {
+        shouldInclude = true;
+      }
+    }
+
+    if (shouldInclude) {
+      bookingById.set(deal.id, toItem(deal, now));
+    }
+  }
+
+  const booking = [...bookingById.values()];
 
   return {
     generatedAt: now.toISOString(),
@@ -127,6 +153,7 @@ export function buildDigest(deals: Deal[], now = new Date()): Digest {
       upcoming: upcoming.length,
       month: filteredMonth.length,
       money: money.length,
+      booking: booking.length,
     },
   };
 }
@@ -230,12 +257,15 @@ export function toDiscordEmbeds(digest: Digest, siteUrl: string): DiscordEmbed[]
 
   if (digest.booking.length > 0) {
     embeds.push({
-      title: '⏰ Hamarosan nyílik a foglalás',
-      description: 'Ezeknél érdemes időben lecsapni a jegyre vagy időpontra.',
+      title: '🎟️ Jegyvásárlás / foglalás',
+      description:
+        'Ezeknél érdemes előre venni vagy foglalni. A részletek a dealnél.',
       color: 0x7c5cff,
       fields: digest.booking.slice(0, 8).map((item) => ({
         name: item.deal.title,
-        value: `${item.deal.booking_opens}\n${item.deal.deal}`,
+        value: `${item.dateLabel}\n${
+          item.deal.booking_note ?? item.deal.deal
+        }`,
         inline: false,
       })),
       footer,
@@ -270,6 +300,18 @@ export function toPlainText(digest: Digest, siteUrl: string): string {
     lines.push('');
   }
 
+  if (digest.booking.length > 0) {
+    lines.push('🎟️ Jegyvásárlás / foglalás');
+    for (const item of digest.booking.slice(0, 8)) {
+      lines.push(
+        `• ${item.deal.title}: ${
+          item.deal.booking_note ?? item.deal.deal
+        }`
+      );
+    }
+    lines.push('');
+  }
+
   if (digest.money.length > 0) {
     lines.push('💰 Pénzügyi határidők');
     for (const item of digest.money.slice(0, 8)) {
@@ -287,6 +329,7 @@ export function digestSummary(digest: Digest): string {
     `összes: ${digest.counts.total}`,
     `következő 7 nap: ${digest.counts.upcoming}`,
     `havi: ${digest.counts.month}`,
+    `foglalás: ${digest.counts.booking}`,
     `pénzügy: ${digest.counts.money}`,
   ].join(', ');
 }

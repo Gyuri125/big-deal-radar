@@ -43,6 +43,8 @@ const dealSchema = z.object({
   currency: z.enum(['HUF', 'EUR']).nullable(),
   location: z.string().min(1),
   source_url: z.string().url().nullable(),
+  booking_url: z.string().url().nullable(),
+  booking_note: z.string().nullable(),
   confidence: z.enum(['verified', 'unverified', 'needs-check']),
   tags: z.array(z.string()),
   notes: z.string().nullable(),

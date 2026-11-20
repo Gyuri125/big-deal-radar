@@ -386,6 +386,8 @@ Egy deal így néz ki a `data/deals.json`-ban:
   "currency": "HUF",
   "location": "Budapest",
   "source_url": "https://www.cinemacity.hu",
+  "booking_url": "https://www.cinemacity.hu",
+  "booking_note": "A jegyvásárlás online és a pénztárakban is lehetséges.",
   "confidence": "verified",
   "tags": ["kultura", "flat", "budapest"],
   "notes": "2026-ban október 8–11. között.",
@@ -404,6 +406,9 @@ Egy deal így néz ki a `data/deals.json`-ban:
 | `month` / `months` | Havi szűréshez, akkor is, ha nincs pontos dátum |
 | `confidence` | `verified`, `needs-check`, `unverified` |
 | `normal_price` / `deal_price` | A megtakarítás számításához |
+| `source_url` | Hivatalos forrás / cikk linkje |
+| `booking_url` | Jegyvásárlás vagy foglalás linkje |
+| `booking_note` | Hogyan és mikor érdemes előre venni/foglalni |
 
 ### Hogyan kerül be új deal?
 
@@ -417,6 +422,21 @@ npm run validate
 ```
 
 > A `data/deals.json` **generált kimenet**. Ha kézzel szerkeszted, ne futtasd utána az `npm run import`-ot, mert felülírja. A javasolt út a markdown + overrides.
+
+---
+
+## Hogyan ne maradj le? (előrejelzés)
+
+A cél, hogy ne az esemény napján szembesülj vele, hogy elment a lehetőség.
+
+1. **Napi digest** – a Discord megkapja a következő 7 nap eseményeit, a havi radarot és a jegyvásárlási/foglalási teendőket.
+2. **Saját listám** – a kártyákon a **☆** ikonnal követheted, ami érdekel. A lista a böngésződben tárolódik, nem kell hozzá regisztráció.
+3. **Prioritás** – a részletek ablakban 1–3 csillaggal jelölheted, mi a fontos. A saját listában prioritás szerint rendezve jelenik meg.
+4. **Naptárba emlékeztetővel** – a letöltött ICS nem csak egy esemény: **7 nappal előtte, 1 nappal előtte és aznap** is emlékeztet. Ez a legmegbízhatóbb védelem, mert a naptárad akkor is szól, ha a weboldalt nem nyitod meg.
+5. **Jegyvásárlás / foglalás** – ahol van hivatalos link, a részletek ablakban külön gomb visz a jegyvásárlásra vagy foglalásra, a `booking_note` pedig elmagyarázza, mire figyelj.
+6. **Foglalásnyílás** – ha egy dealnél ismert a `booking_opens` dátum, a napi digest külön „Jegyvásárlás / foglalás” szekcióban jelzi, és a naptárba külön esemény is bekerül.
+
+> **Mi hiányzik még?** A statikus oldal nem tud e-mailt vagy push értesítést küldeni minden egyes felhasználónak. A megbízható megoldás a naptár-emlékeztető. Ha később valódi felhasználói fiókok és e-mail/push értesítés kellenek, ahhoz backend és hitelesítés kell; ez külön projekt.
 
 ---
 

@@ -183,6 +183,7 @@ async function daily(flags: Flags): Promise<void> {
         featured: summary.featured,
         upcoming7: digest.counts.upcoming,
         month: digest.counts.month,
+        booking: digest.counts.booking,
         money: digest.counts.money,
       },
       errors: [],

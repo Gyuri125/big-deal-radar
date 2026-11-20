@@ -178,6 +178,8 @@ function parseRows(markdown: string): Deal[] {
         currency: 'HUF',
         location,
         source_url: null,
+        booking_url: null,
+        booking_note: null,
         confidence: 'unverified',
         tags: Array.from(
           new Set([

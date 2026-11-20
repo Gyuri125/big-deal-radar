@@ -20,6 +20,8 @@ const deal: Deal = {
   currency: 'HUF',
   location: 'Budapest',
   source_url: 'https://example.com',
+  booking_url: null,
+  booking_note: null,
   confidence: 'verified',
   tags: ['mozi', 'flat'],
   notes: null,
@@ -45,6 +47,18 @@ describe('napi digest', () => {
 
     expect(digest.upcoming).toHaveLength(1);
     expect(digest.upcoming[0].days).toBeLessThan(0);
+  });
+
+  it('a foglalási linket beteszi a booking szekcióba', () => {
+    const bookingDeal: Deal = {
+      ...deal,
+      booking_url: 'https://example.com/foglalas',
+      booking_note: 'Foglalj előre.',
+    };
+    const digest = buildDigest([bookingDeal], new Date(2026, 10, 20));
+
+    expect(digest.booking).toHaveLength(1);
+    expect(digest.counts.booking).toBe(1);
   });
 
   it('a szöveges digest tartalmazza a címet és a linket', () => {

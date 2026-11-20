@@ -19,6 +19,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.cinemacity.hu",
+    "booking_url": "https://www.cinemacity.hu",
+    "booking_note": "A jegyvásárlás online és a pénztárakban is lehetséges. Érdemes elővételben venni, mert a népszerű időpontok betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -48,6 +50,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmozi.hu",
+    "booking_url": "https://artmozi.hu",
+    "booking_note": "A karszalagok elővételben kaphatók; a helyek limitáltak.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -77,6 +81,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmoziegyesulet.hu",
+    "booking_url": "https://artmoziegyesulet.hu",
+    "booking_note": "A vetítésekre a mozik saját oldalán lehet jegyet venni.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -106,6 +112,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://fovarosinagycirkusz.hu",
+    "booking_url": "https://fovarosinagycirkusz.hu",
+    "booking_note": "A jegyek a Fővárosi Nagycirkusz pénztárában és online kaphatók; érdemes előre venni.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -135,6 +143,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://muzej.hu",
+    "booking_url": "https://muzej.hu",
+    "booking_note": "A karszalag elővételben is megvásárolható; a népszerű helyszínek betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -164,6 +174,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://bpsze.hu",
+    "booking_url": "https://bpsze.hu",
+    "booking_note": "A jegyek a Budapesti Színházak Éjszakája oldalán kaphatók; a regisztrációhoz kötött programok hamar betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -193,6 +205,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://etteremhet.hu",
+    "booking_url": "https://etteremhet.hu",
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -222,6 +236,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://etteremhet.hu",
+    "booking_url": "https://etteremhet.hu",
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -251,6 +267,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://etteremhet.hu",
+    "booking_url": "https://etteremhet.hu",
+    "booking_note": "Foglalás kizárólag online, az etteremhet.hu oldalon; a népszerű éttermek hetekkel előtte betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -280,6 +298,8 @@
     "currency": "HUF",
     "location": "Országos",
     "source_url": "https://www.furdoszovetseg.hu",
+    "booking_url": "https://www.furdoszovetseg.hu",
+    "booking_note": "A jegyek fürdőnként eltérően, elővételben vagy a helyszínen kaphatók.",
     "confidence": "verified",
     "tags": [
       "országos",
@@ -309,6 +329,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://zoobudapest.com",
+    "booking_url": "https://zoobudapest.com",
+    "booking_note": "Külön esti jegy; érdemes online elővételben venni.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -338,6 +360,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://budapest100.hu",
+    "booking_url": "https://budapest100.hu",
+    "booking_note": "A legtöbb program ingyenes; egyes vezetések regisztrációhoz kötöttek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -367,6 +391,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://eromuvekejszakaja.hu",
+    "booking_url": "https://eromuvekejszakaja.hu",
+    "booking_note": "Ingyenes, de regisztrációhoz kötött; a népszerű helyszínek azonnal betelnek.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -396,6 +422,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -425,6 +453,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -454,6 +484,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -483,6 +515,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://arssacra.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -512,6 +546,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -542,6 +578,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://museum.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -571,6 +609,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://icom.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -602,6 +642,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://www.museum.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -631,6 +673,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -660,6 +704,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -689,6 +735,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://btf.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -719,6 +767,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -746,6 +796,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://zeneakademia.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -773,6 +825,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://mupa.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -800,6 +854,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -829,6 +885,8 @@
     "currency": null,
     "location": "Országos",
     "source_url": "https://kektura.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "országos",
@@ -858,6 +916,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://fataj.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -885,6 +945,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.maesteszinhaz.hu",
+    "booking_url": "https://www.maesteszinhaz.hu",
+    "booking_note": "Minden este 21:00-tól a másnapi előadások féláron.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -912,6 +974,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://opera.hu",
+    "booking_url": "https://opera.hu",
+    "booking_note": "Az állóhelyek és diákjegyek előadásonként, a jegyértékesítésben elérhetők.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -939,6 +1003,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmozi.hu",
+    "booking_url": "https://artmozi.hu",
+    "booking_note": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -966,6 +1032,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.cinemacity.hu",
+    "booking_url": "https://www.cinemacity.hu",
+    "booking_note": "A kedvezményes napokról a mozi oldalán érdemes tájékozódni.",
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -993,6 +1061,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
+    "booking_url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
+    "booking_note": "A bérlet online és a pénztárakban is megvásárolható.",
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -1024,6 +1094,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -1051,6 +1123,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -1078,6 +1152,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -1108,6 +1184,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -1135,6 +1213,8 @@
     "currency": null,
     "location": "Budapest",
     "source_url": "https://museum.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -1164,6 +1244,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1193,6 +1275,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1223,6 +1307,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1257,6 +1343,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1287,6 +1375,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1316,6 +1406,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1346,6 +1438,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1375,6 +1469,8 @@
     "currency": "HUF",
     "location": "Baja",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1404,6 +1500,8 @@
     "currency": "HUF",
     "location": "Siófok",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "gasztro",
@@ -1431,6 +1529,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.toogoodtogo.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -1458,6 +1558,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": "https://wizzair.com",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "online",
@@ -1485,6 +1587,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1515,6 +1619,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1545,6 +1651,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1572,6 +1680,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1602,6 +1712,8 @@
     "currency": "HUF",
     "location": "Balaton",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1629,6 +1741,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1656,6 +1770,8 @@
     "currency": null,
     "location": "Országos",
     "source_url": "https://www.mavcsoport.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "országos",
@@ -1683,6 +1799,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1710,6 +1828,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "utazas",
@@ -1739,6 +1859,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -1768,6 +1890,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "online",
@@ -1797,6 +1921,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1827,6 +1953,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1856,6 +1984,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1886,6 +2016,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1915,6 +2047,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1944,6 +2078,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -1974,6 +2110,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -2001,6 +2139,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "vasarlas",
@@ -2028,6 +2168,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2055,6 +2197,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2082,6 +2226,8 @@
     "currency": "HUF",
     "location": "Online",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2111,6 +2257,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2140,6 +2288,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2169,6 +2319,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2201,6 +2353,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://www.otthonfelujitas.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "needs-check",
     "tags": [
       "budapest",
@@ -2232,6 +2386,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2263,6 +2419,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "penzugy",
@@ -2290,6 +2448,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://nav.gov.hu",
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "verified",
     "tags": [
       "budapest",
@@ -2324,6 +2484,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2353,6 +2515,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2380,6 +2544,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2407,6 +2573,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2434,6 +2602,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2463,6 +2633,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2497,6 +2669,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2524,6 +2698,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2553,6 +2729,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2582,6 +2760,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "egeszseg",
@@ -2609,6 +2789,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2639,6 +2821,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2666,6 +2850,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2700,6 +2886,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2727,6 +2915,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2754,6 +2944,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2781,6 +2973,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2808,6 +3002,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2835,6 +3031,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
@@ -2865,6 +3063,8 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
+    "booking_url": null,
+    "booking_note": null,
     "confidence": "unverified",
     "tags": [
       "csalad",
