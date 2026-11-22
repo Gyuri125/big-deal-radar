@@ -387,6 +387,11 @@ function priceMarkup(deal: EnrichedDeal): string {
   return '<span class="price-muted">Részletek a forrásban</span>';
 }
 
+function daysUntilEnd(deal: EnrichedDeal): number | null {
+  const end = deal.effective?.end ?? deal.effective?.start ?? null;
+  return end ? diffDays(now, end) : null;
+}
+
 function cardMarkup(deal: EnrichedDeal): string {
   const watched = isWatched(deal.id);
   const priority = priorityOf(deal.id);
@@ -397,8 +402,7 @@ function cardMarkup(deal: EnrichedDeal): string {
     ? '<span class="tag tag-booking">Jegy / foglalás</span>'
     : '';
   const sourceTag = `<span class="tag tag-source">${deal.sources.length} forrás</span>`;
-  const endDate = deal.effective?.end ?? deal.effective?.start ?? null;
-  const endDays = endDate ? diffDays(now, endDate) : null;
+  const endDays = daysUntilEnd(deal);
   const endingTag =
     endDays !== null && endDays >= 0 && endDays <= 3
       ? `<span class="tag tag-ending">${endDays === 0 ? 'Ma zárul' : `${endDays} nap múlva zárul`}</span>`
@@ -469,10 +473,8 @@ function matchesFilters(deal: EnrichedDeal): boolean {
     if (!(deal.status === 'live' || deal.days === 0)) return false;
   }
   if (state.time === 'ending') {
-    if (!deal.effective) return false;
-    const end = deal.effective.end ?? deal.effective.start;
-    const daysLeft = diffDays(now, end);
-    if (daysLeft < 0 || daysLeft > 3) return false;
+    const daysLeft = daysUntilEnd(deal);
+    if (daysLeft === null || daysLeft < 0 || daysLeft > 3) return false;
   }
   if (state.time === 'next7') {
     if (deal.days === null || deal.days < 0 || deal.days > 7) return false;
@@ -824,6 +826,35 @@ function renderStats(): void {
     <div class="stat"><strong>${flat}</strong><span>prémium ugyanannyi</span></div>
     <div class="stat"><strong>${upcoming}</strong><span>a következő 7 napban</span></div>
     <div class="stat"><strong>${free}</strong><span>ingyenes</span></div>
+  `;
+}
+
+function renderHeroUrgent(): void {
+  const element = document.querySelector<HTMLElement>('#hero-urgent');
+  if (!element) return;
+
+  const ending = enriched.filter((deal) => {
+    const days = daysUntilEnd(deal);
+    return days !== null && days >= 0 && days <= 3;
+  });
+
+  if (ending.length === 0) {
+    element.innerHTML = '';
+    return;
+  }
+
+  const today = ending.filter((deal) => daysUntilEnd(deal) === 0).length;
+  const label =
+    today === ending.length
+      ? `${today} deal ma zárul`
+      : `${ending.length} deal hamarosan zárul`;
+
+  element.innerHTML = `
+    <button class="hero-urgent" type="button" data-action="show-ending">
+      <span class="urgent-dot" aria-hidden="true"></span>
+      <strong>${label}</strong>
+      <span>Mutasd →</span>
+    </button>
   `;
 }
 
@@ -1251,6 +1282,7 @@ function renderShell(): void {
           <span class="pulse"></span>
         </div>
         <div class="hero-stats" id="stats"></div>
+        <div id="hero-urgent"></div>
         <p class="hero-note">
           A lista naponta frissül. A részletek minden esetben a hivatalos forrásból ellenőrizendők.
         </p>
@@ -1918,6 +1950,31 @@ function handleAction(action: string, target: HTMLElement): void {
     return;
   }
 
+  if (action === 'show-ending') {
+    state.focus = 'all';
+    state.type = 'all';
+    state.category = 'all';
+    state.location = 'all';
+    state.budget = 'all';
+    state.query = '';
+    state.watchlistOnly = false;
+    state.time = 'ending';
+    state.visible = 24;
+
+    const search = document.querySelector<HTMLInputElement>('#search');
+    if (search) search.value = '';
+
+    const locationSelect = document.querySelector<HTMLSelectElement>('#location-filter');
+    if (locationSelect) locationSelect.value = 'all';
+
+    updateFilterButtons();
+    renderResults();
+    document
+      .querySelector('#results')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
   if (action === 'to-top') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
@@ -2233,6 +2290,7 @@ async function init(): Promise<void> {
 
   renderDailyDeal();
   renderStats();
+  renderHeroUrgent();
   updateFilterButtons();
   renderResults();
   await fetchStatus();

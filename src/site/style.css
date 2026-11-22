@@ -348,6 +348,48 @@ a {
   color: rgba(246, 241, 231, 0.58);
 }
 
+.hero-urgent {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 11px 13px;
+  border: 1px solid rgba(242, 107, 56, 0.4);
+  border-radius: 12px;
+  background: rgba(242, 107, 56, 0.12);
+  color: var(--cream);
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.hero-urgent:hover {
+  border-color: rgba(242, 107, 56, 0.7);
+  background: rgba(242, 107, 56, 0.2);
+}
+
+.hero-urgent strong {
+  font-weight: 700;
+}
+
+.hero-urgent span:last-child {
+  margin-left: auto;
+  color: #ffb38f;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.urgent-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 4px rgba(242, 107, 56, 0.14);
+}
+
 .daily-deal {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);

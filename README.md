@@ -57,7 +57,7 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, **Hamarosan zárul**, Ingyenes, 5 ezer alatt, 10 ezer alatt,
 - **gyorskeresés**: a `/` billentyű a keresőmezőre ugrik, az Escape törli a keresést,
 - **megosztható szűrők**: a keresés, a szűrők és a nézet az URL-ben maradnak,
-- **sürgősségi jelzés**: ha egy deal 3 napon belül zárul, a kártya jelzi,
+- **sürgősségi jelzés**: ha egy deal 3 napon belül zárul, a kártya és a hero panel is jelzi,
 - **akadálymentes**: skip link, fókuszálható eredmények, Lighthouse 100 accessibility,
 - **naptárnézet** havi bontásban, hónap-naptár letöltéssel,
 - **egyedi deal-oldalak** SEO-val, OG képpel, Event structured data-val, saját ICS letöltéssel és hasonló dealekkel,
