@@ -696,7 +696,7 @@
     "type": "free",
     "timing": "Szeptember",
     "date_start": "2026-09-12",
-    "date_end": "2026-09-13",
+    "date_end": "2026-09-12",
     "booking_opens": null,
     "month": 9,
     "months": [
@@ -711,16 +711,21 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A legtöbb templom ingyenesen látogatható; egyes programok regisztrációhoz kötöttek.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Nyitott%20Templomok%20Napja%202026",
-        "type": "search"
+        "label": "Ars Sacra – Nyitott Templomok",
+        "url": "https://ars-sacra.hu/nyitott-templomok",
+        "type": "official"
+      },
+      {
+        "label": "Programturizmus",
+        "url": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
+        "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -728,7 +733,7 @@
       "program",
       "unnep"
     ],
-    "notes": "Szeptemberi hétvége; a pontos dátum évente változik.",
+    "notes": "2026. szeptember 12. Ars Sacra – Nyitott Templomok Napja.",
     "featured": false
   },
   {
@@ -775,12 +780,12 @@
   },
   {
     "id": "konyvtarak-ejszakaja",
-    "title": "Könyvtárak Éjszakája",
+    "title": "Országos Könyvtári Napok",
     "category": "kultura",
     "type": "free",
     "timing": "Október",
-    "date_start": "2026-10-02",
-    "date_end": "2026-10-02",
+    "date_start": "2026-10-05",
+    "date_end": "2026-10-11",
     "booking_opens": null,
     "month": 10,
     "months": [
@@ -795,16 +800,21 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A legtöbb program ingyenes; egyes események regisztrációhoz kötöttek.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=K%C3%B6nyvt%C3%A1rak%20%C3%89jszak%C3%A1ja%202026",
-        "type": "search"
+        "label": "Országos Könyvtári Napok",
+        "url": "https://osszefogas.ikszkonyvtarak.hu",
+        "type": "official"
+      },
+      {
+        "label": "FSZEK program",
+        "url": "https://fszek.hu/News/orszagos-konyvtari-napok2026",
+        "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -812,7 +822,7 @@
       "program",
       "unnep"
     ],
-    "notes": "Október eleji péntek; a pontos dátum évente változik.",
+    "notes": "2026. október 5–11. Országos Könyvtári Napok.",
     "featured": false
   },
   {
@@ -1008,16 +1018,16 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Egyes színházak kedvezményes jegyekkel és nyílt programokkal készülnek.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Sz%C3%ADnh%C3%A1zi%20vil%C3%A1gnap%202026",
-        "type": "search"
+        "label": "Nemzeti Színház – világnapi üzenet",
+        "url": "https://nemzetiszinhaz.hu/hirek/2026/03/szinhazi-vilagnapi-uzenet-2026-ban",
+        "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
       "budapest",
       "kultura",
@@ -1025,7 +1035,7 @@
       "program",
       "unnep"
     ],
-    "notes": "Március 27. Nem országos, mindenhol érvényes akció; színházanként változik.",
+    "notes": "Március 27. – Színházi világnap.",
     "featured": false
   },
   {
@@ -1072,7 +1082,7 @@
   },
   {
     "id": "budapest-nyari-fesztival",
-    "title": "Budapest Nyári Fesztivál",
+    "title": "Margitszigeti Nyári Szezon",
     "category": "kultura",
     "type": "free",
     "timing": "Június–augusztus",
@@ -1093,12 +1103,12 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A Margitszigeti Színház és a városi szabadtéri helyszínek programjai; egyes koncertek ingyenesek.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Budapest%20Ny%C3%A1ri%20Fesztiv%C3%A1l%202026",
-        "type": "search"
+        "label": "Margitszigeti Színház",
+        "url": "https://margitszigetiszinhaz.hu/",
+        "type": "official"
       }
     ],
     "confidence": "needs-check",
@@ -1110,7 +1120,7 @@
       "program",
       "unnep"
     ],
-    "notes": "Nyári szezon; a szabadtéri programok egy része ingyenes.",
+    "notes": "Nyári szezon; a pontos program a Margitszigeti Színház oldalán.",
     "featured": false
   },
   {
@@ -1211,12 +1221,17 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A séták borravalósak; érdemes előre jelentkezni.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=free%20walking%20tour%20Budapest%202026",
-        "type": "search"
+        "label": "Trip to Budapest – ingyenes séták",
+        "url": "https://triptobudapest.hu/current-schedule-of-our-free-tours-in-budapest",
+        "type": "official"
+      },
+      {
+        "label": "Freetour.com",
+        "url": "https://www.freetour.com/budapest",
+        "type": "article"
       }
     ],
     "confidence": "verified",
@@ -1227,7 +1242,7 @@
       "free",
       "program"
     ],
-    "notes": "Egész évben, több szolgáltatóval; a borravaló nem kötelező, de szokás.",
+    "notes": "Napi ingyenes séták több szolgáltatóval.",
     "featured": false
   },
   {
@@ -2605,12 +2620,12 @@
     "location": "Online",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A legtöbb webshopban november 30-án; érdemes előre összeírni, mit szeretnél venni.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Cyber%20Monday%202026",
-        "type": "search"
+        "label": "RTL – Cyber Monday kisokos",
+        "url": "https://rtl.hu/black-november/2026/11/16/cyber-monday-kisokos",
+        "type": "article"
       }
     ],
     "confidence": "verified",
@@ -2710,8 +2725,8 @@
     "category": "vasarlas",
     "type": "sale",
     "timing": "Január 1–2. hét",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-01-01",
+    "date_end": "2026-01-31",
     "booking_opens": null,
     "month": 1,
     "months": [
@@ -2726,22 +2741,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A téli leárazások jellemzően január első heteiben indulnak.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=janu%C3%A1ri+le%C3%A1raz%C3%A1sok+2026",
-        "type": "search"
+        "label": "Pénzcentrum – téli leárazások",
+        "url": "https://www.penzcentrum.hu/vasarlas/20251227/indulnak-a-nagy-leertekelesek-a-magyar-uzletekben-ne-maradj-le-van-ahol-70-szazalekkal-olcsobban-vasarolhatsz-1190710",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "budapest",
       "vasarlas",
-      "sale",
-      "budapest"
+      "sale"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #65",
+    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek.",
     "featured": false
   },
   {
@@ -2750,8 +2765,8 @@
     "category": "vasarlas",
     "type": "sale",
     "timing": "Július–augusztus",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-07-01",
+    "date_end": "2026-08-31",
     "booking_opens": null,
     "month": 7,
     "months": [
@@ -2767,22 +2782,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A nyári kiárusítás júliusban éri el a csúcsot.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=ny%C3%A1ri+szezonv%C3%A9gi+le%C3%A1raz%C3%A1s+2026",
-        "type": "search"
+        "label": "Tiplino – nyári akciók",
+        "url": "https://www.tiplino.hu/cikk/nyari-akciok-leertekeles-2026",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "budapest",
       "vasarlas",
-      "sale",
-      "budapest"
+      "sale"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #66",
+    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek.",
     "featured": false
   },
   {
@@ -2832,12 +2847,13 @@
     "category": "vasarlas",
     "type": "sale",
     "timing": "Április",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-10-01",
+    "date_end": "2026-10-04",
     "booking_opens": null,
-    "month": 4,
+    "month": 10,
     "months": [
-      4
+      4,
+      10
     ],
     "recurrence": "annual",
     "deal": "Akciós könyvek, kiadói standok.",
@@ -2848,23 +2864,23 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A belépés ingyenes; a könyvek akciósak.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Budapesti%20K%C3%B6nyvfesztiv%C3%A1l%202026",
-        "type": "search"
+        "label": "Bookfestival.hu",
+        "url": "https://bookfestival.hu/",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "vasarlas",
       "sale",
-      "budapest",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #68",
+    "notes": "2026. október 1–4., Hungexpo.",
     "featured": false
   },
   {
@@ -3202,15 +3218,15 @@
     "category": "penzugy",
     "type": "money",
     "timing": "Időszakos pályázat",
-    "date_start": "2026-12-31",
-    "date_end": "2026-12-31",
+    "date_start": "2026-06-30",
+    "date_end": "2026-06-30",
     "booking_opens": null,
-    "month": 12,
+    "month": 6,
     "months": [
       9,
       10,
       11,
-      12
+      6
     ],
     "recurrence": "oneoff",
     "deal": "Akár 50% / 6 millió Ft vissza nem térítendő támogatás",
@@ -3221,12 +3237,12 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A 2026-os vidéki program június 30-ig tartott; 2027-től új program várható.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=otthonfel%C3%BAj%C3%ADt%C3%A1si%20t%C3%A1mogat%C3%A1s%202026",
-        "type": "search"
+        "label": "Csalad.hu – Vidéki Otthonfelújítási Program",
+        "url": "https://csalad.hu/tamogatas/videki-otthonfelujitasi-tamogatas",
+        "type": "official"
       }
     ],
     "confidence": "needs-check",
@@ -3236,7 +3252,7 @@
       "penzugy",
       "money"
     ],
-    "notes": "Időszakos állami program; a pályázati feltételek és a keret évente változnak.",
+    "notes": "A 2026-os Vidéki Otthonfelújítási Program lezárult; a folytatás még nem biztos.",
     "featured": false
   },
   {
@@ -3245,14 +3261,15 @@
     "category": "penzugy",
     "type": "money",
     "timing": "Időszakos pályázat",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-01-01",
+    "date_end": "2026-12-31",
     "booking_opens": null,
-    "month": 9,
+    "month": 1,
     "months": [
       9,
       10,
-      11
+      11,
+      1
     ],
     "recurrence": "oneoff",
     "deal": "Több millió Ft támogatás villanyautóra.",
@@ -3263,22 +3280,27 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Auto Plusz Terv 2026; a pályázati feltételek és a folytatás még változhatnak.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=z%C3%B6ld+aut%C3%B3+t%C3%A1mogat%C3%A1s+2026",
-        "type": "search"
+        "label": "Elektromos autó pályázat",
+        "url": "https://www.elektromos-auto-palyazat.hu/",
+        "type": "official"
+      },
+      {
+        "label": "KNYKK – Auto Plusz Terv",
+        "url": "https://knykk.hu/hirek/auto-plusz-terv-hivatalos-az-elektromos-autok-2026-os-vasarlasahoz-nyujtott-tamogatas",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #78",
+    "notes": "2026-os támogatás; 2027-es folytatás még nem biztos.",
     "featured": false
   },
   {
@@ -3287,14 +3309,15 @@
     "category": "penzugy",
     "type": "money",
     "timing": "Időszakos pályázat",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-04-30",
+    "date_end": "2026-04-30",
     "booking_opens": null,
-    "month": 9,
+    "month": 4,
     "months": [
       9,
       10,
-      11
+      11,
+      4
     ],
     "recurrence": "oneoff",
     "deal": "Napelem + tároló támogatás.",
@@ -3305,22 +3328,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A program kerete elfogyott; a már befogadott pályázatok futnak.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=napenergia+t%C3%A1mogat%C3%A1s+2026",
-        "type": "search"
+        "label": "Napenergia Plusz Program",
+        "url": "https://napenergiaplusz.nffku.hu",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #79",
+    "notes": "A Napenergia Plusz Program 2026-os kerete lezárult.",
     "featured": false
   },
   {
@@ -3412,8 +3435,8 @@
     "category": "egeszseg",
     "type": "free",
     "timing": "Május",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-05-01",
+    "date_end": "2026-05-31",
     "booking_opens": null,
     "month": 5,
     "months": [
@@ -3428,22 +3451,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Patikákban és rendelőkben ingyenes mérés; érdemes előre érdeklődni.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=v%C3%A9rnyom%C3%A1sm%C3%A9r%C3%A9s%20h%C3%B3napja%202026",
-        "type": "search"
+        "label": "Egészségőr – vérnyomásmérés hónapja",
+        "url": "https://www.egeszsegor.hu/spg/438423,343964/Majus-a-vernyomasmeres-honapja-merje-On-is-rendsze",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #82",
+    "notes": "Május a vérnyomásmérés hónapja.",
     "featured": false
   },
   {
@@ -3524,15 +3547,17 @@
   },
   {
     "id": "ingyenes-szemvizsgalat",
-    "title": "Ingyenes szemvizsgálat",
+    "title": "Látás Hónapja – ingyenes szemvizsgálat",
     "category": "egeszseg",
     "type": "free",
     "timing": "Akciókban",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-10-01",
+    "date_end": "2026-10-31",
     "booking_opens": null,
-    "month": null,
-    "months": [],
+    "month": 10,
+    "months": [
+      10
+    ],
     "recurrence": "annual",
     "deal": "Optikusok szűrőhetei, ingyenes látásvizsgálat.",
     "normal_price": null,
@@ -3542,22 +3567,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Október a Látás Hónapja; sok optika ingyenes látásvizsgálatot ad vásárlás esetén.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=ingyenes%20szemvizsg%C3%A1lat%202026",
-        "type": "search"
+        "label": "Látás Hónapja",
+        "url": "https://latashonapja.hu/",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #85",
+    "notes": "Látás Hónapja 2026.",
     "featured": false
   },
   {
@@ -3573,7 +3598,7 @@
     "months": [
       1
     ],
-    "recurrence": "annual",
+    "recurrence": "continuous",
     "deal": "Edzőtermek ingyenes próbaórái, tagsági akciók.",
     "normal_price": null,
     "deal_price": null,
@@ -3582,22 +3607,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Nincs egyetlen országos esemény; edzőtermek időszakos próbahetei.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=fitness+ingyenes+pr%C3%B3bah%C3%A9t+2026",
-        "type": "search"
+        "label": "Daypass – magyar edzőtermek",
+        "url": "https://www.daypass.fit/category/hungary/",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #86",
+    "notes": "Érdemes a helyi edzőtermeket figyelni.",
     "featured": false
   },
   {
@@ -3647,15 +3672,17 @@
   },
   {
     "id": "futoverseny-early-bird",
-    "title": "Futóverseny early bird",
+    "title": "SPAR Budapest Maraton early bird",
     "category": "egeszseg",
     "type": "free",
     "timing": "6–12 hónappal előre",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-10-11",
+    "date_end": "2026-10-11",
     "booking_opens": null,
-    "month": null,
-    "months": [],
+    "month": 10,
+    "months": [
+      10
+    ],
     "recurrence": "annual",
     "deal": "Nevezés 30–50% off, Budapest Maraton/félmaraton.",
     "normal_price": null,
@@ -3665,22 +3692,22 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Early bird árak november 9-ig; a 42. SPAR Budapest Maraton nevezése nyitva.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Budapest%20Maraton%20early%20bird%202026",
-        "type": "search"
+        "label": "SPAR Budapest Maraton – nevezés",
+        "url": "https://sparbudapestmaraton.hu/nevezesi-infok",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #88",
+    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka november 9-ig tartott.",
     "featured": false
   },
   {
@@ -3765,7 +3792,7 @@
   },
   {
     "id": "szulinapi-ingyen-belepo",
-    "title": "Szülinapi ingyen belépő",
+    "title": "Szülinapi ingyen belépő / ajándék",
     "category": "csalad",
     "type": "free",
     "timing": "Egész évben",
@@ -3783,15 +3810,15 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "Sok fürdő és étterem szülinapi ajándékot ad; kérdezz rá előre.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=sz%C3%BClinapi+ingyen+bel%C3%A9p%C5%91+Budapest+2026",
-        "type": "search"
+        "label": "Pénzcentrum – szülinapi fürdőajándék",
+        "url": "https://penzcentrum.hu/hellovidek/20260611/41-titkos-furdos-tipp-ahol-akar-ingyen-is-csobbanhatsz-evente-csak-egyszer-jar-ez-az-ajandek-1200160",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
       "budapest",
@@ -3800,7 +3827,7 @@
       "program",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #91",
+    "notes": "Nincs egységes országos akció; helyenként eltér.",
     "featured": false
   },
   {
@@ -3891,10 +3918,10 @@
     "category": "csalad",
     "type": "sale",
     "timing": "Tavasz/ősz",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-04-04",
+    "date_end": "2026-10-31",
     "booking_opens": null,
-    "month": 3,
+    "month": 4,
     "months": [
       3,
       4,
@@ -3912,23 +3939,23 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A szezonnyitó április 4.; a pontos nyitvatartás a vidampark.com oldalon.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Vid%C3%A1mpark%20szezonnyit%C3%B3%202026",
-        "type": "search"
+        "label": "Vidámpark",
+        "url": "https://vidampark.com",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-20",
     "tags": [
+      "budapest",
       "csalad",
       "sale",
-      "budapest",
       "program"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #94",
+    "notes": "2026. április 4-től újra nyitott a Vidámpark.",
     "featured": false
   },
   {

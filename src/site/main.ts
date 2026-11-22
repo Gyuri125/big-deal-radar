@@ -887,7 +887,7 @@ function renderDataQuality(): void {
       <div><strong>${searchOnly}</strong><span>keresőlink</span></div>
     </div>
     <p class="dq-note">
-      A keresőlinkes dealeknél még nincs stabil hivatalos oldal; ezeket folyamatosan pontosítjuk. Az adatok évente változnak, ezért a részleteket mindig a forrásnál ellenőrizd.
+      Minden dealhez van legalább egy valós forrás, ahol lehet, többet is megadunk. Az adatok évente változnak, ezért a részleteket mindig a forrásnál ellenőrizd.
     </p>
   `;
 }

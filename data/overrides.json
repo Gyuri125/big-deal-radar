@@ -177,12 +177,10 @@
   "muemlekek-napja": {
     "date_start": "2026-09-19",
     "date_end": "2026-09-20",
-    "deal": "Ingyenesen látogatható műemlékek, kulisszák mögötti programok",
-    "deal_price": 0,
-    "currency": null,
-    "source_url": null,
-    "confidence": "needs-check",
-    "notes": "Szeptemberi hétvége; a pontos dátum évente változik."
+    "source_url": "https://oroksegnapok.gov.hu/",
+    "booking_note": "A legtöbb helyszín ingyenes; egyes programok regisztrációhoz kötöttek.",
+    "confidence": "verified",
+    "notes": "2026. szeptember 19–20. Kulturális Örökség Napjai néven."
   },
   "kutatok-ejszakaja": {
     "date_start": "2026-09-25",
@@ -196,13 +194,14 @@
   },
   "nyitott-templomok-napja": {
     "date_start": "2026-09-12",
-    "date_end": "2026-09-13",
+    "date_end": "2026-09-12",
     "deal": "Ingyenes templomlátogatás, vezetések, koncertek",
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
-    "notes": "Szeptemberi hétvége; a pontos dátum évente változik."
+    "confidence": "verified",
+    "notes": "2026. szeptember 12. Ars Sacra – Nyitott Templomok Napja.",
+    "booking_note": "A legtöbb templom ingyenesen látogatható; egyes programok regisztrációhoz kötöttek."
   },
   "ars-sacra-fesztival": {
     "date_start": "2026-09-18",
@@ -215,14 +214,15 @@
     "notes": "Szeptemberi fesztivál; a program egy része ingyenes."
   },
   "konyvtarak-ejszakaja": {
-    "date_start": "2026-10-02",
-    "date_end": "2026-10-02",
+    "date_start": "2026-10-05",
+    "date_end": "2026-10-11",
     "deal": "Ingyenes programok, rendhagyó nyitvatartás, beiratkozás",
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
-    "notes": "Október eleji péntek; a pontos dátum évente változik."
+    "confidence": "verified",
+    "notes": "2026. október 5–11. Országos Könyvtári Napok.",
+    "booking_note": "A legtöbb program ingyenes; egyes események regisztrációhoz kötöttek."
   },
   "muzeumok-oszi-fesztivalja": {
     "date_start": "2026-10-15",
@@ -274,8 +274,9 @@
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
-    "notes": "Március 27. Nem országos, mindenhol érvényes akció; színházanként változik."
+    "confidence": "verified",
+    "notes": "Március 27. – Színházi világnap.",
+    "booking_note": "Egyes színházak kedvezményes jegyekkel és nyílt programokkal készülnek."
   },
   "budapest-tavaszi-fesztival": {
     "date_start": "2026-04-10",
@@ -295,7 +296,8 @@
     "currency": null,
     "source_url": null,
     "confidence": "needs-check",
-    "notes": "Nyári szezon; a szabadtéri programok egy része ingyenes."
+    "notes": "Nyári szezon; a pontos program a Margitszigeti Színház oldalán.",
+    "booking_note": "A Margitszigeti Színház és a városi szabadtéri helyszínek programjai; egyes koncertek ingyenesek."
   },
   "zeneakademia-ingyenes-koncertek": {
     "recurrence": "continuous",
@@ -322,7 +324,8 @@
     "currency": null,
     "source_url": null,
     "confidence": "verified",
-    "notes": "Egész évben, több szolgáltatóval; a borravaló nem kötelező, de szokás."
+    "notes": "Napi ingyenes séták több szolgáltatóval.",
+    "booking_note": "A séták borravalósak; érdemes előre jelentkezni."
   },
   "kekturazas-napja": {
     "date_start": "2026-10-10",
@@ -464,7 +467,8 @@
     "deal": "Online shopok akciói, kuponok, ingyenes szállítás",
     "source_url": null,
     "confidence": "verified",
-    "notes": "2026. november 30."
+    "notes": "2026. november 30.",
+    "booking_note": "A legtöbb webshopban november 30-án; érdemes előre összeírni, mit szeretnél venni."
   },
   "wizz-air-heti-akciok": {
     "recurrence": "weekly",
@@ -507,12 +511,14 @@
     "notes": "Önkéntes nyugdíj-előtakarékossági számla; évente ellenőrizni kell."
   },
   "otthonfelujitasi-tamogatas": {
-    "date_start": "2026-12-31",
-    "date_end": "2026-12-31",
+    "date_start": "2026-06-30",
+    "date_end": "2026-06-30",
     "deal": "Akár 50% / 6 millió Ft vissza nem térítendő támogatás",
     "source_url": null,
     "confidence": "needs-check",
-    "notes": "Időszakos állami program; a pályázati feltételek és a keret évente változnak."
+    "notes": "A 2026-os Vidéki Otthonfelújítási Program lezárult; a folytatás még nem biztos.",
+    "recurrence": "oneoff",
+    "booking_note": "A 2026-os vidéki program június 30-ig tartott; 2027-től új program várható."
   },
   "szep-kartya-cafeteria": {
     "recurrence": "continuous",
@@ -529,7 +535,11 @@
     "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő."
   },
   "szulinapi-ingyen-belepo": {
-    "type": "free"
+    "type": "free",
+    "recurrence": "continuous",
+    "booking_note": "Sok fürdő és étterem szülinapi ajándékot ad; kérdezz rá előre.",
+    "confidence": "needs-check",
+    "notes": "Nincs egységes országos akció; helyenként eltér."
   },
   "budapest-borfesztival": {
     "type": "access"
@@ -560,14 +570,6 @@
     "price_note": "A belvárosi főzőprogramok ingyenesek; a szigeti koncertek külön jegyet igényelnek.",
     "confidence": "verified",
     "notes": "2026. július 9–12., Baja. 2026-ban 30. jubileumi népünnepély."
-  },
-  "muemlekek-napja": {
-    "date_start": "2026-09-19",
-    "date_end": "2026-09-20",
-    "source_url": "https://oroksegnapok.gov.hu/",
-    "booking_note": "A legtöbb helyszín ingyenes; egyes programok regisztrációhoz kötöttek.",
-    "confidence": "verified",
-    "notes": "2026. szeptember 19–20. Kulturális Örökség Napjai néven."
   },
   "magyar-film-napja": {
     "category": "mozi",
@@ -605,5 +607,76 @@
     "booking_note": "A legtöbb tájház ingyenesen látogatható; egyes programok regisztrációhoz kötöttek.",
     "confidence": "verified",
     "notes": "Országos tájházi nap, jellemzően április utolsó vasárnapja."
+  },
+  "januari-learazasok": {
+    "date_start": "2026-01-01",
+    "date_end": "2026-01-31",
+    "booking_note": "A téli leárazások jellemzően január első heteiben indulnak.",
+    "confidence": "needs-check",
+    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek."
+  },
+  "nyari-szezonvegi-learazas": {
+    "date_start": "2026-07-01",
+    "date_end": "2026-08-31",
+    "booking_note": "A nyári kiárusítás júliusban éri el a csúcsot.",
+    "confidence": "needs-check",
+    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek."
+  },
+  "budapesti-konyvfesztival": {
+    "date_start": "2026-10-01",
+    "date_end": "2026-10-04",
+    "booking_note": "A belépés ingyenes; a könyvek akciósak.",
+    "confidence": "verified",
+    "notes": "2026. október 1–4., Hungexpo."
+  },
+  "zold-auto-ev-tamogatas": {
+    "recurrence": "oneoff",
+    "date_start": "2026-01-01",
+    "date_end": "2026-12-31",
+    "booking_note": "Auto Plusz Terv 2026; a pályázati feltételek és a folytatás még változhatnak.",
+    "confidence": "needs-check",
+    "notes": "2026-os támogatás; 2027-es folytatás még nem biztos."
+  },
+  "napenergia-energiakozosseg-palyazat": {
+    "recurrence": "oneoff",
+    "date_start": "2026-04-30",
+    "date_end": "2026-04-30",
+    "booking_note": "A program kerete elfogyott; a már befogadott pályázatok futnak.",
+    "confidence": "needs-check",
+    "notes": "A Napenergia Plusz Program 2026-os kerete lezárult."
+  },
+  "vernyomasmeres-honapja": {
+    "date_start": "2026-05-01",
+    "date_end": "2026-05-31",
+    "booking_note": "Patikákban és rendelőkben ingyenes mérés; érdemes előre érdeklődni.",
+    "confidence": "verified",
+    "notes": "Május a vérnyomásmérés hónapja."
+  },
+  "ingyenes-szemvizsgalat": {
+    "date_start": "2026-10-01",
+    "date_end": "2026-10-31",
+    "booking_note": "Október a Látás Hónapja; sok optika ingyenes látásvizsgálatot ad vásárlás esetén.",
+    "confidence": "verified",
+    "notes": "Látás Hónapja 2026."
+  },
+  "fitness-ingyenes-probahet": {
+    "recurrence": "continuous",
+    "booking_note": "Nincs egyetlen országos esemény; edzőtermek időszakos próbahetei.",
+    "confidence": "needs-check",
+    "notes": "Érdemes a helyi edzőtermeket figyelni."
+  },
+  "futoverseny-early-bird": {
+    "date_start": "2026-10-11",
+    "date_end": "2026-10-11",
+    "booking_note": "Early bird árak november 9-ig; a 42. SPAR Budapest Maraton nevezése nyitva.",
+    "confidence": "verified",
+    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka november 9-ig tartott."
+  },
+  "vidampark-szezonnyito-zaro-akcio": {
+    "date_start": "2026-04-04",
+    "date_end": "2026-10-31",
+    "booking_note": "A szezonnyitó április 4.; a pontos nyitvatartás a vidampark.com oldalon.",
+    "confidence": "verified",
+    "notes": "2026. április 4-től újra nyitott a Vidámpark."
   }
 }

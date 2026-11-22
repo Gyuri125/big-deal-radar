@@ -478,7 +478,7 @@ A `data/sources.json` minden dealhez forrásokat rendel. A részletek ablakban e
 - **Hivatalos oldal** – a szervező oldala
 - **Jegyvásárlás / foglalás** – közvetlen jegy- vagy asztalfoglalás
 - **Cikk / ajánló** – háttérinformáció, összefoglaló
-- **Keresés** – ha nincs egyetlen hivatalos oldal, keresőlink (ezt később finomíthatjuk)
+- **Keresés** – tartalék típus jövőbeli dealekhez; jelenleg egyik deal sem használja
 
 Ha az egérrel **3 másodpercig** egy linken maradsz, lebegő tooltip mutatja a teljes URL-t, hogy lásd, hová visz. Mobilon a link koppintással nyílik.
 
@@ -497,12 +497,12 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
 
 - **103 deal**
-- **121 forrás**
-- **40 dátumos**
-- **40 ellenőrzött**
-- **18 keresőlinkes** (ezeknél még nincs stabil hivatalos oldal)
+- **125 forrás**
+- **49 dátumos**
+- **48 ellenőrzött**
+- **0 keresőlinkes** – minden dealhez van legalább egy valós forrás
 
-Ez nem reklám, hanem átláthatóság: a keresőlinkes dealeket folyamatosan pontosítjuk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.
+Ez nem reklám, hanem átláthatóság: ahol lehet, több forrást is megadunk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.
 
 ---
 
@@ -682,8 +682,8 @@ big-deal-radar/
 - [x] Heti top 5, egyedi deal-oldalak, OG képek, Event structured data.
 - [x] PWA, offline mód, megosztható linkek.
 - [x] Heti linkellenőrzés és hibabejelentés.
-- [ ] A maradék 63 dealhez pontos dátum, ahol lehet.
-- [ ] A 18 keresőlinkes dealhez konkrét hivatalos forrás.
+- [x] Minden dealhez legalább egy valós forrás.
+- [ ] A maradék 54 dealhez pontos dátum, ahol lehet.
 - [ ] Normál árak feltöltése a top 30-hoz.
 - [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.
 - [ ] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).

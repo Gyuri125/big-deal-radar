@@ -90,7 +90,7 @@ async function main(): Promise<void> {
 
   await Promise.all(Array.from({ length: concurrency }, worker));
 
-  const blockedStatuses = new Set<number | 'ERR'>([401, 403, 429, 511]);
+  const blockedStatuses = new Set<number | 'ERR'>([401, 403, 429, 511, 520]);
   const blocked = results.filter((result) =>
     blockedStatuses.has(result.status)
   );

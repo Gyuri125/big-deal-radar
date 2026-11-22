@@ -92,16 +92,26 @@
   ],
   "nyitott-templomok-napja": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Nyitott%20Templomok%20Napja%202026",
-      "type": "search"
+      "label": "Ars Sacra – Nyitott Templomok",
+      "url": "https://ars-sacra.hu/nyitott-templomok",
+      "type": "official"
+    },
+    {
+      "label": "Programturizmus",
+      "url": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
+      "type": "article"
     }
   ],
   "konyvtarak-ejszakaja": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=K%C3%B6nyvt%C3%A1rak%20%C3%89jszak%C3%A1ja%202026",
-      "type": "search"
+      "label": "Országos Könyvtári Napok",
+      "url": "https://osszefogas.ikszkonyvtarak.hu",
+      "type": "official"
+    },
+    {
+      "label": "FSZEK program",
+      "url": "https://fszek.hu/News/orszagos-konyvtari-napok2026",
+      "type": "article"
     }
   ],
   "a-magyar-kultura-napja": [
@@ -113,23 +123,28 @@
   ],
   "szinhazi-vilagnap": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Sz%C3%ADnh%C3%A1zi%20vil%C3%A1gnap%202026",
-      "type": "search"
+      "label": "Nemzeti Színház – világnapi üzenet",
+      "url": "https://nemzetiszinhaz.hu/hirek/2026/03/szinhazi-vilagnapi-uzenet-2026-ban",
+      "type": "official"
     }
   ],
   "budapest-nyari-fesztival": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Budapest%20Ny%C3%A1ri%20Fesztiv%C3%A1l%202026",
-      "type": "search"
+      "label": "Margitszigeti Színház",
+      "url": "https://margitszigetiszinhaz.hu/",
+      "type": "official"
     }
   ],
   "ingyenes-varosi-setak": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=free%20walking%20tour%20Budapest%202026",
-      "type": "search"
+      "label": "Trip to Budapest – ingyenes séták",
+      "url": "https://triptobudapest.hu/current-schedule-of-our-free-tours-in-budapest",
+      "type": "official"
+    },
+    {
+      "label": "Freetour.com",
+      "url": "https://www.freetour.com/budapest",
+      "type": "article"
     }
   ],
   "szabadteri-mozi": [
@@ -162,9 +177,9 @@
   ],
   "budapest-coffee-festival": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Budapest%20Coffee%20Festival%202026",
-      "type": "search"
+      "label": "We Love Budapest ajánló",
+      "url": "https://welovebudapest.com/cikk/2026/09/09/budapest-coffee-week-2026-kavezok-programok",
+      "type": "article"
     }
   ],
   "budapest-borfesztival": [
@@ -176,9 +191,9 @@
   ],
   "budapest-sorfesztival": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Budapest%20S%C3%B6rfesztiv%C3%A1l%202026",
-      "type": "search"
+      "label": "BudAPPest ajánló",
+      "url": "https://budappest.hu/sorkulonlegessegek-es-fesztivalhangulat-tizedszer-jon-a-belvarosi-sorfesztival",
+      "type": "article"
     }
   ],
   "palinkafesztival": [
@@ -211,9 +226,9 @@
   ],
   "halaszlefozo-fesztival-baja": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Baja%20hal%C3%A1szl%C3%A9f%C5%91z%C5%91%20fesztiv%C3%A1l%202026",
-      "type": "search"
+      "label": "Programturizmus ajánló",
+      "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
+      "type": "article"
     }
   ],
   "balatoni-bor-es-kenyer-unnep-siofok": [
@@ -288,9 +303,9 @@
   ],
   "cyber-monday": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Cyber%20Monday%202026",
-      "type": "search"
+      "label": "RTL – Cyber Monday kisokos",
+      "url": "https://rtl.hu/black-november/2026/11/16/cyber-monday-kisokos",
+      "type": "article"
     }
   ],
   "single-s-day-11-11": [
@@ -309,16 +324,16 @@
   ],
   "januari-learazasok": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=janu%C3%A1ri+le%C3%A1raz%C3%A1sok+2026",
-      "type": "search"
+      "label": "Pénzcentrum – téli leárazások",
+      "url": "https://www.penzcentrum.hu/vasarlas/20251227/indulnak-a-nagy-leertekelesek-a-magyar-uzletekben-ne-maradj-le-van-ahol-70-szazalekkal-olcsobban-vasarolhatsz-1190710",
+      "type": "article"
     }
   ],
   "nyari-szezonvegi-learazas": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=ny%C3%A1ri+szezonv%C3%A9gi+le%C3%A1raz%C3%A1s+2026",
-      "type": "search"
+      "label": "Tiplino – nyári akciók",
+      "url": "https://www.tiplino.hu/cikk/nyari-akciok-leertekeles-2026",
+      "type": "article"
     }
   ],
   "unnepi-konyvhet": [
@@ -330,9 +345,9 @@
   ],
   "budapesti-konyvfesztival": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Budapesti%20K%C3%B6nyvfesztiv%C3%A1l%202026",
-      "type": "search"
+      "label": "Bookfestival.hu",
+      "url": "https://bookfestival.hu/",
+      "type": "official"
     }
   ],
   "record-store-day-free-comic-book-day": [
@@ -387,16 +402,21 @@
   ],
   "zold-auto-ev-tamogatas": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=z%C3%B6ld+aut%C3%B3+t%C3%A1mogat%C3%A1s+2026",
-      "type": "search"
+      "label": "Elektromos autó pályázat",
+      "url": "https://www.elektromos-auto-palyazat.hu/",
+      "type": "official"
+    },
+    {
+      "label": "KNYKK – Auto Plusz Terv",
+      "url": "https://knykk.hu/hirek/auto-plusz-terv-hivatalos-az-elektromos-autok-2026-os-vasarlasahoz-nyujtott-tamogatas",
+      "type": "article"
     }
   ],
   "napenergia-energiakozosseg-palyazat": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=napenergia+t%C3%A1mogat%C3%A1s+2026",
-      "type": "search"
+      "label": "Napenergia Plusz Program",
+      "url": "https://napenergiaplusz.nffku.hu",
+      "type": "official"
     }
   ],
   "ingyenes-szuronapok": [
@@ -408,9 +428,9 @@
   ],
   "vernyomasmeres-honapja": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=v%C3%A9rnyom%C3%A1sm%C3%A9r%C3%A9s%20h%C3%B3napja%202026",
-      "type": "search"
+      "label": "Egészségőr – vérnyomásmérés hónapja",
+      "url": "https://www.egeszsegor.hu/spg/438423,343964/Majus-a-vernyomasmeres-honapja-merje-On-is-rendsze",
+      "type": "article"
     }
   ],
   "egeszsegnapok": [
@@ -429,16 +449,16 @@
   ],
   "ingyenes-szemvizsgalat": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=ingyenes%20szemvizsg%C3%A1lat%202026",
-      "type": "search"
+      "label": "Látás Hónapja",
+      "url": "https://latashonapja.hu/",
+      "type": "official"
     }
   ],
   "fitness-ingyenes-probahet": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=fitness+ingyenes+pr%C3%B3bah%C3%A9t+2026",
-      "type": "search"
+      "label": "Daypass – magyar edzőtermek",
+      "url": "https://www.daypass.fit/category/hungary/",
+      "type": "article"
     }
   ],
   "wellness-het-furdok-akcioi": [
@@ -450,9 +470,9 @@
   ],
   "futoverseny-early-bird": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Budapest%20Maraton%20early%20bird%202026",
-      "type": "search"
+      "label": "SPAR Budapest Maraton – nevezés",
+      "url": "https://sparbudapestmaraton.hu/nevezesi-infok",
+      "type": "official"
     }
   ],
   "bringas-reggeli": [
@@ -471,9 +491,9 @@
   ],
   "szulinapi-ingyen-belepo": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=sz%C3%BClinapi+ingyen+bel%C3%A9p%C5%91+Budapest+2026",
-      "type": "search"
+      "label": "Pénzcentrum – szülinapi fürdőajándék",
+      "url": "https://penzcentrum.hu/hellovidek/20260611/41-titkos-furdos-tipp-ahol-akar-ingyen-is-csobbanhatsz-evente-csak-egyszer-jar-ez-az-ajandek-1200160",
+      "type": "article"
     }
   ],
   "allatkert-teli-eloszezon-jegy": [
@@ -492,9 +512,9 @@
   ],
   "vidampark-szezonnyito-zaro-akcio": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Vid%C3%A1mpark%20szezonnyit%C3%B3%202026",
-      "type": "search"
+      "label": "Vidámpark",
+      "url": "https://vidampark.com",
+      "type": "official"
     }
   ],
   "escape-room-hetkoznap-nappali": [
@@ -541,30 +561,9 @@
   ],
   "otthonfelujitasi-tamogatas": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=otthonfel%C3%BAj%C3%ADt%C3%A1si%20t%C3%A1mogat%C3%A1s%202026",
-      "type": "search"
-    }
-  ],
-  "budapest-coffee-festival": [
-    {
-      "label": "We Love Budapest ajánló",
-      "url": "https://welovebudapest.com/cikk/2026/09/09/budapest-coffee-week-2026-kavezok-programok",
-      "type": "article"
-    }
-  ],
-  "budapest-sorfesztival": [
-    {
-      "label": "BudAPPest ajánló",
-      "url": "https://budappest.hu/sorkulonlegessegek-es-fesztivalhangulat-tizedszer-jon-a-belvarosi-sorfesztival",
-      "type": "article"
-    }
-  ],
-  "halaszlefozo-fesztival-baja": [
-    {
-      "label": "Programturizmus ajánló",
-      "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
-      "type": "article"
+      "label": "Csalad.hu – Vidéki Otthonfelújítási Program",
+      "url": "https://csalad.hu/tamogatas/videki-otthonfelujitasi-tamogatas",
+      "type": "official"
     }
   ]
 }
