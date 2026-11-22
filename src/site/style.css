@@ -61,6 +61,25 @@ a {
   min-height: 100vh;
 }
 
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--paper);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 160ms ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
 .topbar {
   position: sticky;
   top: 0;
@@ -356,7 +375,18 @@ a {
   inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.daily-visual .daily-bg {
   object-fit: cover;
+  filter: blur(22px) brightness(0.5) saturate(1.15);
+  transform: scale(1.15);
+}
+
+.daily-visual .daily-og {
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
 }
 
 .daily-fallback {
@@ -434,17 +464,23 @@ a {
 .daily-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   margin-top: 22px;
 }
 
+.daily-actions .btn {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 0.82rem;
+}
+
 .daily-actions .btn-solid {
-  background: var(--orange);
+  background: #b5471d;
   color: #fff;
 }
 
 .daily-actions .btn-solid:hover {
-  background: #d95a2a;
+  background: #9c3e19;
 }
 
 .daily-actions .btn-ghost {
@@ -464,6 +500,25 @@ a {
 }
 
 .filter-toggle {
+  display: none;
+}
+
+.filter-reset {
+  margin-top: 10px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-color: transparent;
+  background: transparent;
+  color: #b5471d;
+  font-size: 0.8rem;
+}
+
+.filter-reset:hover {
+  border-color: #eccbbd;
+  background: #fff4ee;
+}
+
+.filter-reset[hidden] {
   display: none;
 }
 
@@ -855,6 +910,12 @@ a {
   font-weight: 700;
 }
 
+.tag-ending {
+  background: var(--red-soft);
+  color: #a02c20;
+  font-weight: 700;
+}
+
 .top-section {
   padding: 22px;
   border: 1px solid #eadfc8;
@@ -891,6 +952,11 @@ a {
   background: rgba(255, 253, 248, 0.45);
   color: var(--muted);
   text-align: center;
+}
+
+.empty-reset {
+  display: flex;
+  margin: 16px auto 0;
 }
 
 .load-more {

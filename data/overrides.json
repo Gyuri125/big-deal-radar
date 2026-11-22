@@ -685,5 +685,39 @@
     "booking_note": "A szezonnyitó április 4.; a pontos nyitvatartás a vidampark.com oldalon.",
     "confidence": "verified",
     "notes": "2026. április 4-től újra nyitott a Vidámpark."
+  },
+  "budapesti-karacsonyi-vasarok": {
+    "type": "free",
+    "date_start": "2026-11-13",
+    "date_end": "2027-01-01",
+    "source_url": "https://adventbazilika.hu/",
+    "booking_note": "A belépés ingyenes; az árusoknál és a gasztrostandoknál külön fizetsz. A Vörösmarty téri vásár december 31-ig tart.",
+    "confidence": "verified",
+    "featured": true,
+    "tags": [
+      "unnep",
+      "program",
+      "karacsony"
+    ],
+    "notes": "2026. november 13. – 2027. január 1. Advent Bazilika; Vörösmarty Classic Xmas december 31-ig. Ingyenes belépés."
+  },
+  "sziget-2027-early-bird": {
+    "type": "sale",
+    "date_start": "2027-08-10",
+    "date_end": "2027-08-14",
+    "source_url": "https://szigetfestival.com/en/",
+    "booking_url": "https://szigetfestival.com/hu/jegyek",
+    "deal_price": 125900,
+    "price_note": "Early Bird 5 napos bérlet 125 900 Ft; a Super Early Bird 109 900 Ft már nem elérhető.",
+    "booking_note": "Early bird jegyek a hivatalos Sziget oldalon; az árak sávosan emelkednek.",
+    "confidence": "verified",
+    "featured": true,
+    "tags": [
+      "program",
+      "fesztival",
+      "zene",
+      "budapest"
+    ],
+    "notes": "2027. augusztus 10–14., Óbudai-sziget. A jegyárak a készlet függvényében emelkednek."
   }
 }

@@ -560,5 +560,29 @@
       "url": "https://csalad.hu/tamogatas/videki-otthonfelujitasi-tamogatas",
       "type": "official"
     }
+  ],
+  "budapesti-karacsonyi-vasarok": [
+    {
+      "label": "Advent Bazilika",
+      "url": "https://adventbazilika.hu/",
+      "type": "official"
+    },
+    {
+      "label": "Vörösmarty Classic Xmas",
+      "url": "https://vorosmartyclassicxmas.hu/",
+      "type": "official"
+    }
+  ],
+  "sziget-2027-early-bird": [
+    {
+      "label": "SZIGET 2027 – jegyek",
+      "url": "https://szigetfestival.com/hu/jegyek",
+      "type": "ticket"
+    },
+    {
+      "label": "SZIGET 2027 – fesztiválinfó",
+      "url": "https://szigetfestival.com/en/festival-info",
+      "type": "official"
+    }
   ]
 }

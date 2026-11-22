@@ -131,8 +131,50 @@ const state = {
 
 let watchlist: Watchlist = loadWatchlist();
 
-const initialQuery = new URLSearchParams(window.location.search).get('q');
+const initialParams = new URLSearchParams(window.location.search);
+const initialQuery = initialParams.get('q');
 if (initialQuery) state.query = initialQuery;
+
+const initialFocus = initialParams.get('focus');
+if (initialFocus && FOCUS_FILTERS.some((filter) => filter.value === initialFocus)) {
+  state.focus = initialFocus as Focus;
+}
+
+const initialTime = initialParams.get('time');
+if (initialTime && TIME_FILTERS.some((filter) => filter.value === initialTime)) {
+  state.time = initialTime as TimeFilter;
+}
+
+const initialBudget = initialParams.get('budget');
+if (initialBudget && BUDGET_FILTERS.some((filter) => filter.value === initialBudget)) {
+  state.budget = initialBudget as BudgetFilter;
+}
+
+const initialType = initialParams.get('type');
+if (initialType && TYPE_FILTERS.some((filter) => filter.value === initialType)) {
+  state.type = initialType as 'all' | DealType;
+}
+
+const initialCategory = initialParams.get('category');
+if (
+  initialCategory &&
+  CATEGORY_FILTERS.some((filter) => filter.value === initialCategory)
+) {
+  state.category = initialCategory as 'all' | DealCategory;
+}
+
+const initialLocation = initialParams.get('location');
+if (initialLocation && deals.some((deal) => deal.location === initialLocation)) {
+  state.location = initialLocation;
+}
+
+const initialSort = initialParams.get('sort');
+if (initialSort && ['next', 'value', 'title'].includes(initialSort)) {
+  state.sort = initialSort as SortMode;
+}
+
+if (initialParams.get('watchlist') === '1') state.watchlistOnly = true;
+if (initialParams.get('view') === 'calendar') state.view = 'calendar';
 
 function isWatched(id: string): boolean {
   return Boolean(watchlist[id]);
@@ -261,6 +303,10 @@ function typeLabel(type: DealType): string {
   return TYPE_LABELS[type];
 }
 
+function bookingNoteLabel(deal: Deal): string {
+  return deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás';
+}
+
 function sourceTypeLabel(type: Deal['sources'][number]['type']): string {
   if (type === 'official') return 'Hivatalos';
   if (type === 'ticket') return 'Jegy';
@@ -350,9 +396,15 @@ function cardMarkup(deal: EnrichedDeal): string {
     ? '<span class="tag tag-booking">Jegy / foglalás</span>'
     : '';
   const sourceTag = `<span class="tag tag-source">${deal.sources.length} forrás</span>`;
+  const endDate = deal.effective?.end ?? deal.effective?.start ?? null;
+  const endDays = endDate ? diffDays(now, endDate) : null;
+  const endingTag =
+    endDays !== null && endDays >= 0 && endDays <= 3
+      ? `<span class="tag tag-ending">${endDays === 0 ? 'Ma zárul' : `${endDays} nap múlva zárul`}</span>`
+      : '';
   const tags = deal.tags
     .filter((tag) => tag !== deal.category && tag !== deal.type)
-    .slice(0, 3)
+    .slice(0, endingTag ? 0 : 3)
     .map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`)
     .join('');
 
@@ -370,7 +422,7 @@ function cardMarkup(deal: EnrichedDeal): string {
       <p class="card-deal">${escapeHtml(deal.deal)}</p>
       <div class="price-row">${priceMarkup(deal)}</div>
       <div class="card-footer">
-        <div class="tags">${priorityTag}${bookingTag}${sourceTag}${tags}</div>
+        <div class="tags">${priorityTag}${endingTag}${bookingTag}${sourceTag}${tags}</div>
         <div class="card-actions">
           <button class="btn btn-ghost" data-action="ics" type="button" ${deal.effective ? '' : 'disabled title="Ehhez a dealhez nincs pontos dátum"'}>Naptárba</button>
           <button class="btn btn-solid" data-action="details" type="button">Részletek</button>
@@ -473,6 +525,58 @@ function hasActiveFilters(): boolean {
     state.category !== 'all' ||
     state.location !== 'all'
   );
+}
+
+function updateFilterReset(): void {
+  const button = document.querySelector<HTMLButtonElement>('.filter-reset');
+  if (button) button.hidden = !hasActiveFilters();
+}
+
+function resetFilters(): void {
+  state.query = '';
+  state.type = 'all';
+  state.category = 'all';
+  state.location = 'all';
+  state.watchlistOnly = false;
+  state.focus = 'all';
+  state.time = 'all';
+  state.budget = 'all';
+  state.visible = 24;
+
+  const search = document.querySelector<HTMLInputElement>('#search');
+  if (search) search.value = '';
+
+  const locationSelect = document.querySelector<HTMLSelectElement>('#location-filter');
+  if (locationSelect) locationSelect.value = 'all';
+
+  updateFilterButtons();
+  updateFilterReset();
+  renderResults();
+  showToast('Minden szűrő törölve.');
+}
+
+function syncUrl(): void {
+  const url = new URL(window.location.href);
+  const setOrDelete = (key: string, value: string, keep = false): void => {
+    if (keep) {
+      url.searchParams.set(key, value);
+    } else {
+      url.searchParams.delete(key);
+    }
+  };
+
+  setOrDelete('q', state.query.trim(), state.query.trim().length > 0);
+  setOrDelete('focus', state.focus, state.focus !== 'all');
+  setOrDelete('time', state.time, state.time !== 'all');
+  setOrDelete('budget', state.budget, state.budget !== 'all');
+  setOrDelete('type', state.type, state.type !== 'all');
+  setOrDelete('category', state.category, state.category !== 'all');
+  setOrDelete('location', state.location, state.location !== 'all');
+  setOrDelete('sort', state.sort, state.sort !== 'next');
+  setOrDelete('watchlist', '1', state.watchlistOnly);
+  setOrDelete('view', 'calendar', state.view === 'calendar');
+
+  history.replaceState(null, '', url);
 }
 
 function upcomingDeals(): EnrichedDeal[] {
@@ -619,6 +723,14 @@ function renderDailyDeal(): void {
         <strong>${escapeHtml(deal.title)}</strong>
       </div>
       <img
+        class="daily-bg"
+        src="./og/${encodeURIComponent(deal.id)}.png"
+        alt=""
+        aria-hidden="true"
+        onerror="this.style.display='none'"
+      />
+      <img
+        class="daily-og"
         src="./og/${encodeURIComponent(deal.id)}.png"
         alt=""
         loading="lazy"
@@ -681,7 +793,11 @@ function sectionMarkup(
       ${
         items.length > 0
           ? `<div class="grid">${items.map(cardMarkup).join('')}</div>`
-          : `<div class="empty">${escapeHtml(emptyText ?? '')}</div>`
+          : `<div class="empty">${escapeHtml(emptyText ?? '')}${
+              hasActiveFilters()
+                ? '<button class="btn btn-solid empty-reset" type="button" data-action="reset-filters">Szűrők törlése</button>'
+                : ''
+            }</div>`
       }
     </section>
   `;
@@ -843,6 +959,8 @@ function renderResults(): void {
   if (!results) return;
 
   updateWatchCount();
+  updateFilterReset();
+  syncUrl();
 
   if (state.view === 'calendar') {
     renderCalendar();
@@ -1091,6 +1209,8 @@ function renderShell(): void {
   );
 
   appRoot.innerHTML = `
+    <a class="skip-link" href="#results">Ugrás a dealekhez</a>
+
     <header class="topbar">
       <a class="brand" href="./" aria-label="Big-deal radar főoldal">
         <span class="brand-mark" aria-hidden="true">
@@ -1165,6 +1285,7 @@ function renderShell(): void {
       </div>
 
       <button class="filter-toggle btn btn-ghost" type="button" data-action="toggle-filters" aria-expanded="false">Szűrők</button>
+      <button class="filter-reset btn btn-ghost" type="button" data-action="reset-filters" hidden>× Szűrők törlése</button>
 
       <div class="filter-block focus-block">
         <span class="filter-label">Nekem</span>
@@ -1270,7 +1391,7 @@ function renderShell(): void {
       </div>
     </section>
 
-    <main id="results" class="results"></main>
+    <main id="results" class="results" tabindex="-1"></main>
 
     <section class="data-quality" id="data-quality"></section>
 
@@ -1392,7 +1513,7 @@ function openDialog(id: string): void {
     <div class="dialog-head">
       <div>
         <span class="badge badge-${deal.type}">${typeLabel(deal.type)}</span>
-        <h2>${escapeHtml(deal.title)}</h2>
+        <h2 id="deal-dialog-title">${escapeHtml(deal.title)}</h2>
       </div>
       <button class="dialog-close" data-dialog-action="close" type="button" aria-label="Bezárás">×</button>
     </div>
@@ -1426,7 +1547,7 @@ function openDialog(id: string): void {
     }
     ${
       deal.booking_note
-        ? `<p class="dialog-booking-note"><strong>Jegyvásárlás:</strong> ${escapeHtml(deal.booking_note)}</p>`
+        ? `<p class="dialog-booking-note"><strong>${bookingNoteLabel(deal)}:</strong> ${escapeHtml(deal.booking_note)}</p>`
         : ''
     }
     ${
@@ -1507,7 +1628,7 @@ function eventLines(
     `DTEND;VALUE=DATE:${icsDate(addDays(end, 1))}`,
     `SUMMARY:${escapeIcs(deal.title)}`,
     `DESCRIPTION:${escapeIcs(
-      `${deal.deal}${deal.booking_note ? `\n\nJegyvásárlás: ${deal.booking_note}` : ''}`
+      `${deal.deal}${deal.booking_note ? `\n\n${bookingNoteLabel(deal)}: ${deal.booking_note}` : ''}`
     )}`,
     `LOCATION:${escapeIcs(deal.location)}`,
     ...(deal.source_url ? [`URL:${deal.source_url}`] : []),
@@ -1763,6 +1884,11 @@ function handleAction(action: string, target: HTMLElement): void {
     return;
   }
 
+  if (action === 'reset-filters') {
+    resetFilters();
+    return;
+  }
+
   if (action === 'to-top') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
@@ -1950,15 +2076,6 @@ appRoot.addEventListener('input', (event) => {
   if (target.id !== 'search') return;
   state.query = target.value;
   state.visible = 24;
-
-  const url = new URL(window.location.href);
-  if (state.query.trim()) {
-    url.searchParams.set('q', state.query);
-  } else {
-    url.searchParams.delete('q');
-  }
-  history.replaceState(null, '', url);
-
   renderResults();
 });
 
@@ -2069,6 +2186,12 @@ function openDealFromQuery(): void {
 
 async function init(): Promise<void> {
   renderShell();
+
+  const locationSelect = document.querySelector<HTMLSelectElement>('#location-filter');
+  if (locationSelect) locationSelect.value = state.location;
+
+  const sortSelect = document.querySelector<HTMLSelectElement>('#sort-filter');
+  if (sortSelect) sortSelect.value = state.sort;
 
   const toTop = document.querySelector<HTMLElement>('#to-top');
   window.addEventListener(

@@ -4310,5 +4310,106 @@
     ],
     "notes": "Országos tájházi nap, jellemzően április utolsó vasárnapja.",
     "featured": false
+  },
+  {
+    "id": "budapesti-karacsonyi-vasarok",
+    "title": "Budapesti karácsonyi vásárok",
+    "category": "kultura",
+    "type": "free",
+    "timing": "November 13. – január 1.",
+    "date_start": "2026-11-13",
+    "date_end": "2027-01-01",
+    "booking_opens": null,
+    "month": 11,
+    "months": [
+      1,
+      11
+    ],
+    "recurrence": "annual",
+    "deal": "Ingyenes belépés, Advent Bazilika és Vörösmarty Classic Xmas",
+    "normal_price": null,
+    "deal_price": null,
+    "price_note": null,
+    "currency": "HUF",
+    "location": "Budapest",
+    "source_url": "https://adventbazilika.hu/",
+    "booking_url": null,
+    "booking_note": "A belépés ingyenes; az árusoknál és a gasztrostandoknál külön fizetsz. A Vörösmarty téri vásár december 31-ig tart.",
+    "sources": [
+      {
+        "label": "Advent Bazilika",
+        "url": "https://adventbazilika.hu/",
+        "type": "official"
+      },
+      {
+        "label": "Vörösmarty Classic Xmas",
+        "url": "https://vorosmartyclassicxmas.hu/",
+        "type": "official"
+      }
+    ],
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "tags": [
+      "unnep",
+      "program",
+      "karacsony",
+      "kultura",
+      "free"
+    ],
+    "notes": "2026. november 13. – 2027. január 1. Advent Bazilika; Vörösmarty Classic Xmas december 31-ig. Ingyenes belépés.",
+    "featured": true
+  },
+  {
+    "id": "sziget-2027-early-bird",
+    "title": "SZIGET 2027 early bird",
+    "category": "kultura",
+    "type": "sale",
+    "timing": "Augusztus 10–14.",
+    "date_start": "2027-08-10",
+    "date_end": "2027-08-14",
+    "booking_opens": null,
+    "month": 8,
+    "months": [
+      8
+    ],
+    "recurrence": "annual",
+    "deal": "Early bird kedvezményes 5 napos bérlet, a későbbi árak előtt",
+    "normal_price": null,
+    "deal_price": 125900,
+    "price_note": "Early Bird 5 napos bérlet 125 900 Ft; a Super Early Bird 109 900 Ft már nem elérhető.",
+    "currency": "HUF",
+    "location": "Budapest",
+    "source_url": "https://szigetfestival.com/en/",
+    "booking_url": "https://szigetfestival.com/hu/jegyek",
+    "booking_note": "Early bird jegyek a hivatalos Sziget oldalon; az árak sávosan emelkednek.",
+    "sources": [
+      {
+        "label": "SZIGET 2027 – jegyek",
+        "url": "https://szigetfestival.com/hu/jegyek",
+        "type": "ticket"
+      },
+      {
+        "label": "SZIGET 2027 – fesztiválinfó",
+        "url": "https://szigetfestival.com/en/festival-info",
+        "type": "official"
+      },
+      {
+        "label": "Hivatalos oldal",
+        "url": "https://szigetfestival.com/en/",
+        "type": "official"
+      }
+    ],
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "tags": [
+      "program",
+      "fesztival",
+      "zene",
+      "budapest",
+      "kultura",
+      "sale"
+    ],
+    "notes": "2027. augusztus 10–14., Óbudai-sziget. A jegyárak a készlet függvényében emelkednek.",
+    "featured": true
   }
 ]

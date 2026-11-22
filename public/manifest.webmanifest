@@ -8,6 +8,24 @@
   "background_color": "#f6f1e7",
   "theme_color": "#12212f",
   "lang": "hu",
+  "categories": ["lifestyle", "shopping", "travel"],
+  "shortcuts": [
+    {
+      "name": "Mai dobás",
+      "short_name": "Mai dobás",
+      "url": "./#daily-deal"
+    },
+    {
+      "name": "Saját listám",
+      "short_name": "Saját lista",
+      "url": "./?watchlist=1"
+    },
+    {
+      "name": "Naptár",
+      "short_name": "Naptár",
+      "url": "./?view=calendar"
+    }
+  ],
   "icons": [
     {
       "src": "./icon-192.png",

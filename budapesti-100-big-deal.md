@@ -177,13 +177,15 @@
 
 ---
 
-## 11. Új ünnepi / évfordulós programok (101–103)
+## 11. Új ünnepi / évfordulós / fesztivál programok (101–105)
 
 | # | Esemény | Mikor | Mi a deal |
 |---|---------|-------|-----------|
 | 101 | Magyar Film Napja | Április 30. | Országszerte magyar filmek a mozikban, különprogramok |
 | 102 | Kávé Napja / Coffee Day | Október 10. | Millenáris, korlátlan kávékóstolás, early bird 4900 Ft |
 | 103 | Tájházak és Szabadtéri Múzeumok Napja | Április | Ingyenes tájházi programok országszerte |
+| 104 | Budapesti karácsonyi vásárok | November 13. – január 1. | Ingyenes belépés, Advent Bazilika és Vörösmarty Classic Xmas |
+| 105 | SZIGET 2027 early bird | Augusztus 10–14. | Early bird kedvezményes 5 napos bérlet, a későbbi árak előtt |
 
 ---
 

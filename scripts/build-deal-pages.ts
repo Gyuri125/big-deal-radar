@@ -222,7 +222,7 @@ function icsForDeal(deal: Deal, effective: ReturnType<typeof nextOccurrence>): s
     `DTEND;VALUE=DATE:${icsDate(addDays(end, 1))}`,
     `SUMMARY:${escapeIcs(deal.title)}`,
     `DESCRIPTION:${escapeIcs(
-      `${deal.deal}${deal.booking_note ? `\n\nJegyvásárlás: ${deal.booking_note}` : ''}`
+      `${deal.deal}${deal.booking_note ? `\n\n${deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás'}: ${deal.booking_note}` : ''}`
     )}`,
     `LOCATION:${escapeIcs(deal.location)}`,
     ...(deal.source_url ? [`URL:${deal.source_url}`] : []),
@@ -367,7 +367,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
         ${deal.price_note ? `<span style="font-size:.78rem;color:#667085">${escapeHtml(deal.price_note)}</span>` : ''}
       </div>
 
-      ${deal.booking_note ? `<p class="booking-note"><strong>Jegyvásárlás:</strong> ${escapeHtml(deal.booking_note)}</p>` : ''}
+      ${deal.booking_note ? `<p class="booking-note"><strong>${deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás'}:</strong> ${escapeHtml(deal.booking_note)}</p>` : ''}
       ${deal.notes ? `<p class="note">${escapeHtml(deal.notes)}</p>` : ''}
 
       <div class="actions">

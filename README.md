@@ -48,6 +48,9 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **RSS feed** a következő dealekkel, hogy olvasóban is követhető legyen,
 - **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
 - **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, Ingyenes, 5 ezer alatt, 10 ezer alatt,
+- **megosztható szűrők**: a keresés, a szűrők és a nézet az URL-ben maradnak,
+- **sürgősségi jelzés**: ha egy deal 3 napon belül zárul, a kártya jelzi,
+- **akadálymentes**: skip link, fókuszálható eredmények, Lighthouse 100 accessibility,
 - **naptárnézet** havi bontásban, hónap-naptár letöltéssel,
 - **egyedi deal-oldalak** SEO-val, OG képpel, Event structured data-val, saját ICS letöltéssel és hasonló dealekkel,
 - **PWA**: telepíthető, offline is működik,
@@ -499,10 +502,10 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 
 A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
 
-- **103 deal**
-- **123 forrás**
-- **49 dátumos**
-- **48 ellenőrzött**
+- **105 deal**
+- **128 forrás**
+- **51 dátumos**
+- **50 ellenőrzött**
 - **0 keresőlinkes** – minden dealhez van legalább egy valós forrás
 
 Ez nem reklám, hanem átláthatóság: ahol lehet, több forrást is megadunk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.
@@ -723,6 +726,9 @@ A dátumok és árak 2026-os példák, és évente változnak. A részleteket mi
 - Budapesti Színházak Éjszakája – [bpsze.hu](https://bpsze.hu)
 - Restaurant Week – [etteremhet.hu](https://etteremhet.hu)
 - Budapest100 – [budapest100.hu](https://budapest100.hu)
+- Advent Bazilika – [adventbazilika.hu](https://adventbazilika.hu)
+- Vörösmarty Classic Xmas – [vorosmartyclassicxmas.hu](https://vorosmartyclassicxmas.hu)
+- SZIGET – [szigetfestival.com](https://szigetfestival.com)
 - Erőművek Éjszakája – [eromuvekejszakaja.hu](https://eromuvekejszakaja.hu)
 - Fővárosi Nagycirkusz – [fovarosinagycirkusz.hu](https://fovarosinagycirkusz.hu)
 

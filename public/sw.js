@@ -1,4 +1,4 @@
-const CACHE_NAME = 'big-deal-radar-v1';
+const CACHE_NAME = 'big-deal-radar-v2';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -38,6 +38,23 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => caches.match(request).then((cached) => cached || caches.match('./')))
+    );
+    return;
+  }
+
+  if (url.pathname.endsWith('/status.json') || url.pathname.endsWith('/feed.xml')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          return response;
+        })
+        .catch(() =>
+          caches
+            .match(request)
+            .then((cached) => cached || new Response('Offline', { status: 503 }))
+        )
     );
     return;
   }

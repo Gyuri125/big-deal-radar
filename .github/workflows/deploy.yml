@@ -6,9 +6,10 @@ on:
     paths:
       - '.github/workflows/**'
       - 'data/**'
-      - 'src/site/**'
-      - 'src/types.ts'
-      - 'src/utils/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'src/**'
+      - 'budapesti-100-big-deal.md'
       - 'index.html'
       - 'vite.config.ts'
       - 'package.json'
