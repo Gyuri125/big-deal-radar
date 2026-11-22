@@ -78,9 +78,9 @@
   ],
   "muemlekek-napja": [
     {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=M%C5%B1eml%C3%A9kek%20Napja%202026",
-      "type": "search"
+      "label": "Kulturális Örökség Napjai",
+      "url": "https://oroksegnapok.gov.hu/",
+      "type": "official"
     }
   ],
   "kutatok-ejszakaja": [
@@ -355,11 +355,6 @@
       "label": "Record Store Day",
       "url": "https://recordstoreday.com/",
       "type": "official"
-    },
-    {
-      "label": "Keresés",
-      "url": "https://www.google.com/search?q=Free%20Comic%20Book%20Day%202026",
-      "type": "search"
     }
   ],
   "aruhazi-markanapok-outlet": [

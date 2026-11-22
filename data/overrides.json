@@ -666,11 +666,18 @@
     "notes": "Érdemes a helyi edzőtermeket figyelni."
   },
   "futoverseny-early-bird": {
+    "type": "sale",
     "date_start": "2026-10-11",
     "date_end": "2026-10-11",
-    "booking_note": "Early bird árak november 9-ig; a 42. SPAR Budapest Maraton nevezése nyitva.",
+    "booking_note": "Early bird árak jellemzően november elejéig; a 42. SPAR Budapest Maraton nevezése nyitva.",
     "confidence": "verified",
-    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka november 9-ig tartott."
+    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka 2026. november 9-ig tartott."
+  },
+  "wellness-het-furdok-akcioi": {
+    "type": "sale",
+    "booking_note": "A fürdők kedvezményes belépőkkel és csomagokkal készülnek; érdemes előre foglalni.",
+    "confidence": "needs-check",
+    "notes": "Tavaszi/őszi akciós hét; a pontos dátumok fürdőnként változnak."
   },
   "vidampark-szezonnyito-zaro-akcio": {
     "date_start": "2026-04-04",

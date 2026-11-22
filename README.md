@@ -497,7 +497,7 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
 
 - **103 deal**
-- **125 forrás**
+- **123 forrás**
 - **49 dátumos**
 - **48 ellenőrzött**
 - **0 keresőlinkes** – minden dealhez van legalább egy valós forrás

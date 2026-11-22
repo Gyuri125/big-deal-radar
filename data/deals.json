@@ -625,12 +625,7 @@
     "booking_note": "A legtöbb helyszín ingyenes; egyes programok regisztrációhoz kötöttek.",
     "sources": [
       {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=M%C5%B1eml%C3%A9kek%20Napja%202026",
-        "type": "search"
-      },
-      {
-        "label": "Hivatalos oldal",
+        "label": "Kulturális Örökség Napjai",
         "url": "https://oroksegnapok.gov.hu/",
         "type": "official"
       }
@@ -2912,11 +2907,6 @@
         "label": "Record Store Day",
         "url": "https://recordstoreday.com/",
         "type": "official"
-      },
-      {
-        "label": "Keresés",
-        "url": "https://www.google.com/search?q=Free%20Comic%20Book%20Day%202026",
-        "type": "search"
       }
     ],
     "confidence": "unverified",
@@ -3629,7 +3619,7 @@
     "id": "wellness-het-furdok-akcioi",
     "title": "Wellness Hét / fürdők akciói",
     "category": "egeszseg",
-    "type": "free",
+    "type": "sale",
     "timing": "Tavasz/ősz",
     "date_start": null,
     "date_end": null,
@@ -3652,7 +3642,7 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A fürdők kedvezményes belépőkkel és csomagokkal készülnek; érdemes előre foglalni.",
     "sources": [
       {
         "label": "Magyar Fürdőszövetség",
@@ -3660,21 +3650,21 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "sale"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #87",
+    "notes": "Tavaszi/őszi akciós hét; a pontos dátumok fürdőnként változnak.",
     "featured": false
   },
   {
     "id": "futoverseny-early-bird",
     "title": "SPAR Budapest Maraton early bird",
     "category": "egeszseg",
-    "type": "free",
+    "type": "sale",
     "timing": "6–12 hónappal előre",
     "date_start": "2026-10-11",
     "date_end": "2026-10-11",
@@ -3692,7 +3682,7 @@
     "location": "Budapest",
     "source_url": null,
     "booking_url": null,
-    "booking_note": "Early bird árak november 9-ig; a 42. SPAR Budapest Maraton nevezése nyitva.",
+    "booking_note": "Early bird árak jellemzően november elejéig; a 42. SPAR Budapest Maraton nevezése nyitva.",
     "sources": [
       {
         "label": "SPAR Budapest Maraton – nevezés",
@@ -3705,9 +3695,9 @@
     "tags": [
       "budapest",
       "egeszseg",
-      "free"
+      "sale"
     ],
-    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka november 9-ig tartott.",
+    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka 2026. november 9-ig tartott.",
     "featured": false
   },
   {
