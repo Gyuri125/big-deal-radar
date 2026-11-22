@@ -592,6 +592,7 @@ Az oldal telepíthető telefonra:
 | Discord 401/404 | Hibás vagy törölt webhook | Új webhook a Discord csatorna beállításaiban |
 | Telegram nem küld | Nincs token/chat ID | Opcionális; hagyd üresen, vagy állítsd be |
 | A Pages nem frissül | Nincs beállítva a GitHub Actions source | Settings → Pages → Source: GitHub Actions |
+| `No artifacts named "github-pages"` | Átmeneti GitHub artifact API hiba | A workflow 15 mp után automatikusan újrapróbálja a deployt |
 | A Pages 404 | Rossz reponév vagy privát repo | Ellenőrizd a `SITE_URL`-t és a repo láthatóságát |
 | A laptop nem commitol | Nincs adatváltozás | Ez normális; csak változás esetén commitol |
 | `git push` hiba | Nincs bejelentkezve / nincs jogosultság | `git remote -v`, `gh auth status`, SSH kulcs |
