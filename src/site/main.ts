@@ -157,6 +157,7 @@ function setWatchPriority(id: string, priority: Priority): void {
   saveWatchlist(watchlist);
   updateWatchCount();
   renderResults();
+  renderDailyDeal();
 }
 
 function toggleWatch(id: string): void {
@@ -175,6 +176,7 @@ function toggleWatch(id: string): void {
   saveWatchlist(watchlist);
   updateWatchCount();
   renderResults();
+  renderDailyDeal();
 }
 
 function updateWatchCount(): void {
@@ -344,6 +346,10 @@ function cardMarkup(deal: EnrichedDeal): string {
   const priorityTag = watched
     ? `<span class="tag tag-priority">${'★'.repeat(priority)} ${priorityLabel(priority)}</span>`
     : '';
+  const bookingTag = deal.booking_url
+    ? '<span class="tag tag-booking">Jegy / foglalás</span>'
+    : '';
+  const sourceTag = `<span class="tag tag-source">${deal.sources.length} forrás</span>`;
   const tags = deal.tags
     .filter((tag) => tag !== deal.category && tag !== deal.type)
     .slice(0, 3)
@@ -364,7 +370,7 @@ function cardMarkup(deal: EnrichedDeal): string {
       <p class="card-deal">${escapeHtml(deal.deal)}</p>
       <div class="price-row">${priceMarkup(deal)}</div>
       <div class="card-footer">
-        <div class="tags">${priorityTag}${tags}</div>
+        <div class="tags">${priorityTag}${bookingTag}${sourceTag}${tags}</div>
         <div class="card-actions">
           <button class="btn btn-ghost" data-action="ics" type="button" ${deal.effective ? '' : 'disabled title="Ehhez a dealhez nincs pontos dátum"'}>Naptárba</button>
           <button class="btn btn-solid" data-action="details" type="button">Részletek</button>
@@ -556,6 +562,90 @@ function dealInDay(deal: EnrichedDeal, day: Date): boolean {
   );
 }
 
+function todaysDeal(): EnrichedDeal | null {
+  const live = enriched
+    .filter((deal) => deal.status === 'live')
+    .sort(
+      (a, b) =>
+        Number(b.featured) - Number(a.featured) ||
+        (b.discount ?? 0) - (a.discount ?? 0)
+    );
+  if (live.length > 0) return live[0];
+
+  const upcoming = enriched
+    .filter(
+      (deal) =>
+        deal.days !== null && deal.days >= 0 && deal.days <= 7
+    )
+    .sort(
+      (a, b) =>
+        Number(b.featured) - Number(a.featured) ||
+        (a.days ?? 99) - (b.days ?? 99) ||
+        (b.discount ?? 0) - (a.discount ?? 0)
+    );
+  if (upcoming.length > 0) return upcoming[0];
+
+  const featured = enriched
+    .filter((deal) => deal.featured && deal.effective)
+    .sort((a, b) => (a.days ?? 999) - (b.days ?? 999));
+  if (featured.length > 0) return featured[0];
+
+  return enriched.find((deal) => deal.effective) ?? null;
+}
+
+function renderDailyDeal(): void {
+  const element = document.querySelector<HTMLElement>('#daily-deal');
+  if (!element) return;
+
+  const deal = todaysDeal();
+  if (!deal) {
+    element.innerHTML = '';
+    return;
+  }
+
+  const priceLabel =
+    deal.type === 'free' || deal.deal_price === 0
+      ? 'Ingyenes'
+      : deal.deal_price !== null
+        ? formatHuf(deal.deal_price)
+        : 'Ár a forrásban';
+
+  const watched = isWatched(deal.id);
+
+  element.innerHTML = `
+    <div class="daily-visual">
+      <div class="daily-fallback">
+        <span>${typeLabel(deal.type)}</span>
+        <strong>${escapeHtml(deal.title)}</strong>
+      </div>
+      <img
+        src="./og/${encodeURIComponent(deal.id)}.png"
+        alt=""
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+    </div>
+    <div class="daily-content">
+      <p class="eyebrow">MAI DOBÁS</p>
+      <h2>${escapeHtml(deal.title)}</h2>
+      <p>${escapeHtml(deal.deal)}</p>
+      <div class="daily-meta">
+        <span>${escapeHtml(deal.dateLabel)}</span>
+        <span>${escapeHtml(deal.location)}</span>
+        <strong>${priceLabel}</strong>
+      </div>
+      <div class="daily-actions">
+        <button class="btn btn-solid" type="button" data-action="details" data-id="${escapeHtml(deal.id)}">Részletek</button>
+        <button class="btn btn-ghost" type="button" data-action="ics" data-id="${escapeHtml(deal.id)}" ${deal.effective ? '' : 'disabled title="Ehhez a dealhez nincs pontos dátum"'}>Naptárba</button>
+        <button class="btn btn-ghost" type="button" data-action="watch" data-id="${escapeHtml(deal.id)}" aria-pressed="${watched}">
+          ${watched ? '★ Követem' : '☆ Követem'}
+        </button>
+        <a class="btn btn-ghost" href="./deal/${encodeURIComponent(deal.id)}/">Deal oldal</a>
+      </div>
+    </div>
+  `;
+}
+
 function topDeals(): EnrichedDeal[] {
   const featured = enriched
     .filter((deal) => deal.featured && deal.effective)
@@ -574,12 +664,13 @@ function sectionMarkup(
   title: string,
   subtitle: string,
   items: EnrichedDeal[],
-  emptyText?: string
+  emptyText?: string,
+  className = ''
 ): string {
   if (items.length === 0 && !emptyText) return '';
 
   return `
-    <section class="results-section">
+    <section class="results-section ${className}">
       <div class="section-head">
         <div>
           <h2>${escapeHtml(title)}</h2>
@@ -828,7 +919,9 @@ function renderResults(): void {
       ? sectionMarkup(
           'Heti top 5',
           'Szerkesztői válogatás – a legnagyobb dobások.',
-          top
+          top,
+          undefined,
+          'top-section'
         )
       : '',
     upcomingSection,
@@ -1037,6 +1130,8 @@ function renderShell(): void {
       </div>
     </section>
 
+    <section class="daily-deal" id="daily-deal"></section>
+
     <section class="how-it-works" aria-label="Hogyan ne maradj le">
       <div class="how-step">
         <span class="step-num">1</span>
@@ -1068,6 +1163,8 @@ function renderShell(): void {
           <button class="chip" type="button" data-view="calendar" aria-pressed="false">Naptár</button>
         </div>
       </div>
+
+      <button class="filter-toggle btn btn-ghost" type="button" data-action="toggle-filters" aria-expanded="false">Szűrők</button>
 
       <div class="filter-block focus-block">
         <span class="filter-label">Nekem</span>
@@ -1189,10 +1286,13 @@ function renderShell(): void {
       </div>
       <div id="footer-status" class="footer-status"></div>
       <div class="footer-links">
+        <a href="./feed.xml" type="application/rss+xml">RSS</a>
         <a href="${escapeHtml(repoUrl())}" target="_blank" rel="noopener">GitHub</a>
         <a href="#results">Vissza a tetejére</a>
       </div>
     </footer>
+
+    <button id="to-top" class="to-top" type="button" data-action="to-top" aria-label="Vissza a tetejére">↑</button>
   `;
 }
 
@@ -1203,7 +1303,7 @@ function updateStatusBanner(): void {
     messages.push(`A legutóbbi futás hibát jelzett: ${status.errors[0]}`);
   }
 
-  if (status?.last_run) {
+  if (status?.last_run && status.source !== 'local') {
     const age = Date.now() - new Date(status.last_run).getTime();
     const fortyEightHours = 48 * 60 * 60 * 1000;
     if (age > fortyEightHours) {
@@ -1264,6 +1364,26 @@ function openDialog(id: string): void {
 
   const sources = sourcesMarkup(deal);
 
+  const related = enriched
+    .filter((item) => item.id !== deal.id && item.category === deal.category)
+    .sort((a, b) => {
+      const aDays = a.days !== null && a.days >= 0 ? a.days : 9999;
+      const bDays = b.days !== null && b.days >= 0 ? b.days : 9999;
+      return Number(b.featured) - Number(a.featured) || aDays - bDays;
+    })
+    .slice(0, 3);
+
+  const relatedMarkup = related
+    .map(
+      (item) => `
+        <a class="related-item" href="./deal/${encodeURIComponent(item.id)}/">
+          <strong>${escapeHtml(item.title)}</strong>
+          <span>${escapeHtml(item.dateLabel)}</span>
+        </a>
+      `
+    )
+    .join('');
+
   dialogEl.dataset.dealId = deal.id;
   const dialogUrl = new URL(window.location.href);
   dialogUrl.searchParams.set('deal', deal.id);
@@ -1319,6 +1439,12 @@ function openDialog(id: string): void {
       <h3>Források <span>${deal.sources.length}</span></h3>
       ${sources}
     </div>
+
+    ${
+      relatedMarkup
+        ? `<div class="dialog-related"><h3>Hasonló dealek</h3>${relatedMarkup}</div>`
+        : ''
+    }
 
     <div class="dialog-actions">
       <button class="btn btn-solid" data-dialog-action="ics" type="button" ${deal.effective ? '' : 'disabled'}>Naptárba emlékeztetővel</button>
@@ -1630,6 +1756,18 @@ function handleAction(action: string, target: HTMLElement): void {
     return;
   }
 
+  if (action === 'toggle-filters') {
+    const controls = document.querySelector<HTMLElement>('.controls');
+    const open = controls?.classList.toggle('filters-open') ?? false;
+    target.setAttribute('aria-expanded', open ? 'true' : 'false');
+    return;
+  }
+
+  if (action === 'to-top') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
   if (action === 'cal-prev' || action === 'cal-next' || action === 'cal-today') {
     const year = state.calendarMonth.getFullYear();
     const month = state.calendarMonth.getMonth();
@@ -1724,11 +1862,12 @@ function handleAction(action: string, target: HTMLElement): void {
   }
 
   const card = target.closest<HTMLElement>('.deal-card');
-  if (!card?.dataset.id) return;
+  const dealId = card?.dataset.id ?? target.dataset.id;
+  if (!dealId) return;
 
-  if (action === 'watch') toggleWatch(card.dataset.id);
-  if (action === 'details') openDialog(card.dataset.id);
-  if (action === 'ics') downloadIcs(card.dataset.id);
+  if (action === 'watch') toggleWatch(dealId);
+  if (action === 'details') openDialog(dealId);
+  if (action === 'ics') downloadIcs(dealId);
 }
 
 appRoot.addEventListener('click', (event) => {
@@ -1930,6 +2069,17 @@ function openDealFromQuery(): void {
 
 async function init(): Promise<void> {
   renderShell();
+
+  const toTop = document.querySelector<HTMLElement>('#to-top');
+  window.addEventListener(
+    'scroll',
+    () => {
+      toTop?.classList.toggle('show', window.scrollY > 600);
+    },
+    { passive: true }
+  );
+
+  renderDailyDeal();
   renderStats();
   updateFilterButtons();
   renderResults();

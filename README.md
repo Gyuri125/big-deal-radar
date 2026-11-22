@@ -37,16 +37,19 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 
 - 100+ magyar/budapesti deal-ötletet tart nyilván,
 - a következő 7 nap eseményeit és a havi radarot mutatja,
+- **Mai dobás** blokkal nyit: mindennap egy kiemelt, aktuális dealet tesz eléd,
 - szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
+- mobilon **összecsukható szűrőpanellel** és gyors „vissza a tetejére” gombbal,
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
 - **saját lista + prioritás** a böngészőben, regisztráció nélkül,
 - ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató,
 - **minden dealhez legalább egy forrás**, ahol releváns, több is; a részletek ablakban listázva,
 - **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
+- **RSS feed** a következő dealekkel, hogy olvasóban is követhető legyen,
 - **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
 - **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, Ingyenes, 5 ezer alatt, 10 ezer alatt,
 - **naptárnézet** havi bontásban, hónap-naptár letöltéssel,
-- **egyedi deal-oldalak** SEO-val, OG képpel és Event structured data-val,
+- **egyedi deal-oldalak** SEO-val, OG képpel, Event structured data-val, saját ICS letöltéssel és hasonló dealekkel,
 - **PWA**: telepíthető, offline is működik,
 - **hibabejelentés** GitHub Issue-val, heti linkellenőrzéssel,
 - naponta **Discord digestet** küld,
@@ -519,6 +522,19 @@ A főoldalon a **Lista / Naptár** kapcsolóval havi nézetre válthatsz.
 
 A **Heti top 5** doboz a szerkesztői válogatást mutatja a legnagyobb dobásokból.
 
+A **Mai dobás** blokk a legaktuálisabb kiemelt dealet teszi a főoldal tetejére, egy kattintással nyitható részletekkel, naptárba tehető emlékeztetővel és követéssel.
+
+---
+
+## RSS és értesítések
+
+A statikus oldal nem tud felhasználónkénti e-mailt vagy push értesítést küldeni, de két megbízható követési módot ad:
+
+- **RSS**: `https://gyuri125.github.io/big-deal-radar/feed.xml` – a következő, dátumos dealek időrendben. Bármelyik RSS-olvasóba be lehet tenni.
+- **ICS naptár**: a részletek ablakban, a deal-oldalakon és a naptárnézetben is letölthető. A bejegyzés **14, 7, 1 nappal előtte és aznap** emlékeztet.
+
+A saját lista és a prioritások a böngésző `localStorage`-ában maradnak, így regisztráció nélkül is működnek. Valódi push/e-mail értesítéshez backend és felhasználói fiók kellene; ez tudatosan nincs beépítve.
+
 ---
 
 ## Egyedi deal-oldalak és SEO
@@ -534,10 +550,12 @@ Ezek az oldalak:
 - külön címmel és leírással rendelkeznek,
 - **OG / Twitter kártyát** kapnak (egyedi OG képpel),
 - **schema.org Event** structured data-t tartalmaznak (dátum, helyszín, ár, jegyvásárlási link),
+- **saját `.ics` naptárfájlt** kínálnak, emlékeztetőkkel,
+- **hasonló dealeket** ajánlanak a kategóriából,
 - a **Megosztás** gombbal másolható / megosztható a link,
 - a részletek ablakból is megnyithatók.
 
-A `sitemap.xml` automatikusan elkészül, a `robots.txt` pedig hivatkozik rá.
+A `sitemap.xml` és a `feed.xml` automatikusan elkészül, a `robots.txt` pedig hivatkozik a sitemapre.
 
 ---
 
@@ -683,6 +701,9 @@ big-deal-radar/
 - [x] PWA, offline mód, megosztható linkek.
 - [x] Heti linkellenőrzés és hibabejelentés.
 - [x] Minden dealhez legalább egy valós forrás.
+- [x] Mai dobás blokk, mobil szűrőpanel, vissza a tetejére gomb.
+- [x] RSS feed és deal-oldalanként letölthető ICS.
+- [x] Hasonló dealek ajánlása a részletekben és a deal-oldalakon.
 - [ ] A maradék 54 dealhez pontos dátum, ahol lehet.
 - [ ] Normál árak feltöltése a top 30-hoz.
 - [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.

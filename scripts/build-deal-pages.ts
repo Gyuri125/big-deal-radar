@@ -9,6 +9,7 @@ import {
   formatHuDate,
   parseISODate,
   toISODate,
+  addDays,
 } from '../src/utils/dates';
 
 const root = process.cwd();
@@ -151,6 +152,9 @@ function pageCss(): string {
     h2{margin:28px 0 10px;font-family:Georgia,serif;font-size:1.4rem;font-weight:500;color:var(--navy)}
     .sources{display:grid;gap:8px}.source{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-decoration:none}
     .source b{font-size:.8rem}.source span{margin-left:auto;font-size:.7rem;color:var(--muted)}
+    .related{display:grid;gap:8px}
+    .related a{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-decoration:none}
+    .related a:hover{border-color:#cfc5b6}.related b{font-size:.84rem}.related span{font-size:.72rem;color:var(--muted);white-space:nowrap}
     .footer{margin:36px 0 20px;color:var(--muted);font-size:.74rem;text-align:center}
     .footer a{color:var(--navy);font-weight:700}
     @media(max-width:600px){.wrap{padding:18px}.hero{padding:22px}.top{flex-direction:column;align-items:flex-start;gap:10px}}
@@ -172,7 +176,80 @@ function domainOf(url: string): string {
   }
 }
 
-function buildDealPage(deal: Deal): string {
+function icsDate(date: Date): string {
+  return `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(
+    date.getDate()
+  ).padStart(2, '0')}`;
+}
+
+function icsDateTime(date: Date): string {
+  return `${date.toISOString().replace(/[-:]/g, '').split('.')[0]}Z`;
+}
+
+function escapeIcs(value: string): string {
+  return value
+    .replace(/\\/g, '\\\\')
+    .replace(/\n/g, '\\n')
+    .replace(/,/g, '\\,')
+    .replace(/;/g, '\\;');
+}
+
+function alarmLines(summary: string): string[] {
+  const description = escapeIcs(`Big-deal radar: ${summary}`);
+  return ['-P14D', '-P7D', '-P1D', 'PT0S'].flatMap((trigger) => [
+    'BEGIN:VALARM',
+    `TRIGGER:${trigger}`,
+    'ACTION:DISPLAY',
+    `DESCRIPTION:${description}`,
+    'END:VALARM',
+  ]);
+}
+
+function icsForDeal(deal: Deal, effective: ReturnType<typeof nextOccurrence>): string {
+  if (!effective) return '';
+
+  const start = effective.start;
+  const end = effective.end ?? start;
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Big-deal radar//HU',
+    'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    `UID:${deal.id}@big-deal-radar`,
+    `DTSTAMP:${icsDateTime(new Date())}`,
+    `DTSTART;VALUE=DATE:${icsDate(start)}`,
+    `DTEND;VALUE=DATE:${icsDate(addDays(end, 1))}`,
+    `SUMMARY:${escapeIcs(deal.title)}`,
+    `DESCRIPTION:${escapeIcs(
+      `${deal.deal}${deal.booking_note ? `\n\nJegyvásárlás: ${deal.booking_note}` : ''}`
+    )}`,
+    `LOCATION:${escapeIcs(deal.location)}`,
+    ...(deal.source_url ? [`URL:${deal.source_url}`] : []),
+    ...alarmLines(deal.title),
+    'END:VEVENT',
+  ];
+
+  if (deal.booking_opens) {
+    const bookingDate = parseISODate(deal.booking_opens);
+    lines.push(
+      'BEGIN:VEVENT',
+      `UID:${deal.id}-booking@big-deal-radar`,
+      `DTSTAMP:${icsDateTime(new Date())}`,
+      `DTSTART;VALUE=DATE:${icsDate(bookingDate)}`,
+      `DTEND;VALUE=DATE:${icsDate(addDays(bookingDate, 1))}`,
+      `SUMMARY:${escapeIcs(`Foglalás nyílik: ${deal.title}`)}`,
+      `DESCRIPTION:${escapeIcs(deal.booking_note ?? deal.deal)}`,
+      ...alarmLines(`Foglalás nyílik: ${deal.title}`),
+      'END:VEVENT'
+    );
+  }
+
+  lines.push('END:VCALENDAR');
+  return `${lines.join('\r\n')}\r\n`;
+}
+
+function buildDealPage(deal: Deal, related: Deal[] = []): string {
   const effective = nextOccurrence(deal);
   const dateLabel = effectiveDateLabel(deal, effective);
   const checked = deal.last_checked
@@ -181,6 +258,15 @@ function buildDealPage(deal: Deal): string {
   const booking = deal.booking_url
     ? `<a class="btn btn-primary" href="${escapeHtml(deal.booking_url)}" target="_blank" rel="noopener">Jegyvásárlás / foglalás</a>`
     : '';
+  const ics = effective
+    ? `<a class="btn btn-ghost" href="./${encodeURIComponent(deal.id)}.ics">Naptárba (.ics)</a>`
+    : '';
+  const relatedItems = related
+    .map((item) => {
+      const itemEffective = nextOccurrence(item);
+      return `<a href="../${encodeURIComponent(item.id)}/"><b>${escapeHtml(item.title)}</b><span>${escapeHtml(effectiveDateLabel(item, itemEffective))}</span></a>`;
+    })
+    .join('');
   const radarLink = `../../?deal=${encodeURIComponent(deal.id)}`;
   const reportUrl = `https://github.com/Gyuri125/big-deal-radar/issues/new?title=${encodeURIComponent(
     `Hiba: ${deal.title}`
@@ -246,6 +332,7 @@ function buildDealPage(deal: Deal): string {
   <title>${escapeHtml(deal.title)} – Big-deal radar</title>
   <meta name="description" content="${escapeHtml(`${deal.deal} ${dateLabel} · ${deal.location}`)}"/>
   <link rel="canonical" href="${escapeHtml(`${siteUrl}deal/${deal.id}/`)}"/>
+  <link rel="alternate" type="application/rss+xml" title="Big-deal radar – következő dealek" href="../../feed.xml"/>
   <meta property="og:type" content="article"/>
   <meta property="og:site_name" content="Big-deal radar"/>
   <meta property="og:title" content="${escapeHtml(deal.title)}"/>
@@ -286,10 +373,13 @@ function buildDealPage(deal: Deal): string {
       <div class="actions">
         <a class="btn btn-primary" href="${radarLink}">Megnyitás a radarom</a>
         ${booking}
+        ${ics}
       </div>
 
       <h2>Források</h2>
       <div class="sources">${sources}</div>
+
+      ${relatedItems ? `<h2>Hasonló dealek</h2><div class="related">${relatedItems}</div>` : ''}
     </main>
 
     <footer class="footer">
@@ -314,8 +404,21 @@ async function main(): Promise<void> {
     const effective = nextOccurrence(deal);
     const dateLabel = effectiveDateLabel(deal, effective);
     const pageDir = path.join(distDir, 'deal', deal.id);
+    const related = deals
+      .filter((item) => item.id !== deal.id && item.category === deal.category)
+      .sort((a, b) => {
+        const aStart = nextOccurrence(a)?.start.getTime() ?? Number.MAX_SAFE_INTEGER;
+        const bStart = nextOccurrence(b)?.start.getTime() ?? Number.MAX_SAFE_INTEGER;
+        return aStart - bStart;
+      })
+      .slice(0, 3);
     fs.mkdirSync(pageDir, { recursive: true });
-    fs.writeFileSync(path.join(pageDir, 'index.html'), buildDealPage(deal), 'utf8');
+    fs.writeFileSync(path.join(pageDir, 'index.html'), buildDealPage(deal, related), 'utf8');
+
+    const ics = icsForDeal(deal, effective);
+    if (ics) {
+      fs.writeFileSync(path.join(pageDir, `${deal.id}.ics`), ics, 'utf8');
+    }
 
     const svg = ogSvg(deal, dateLabel);
     await sharp(Buffer.from(svg))
@@ -358,7 +461,62 @@ ${urls
 `;
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap, 'utf8');
 
-  console.log(`✅ ${deals.length} deal-oldal + OG kép + sitemap elkészült.`);
+  const feedItems = deals
+    .map((deal) => ({ deal, effective: nextOccurrence(deal) }))
+    .filter(
+      (item): item is { deal: Deal; effective: NonNullable<ReturnType<typeof nextOccurrence>> } =>
+        item.effective !== null
+    )
+    .sort((a, b) => a.effective.start.getTime() - b.effective.start.getTime())
+    .slice(0, 60);
+
+  const feed = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Big-deal radar – következő dealek</title>
+    <link>${escapeXml(siteUrl)}</link>
+    <description>Budapest és Magyarország legjobb ritka dealjei, időrendben.</description>
+    <language>hu-HU</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${escapeXml(`${siteUrl}feed.xml`)}" rel="self" type="application/rss+xml" />
+${feedItems
+  .map(({ deal, effective }) => {
+    const url = `${siteUrl}deal/${deal.id}/`;
+    const dateLabel = effectiveDateLabel(deal, effective);
+    const description = [
+      deal.deal,
+      dateLabel,
+      deal.location,
+      priceLabel(deal),
+      deal.booking_note,
+    ]
+      .filter(Boolean)
+      .join(' · ');
+    const pubDate = new Date(
+      effective.start.getFullYear(),
+      effective.start.getMonth(),
+      effective.start.getDate(),
+      8
+    ).toUTCString();
+
+    return `    <item>
+      <title>${escapeXml(deal.title)}</title>
+      <link>${escapeXml(url)}</link>
+      <guid isPermaLink="true">${escapeXml(url)}</guid>
+      <pubDate>${pubDate}</pubDate>
+      <category>${escapeXml(deal.category)}</category>
+      <description>${escapeXml(description)}</description>
+    </item>`;
+  })
+  .join('\n')}
+  </channel>
+</rss>
+`;
+  fs.writeFileSync(path.join(distDir, 'feed.xml'), feed, 'utf8');
+
+  console.log(
+    `✅ ${deals.length} deal-oldal + OG kép + sitemap + ${feedItems.length} elemes RSS elkészült.`
+  );
 }
 
 main().catch((error) => {
