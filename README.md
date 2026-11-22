@@ -6,6 +6,8 @@
 >
 > **Élő oldal:** [https://gyuri125.github.io/big-deal-radar/](https://gyuri125.github.io/big-deal-radar/)
 >
+> **AI handoff / teljes projektállapot:** [PROJECT_STATUS.md](PROJECT_STATUS.md)
+>
 > **Minőség:** Lighthouse 100/100/100 (Accessibility, Best Practices, SEO) · 12 automata teszt · titokszivárgás-ellenőrzés minden CI futásban.
 
 A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor nem 10%-ot adnak, hanem 4 napig **minden mozijegy ugyanannyi**, a 4DX is. Ilyen még a Múzeumok Éjszakája, a Színházak Éjszakája, a Restaurant Week, a Corvin Mozi Éjszaka vagy a Budapest100.
