@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-11-22T17:54:39.626Z",
-  "total": 127,
-  "ok": 119,
+  "checked_at": "2026-11-22T18:10:12.656Z",
+  "total": 138,
+  "ok": 128,
   "redirected": 27,
-  "blocked": 8,
+  "blocked": 10,
   "failed": 0,
   "links": [
     {
@@ -95,6 +95,24 @@
       "error": null,
       "deals": [
         "Ingyenes kiállításmegnyitók"
+      ]
+    },
+    {
+      "url": "https://biztosdontes.hu/cikkek/bankszamla-akciok-2026-ban-tenyleg-megeri-a-nagyobb-bonusz",
+      "status": 200,
+      "finalUrl": "https://biztosdontes.hu/cikkek/bankszamla-akciok-2026-ban-tenyleg-megeri-a-nagyobb-bonusz",
+      "error": null,
+      "deals": [
+        "Ajánlói bónuszok"
+      ]
+    },
+    {
+      "url": "https://bkk.hu/en/news/2026/09/european-mobility-week-in-budapest-bkk-promotes-sustainable-transportation-with-a-cyclists-breakfast-guided-walking-tours-and-family-friendly-activities.17273/",
+      "status": 200,
+      "finalUrl": "https://bkk.hu/en/news/2026/09/european-mobility-week-in-budapest-bkk-promotes-sustainable-transportation-with-a-cyclists-breakfast-guided-walking-tours-and-family-friendly-activities.17273/",
+      "error": null,
+      "deals": [
+        "Autómentes nap"
       ]
     },
     {
@@ -199,6 +217,16 @@
       ]
     },
     {
+      "url": "https://egeszsegprogram.eu/helyszinek-idopontok",
+      "status": 200,
+      "finalUrl": "https://egeszsegprogram.eu/helyszinek-idopontok",
+      "error": null,
+      "deals": [
+        "Ingyenes szűrőnapok",
+        "Egészségnapok"
+      ]
+    },
+    {
       "url": "https://eromuvekejszakaja.hu",
       "status": 200,
       "finalUrl": "https://eromuvekejszakaja.hu/",
@@ -255,12 +283,30 @@
       ]
     },
     {
+      "url": "https://futoversenyinfo.hu/futoverseny/42-spar-budapest-maraton-fesztival-2027-10-09",
+      "status": 200,
+      "finalUrl": "https://futoversenyinfo.hu/futoverseny/42-spar-budapest-maraton-fesztival-2027-10-09",
+      "error": null,
+      "deals": [
+        "SPAR Budapest Maraton early bird"
+      ]
+    },
+    {
       "url": "https://gourmetfesztival.hu/hu/",
       "status": 200,
       "finalUrl": "https://gourmetfesztival.hu/hu/",
       "error": null,
       "deals": [
         "Gourmet Fesztivál"
+      ]
+    },
+    {
+      "url": "https://hello.munch.eco/hu/hun/",
+      "status": 200,
+      "finalUrl": "https://hello.munch.eco/hu/hun/",
+      "error": null,
+      "deals": [
+        "Too Good To Go / Munch"
       ]
     },
     {
@@ -403,6 +449,24 @@
       ]
     },
     {
+      "url": "https://nevezes.futanet.hu/events/783/",
+      "status": 200,
+      "finalUrl": "https://nevezes.futanet.hu/events/783/",
+      "error": null,
+      "deals": [
+        "SPAR Budapest Maraton early bird"
+      ]
+    },
+    {
+      "url": "https://obuda.hu/ujra-ingyenes-egeszsegnap-a-vorosvari-uti-szakrendeloben/",
+      "status": 200,
+      "finalUrl": "https://obuda.hu/ujra-ingyenes-egeszsegnap-a-vorosvari-uti-szakrendeloben/",
+      "error": null,
+      "deals": [
+        "Egészségnapok"
+      ]
+    },
+    {
       "url": "https://opera.hu",
       "status": 200,
       "finalUrl": "https://www.opera.hu/hu/",
@@ -463,6 +527,15 @@
       "error": null,
       "deals": [
         "Cyber Monday"
+      ]
+    },
+    {
+      "url": "https://sielok.hu/rovat/akciok/cikk/szallasakciok/",
+      "status": 200,
+      "finalUrl": "https://sielok.hu/rovat/akciok/cikk/szallasakciok/",
+      "error": null,
+      "deals": [
+        "Szálloda early booking"
       ]
     },
     {
@@ -592,6 +665,15 @@
       ]
     },
     {
+      "url": "https://visitbalaton365.hu/kampanyok",
+      "status": 200,
+      "finalUrl": "https://visitbalaton365.hu/kampanyok",
+      "error": null,
+      "deals": [
+        "Balaton elő-/utószezon"
+      ]
+    },
+    {
       "url": "https://vorosmartyclassicxmas.hu/",
       "status": 200,
       "finalUrl": "https://vorosmartyclassicxmas.hu/",
@@ -691,6 +773,15 @@
       ]
     },
     {
+      "url": "https://www.bsi.hu/",
+      "status": 403,
+      "finalUrl": "https://www.bsi.hu/",
+      "error": null,
+      "deals": [
+        "SPAR Budapest Maraton early bird"
+      ]
+    },
+    {
       "url": "https://www.bud.hu/",
       "status": 200,
       "finalUrl": "https://www.bud.hu/",
@@ -765,7 +856,7 @@
     },
     {
       "url": "https://www.emag.hu/",
-      "status": 200,
+      "status": 511,
       "finalUrl": "https://www.emag.hu/",
       "error": null,
       "deals": [
@@ -898,6 +989,15 @@
       "deals": [
         "MÁV diák 50%",
         "Csoportos / last-minute jegyek"
+      ]
+    },
+    {
+      "url": "https://www.mavcsoport.hu/eloszezon",
+      "status": 200,
+      "finalUrl": "https://www.mavcsoport.hu/eloszezon",
+      "error": null,
+      "deals": [
+        "Balaton elő-/utószezon"
       ]
     },
     {

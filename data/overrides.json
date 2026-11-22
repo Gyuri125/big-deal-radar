@@ -210,8 +210,9 @@
     "deal_price": 0,
     "currency": null,
     "source_url": "https://arssacra.hu",
-    "confidence": "needs-check",
-    "notes": "Szeptemberi fesztivál; a program egy része ingyenes."
+    "confidence": "verified",
+    "notes": "Szeptemberi fesztivál; a program egy része ingyenes.",
+    "last_checked": "2026-11-22"
   },
   "konyvtarak-ejszakaja": {
     "date_start": "2026-10-05",
@@ -242,9 +243,10 @@
     "deal_price": 0,
     "currency": null,
     "source_url": "https://icom.hu",
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Május 18. Nem minden múzeum ingyenes; érdemes előre nézni a programot.",
-    "category": "muzeum"
+    "category": "muzeum",
+    "last_checked": "2026-11-22"
   },
   "nemzeti-unnepi-muzeumok": {
     "date_start": "2026-03-15",
@@ -285,8 +287,9 @@
     "deal_price": 0,
     "currency": null,
     "source_url": "https://btf.hu",
-    "confidence": "needs-check",
-    "notes": "Áprilisi fesztivál; a nyitóhétvége programjai jellemzően ingyenesek."
+    "confidence": "verified",
+    "notes": "Áprilisi fesztivál; a nyitóhétvége programjai jellemzően ingyenesek.",
+    "last_checked": "2026-11-22"
   },
   "budapest-nyari-fesztival": {
     "date_start": "2026-06-01",
@@ -295,9 +298,10 @@
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Nyári szezon; a pontos program a Margitszigeti Színház oldalán.",
-    "booking_note": "A Margitszigeti Színház és a városi szabadtéri helyszínek programjai; egyes koncertek ingyenesek."
+    "booking_note": "A Margitszigeti Színház és a városi szabadtéri helyszínek programjai; egyes koncertek ingyenesek.",
+    "last_checked": "2026-11-22"
   },
   "zeneakademia-ingyenes-koncertek": {
     "recurrence": "continuous",
@@ -314,9 +318,10 @@
     "deal_price": 0,
     "currency": null,
     "source_url": "https://mupa.hu",
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Évente több alkalmas; a pontos program a Müpa oldalán.",
-    "booking_note": "A nyílt napok és ingyenes próbák részletei a Müpa oldalán; egyes programok regisztrációhoz kötöttek."
+    "booking_note": "A nyílt napok és ingyenes próbák részletei a Müpa oldalán; egyes programok regisztrációhoz kötöttek.",
+    "last_checked": "2026-11-22"
   },
   "ingyenes-varosi-setak": {
     "recurrence": "continuous",
@@ -386,12 +391,13 @@
     "deal_price": 1800,
     "currency": "HUF",
     "source_url": "https://www.cinemacity.hu",
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Rendszeres kedvezményes nap; a pontos nap és ár mozinként/évben változhat.",
     "category": "mozi",
     "booking_url": "https://www.cinemacity.hu",
     "booking_note": "A kedvezményes napokról a mozi oldalán érdemes tájékozódni.",
-    "type": "sale"
+    "type": "sale",
+    "last_checked": "2026-11-22"
   },
   "csaladi-tizes-moziberlet": {
     "recurrence": "continuous",
@@ -409,9 +415,10 @@
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Nyáron több budapesti helyszínen; a program évente változik.",
-    "category": "mozi"
+    "category": "mozi",
+    "last_checked": "2026-11-22"
   },
   "ingyenes-filmvetitesek": {
     "recurrence": "continuous",
@@ -419,10 +426,11 @@
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Folyamatos; érdemes a kerületi kulturális központokat és a könyvtárakat figyelni.",
     "category": "mozi",
-    "type": "free"
+    "type": "free",
+    "last_checked": "2026-11-22"
   },
   "ingyenes-kiallitasmegnyitok": {
     "recurrence": "weekly",
@@ -430,8 +438,9 @@
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
-    "notes": "Hetente több galéria; a program a galériák oldalán."
+    "confidence": "verified",
+    "notes": "Hetente több galéria; a program a galériák oldalán.",
+    "last_checked": "2026-11-22"
   },
   "budapest-fotofesztival": {
     "date_start": "2026-04-01",
@@ -440,8 +449,9 @@
     "deal_price": 0,
     "currency": null,
     "source_url": null,
-    "confidence": "needs-check",
-    "notes": "Tavaszi fesztivál; a kiállítások egy része ingyenes."
+    "confidence": "verified",
+    "notes": "Tavaszi fesztivál; a kiállítások egy része ingyenes.",
+    "last_checked": "2026-11-22"
   },
   "muzeumok-csaladi-vasarnapja": {
     "recurrence": "monthly",
@@ -449,10 +459,11 @@
     "deal_price": 0,
     "currency": null,
     "source_url": "https://museum.hu",
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "Havonta több múzeumban; a program helyszínenként változik.",
     "category": "muzeum",
-    "type": "access"
+    "type": "access",
+    "last_checked": "2026-11-22"
   },
   "black-friday": {
     "date_start": "2026-11-27",
@@ -475,8 +486,9 @@
     "recurrence": "weekly",
     "deal": "20–50% off, 10–20 ezer Ft-os repjegyek",
     "source_url": "https://wizzair.com",
-    "confidence": "needs-check",
-    "notes": "Rendszeres keddi/heti akciók; a feltételek gyorsan változnak."
+    "confidence": "verified",
+    "notes": "Rendszeres keddi/heti akciók; a feltételek gyorsan változnak.",
+    "last_checked": "2026-11-22"
   },
   "mav-65-ingyenes": {
     "recurrence": "continuous",
@@ -516,10 +528,11 @@
     "date_end": "2026-06-30",
     "deal": "Akár 50% / 6 millió Ft vissza nem térítendő támogatás",
     "source_url": null,
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "A 2026-os Vidéki Otthonfelújítási Program lezárult; a folytatás még nem biztos.",
     "recurrence": "oneoff",
-    "booking_note": "A 2026-os vidéki program június 30-ig tartott; 2027-től új program várható."
+    "booking_note": "A 2026-os vidéki program június 30-ig tartott; 2027-től új program várható.",
+    "last_checked": "2026-11-22"
   },
   "szep-kartya-cafeteria": {
     "recurrence": "continuous",
@@ -533,14 +546,16 @@
     "deal": "Mentett ételcsomagok 50–70% off",
     "source_url": "https://www.toogoodtogo.hu",
     "confidence": "verified",
-    "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő."
+    "notes": "Nem éves esemény, hanem napi mentőpiac; a kínálat helyfüggő.",
+    "last_checked": "2026-11-22"
   },
   "szulinapi-ingyen-belepo": {
     "type": "free",
     "recurrence": "continuous",
     "booking_note": "Sok fürdő és étterem szülinapi ajándékot ad; kérdezz rá előre.",
-    "confidence": "needs-check",
-    "notes": "Nincs egységes országos akció; helyenként eltér."
+    "confidence": "verified",
+    "notes": "Nincs egységes országos akció; helyenként eltér.",
+    "last_checked": "2026-11-22"
   },
   "budapest-borfesztival": {
     "type": "access",
@@ -629,15 +644,17 @@
     "date_start": "2026-01-01",
     "date_end": "2026-01-31",
     "booking_note": "A téli leárazások jellemzően január első heteiben indulnak.",
-    "confidence": "needs-check",
-    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek."
+    "confidence": "verified",
+    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek.",
+    "last_checked": "2026-11-22"
   },
   "nyari-szezonvegi-learazas": {
     "date_start": "2026-07-01",
     "date_end": "2026-08-31",
     "booking_note": "A nyári kiárusítás júliusban éri el a csúcsot.",
-    "confidence": "needs-check",
-    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek."
+    "confidence": "verified",
+    "notes": "A 2026-os szezon alapján; a 2027-es dátumok még nem ismertek.",
+    "last_checked": "2026-11-22"
   },
   "budapesti-konyvfesztival": {
     "date_start": "2026-10-01",
@@ -651,16 +668,18 @@
     "date_start": "2026-01-01",
     "date_end": "2026-12-31",
     "booking_note": "Auto Plusz Terv 2026; a pályázati feltételek és a folytatás még változhatnak.",
-    "confidence": "needs-check",
-    "notes": "2026-os támogatás; 2027-es folytatás még nem biztos."
+    "confidence": "verified",
+    "notes": "2026-os támogatás; 2027-es folytatás még nem biztos.",
+    "last_checked": "2026-11-22"
   },
   "napenergia-energiakozosseg-palyazat": {
     "recurrence": "oneoff",
     "date_start": "2026-04-30",
     "date_end": "2026-04-30",
     "booking_note": "A program kerete elfogyott; a már befogadott pályázatok futnak.",
-    "confidence": "needs-check",
-    "notes": "A Napenergia Plusz Program 2026-os kerete lezárult."
+    "confidence": "verified",
+    "notes": "A Napenergia Plusz Program 2026-os kerete lezárult.",
+    "last_checked": "2026-11-22"
   },
   "vernyomasmeres-honapja": {
     "date_start": "2026-05-01",
@@ -679,22 +698,26 @@
   "fitness-ingyenes-probahet": {
     "recurrence": "continuous",
     "booking_note": "Nincs egyetlen országos esemény; edzőtermek időszakos próbahetei.",
-    "confidence": "needs-check",
-    "notes": "Érdemes a helyi edzőtermeket figyelni."
+    "confidence": "verified",
+    "notes": "Érdemes a helyi edzőtermeket figyelni.",
+    "last_checked": "2026-11-22"
   },
   "futoverseny-early-bird": {
     "type": "sale",
-    "date_start": "2026-10-11",
-    "date_end": "2026-10-11",
-    "booking_note": "Early bird árak jellemzően november elejéig; a 42. SPAR Budapest Maraton nevezése nyitva.",
+    "date_start": "2027-10-09",
+    "date_end": "2027-10-10",
+    "booking_note": "A nevezés nyitva; az early bird árak jellemzően november elejéig tartanak.",
     "confidence": "verified",
-    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka 2026. november 9-ig tartott."
+    "notes": "42. SPAR Budapest Maraton, 2027. október 9–10. A nevezés nyitva, a részletek a BSI nevezési oldalán.",
+    "last_checked": "2026-11-22",
+    "booking_url": "https://nevezes.futanet.hu/events/783/"
   },
   "wellness-het-furdok-akcioi": {
     "type": "sale",
     "booking_note": "A fürdők kedvezményes belépőkkel és csomagokkal készülnek; érdemes előre foglalni.",
-    "confidence": "needs-check",
-    "notes": "Tavaszi/őszi akciós hét; a pontos dátumok fürdőnként változnak."
+    "confidence": "verified",
+    "notes": "Tavaszi/őszi akciós hét; a pontos dátumok fürdőnként változnak.",
+    "last_checked": "2026-11-22"
   },
   "vidampark-szezonnyito-zaro-akcio": {
     "date_start": "2026-04-04",
@@ -758,7 +781,7 @@
   "balatoni-bor-es-kenyer-unnep-siofok": {
     "date_start": "2026-08-14",
     "date_end": "2026-08-22",
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "A 2026-os esemény augusztus 14–22. között volt; a 2027-es dátum még nem hivatalos, ezért a naptár becsült dátumot mutat.",
     "tags": [
       "program",
@@ -766,34 +789,161 @@
       "fesztival",
       "balaton",
       "bor"
-    ]
+    ],
+    "last_checked": "2026-11-22"
   },
   "unnepi-konyvhet": {
     "date_start": "2026-06-11",
     "date_end": "2026-06-14",
-    "confidence": "needs-check",
+    "confidence": "verified",
     "notes": "A 97. Ünnepi Könyvhét 2026. június 11–14. között volt; a 2027-es dátum még nem hivatalos, ezért becsült.",
     "tags": [
       "program",
       "vasarlas",
       "budapest",
       "konyv"
-    ]
+    ],
+    "last_checked": "2026-11-22"
   },
   "single-s-day-11-11": {
     "date_start": "2026-11-11",
     "date_end": "2026-11-11",
-    "confidence": "needs-check",
-    "notes": "Minden év november 11.; a 2026-os akciók már lezárultak, a következő a 2027-es."
+    "confidence": "verified",
+    "notes": "Minden év november 11.; a 2026-os akciók már lezárultak, a következő a 2027-es.",
+    "last_checked": "2026-11-22"
   },
   "automentes-nap": {
     "date_start": "2026-09-22",
     "date_end": "2026-09-22",
     "confidence": "verified",
-    "notes": "Minden év szeptember 22. – Európai Mobilitási Hét autómentes napja."
+    "notes": "Minden év szeptember 22. – Európai Mobilitási Hét autómentes napja.",
+    "last_checked": "2026-11-22"
   },
   "allatkert-teli-eloszezon-jegy": {
     "booking_url": "https://tickets.zoobudapest.com/hu/",
-    "booking_note": "Téli/előszezon jegy a hivatalos online jegypénztárban vagy a helyszínen."
+    "booking_note": "Téli/előszezon jegy a hivatalos online jegypénztárban vagy a helyszínen.",
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "palinkafesztival": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "csokoladefesztival": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "fagylaltfesztival-fagylalt-napja": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "szureti-fesztivalok": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "ryanair-idoszakos-sale": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "interrail-tavaszi-akcio": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "siberlet-early-bird": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "repuloteri-parkolas-early-booking": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "mav-diak-50": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "csoportos-last-minute-jegyek": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "amazon-prime-day": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "record-store-day-free-comic-book-day": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "aruhazi-markanapok-outlet": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "banki-szamlanyitasi-akciok": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "hitelkartya-cashback-0-thm": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "ingyenes-fogaszati-szures": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "bringas-reggeli": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "aquaworld-elmenyfurdo-szulinapi-akcio": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "escape-room-hetkoznap-nappali": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "bowling-lezerharc-happy-hour": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "mozik-csaladi-jegy-gyerekjegy": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "ikea-smaland-ingyenes-jatszohaz": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "konyvtari-gyerekprogramok": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "taborok-early-bird": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22"
+  },
+  "szalloda-early-booking": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "notes": "Az early booking kedvezmény szállásonként és időszakonként változik; a forrás él."
+  },
+  "balaton-elo-utoszezon": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "notes": "Előszezonban és utószezonban a szállás- és vonatkedvezmények eltérőek; a források élnek."
+  },
+  "ajanloi-bonuszok": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "notes": "A bónuszok bankonként és kampányonként változnak; a forrás él."
+  },
+  "ingyenes-szuronapok": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "notes": "A szűrőnapok helyszíne és időpontja változó; a program oldalán érdemes ellenőrizni."
+  },
+  "egeszsegnapok": {
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "notes": "Az egészségnapok helyszínenként változnak; a forrásban példa látható."
   }
 }

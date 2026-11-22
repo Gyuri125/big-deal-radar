@@ -62,7 +62,7 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
 - **Google Naptár link** egy kattintásos hozzáadáshoz,
 - **saját lista + prioritás** a böngészőben, regisztráció nélkül,
-- ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató (jelenleg 24 dealnél),
+- ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató (jelenleg 25 dealnél),
 - **minden dealhez legalább egy forrás**, ahol releváns, több is; a részletek ablakban listázva,
 - **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
 - **RSS feed** a következő dealekkel, hogy olvasóban is követhető legyen,
@@ -530,13 +530,13 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
 
 - **106 deal**
-- **140 forrás**
+- **152 forrás**
 - **57 dátumos**
-- **53 ellenőrzött**
-- **24 jegy / foglalás link**
+- **106 ellenőrzött**
+- **25 jegy / foglalás link**
 - **0 keresőlinkes** – minden dealhez van legalább egy valós forrás
 
-Ez nem reklám, hanem átláthatóság: ahol lehet, több forrást is megadunk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.
+Ez nem reklám, hanem átláthatóság: ahol lehet, több forrást is megadunk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát. Az **ellenőrzött** jelölés azt jelenti, hogy a forrás elérhető és a deal szerepel rajta; a dátumok és árak továbbra is változhatnak, ezért a részleteket a forrásnál érdemes megnézni.
 
 ---
 
@@ -807,6 +807,7 @@ big-deal-radar/
 - [x] PWA, offline mód, megosztható linkek.
 - [x] Heti linkellenőrzés és hibabejelentés.
 - [x] Minden dealhez legalább egy valós forrás.
+- [x] Mind a 106 deal forrása ellenőrzött (2026-11-22).
 - [x] Mai dobás blokk, mobil szűrőpanel, vissza a tetejére gomb.
 - [x] RSS feed és deal-oldalanként letölthető ICS.
 - [x] Hasonló dealek ajánlása a részletekben és a deal-oldalakon.

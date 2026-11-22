@@ -274,12 +274,27 @@
       "label": "Szallas.hu",
       "url": "https://www.szallas.hu/",
       "type": "official"
+    },
+    {
+      "label": "Síelők – előfoglalási kedvezmények",
+      "url": "https://sielok.hu/rovat/akciok/cikk/szallasakciok/",
+      "type": "article"
     }
   ],
   "balaton-elo-utoszezon": [
     {
       "label": "Szallas.hu – Balaton",
       "url": "https://www.szallas.hu/balaton",
+      "type": "official"
+    },
+    {
+      "label": "VisitBalaton – kampányok",
+      "url": "https://visitbalaton365.hu/kampanyok",
+      "type": "official"
+    },
+    {
+      "label": "MÁV – egész évben Balaton",
+      "url": "https://www.mavcsoport.hu/eloszezon",
       "type": "official"
     }
   ],
@@ -408,6 +423,11 @@
       "label": "Revolut",
       "url": "https://www.revolut.com/",
       "type": "official"
+    },
+    {
+      "label": "BiztosDöntés – bankszámla bónuszok",
+      "url": "https://biztosdontes.hu/cikkek/bankszamla-akciok-2026-ban-tenyleg-megeri-a-nagyobb-bonusz",
+      "type": "article"
     }
   ],
   "zold-auto-ev-tamogatas": [
@@ -434,6 +454,11 @@
       "label": "Nemzeti Népegészségügyi Központ",
       "url": "https://www.nnk.gov.hu/",
       "type": "official"
+    },
+    {
+      "label": "Országos szűrőprogram – helyszínek",
+      "url": "https://egeszsegprogram.eu/helyszinek-idopontok",
+      "type": "official"
     }
   ],
   "vernyomasmeres-honapja": [
@@ -448,6 +473,16 @@
       "label": "Nemzeti Népegészségügyi Központ",
       "url": "https://www.nnk.gov.hu/",
       "type": "official"
+    },
+    {
+      "label": "Országos szűrőprogram – helyszínek",
+      "url": "https://egeszsegprogram.eu/helyszinek-idopontok",
+      "type": "official"
+    },
+    {
+      "label": "Óbuda – ingyenes egészségnap",
+      "url": "https://obuda.hu/ujra-ingyenes-egeszsegnap-a-vorosvari-uti-szakrendeloben/",
+      "type": "article"
     }
   ],
   "ingyenes-fogaszati-szures": [
@@ -483,6 +518,21 @@
       "label": "SPAR Budapest Maraton – nevezés",
       "url": "https://sparbudapestmaraton.hu/nevezesi-infok",
       "type": "official"
+    },
+    {
+      "label": "Budapest Sportiroda",
+      "url": "https://www.bsi.hu/",
+      "type": "official"
+    },
+    {
+      "label": "BSI online nevezés – 42. SPAR Budapest Maraton",
+      "url": "https://nevezes.futanet.hu/events/783/",
+      "type": "ticket"
+    },
+    {
+      "label": "FutóversenyInfo – 2027. október 9–10.",
+      "url": "https://futoversenyinfo.hu/futoverseny/42-spar-budapest-maraton-fesztival-2027-10-09",
+      "type": "article"
     }
   ],
   "bringas-reggeli": [
@@ -497,6 +547,11 @@
       "label": "Európai Mobilitási Hét",
       "url": "https://www.mobilityweek.eu/",
       "type": "official"
+    },
+    {
+      "label": "BKK – Európai Mobilitási Hét",
+      "url": "https://bkk.hu/en/news/2026/09/european-mobility-week-in-budapest-bkk-promotes-sustainable-transportation-with-a-cyclists-breakfast-guided-walking-tours-and-family-friendly-activities.17273/",
+      "type": "article"
     }
   ],
   "szulinapi-ingyen-belepo": [
@@ -651,6 +706,13 @@
       "label": "Müpa jegyek és bérletek",
       "url": "https://mupa.hu/jegyek-berletek/2027-tavasz",
       "type": "ticket"
+    }
+  ],
+  "too-good-to-go-munch": [
+    {
+      "label": "Munch – magyar ételmentő app",
+      "url": "https://hello.munch.eco/hu/hun/",
+      "type": "official"
     }
   ]
 }

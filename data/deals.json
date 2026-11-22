@@ -761,8 +761,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "kultura",
@@ -893,8 +893,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "muzeum",
@@ -1063,8 +1063,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "kultura",
@@ -1106,8 +1106,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "kultura",
@@ -1190,8 +1190,8 @@
         "type": "ticket"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "kultura",
@@ -1494,8 +1494,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "mozi",
@@ -1576,8 +1576,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "mozi",
@@ -1615,8 +1615,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "mozi",
@@ -1654,8 +1654,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "kultura",
@@ -1696,8 +1696,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "kultura",
@@ -1736,8 +1736,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "muzeum",
@@ -1928,12 +1928,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "gasztro",
       "sale",
-      "budapest",
       "program",
       "unnep"
     ],
@@ -1971,12 +1971,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "gasztro",
       "access",
-      "budapest",
       "program",
       "unnep"
     ],
@@ -2013,12 +2013,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "gasztro",
       "sale",
-      "budapest",
       "program",
       "unnep"
     ],
@@ -2056,12 +2056,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "gasztro",
       "free",
-      "budapest",
       "program",
       "unnep"
     ],
@@ -2150,8 +2150,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "program",
       "fesztival",
@@ -2186,6 +2186,11 @@
     "booking_url": null,
     "booking_note": null,
     "sources": [
+      {
+        "label": "Munch – magyar ételmentő app",
+        "url": "https://hello.munch.eco/hu/hun/",
+        "type": "official"
+      },
       {
         "label": "Hivatalos oldal",
         "url": "https://www.toogoodtogo.hu",
@@ -2231,8 +2236,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "online",
       "utazas",
@@ -2269,12 +2274,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "online",
       "utazas",
-      "sale",
-      "online"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #52",
     "featured": false
@@ -2310,12 +2315,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "utazas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #53",
     "featured": false
@@ -2351,12 +2356,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "utazas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #54",
     "featured": false
@@ -2387,16 +2392,21 @@
         "label": "Szallas.hu",
         "url": "https://www.szallas.hu/",
         "type": "official"
+      },
+      {
+        "label": "Síelők – előfoglalási kedvezmények",
+        "url": "https://sielok.hu/rovat/akciok/cikk/szallasakciok/",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "utazas",
-      "sale",
-      "budapest"
+      "sale"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #55",
+    "notes": "Az early booking kedvezmény szállásonként és időszakonként változik; a forrás él.",
     "featured": false
   },
   {
@@ -2428,16 +2438,26 @@
         "label": "Szallas.hu – Balaton",
         "url": "https://www.szallas.hu/balaton",
         "type": "official"
+      },
+      {
+        "label": "VisitBalaton – kampányok",
+        "url": "https://visitbalaton365.hu/kampanyok",
+        "type": "official"
+      },
+      {
+        "label": "MÁV – egész évben Balaton",
+        "url": "https://www.mavcsoport.hu/eloszezon",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "balaton",
       "utazas",
-      "sale",
-      "balaton"
+      "sale"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #56",
+    "notes": "Előszezonban és utószezonban a szállás- és vonatkedvezmények eltérőek; a források élnek.",
     "featured": false
   },
   {
@@ -2468,12 +2488,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "online",
       "utazas",
-      "sale",
-      "online"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #57",
     "featured": false
@@ -2544,12 +2564,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "utazas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #59",
     "featured": false
@@ -2582,12 +2602,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "utazas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #60",
     "featured": false
@@ -2702,8 +2722,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "online",
       "vasarlas",
@@ -2743,12 +2763,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "vasarlas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #64",
     "featured": false
@@ -2783,8 +2803,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "vasarlas",
@@ -2824,8 +2844,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "vasarlas",
@@ -2869,8 +2889,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "program",
       "budapest",
@@ -2955,12 +2975,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "vasarlas",
       "free",
-      "budapest",
       "unnep"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #69",
@@ -3004,12 +3024,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "vasarlas",
-      "sale",
-      "budapest"
+      "sale"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #70",
     "featured": false
@@ -3042,12 +3062,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "online",
       "penzugy",
-      "money",
-      "online"
+      "money"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #71",
     "featured": false
@@ -3080,12 +3100,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "penzugy",
-      "money",
-      "budapest"
+      "money"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #72",
     "featured": false
@@ -3116,16 +3136,21 @@
         "label": "Revolut",
         "url": "https://www.revolut.com/",
         "type": "official"
+      },
+      {
+        "label": "BiztosDöntés – bankszámla bónuszok",
+        "url": "https://biztosdontes.hu/cikkek/bankszamla-akciok-2026-ban-tenyleg-megeri-a-nagyobb-bonusz",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "online",
       "penzugy",
-      "money",
-      "online"
+      "money"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #73",
+    "notes": "A bónuszok bankonként és kampányonként változnak; a forrás él.",
     "featured": false
   },
   {
@@ -3281,8 +3306,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "penzugy",
@@ -3329,8 +3354,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "penzugy",
@@ -3372,8 +3397,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "penzugy",
@@ -3453,16 +3478,21 @@
         "label": "Nemzeti Népegészségügyi Központ",
         "url": "https://www.nnk.gov.hu/",
         "type": "official"
+      },
+      {
+        "label": "Országos szűrőprogram – helyszínek",
+        "url": "https://egeszsegprogram.eu/helyszinek-idopontok",
+        "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #81",
+    "notes": "A szűrőnapok helyszíne és időpontja változó; a program oldalán érdemes ellenőrizni.",
     "featured": false
   },
   {
@@ -3531,16 +3561,26 @@
         "label": "Nemzeti Népegészségügyi Központ",
         "url": "https://www.nnk.gov.hu/",
         "type": "official"
+      },
+      {
+        "label": "Országos szűrőprogram – helyszínek",
+        "url": "https://egeszsegprogram.eu/helyszinek-idopontok",
+        "type": "official"
+      },
+      {
+        "label": "Óbuda – ingyenes egészségnap",
+        "url": "https://obuda.hu/ujra-ingyenes-egeszsegnap-a-vorosvari-uti-szakrendeloben/",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #83",
+    "notes": "Az egészségnapok helyszínenként változnak; a forrásban példa látható.",
     "featured": false
   },
   {
@@ -3571,12 +3611,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #84",
     "featured": false
@@ -3651,8 +3691,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "egeszseg",
@@ -3696,8 +3736,8 @@
         "type": "official"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "egeszseg",
@@ -3712,8 +3752,8 @@
     "category": "egeszseg",
     "type": "sale",
     "timing": "6–12 hónappal előre",
-    "date_start": "2026-10-11",
-    "date_end": "2026-10-11",
+    "date_start": "2027-10-09",
+    "date_end": "2027-10-10",
     "booking_opens": null,
     "month": 10,
     "months": [
@@ -3727,13 +3767,28 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
-    "booking_url": null,
-    "booking_note": "Early bird árak jellemzően november elejéig; a 42. SPAR Budapest Maraton nevezése nyitva.",
+    "booking_url": "https://nevezes.futanet.hu/events/783/",
+    "booking_note": "A nevezés nyitva; az early bird árak jellemzően november elejéig tartanak.",
     "sources": [
       {
         "label": "SPAR Budapest Maraton – nevezés",
         "url": "https://sparbudapestmaraton.hu/nevezesi-infok",
         "type": "official"
+      },
+      {
+        "label": "Budapest Sportiroda",
+        "url": "https://www.bsi.hu/",
+        "type": "official"
+      },
+      {
+        "label": "BSI online nevezés – 42. SPAR Budapest Maraton",
+        "url": "https://nevezes.futanet.hu/events/783/",
+        "type": "ticket"
+      },
+      {
+        "label": "FutóversenyInfo – 2027. október 9–10.",
+        "url": "https://futoversenyinfo.hu/futoverseny/42-spar-budapest-maraton-fesztival-2027-10-09",
+        "type": "article"
       }
     ],
     "confidence": "verified",
@@ -3743,7 +3798,7 @@
       "egeszseg",
       "sale"
     ],
-    "notes": "A 41. SPAR Budapest Maraton 2026. október 10–11. volt; a 42. early bird időszaka 2026. november 9-ig tartott.",
+    "notes": "42. SPAR Budapest Maraton, 2027. október 9–10. A nevezés nyitva, a részletek a BSI nevezési oldalán.",
     "featured": false
   },
   {
@@ -3776,12 +3831,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #89",
     "featured": false
@@ -3814,6 +3869,11 @@
         "label": "Európai Mobilitási Hét",
         "url": "https://www.mobilityweek.eu/",
         "type": "official"
+      },
+      {
+        "label": "BKK – Európai Mobilitási Hét",
+        "url": "https://bkk.hu/en/news/2026/09/european-mobility-week-in-budapest-bkk-promotes-sustainable-transportation-with-a-cyclists-breakfast-guided-walking-tours-and-family-friendly-activities.17273/",
+        "type": "article"
       }
     ],
     "confidence": "verified",
@@ -3854,8 +3914,8 @@
         "type": "article"
       }
     ],
-    "confidence": "needs-check",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "csalad",
@@ -3907,8 +3967,8 @@
         "type": "ticket"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
       "budapest",
       "csalad",
@@ -3946,12 +4006,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "sale",
-      "budapest",
       "program",
       "unnep"
     ],
@@ -4032,12 +4092,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "sale",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #95",
@@ -4071,12 +4131,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "sale",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #96",
@@ -4110,12 +4170,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "access",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #97",
@@ -4149,12 +4209,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "free",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #98",
@@ -4188,12 +4248,12 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "free",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #99",
@@ -4230,12 +4290,12 @@
         "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "csalad",
       "sale",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #100",

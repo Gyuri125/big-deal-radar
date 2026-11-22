@@ -1780,7 +1780,7 @@ function renderDataQuality(): void {
       <div><strong>${searchOnly}</strong><span>keresőlink</span></div>
     </div>
     <p class="dq-note">
-      Minden dealhez van legalább egy valós forrás, ahol lehet, többet is megadunk. Az adatok évente változnak, ezért a részleteket mindig a forrásnál ellenőrizd. <a href="./forrasok/">Forrás-egészség →</a>
+      Minden dealhez van legalább egy valós forrás, ahol lehet, többet is megadunk. Az „ellenőrzött” jelölés azt jelenti, hogy a forrás elérhető és a deal szerepel rajta; a dátumok és árak változhatnak. <a href="./forrasok/">Forrás-egészség →</a>
     </p>
   `;
 }
