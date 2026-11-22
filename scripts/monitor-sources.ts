@@ -10,7 +10,7 @@ interface MonitorSource {
 
 interface StoredSource extends MonitorSource {
   hash: string;
-  words: string[];
+  words: string | string[];
   checked_at: string;
 }
 
@@ -83,6 +83,10 @@ function jaccardSimilarity(a: string[], b: string[]): number {
   return intersection / (setA.size + setB.size - intersection);
 }
 
+function storedWords(value: string | string[]): string[] {
+  return Array.isArray(value) ? value : value.split(/\s+/).filter(Boolean);
+}
+
 async function fetchSource(source: MonitorSource): Promise<string> {
   const response = await fetch(source.url, {
     headers: {
@@ -126,8 +130,9 @@ async function main(): Promise<void> {
 
       if (!old) {
         added.push(source);
-      } else if (old.words?.length && words.length) {
-        similarity = jaccardSimilarity(old.words, words);
+      } else if (old.words && storedWords(old.words).length && words.length) {
+        const previousWords = storedWords(old.words);
+        similarity = jaccardSimilarity(previousWords, words);
         if (similarity < threshold) {
           changed.push(source);
           console.log(
@@ -139,7 +144,7 @@ async function main(): Promise<void> {
       next.sources[source.url] = {
         ...source,
         hash,
-        words,
+        words: words.join(' '),
         checked_at: next.checked_at,
       };
     } catch (error) {
