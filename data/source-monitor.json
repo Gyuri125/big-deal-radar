@@ -1,0 +1,66 @@
+[
+  {
+    "label": "Cinema City",
+    "url": "https://www.cinemacity.hu/",
+    "threshold": 0.75
+  },
+  {
+    "label": "Restaurant Week / Országos Étterem Hét",
+    "url": "https://www.etteremhet.hu/",
+    "threshold": 0.9
+  },
+  {
+    "label": "Müpa",
+    "url": "https://mupa.hu/jegyek-berletek/2027-tavasz",
+    "threshold": 0.85
+  },
+  {
+    "label": "SZIGET",
+    "url": "https://szigetfestival.com/en/",
+    "threshold": 0.85
+  },
+  {
+    "label": "Fővárosi Állat- és Növénykert",
+    "url": "https://zoobudapest.com/"
+  },
+  {
+    "label": "Budapest100",
+    "url": "https://budapest100.hu/"
+  },
+  {
+    "label": "Advent Bazilika",
+    "url": "https://adventbazilika.hu/"
+  },
+  {
+    "label": "Budapest Borfesztivál",
+    "url": "https://aborfesztival.hu/"
+  },
+  {
+    "label": "Gourmet Fesztivál",
+    "url": "https://gourmetfesztival.hu/hu/"
+  },
+  {
+    "label": "Budapest Tavaszi Fesztivál",
+    "url": "https://btf.hu/"
+  },
+  {
+    "label": "Magyar Múzeumok",
+    "url": "https://museum.hu/"
+  },
+  {
+    "label": "Ünnepi Könyvhét",
+    "url": "https://unnepikonyvhet.hu/"
+  },
+  {
+    "label": "Budapesti Színházak Éjszakája",
+    "url": "https://bpsze.hu/"
+  },
+  {
+    "label": "Erőművek Éjszakája",
+    "url": "https://eromuvekejszakaja.hu/"
+  },
+  {
+    "label": "Kutatók Éjszakája",
+    "url": "https://kutatokejszakaja.hu/"
+  }
+]

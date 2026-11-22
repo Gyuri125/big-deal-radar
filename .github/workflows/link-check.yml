@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   links:
@@ -26,6 +26,20 @@ jobs:
 
       - name: Forráslinkek ellenőrzése
         run: npm run check:links
+
+      - name: Linkstatus commitolása
+        if: always()
+        run: |
+          git config user.name "big-deal-radar-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/link-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(data): linkellenőrzés $(date +%F) [skip ci]"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "Nincs commitolható linkstatus."
+          fi
 
       - name: Hibaértesítés Discordra
         if: failure()

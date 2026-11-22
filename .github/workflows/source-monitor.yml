@@ -1,0 +1,74 @@
+name: Forrásfigyelés
+
+on:
+  schedule:
+    # Hetente hétfőn 08:00 UTC – a linkellenőrzés és a reggeli pipeline után.
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: source-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Függőségek
+        run: npm ci
+
+      - name: Források figyelése
+        run: npm run monitor:sources
+
+      - name: Issue szöveg elkészítése
+        id: report
+        run: npm run monitor:issue
+
+      - name: Változások commitolása
+        if: always()
+        run: |
+          git config user.name "big-deal-radar-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/source-hashes.json data/source-monitor-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(data): forrásfigyelés $(date +%F) [skip ci]"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "Nincs commitolható változás."
+          fi
+
+      - name: Issue nyitása változás esetén
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          COUNT="$(cat source-monitor-count.txt 2>/dev/null || echo 0)"
+          if [ "$COUNT" = "0" ] || [ -z "$COUNT" ]; then
+            echo "Nincs változás vagy hiba."
+            exit 0
+          fi
+
+          EXISTING="$(gh issue list --state open --search 'Forrásváltozás in:title' --json number --jq 'length')"
+          if [ "$EXISTING" != "0" ]; then
+            echo "Már van nyitott forrásváltozás issue."
+            exit 0
+          fi
+
+          gh issue create \
+            --title "Forrásváltozás – $(date +%F)" \
+            --body-file source-monitor-issue.md

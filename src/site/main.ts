@@ -28,7 +28,14 @@ type StatusKind = 'live' | 'upcoming' | 'past' | 'continuous' | 'unknown';
 type SortMode = 'next' | 'value' | 'title';
 type Theme = 'light' | 'dark';
 type Focus = 'all' | 'mozi' | 'gasztro' | 'program' | 'unnep' | 'free';
-type TimeFilter = 'all' | 'today' | 'weekend' | 'next7' | 'ending';
+type TimeFilter =
+  | 'all'
+  | 'today'
+  | 'weekend'
+  | 'saturday'
+  | 'sunday'
+  | 'next7'
+  | 'ending';
 type BudgetFilter = 'all' | 'free' | 'under5' | 'under10' | 'over10';
 type ViewMode = 'list' | 'calendar';
 
@@ -85,6 +92,8 @@ const TIME_FILTERS: Array<{ value: TimeFilter; label: string }> = [
   { value: 'all', label: 'Mind' },
   { value: 'today', label: 'Ma' },
   { value: 'weekend', label: 'Hétvége' },
+  { value: 'saturday', label: 'Szombat' },
+  { value: 'sunday', label: 'Vasárnap' },
   { value: 'next7', label: '7 nap' },
   { value: 'ending', label: 'Hamarosan zárul' },
 ];
@@ -352,7 +361,10 @@ const SEARCH_SYNONYMS: Record<string, string[]> = {
   film: ['mozi', 'cinema'],
   ingyen: ['ingyenes', 'free', 'díjmentes'],
   ingyenes: ['ingyen', 'free', 'díjmentes'],
-  randi: ['színház', 'étterem', 'kávé', 'program', 'koncert'],
+  randi: ['színház', 'étterem', 'kávé', 'koncert'],
+  szulinap: ['szuletesnap', 'ajandek', 'furdo', 'etterem'],
+  szuletesnap: ['szulinap', 'ajandek', 'furdo', 'etterem'],
+  evfordulo: ['randi', 'etterem', 'szinhaz', 'program'],
   gyerek: ['család', 'családi', 'gyerek'],
   csalad: ['gyerek', 'családi'],
   etel: ['gasztro', 'étterem', 'kávé', 'bor', 'fagylalt'],
@@ -486,6 +498,12 @@ function daysUntilEnd(deal: EnrichedDeal): number | null {
   return end ? diffDays(now, end) : null;
 }
 
+function googleMapsRouteUrl(deal: Deal): string {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    `${deal.location}, Hungary`
+  )}`;
+}
+
 function googleCalendarUrl(deal: EnrichedDeal): string | null {
   if (!deal.effective) return null;
   const start = deal.effective.start;
@@ -581,63 +599,279 @@ function sortDeals(items: EnrichedDeal[], mode: SortMode): EnrichedDeal[] {
   });
 }
 
-function matchesFilters(deal: EnrichedDeal): boolean {
-  if (state.watchlistOnly && !isWatched(deal.id)) return false;
-  if (state.focus === 'mozi' && deal.category !== 'mozi') return false;
-  if (state.focus === 'gasztro' && deal.category !== 'gasztro') return false;
-  if (state.focus === 'program' && !deal.tags.includes('program')) return false;
-  if (state.focus === 'unnep' && !deal.tags.includes('unnep')) return false;
-  if (state.focus === 'free' && deal.type !== 'free') return false;
-  if (state.time === 'today') {
-    if (!(deal.status === 'live' || deal.days === 0)) return false;
+function occursOnWeekdays(deal: EnrichedDeal, weekdays: number[]): boolean {
+  if (!deal.effective) {
+    return (
+      deal.recurrence === 'continuous' &&
+      deal.location !== 'Online' &&
+      ['mozi', 'kultura', 'muzeum', 'gasztro', 'csalad'].includes(
+        deal.category
+      )
+    );
   }
-  if (state.time === 'ending') {
-    const daysLeft = daysUntilEnd(deal);
-    if (daysLeft === null || daysLeft < 0 || daysLeft > 3) return false;
-  }
-  if (state.time === 'next7') {
-    if (deal.days === null || deal.days < 0 || deal.days > 7) return false;
-  }
-  if (state.time === 'weekend') {
-    if (!deal.effective) return false;
-    const start = startOfDay(deal.effective.start);
-    const end = startOfDay(deal.effective.end ?? deal.effective.start);
-    const today = startOfDay(now);
-    let isWeekend = false;
-    for (let offset = 0; offset <= 14; offset += 1) {
-      const day = addDays(today, offset);
-      if (
-        day >= start &&
-        day <= end &&
-        (day.getDay() === 0 || day.getDay() === 6)
-      ) {
-        isWeekend = true;
-        break;
-      }
-    }
-    if (!isWeekend) return false;
-  }
-  if (state.budget !== 'all') {
-    const price = deal.deal_price;
-    if (state.budget === 'free') {
-      if (deal.type !== 'free' && price !== 0) return false;
-    } else if (state.budget === 'under5') {
-      if (price === null || price > 5000) return false;
-    } else if (state.budget === 'under10') {
-      if (price === null || price > 10000) return false;
-    } else if (state.budget === 'over10') {
-      if (price === null || price <= 10000) return false;
-    }
-  }
-  if (state.type !== 'all' && deal.type !== state.type) return false;
-  if (state.category !== 'all' && deal.category !== state.category) return false;
-  if (state.location !== 'all' && deal.location !== state.location) return false;
+  const start = startOfDay(deal.effective.start);
+  const end = startOfDay(deal.effective.end ?? deal.effective.start);
+  const today = startOfDay(now);
 
-  const query = normalizeSearch(state.query);
+  for (let offset = 0; offset <= 14; offset += 1) {
+    const day = addDays(today, offset);
+    if (day >= start && day <= end && weekdays.includes(day.getDay())) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function matchesTimeFilter(deal: EnrichedDeal, filter: TimeFilter): boolean {
+  if (filter === 'all') return true;
+  if (filter === 'today') {
+    return deal.status === 'live' || deal.days === 0;
+  }
+  if (filter === 'ending') {
+    const daysLeft = daysUntilEnd(deal);
+    return daysLeft !== null && daysLeft >= 0 && daysLeft <= 3;
+  }
+  if (filter === 'next7') {
+    return deal.days !== null && deal.days >= 0 && deal.days <= 7;
+  }
+  if (filter === 'weekend') return occursOnWeekdays(deal, [0, 6]);
+  if (filter === 'saturday') return occursOnWeekdays(deal, [6]);
+  if (filter === 'sunday') return occursOnWeekdays(deal, [0]);
+  return true;
+}
+
+function matchesBudgetFilter(deal: EnrichedDeal, filter: BudgetFilter): boolean {
+  if (filter === 'all') return true;
+  const price = deal.deal_price;
+
+  if (filter === 'free') {
+    return deal.type === 'free' || price === 0;
+  }
+  if (filter === 'under5') {
+    return price !== null && price <= 5000;
+  }
+  if (filter === 'under10') {
+    return price !== null && price <= 10000;
+  }
+  if (filter === 'over10') {
+    return price !== null && price > 10000;
+  }
+  return true;
+}
+
+interface QueryIntent {
+  text: string;
+  categories: DealCategory[];
+  type: DealType | null;
+  time: TimeFilter | null;
+  budget: BudgetFilter | null;
+  maxPrice: number | null;
+  minPrice: number | null;
+  programOnly: boolean;
+  unnepOnly: boolean;
+  year: number | null;
+  labels: string[];
+}
+
+function parsePriceAmount(numberText: string, unit: string): number {
+  const base = Number(numberText.replace(/\s/g, ''));
+  return unit === 'ezer' ? base * 1000 : base;
+}
+
+function interpretQuery(raw: string): QueryIntent {
+  let text = normalizeSearch(raw);
+  const intent: QueryIntent = {
+    text: '',
+    categories: [],
+    type: null,
+    time: null,
+    budget: null,
+    maxPrice: null,
+    minPrice: null,
+    programOnly: false,
+    unnepOnly: false,
+    year: null,
+    labels: [],
+  };
+
+  if (!text) return intent;
+
+  const addLabel = (label: string): void => {
+    if (!intent.labels.includes(label)) intent.labels.push(label);
+  };
+  const remove = (value: string | RegExp): void => {
+    text = text.replace(value, ' ').replace(/\s+/g, ' ').trim();
+  };
+
+  const under = text.match(/(\d[\d\s]*)\s*(ezer|ft|forint)\s*alatt/);
+  if (under) {
+    const amount = parsePriceAmount(under[1], under[2]);
+    intent.maxPrice = amount;
+    if (amount <= 5000) intent.budget = 'under5';
+    else if (amount <= 10000) intent.budget = 'under10';
+    addLabel(`${formatHuf(amount)} alatt`);
+    remove(under[0]);
+  }
+
+  const over = text.match(/(\d[\d\s]*)\s*(ezer|ft|forint)\s*felett/);
+  if (over) {
+    const amount = parsePriceAmount(over[1], over[2]);
+    intent.minPrice = amount;
+    if (amount >= 10000) intent.budget = 'over10';
+    addLabel(`${formatHuf(amount)} felett`);
+    remove(over[0]);
+  }
+
+  if (/\bingyenes\b|\bingyen\b|\bfree\b/.test(text)) {
+    intent.budget = 'free';
+    addLabel('Ingyenes');
+    remove(/\bingyenes\b|\bingyen\b|\bfree\b/g);
+  }
+
+  if (/\bolcso\b/.test(text)) {
+    intent.maxPrice = 10000;
+    intent.budget = 'under10';
+    addLabel('10 000 Ft alatt');
+    remove(/\bolcso\b/g);
+  }
+
+  const categoryRules: Array<{
+    pattern: RegExp;
+    category: DealCategory;
+    label: string;
+  }> = [
+    { pattern: /\bmozi\b|\bfilm\b/, category: 'mozi', label: 'Mozi' },
+    { pattern: /\bmuzeum\b/, category: 'muzeum', label: 'Múzeum' },
+    {
+      pattern: /\bgasztro\b|\bgasztronomia\b|\betterem\b|\bkave\b/,
+      category: 'gasztro',
+      label: 'Gasztro',
+    },
+    {
+      pattern: /\butazas\b|\bnyaralas\b|\bnyaral\b/,
+      category: 'utazas',
+      label: 'Utazás',
+    },
+    {
+      pattern: /\bvasarlas\b|\bshopping\b/,
+      category: 'vasarlas',
+      label: 'Vásárlás',
+    },
+    {
+      pattern: /\bpenzugy\b|\btamogatas\b|\bado\b/,
+      category: 'penzugy',
+      label: 'Pénzügy',
+    },
+    {
+      pattern: /\begeszseg\b|\begeszseges\b/,
+      category: 'egeszseg',
+      label: 'Egészség',
+    },
+    {
+      pattern: /\bcsaladi\b|\bgyerek\b|\bgyerekek\b/,
+      category: 'csalad',
+      label: 'Család',
+    },
+    { pattern: /\bkultura\b/, category: 'kultura', label: 'Kultúra' },
+  ];
+
+  for (const rule of categoryRules) {
+    if (rule.pattern.test(text)) {
+      if (!intent.categories.includes(rule.category)) {
+        intent.categories.push(rule.category);
+      }
+      addLabel(rule.label);
+      remove(rule.pattern);
+    }
+  }
+
+  if (/\bszinhaz\b/.test(text)) addLabel('Színház');
+  if (/\bbor\b|\bborfesztival\b/.test(text)) addLabel('Bor');
+  if (/\bfesztival\b|\bborfesztival\b/.test(text)) addLabel('Fesztivál');
+  if (/\brandi\b/.test(text)) addLabel('Randi');
+  if (/\bszulinap\b|\bszuletesnap\b|\bevfordulo\b/.test(text)) {
+    addLabel('Szülinap / évforduló');
+  }
+  if (/\bkaracsony\b/.test(text)) addLabel('Karácsony');
+
+  if (/\bprogram\b|\bprogramok\b/.test(text)) {
+    intent.programOnly = true;
+    addLabel('Programok');
+    remove(/\bprogram\b|\bprogramok\b/g);
+  }
+
+  if (/\bunnep\b|\bunnepi\b/.test(text)) {
+    intent.unnepOnly = true;
+    addLabel('Ünnepek');
+    remove(/\bunnep\b|\bunnepi\b/g);
+  }
+
+  if (/\bpremium\b/.test(text)) {
+    intent.type = 'flat';
+    addLabel('Prémium');
+    remove(/\bpremium\b/g);
+  }
+  if (/\bakcio\b|\blearazas\b/.test(text)) {
+    intent.type = 'sale';
+    addLabel('Akció');
+    remove(/\bakcio\b|\blearazas\b/g);
+  }
+  if (/\bhozzaferes\b/.test(text)) {
+    intent.type = 'access';
+    addLabel('Hozzáférés');
+    remove(/\bhozzaferes\b/g);
+  }
+
+  if (/\bvasarnap\b/.test(text)) {
+    intent.time = 'sunday';
+    addLabel('Vasárnap');
+    remove(/\bvasarnap\b/g);
+  } else if (/\bszombat\b|\bszombaton\b/.test(text)) {
+    intent.time = 'saturday';
+    addLabel('Szombat');
+    remove(/\bszombat\b|\bszombaton\b/g);
+  } else if (/\bhetvege\b|\bhetvegen\b|\bhetvegere\b/.test(text)) {
+    intent.time = 'weekend';
+    addLabel('Hétvége');
+    remove(/\bhetvege\b|\bhetvegen\b|\bhetvegere\b/g);
+  } else if (/\bma\b/.test(text)) {
+    intent.time = 'today';
+    addLabel('Ma');
+    remove(/\bma\b/g);
+  } else if (/\b7\s*nap\b|\bhet\s*nap\b/.test(text)) {
+    intent.time = 'next7';
+    addLabel('7 nap');
+    remove(/\b7\s*nap\b|\bhet\s*nap\b/g);
+  } else if (/\bhamarosan\b|\bzarul\b|\blejar\b/.test(text)) {
+    intent.time = 'ending';
+    addLabel('Hamarosan zárul');
+    remove(/\bhamarosan\b|\bzarul\b|\blejar\b/g);
+  }
+
+  const yearMatch = text.match(/\b(20\d{2})\b/);
+  if (yearMatch) {
+    intent.year = Number(yearMatch[1]);
+    addLabel(yearMatch[1]);
+    remove(yearMatch[0]);
+  }
+
+  intent.text = text.replace(/\s+/g, ' ').trim();
+  return intent;
+}
+
+function matchesSearchText(deal: EnrichedDeal, rawText: string): boolean {
+  const query = normalizeSearch(rawText);
   if (!query) return true;
 
   const haystack = normalizeSearch(
-    [deal.title, deal.deal, deal.timing, deal.location, ...deal.tags].join(' ')
+    [
+      deal.title,
+      deal.deal,
+      deal.timing,
+      deal.location,
+      deal.dateLabel,
+      ...deal.tags,
+    ].join(' ')
   );
   const tokens = query.split(' ').filter(Boolean);
 
@@ -648,6 +882,57 @@ function matchesFilters(deal: EnrichedDeal): boolean {
       haystack.includes(normalizeSearch(synonym))
     );
   });
+}
+
+function matchesQueryIntent(deal: EnrichedDeal, intent: QueryIntent): boolean {
+  if (
+    intent.categories.length > 0 &&
+    !intent.categories.includes(deal.category)
+  ) {
+    return false;
+  }
+  if (intent.type && deal.type !== intent.type) return false;
+  if (intent.programOnly && !deal.tags.includes('program')) return false;
+  if (intent.unnepOnly && !deal.tags.includes('unnep')) return false;
+  if (intent.time && !matchesTimeFilter(deal, intent.time)) return false;
+  if (intent.budget && !matchesBudgetFilter(deal, intent.budget)) return false;
+  if (
+    intent.maxPrice !== null &&
+    (deal.deal_price === null || deal.deal_price > intent.maxPrice)
+  ) {
+    return false;
+  }
+  if (
+    intent.minPrice !== null &&
+    (deal.deal_price === null || deal.deal_price < intent.minPrice)
+  ) {
+    return false;
+  }
+  if (intent.year !== null) {
+    const years = new Set<string>();
+    if (deal.date_start) years.add(deal.date_start.slice(0, 4));
+    if (deal.date_end) years.add(deal.date_end.slice(0, 4));
+    if (deal.effective) years.add(String(deal.effective.start.getFullYear()));
+    if (!years.has(String(intent.year))) return false;
+  }
+
+  return matchesSearchText(deal, intent.text);
+}
+function matchesFilters(deal: EnrichedDeal): boolean {
+  if (state.watchlistOnly && !isWatched(deal.id)) return false;
+  if (state.focus === 'mozi' && deal.category !== 'mozi') return false;
+  if (state.focus === 'gasztro' && deal.category !== 'gasztro') return false;
+  if (state.focus === 'program' && !deal.tags.includes('program')) return false;
+  if (state.focus === 'unnep' && !deal.tags.includes('unnep')) return false;
+  if (state.focus === 'free' && deal.type !== 'free') return false;
+  if (!matchesTimeFilter(deal, state.time)) return false;
+  if (!matchesBudgetFilter(deal, state.budget)) return false;
+  if (state.type !== 'all' && deal.type !== state.type) return false;
+  if (state.category !== 'all' && deal.category !== state.category) return false;
+  if (state.location !== 'all' && deal.location !== state.location) return false;
+
+  const intent = interpretQuery(state.query);
+  return matchesQueryIntent(deal, intent);
 }
 
 function hasActiveFilters(): boolean {
@@ -1300,12 +1585,33 @@ function watchlistSummaryMarkup(deals: EnrichedDeal[]): string {
   `;
 }
 
+function renderSearchHint(): void {
+  const element = document.querySelector<HTMLElement>('#search-hint');
+  if (!element) return;
+
+  const intent = interpretQuery(state.query);
+  if (!state.query.trim() || intent.labels.length === 0) {
+    element.hidden = true;
+    element.innerHTML = '';
+    return;
+  }
+
+  const labels = intent.labels.map((label) => escapeHtml(label)).join(' · ');
+  const residual = intent.text
+    ? ` · Keresés: ${escapeHtml(intent.text)}`
+    : '';
+
+  element.hidden = false;
+  element.innerHTML = `<span>Értelmezés:</span> <strong>${labels}</strong>${residual}`;
+}
+
 function renderResults(): void {
   const results = document.querySelector<HTMLElement>('#results');
   if (!results) return;
 
   updateWatchCount();
   renderActiveFilters();
+  renderSearchHint();
   syncUrl();
 
   if (state.view === 'calendar') {
@@ -1474,7 +1780,7 @@ function renderDataQuality(): void {
       <div><strong>${searchOnly}</strong><span>keresőlink</span></div>
     </div>
     <p class="dq-note">
-      Minden dealhez van legalább egy valós forrás, ahol lehet, többet is megadunk. Az adatok évente változnak, ezért a részleteket mindig a forrásnál ellenőrizd.
+      Minden dealhez van legalább egy valós forrás, ahol lehet, többet is megadunk. Az adatok évente változnak, ezért a részleteket mindig a forrásnál ellenőrizd. <a href="./forrasok/">Forrás-egészség →</a>
     </p>
   `;
 }
@@ -1664,6 +1970,8 @@ function renderShell(): void {
         </div>
       </div>
 
+      <p id="search-hint" class="search-hint" hidden></p>
+
       <button class="filter-toggle btn btn-ghost" type="button" data-action="toggle-filters" aria-expanded="false">Szűrők</button>
       <div id="active-filters" class="active-filters" hidden></div>
 
@@ -1788,6 +2096,7 @@ function renderShell(): void {
       <div id="footer-status" class="footer-status"></div>
       <div class="footer-links">
         <a href="./gyujtemeny/">Gyűjtemények</a>
+        <a href="./forrasok/">Források</a>
         <a href="./feed.xml" type="application/rss+xml">RSS</a>
         <a href="${escapeHtml(repoUrl())}" target="_blank" rel="noopener">GitHub</a>
         <a href="#results">Vissza a tetejére</a>
@@ -1872,6 +2181,15 @@ function openDialog(id: string): void {
     ? `<a class="btn btn-ghost" href="${escapeHtml(googleCalendarUrl(deal) ?? '')}" target="_blank" rel="noopener">Google Naptárba</a>`
     : '';
 
+  const routeMarkup =
+    deal.location !== 'Online'
+      ? `<p class="dialog-route"><a href="${escapeHtml(googleMapsRouteUrl(deal))}" target="_blank" rel="noopener">Útvonal Google Mapsen</a>${
+          deal.location === 'Budapest'
+            ? ' · <a href="https://utvonalterv.hu/" target="_blank" rel="noopener">BKK útvonalterv</a>'
+            : ''
+        }</p>`
+      : '';
+
   const sources = sourcesMarkup(deal);
 
   const related = enriched
@@ -1907,6 +2225,7 @@ function openDialog(id: string): void {
       <button class="dialog-close" data-dialog-action="close" type="button" aria-label="Bezárás">×</button>
     </div>
     <p class="dialog-date">${escapeHtml(deal.dateLabel)} · ${escapeHtml(deal.location)}</p>
+    ${routeMarkup}
     <p class="dialog-deal">${escapeHtml(deal.deal)}</p>
 
     <div class="dialog-priority">

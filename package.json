@@ -18,7 +18,9 @@
     "lint": "tsc --noEmit",
     "check:secrets": "tsx scripts/check-secrets.ts",
     "check:links": "tsx scripts/check-links.ts",
-    "check:live": "tsx scripts/smoke-test.ts"
+    "check:live": "tsx scripts/smoke-test.ts",
+    "monitor:sources": "tsx scripts/monitor-sources.ts",
+    "monitor:issue": "tsx scripts/write-monitor-issue.ts"
   },
   "engines": {
     "node": ">=20"

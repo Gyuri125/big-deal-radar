@@ -85,6 +85,14 @@ async function main(): Promise<void> {
           ? null
           : `status=${status}, hiányzó gyűjteményoldal`,
     },
+    {
+      name: 'forrás-egészség',
+      url: `${siteUrl}forrasok/`,
+      test: (text, status) =>
+        status === 200 && text.includes('Forrás-egészség')
+          ? null
+          : `status=${status}, hiányzó forrás-egészség oldal`,
+    },
     ...(sampleDeal
       ? [
           {

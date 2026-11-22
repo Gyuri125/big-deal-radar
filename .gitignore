@@ -30,6 +30,8 @@ data/local/
 data/state.json
 public/status.json
 data/*.tmp
+source-monitor-count.txt
+source-monitor-issue.md
 
 # --- IDE / OS ---
 .vscode/

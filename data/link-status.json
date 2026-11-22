@@ -1,0 +1,1166 @@
+{
+  "checked_at": "2026-11-22T17:54:39.626Z",
+  "total": 127,
+  "ok": 119,
+  "redirected": 27,
+  "blocked": 8,
+  "failed": 0,
+  "links": [
+    {
+      "url": "https://aborfesztival.hu/",
+      "status": 200,
+      "finalUrl": "https://aborfesztival.hu/hu",
+      "error": null,
+      "deals": [
+        "Budapest Borfesztivál"
+      ]
+    },
+    {
+      "url": "https://adventbazilika.hu/",
+      "status": 200,
+      "finalUrl": "https://adventbazilika.hu/",
+      "error": null,
+      "deals": [
+        "Budapesti karácsonyi vásárok"
+      ]
+    },
+    {
+      "url": "https://aquaworld.hu/",
+      "status": 200,
+      "finalUrl": "https://aquaworld.hu/",
+      "error": null,
+      "deals": [
+        "Aquaworld / élményfürdő szülinapi akció"
+      ]
+    },
+    {
+      "url": "https://ars-sacra.hu/nyitott-templomok",
+      "status": 200,
+      "finalUrl": "https://ars-sacra.hu/nyitott-templomok",
+      "error": null,
+      "deals": [
+        "Nyitott Templomok Napja"
+      ]
+    },
+    {
+      "url": "https://arssacra.hu",
+      "status": 200,
+      "finalUrl": "https://arssacra.hu/",
+      "error": null,
+      "deals": [
+        "Ars Sacra Fesztivál"
+      ]
+    },
+    {
+      "url": "https://artmozi.hu",
+      "status": 200,
+      "finalUrl": "https://artmozi.hu/",
+      "error": null,
+      "deals": [
+        "Corvin Mozi Éjszaka",
+        "Art mozi kedvezményes hétfő"
+      ]
+    },
+    {
+      "url": "https://artmozi.hu/jegyar/online-vasarlas",
+      "status": 200,
+      "finalUrl": "https://artmozi.hu/jegyar/online-vasarlas",
+      "error": null,
+      "deals": [
+        "Art mozi kedvezményes hétfő"
+      ]
+    },
+    {
+      "url": "https://artmozi.hu/jegyarak",
+      "status": 200,
+      "finalUrl": "https://artmozi.hu/jegyarak",
+      "error": null,
+      "deals": [
+        "Art mozi kedvezményes hétfő"
+      ]
+    },
+    {
+      "url": "https://artmoziegyesulet.hu",
+      "status": 200,
+      "finalUrl": "https://www.artmoziegyesulet.hu/",
+      "error": null,
+      "deals": [
+        "Európai Art Mozi Nap"
+      ]
+    },
+    {
+      "url": "https://artportal.hu/",
+      "status": 200,
+      "finalUrl": "https://artportal.hu/",
+      "error": null,
+      "deals": [
+        "Ingyenes kiállításmegnyitók"
+      ]
+    },
+    {
+      "url": "https://bookfestival.hu/",
+      "status": 200,
+      "finalUrl": "https://bookfestival.hu/",
+      "error": null,
+      "deals": [
+        "Budapesti Könyvfesztivál"
+      ]
+    },
+    {
+      "url": "https://bpcoffeeweek.hu/",
+      "status": 200,
+      "finalUrl": "https://bpcoffeeweek.hu/",
+      "error": null,
+      "deals": [
+        "Budapest Coffee Week"
+      ]
+    },
+    {
+      "url": "https://bpsze.hu",
+      "status": 200,
+      "finalUrl": "https://bpsze.hu/",
+      "error": null,
+      "deals": [
+        "Budapesti Színházak Éjszakája"
+      ]
+    },
+    {
+      "url": "https://btf.hu",
+      "status": 200,
+      "finalUrl": "https://btf.hu/",
+      "error": null,
+      "deals": [
+        "Budapest Tavaszi Fesztivál"
+      ]
+    },
+    {
+      "url": "https://budapest100.hu",
+      "status": 200,
+      "finalUrl": "https://budapest100.hu/",
+      "error": null,
+      "deals": [
+        "Budapest100"
+      ]
+    },
+    {
+      "url": "https://budapest100.hu/programok",
+      "status": 200,
+      "finalUrl": "https://budapest100.hu/programok/",
+      "error": null,
+      "deals": [
+        "Budapest100"
+      ]
+    },
+    {
+      "url": "https://budapestfotofesztival.hu/",
+      "status": 200,
+      "finalUrl": "https://www.budapestphotofestival.hu/",
+      "error": null,
+      "deals": [
+        "Budapest Fotófesztivál"
+      ]
+    },
+    {
+      "url": "https://budappest.com/budapest-restaurant-week-2026-how-to-eat-like-a-local-at-hungarys-best-tables",
+      "status": 200,
+      "finalUrl": "https://budappest.com/budapest-restaurant-week-2026-how-to-eat-like-a-local-at-hungarys-best-tables/",
+      "error": null,
+      "deals": [
+        "Restaurant Week tavasz",
+        "Restaurant Week ősz",
+        "Restaurant Week EXTRA"
+      ]
+    },
+    {
+      "url": "https://budappest.hu/sorkulonlegessegek-es-fesztivalhangulat-tizedszer-jon-a-belvarosi-sorfesztival",
+      "status": 200,
+      "finalUrl": "https://budappest.hu/sorkulonlegessegek-es-fesztivalhangulat-tizedszer-jon-a-belvarosi-sorfesztival/",
+      "error": null,
+      "deals": [
+        "Belvárosi Sörfesztivál"
+      ]
+    },
+    {
+      "url": "https://csalad.hu/tamogatas/videki-otthonfelujitasi-tamogatas",
+      "status": 200,
+      "finalUrl": "https://csalad.hu/",
+      "error": null,
+      "deals": [
+        "Otthonfelújítási támogatás"
+      ]
+    },
+    {
+      "url": "https://csokoladefesztival.hu/",
+      "status": 200,
+      "finalUrl": "https://csokoladefesztival.hu/",
+      "error": null,
+      "deals": [
+        "Csokoládéfesztivál"
+      ]
+    },
+    {
+      "url": "https://eromuvekejszakaja.hu",
+      "status": 200,
+      "finalUrl": "https://eromuvekejszakaja.hu/",
+      "error": null,
+      "deals": [
+        "Erőművek Éjszakája"
+      ]
+    },
+    {
+      "url": "https://etteremhet.hu",
+      "status": 200,
+      "finalUrl": "https://www.etteremhet.hu/lang/hu",
+      "error": null,
+      "deals": [
+        "Restaurant Week tavasz",
+        "Restaurant Week ősz",
+        "Restaurant Week EXTRA"
+      ]
+    },
+    {
+      "url": "https://fataj.hu",
+      "status": 200,
+      "finalUrl": "https://fataj.hu/",
+      "error": null,
+      "deals": [
+        "Erdők Éjszakája"
+      ]
+    },
+    {
+      "url": "https://fovarosinagycirkusz.hu",
+      "status": 200,
+      "finalUrl": "https://fovarosinagycirkusz.hu/",
+      "error": null,
+      "deals": [
+        "Cirkuszok Éjszakája"
+      ]
+    },
+    {
+      "url": "https://fovarosinagycirkusz.hu/cirkuszok-ejszakaja-a-fovarosi-nagycirkuszban",
+      "status": 200,
+      "finalUrl": "https://fovarosinagycirkusz.hu/cirkuszok-ejszakaja-a-fovarosi-nagycirkuszban/",
+      "error": null,
+      "deals": [
+        "Cirkuszok Éjszakája"
+      ]
+    },
+    {
+      "url": "https://fszek.hu/News/orszagos-konyvtari-napok2026",
+      "status": 200,
+      "finalUrl": "https://fszek.hu/News/orszagos-konyvtari-napok2026",
+      "error": null,
+      "deals": [
+        "Országos Könyvtári Napok"
+      ]
+    },
+    {
+      "url": "https://gourmetfesztival.hu/hu/",
+      "status": 200,
+      "finalUrl": "https://gourmetfesztival.hu/hu/",
+      "error": null,
+      "deals": [
+        "Gourmet Fesztivál"
+      ]
+    },
+    {
+      "url": "https://icom.hu",
+      "status": 200,
+      "finalUrl": "https://icom.hu/",
+      "error": null,
+      "deals": [
+        "Múzeumok Nemzetközi Napja"
+      ]
+    },
+    {
+      "url": "https://kavenapja.hu/",
+      "status": 200,
+      "finalUrl": "https://kavenapja.hu/",
+      "error": null,
+      "deals": [
+        "Kávé Napja / Coffee Day"
+      ]
+    },
+    {
+      "url": "https://kektura.hu",
+      "status": 200,
+      "finalUrl": "https://www.kektura.hu/",
+      "error": null,
+      "deals": [
+        "Kéktúrázás Napja"
+      ]
+    },
+    {
+      "url": "https://knykk.hu/hirek/auto-plusz-terv-hivatalos-az-elektromos-autok-2026-os-vasarlasahoz-nyujtott-tamogatas",
+      "status": 200,
+      "finalUrl": "https://www.knykk.hu/hirek/auto-plusz-terv-hivatalos-az-elektromos-autok-2026-os-vasarlasahoz-nyujtott-tamogatas/",
+      "error": null,
+      "deals": [
+        "Zöld autó / EV támogatás"
+      ]
+    },
+    {
+      "url": "https://kultura.hu/",
+      "status": 200,
+      "finalUrl": "https://kultura.hu/",
+      "error": null,
+      "deals": [
+        "A Magyar Kultúra Napja"
+      ]
+    },
+    {
+      "url": "https://kutatokejszakaja.hu/",
+      "status": 200,
+      "finalUrl": "https://www.kutatokejszakaja.hu/",
+      "error": null,
+      "deals": [
+        "Kutatók Éjszakája"
+      ]
+    },
+    {
+      "url": "https://latashonapja.hu/",
+      "status": 200,
+      "finalUrl": "https://latashonapja.hu/",
+      "error": null,
+      "deals": [
+        "Látás Hónapja – ingyenes szemvizsgálat"
+      ]
+    },
+    {
+      "url": "https://margitszigetiszinhaz.hu/",
+      "status": 200,
+      "finalUrl": "https://margitszigetiszinhaz.hu/",
+      "error": null,
+      "deals": [
+        "Margitszigeti Nyári Szezon"
+      ]
+    },
+    {
+      "url": "https://mupa.hu",
+      "status": 200,
+      "finalUrl": "https://mupa.hu/",
+      "error": null,
+      "deals": [
+        "Müpa nyílt nap / ingyenes próba"
+      ]
+    },
+    {
+      "url": "https://mupa.hu/jegyek-berletek/2027-tavasz",
+      "status": 200,
+      "finalUrl": "https://mupa.hu/jegyek-berletek/2027-tavasz",
+      "error": null,
+      "deals": [
+        "Müpa nyílt nap / ingyenes próba"
+      ]
+    },
+    {
+      "url": "https://museum.hu",
+      "status": 200,
+      "finalUrl": "https://www.museum.hu/",
+      "error": null,
+      "deals": [
+        "Múzeumok Őszi Fesztiválja",
+        "Múzeumok családi vasárnapja"
+      ]
+    },
+    {
+      "url": "https://muzej.hu",
+      "status": 200,
+      "finalUrl": "https://muzej.hu/",
+      "error": null,
+      "deals": [
+        "Múzeumok Éjszakája"
+      ]
+    },
+    {
+      "url": "https://napenergiaplusz.nffku.hu",
+      "status": 200,
+      "finalUrl": "https://napenergiaplusz.nffku.hu/",
+      "error": null,
+      "deals": [
+        "Napenergia / energiaközösség pályázat"
+      ]
+    },
+    {
+      "url": "https://nav.gov.hu",
+      "status": 200,
+      "finalUrl": "https://nav.gov.hu/",
+      "error": null,
+      "deals": [
+        "Nyugdíjpénztári 20% adójóváírás",
+        "Egészségpénztári 10% adójóváírás",
+        "NYESZ 20% adójóváírás",
+        "SZÉP-kártya / cafeteria"
+      ]
+    },
+    {
+      "url": "https://nemzetiszinhaz.hu/hirek/2026/03/szinhazi-vilagnapi-uzenet-2026-ban",
+      "status": 200,
+      "finalUrl": "https://nemzetiszinhaz.hu/hirek/2026/03/szinhazi-vilagnapi-uzenet-2026-ban",
+      "error": null,
+      "deals": [
+        "Színházi világnap"
+      ]
+    },
+    {
+      "url": "https://opera.hu",
+      "status": 200,
+      "finalUrl": "https://www.opera.hu/hu/",
+      "error": null,
+      "deals": [
+        "Opera állóhely / diákjegy"
+      ]
+    },
+    {
+      "url": "https://oroksegnapok.gov.hu/",
+      "status": 200,
+      "finalUrl": "https://oroksegnapok.gov.hu/",
+      "error": null,
+      "deals": [
+        "Kulturális Örökség Napjai"
+      ]
+    },
+    {
+      "url": "https://osszefogas.ikszkonyvtarak.hu",
+      "status": 200,
+      "finalUrl": "https://osszefogas.ikszkonyvtarak.hu/",
+      "error": null,
+      "deals": [
+        "Országos Könyvtári Napok"
+      ]
+    },
+    {
+      "url": "https://palinkafesztival.hu/",
+      "status": 200,
+      "finalUrl": "https://gyulaipalinkafesztival.hu/",
+      "error": null,
+      "deals": [
+        "Pálinkafesztivál"
+      ]
+    },
+    {
+      "url": "https://penzcentrum.hu/hellovidek/20260611/41-titkos-furdos-tipp-ahol-akar-ingyen-is-csobbanhatsz-evente-csak-egyszer-jar-ez-az-ajandek-1200160",
+      "status": 200,
+      "finalUrl": "https://www.penzcentrum.hu/hellovidek/20260611/41-titkos-furdos-tipp-ahol-akar-ingyen-is-csobbanhatsz-evente-csak-egyszer-jar-ez-az-ajandek-1200160",
+      "error": null,
+      "deals": [
+        "Szülinapi ingyen belépő / ajándék"
+      ]
+    },
+    {
+      "url": "https://recordstoreday.com/",
+      "status": 202,
+      "finalUrl": "https://recordstoreday.com/",
+      "error": null,
+      "deals": [
+        "Record Store Day / Free Comic Book Day"
+      ]
+    },
+    {
+      "url": "https://rtl.hu/black-november/2026/11/16/cyber-monday-kisokos",
+      "status": 200,
+      "finalUrl": "https://rtl.hu/black-november/2026/11/16/cyber-monday-kisokos",
+      "error": null,
+      "deals": [
+        "Cyber Monday"
+      ]
+    },
+    {
+      "url": "https://siofok.hu/",
+      "status": 200,
+      "finalUrl": "https://siofok.hu/",
+      "error": null,
+      "deals": [
+        "Balatoni Bor és Kenyér Ünnep, Siófok"
+      ]
+    },
+    {
+      "url": "https://sparbudapestmaraton.hu/nevezesi-infok",
+      "status": 520,
+      "finalUrl": "https://sparbudapestmaraton.hu/nevezesi-infok",
+      "error": null,
+      "deals": [
+        "SPAR Budapest Maraton early bird"
+      ]
+    },
+    {
+      "url": "https://szfe.hu/esemenyek/budapesti-szinhazak-ejszakaja/",
+      "status": 200,
+      "finalUrl": "https://szfe.hu/esemenyek/budapesti-szinhazak-ejszakaja/",
+      "error": null,
+      "deals": [
+        "Budapesti Színházak Éjszakája"
+      ]
+    },
+    {
+      "url": "https://szigetfestival.com/en/",
+      "status": 200,
+      "finalUrl": "https://szigetfestival.com/en/",
+      "error": null,
+      "deals": [
+        "SZIGET 2027 early bird"
+      ]
+    },
+    {
+      "url": "https://szigetfestival.com/en/festival-info",
+      "status": 200,
+      "finalUrl": "https://szigetfestival.com/en/festival-info",
+      "error": null,
+      "deals": [
+        "SZIGET 2027 early bird"
+      ]
+    },
+    {
+      "url": "https://szigetfestival.com/hu/jegyek",
+      "status": 200,
+      "finalUrl": "https://szigetfestival.com/hu/jegyek",
+      "error": null,
+      "deals": [
+        "SZIGET 2027 early bird"
+      ]
+    },
+    {
+      "url": "https://tajhazszovetseg.hu/tajhazak-napja-esemenysorozat",
+      "status": 200,
+      "finalUrl": "https://tajhazszovetseg.hu/tajhazak-napja-esemenysorozat/",
+      "error": null,
+      "deals": [
+        "Tájházak és Szabadtéri Múzeumok Napja"
+      ]
+    },
+    {
+      "url": "https://telex.hu/karakter/konyvespolc/2026/02/11/unnepi-konyvhet-david-szalay-booker-dij",
+      "status": 200,
+      "finalUrl": "https://telex.hu/karakter/konyvespolc/2026/02/11/unnepi-konyvhet-david-szalay-booker-dij",
+      "error": null,
+      "deals": [
+        "Ünnepi Könyvhét"
+      ]
+    },
+    {
+      "url": "https://tickets.zoobudapest.com/hu/",
+      "status": 200,
+      "finalUrl": "https://tickets.zoobudapest.com/hu/",
+      "error": null,
+      "deals": [
+        "Állatkert téli/előszezon jegy"
+      ]
+    },
+    {
+      "url": "https://triptobudapest.hu/current-schedule-of-our-free-tours-in-budapest",
+      "status": 200,
+      "finalUrl": "https://www.triptobudapest.hu/current-schedule-of-our-free-tours-in-budapest/",
+      "error": null,
+      "deals": [
+        "Ingyenes városi séták"
+      ]
+    },
+    {
+      "url": "https://unnepikonyvhet.hu/",
+      "status": 200,
+      "finalUrl": "https://unnepikonyvhet.hu/",
+      "error": null,
+      "deals": [
+        "Ünnepi Könyvhét"
+      ]
+    },
+    {
+      "url": "https://urania-nf.hu/esemenyek/3084/2026/11/22/_11th-european-arthouse-cinema-day-in-urania",
+      "status": 200,
+      "finalUrl": "https://urania-nf.hu/esemenyek/3084/2026/11/22/_11th-european-arthouse-cinema-day-in-urania",
+      "error": null,
+      "deals": [
+        "Európai Art Mozi Nap"
+      ]
+    },
+    {
+      "url": "https://vidampark.com",
+      "status": 200,
+      "finalUrl": "https://vidampark.com/",
+      "error": null,
+      "deals": [
+        "Vidámpark szezonnyitó/záró akció"
+      ]
+    },
+    {
+      "url": "https://visitbalaton365.hu/informacio/kilenc-napon-at-unnepel-siofok-ismet-erkezik-a-bor-es-kenyer-unnepe",
+      "status": 200,
+      "finalUrl": "https://visitbalaton365.hu/informacio/kilenc-napon-at-unnepel-siofok-ismet-erkezik-a-bor-es-kenyer-unnepe",
+      "error": null,
+      "deals": [
+        "Balatoni Bor és Kenyér Ünnep, Siófok"
+      ]
+    },
+    {
+      "url": "https://vorosmartyclassicxmas.hu/",
+      "status": 200,
+      "finalUrl": "https://vorosmartyclassicxmas.hu/",
+      "error": null,
+      "deals": [
+        "Budapesti karácsonyi vásárok"
+      ]
+    },
+    {
+      "url": "https://welovebudapest.com/cikk/2026/09/09/budapest-coffee-week-2026-kavezok-programok",
+      "status": 200,
+      "finalUrl": "https://welovebudapest.com/cikk/2026/09/09/budapest-coffee-week-2026-kavezok-programok",
+      "error": null,
+      "deals": [
+        "Budapest Coffee Week"
+      ]
+    },
+    {
+      "url": "https://wizzair.com",
+      "status": 200,
+      "finalUrl": "https://www.wizzair.com/en-gb",
+      "error": null,
+      "deals": [
+        "Wizz Air heti akciók"
+      ]
+    },
+    {
+      "url": "https://www.aliexpress.com/",
+      "status": 200,
+      "finalUrl": "https://www.aliexpress.com/",
+      "error": null,
+      "deals": [
+        "Single's Day 11.11"
+      ]
+    },
+    {
+      "url": "https://www.alza.hu/",
+      "status": 403,
+      "finalUrl": "https://www.alza.hu/",
+      "error": null,
+      "deals": [
+        "Áruházi márkanapok / outlet"
+      ]
+    },
+    {
+      "url": "https://www.amazon.com/",
+      "status": 202,
+      "finalUrl": "https://www.amazon.com/",
+      "error": null,
+      "deals": [
+        "Amazon Prime Day"
+      ]
+    },
+    {
+      "url": "https://www.bankmonitor.hu/",
+      "status": 200,
+      "finalUrl": "https://bankmonitor.hu/",
+      "error": null,
+      "deals": [
+        "Banki számlanyitási akciók"
+      ]
+    },
+    {
+      "url": "https://www.bankmonitor.hu/hitelkartya/",
+      "status": 200,
+      "finalUrl": "https://bankmonitor.hu/hitelkartya/",
+      "error": null,
+      "deals": [
+        "Hitelkártya cashback / 0% THM"
+      ]
+    },
+    {
+      "url": "https://www.blackfriday.com/",
+      "status": 200,
+      "finalUrl": "https://blackfriday.com/",
+      "error": null,
+      "deals": [
+        "Black Friday"
+      ]
+    },
+    {
+      "url": "https://www.boraszat.hu/",
+      "status": 200,
+      "finalUrl": "https://boraszat.hu/",
+      "error": null,
+      "deals": [
+        "Szüreti fesztiválok"
+      ]
+    },
+    {
+      "url": "https://www.bowling.hu/",
+      "status": 200,
+      "finalUrl": "https://www.bowling.hu/",
+      "error": null,
+      "deals": [
+        "Bowling/lézerharc happy hour"
+      ]
+    },
+    {
+      "url": "https://www.bud.hu/",
+      "status": 200,
+      "finalUrl": "https://www.bud.hu/",
+      "error": null,
+      "deals": [
+        "Repülőtéri parkolás early booking"
+      ]
+    },
+    {
+      "url": "https://www.budapestfilm.hu/",
+      "status": 200,
+      "finalUrl": "https://bpfilm.hu/",
+      "error": null,
+      "deals": [
+        "Szabadtéri mozi"
+      ]
+    },
+    {
+      "url": "https://www.cinemacity.hu",
+      "status": 200,
+      "finalUrl": "https://www.cinemacity.hu/",
+      "error": null,
+      "deals": [
+        "Cinema City Filmünnep",
+        "Cinema City kedvezményes nap"
+      ]
+    },
+    {
+      "url": "https://www.cinemacity.hu/",
+      "status": 200,
+      "finalUrl": "https://www.cinemacity.hu/",
+      "error": null,
+      "deals": [
+        "Mozik családi jegy / gyerekjegy"
+      ]
+    },
+    {
+      "url": "https://www.cinemacity.hu/csaladi-tizes-moziberlet",
+      "status": 200,
+      "finalUrl": "https://www.cinemacity.hu/static/hu/hu/csaladi-tizes-moziberlet",
+      "error": null,
+      "deals": [
+        "Családi TIZES mozibérlet"
+      ]
+    },
+    {
+      "url": "https://www.daypass.fit/category/hungary/",
+      "status": 200,
+      "finalUrl": "https://www.daypass.fit/category/hungary/",
+      "error": null,
+      "deals": [
+        "Fitness ingyenes próbahét"
+      ]
+    },
+    {
+      "url": "https://www.egeszsegor.hu/spg/438423,343964/Majus-a-vernyomasmeres-honapja-merje-On-is-rendsze",
+      "status": 200,
+      "finalUrl": "https://www.egeszsegor.hu/spg/438423,343964/Majus-a-vernyomasmeres-honapja-merje-On-is-rendsze",
+      "error": null,
+      "deals": [
+        "Vérnyomásmérés hónapja"
+      ]
+    },
+    {
+      "url": "https://www.elektromos-auto-palyazat.hu/",
+      "status": 200,
+      "finalUrl": "https://www.elektromos-auto-palyazat.hu/",
+      "error": null,
+      "deals": [
+        "Zöld autó / EV támogatás"
+      ]
+    },
+    {
+      "url": "https://www.emag.hu/",
+      "status": 200,
+      "finalUrl": "https://www.emag.hu/",
+      "error": null,
+      "deals": [
+        "Áruházi márkanapok / outlet"
+      ]
+    },
+    {
+      "url": "https://www.fagylalt.hu/",
+      "status": 200,
+      "finalUrl": "https://www.fagylalt.hu/",
+      "error": null,
+      "deals": [
+        "Fagylaltfesztivál / Fagylalt Napja"
+      ]
+    },
+    {
+      "url": "https://www.fesztivalportal.hu/gasztronomiai-fesztival/bajai-halfozo-fesztival",
+      "status": 200,
+      "finalUrl": "https://www.fesztivalportal.hu/gasztronomiai-fesztival/bajai-halfozo-fesztival",
+      "error": null,
+      "deals": [
+        "Bajai Halászléfőző Népünnepély"
+      ]
+    },
+    {
+      "url": "https://www.freetour.com/budapest",
+      "status": 200,
+      "finalUrl": "https://www.freetour.com/budapest",
+      "error": null,
+      "deals": [
+        "Ingyenes városi séták"
+      ]
+    },
+    {
+      "url": "https://www.fszek.hu/",
+      "status": 200,
+      "finalUrl": "https://www.fszek.hu/",
+      "error": null,
+      "deals": [
+        "Ingyenes filmvetítések",
+        "Könyvtári gyerekprogramok"
+      ]
+    },
+    {
+      "url": "https://www.furdoszovetseg.hu",
+      "status": 200,
+      "finalUrl": "https://www.furdoszovetseg.hu/",
+      "error": null,
+      "deals": [
+        "Strandok Éjszakája"
+      ]
+    },
+    {
+      "url": "https://www.furdoszovetseg.hu/",
+      "status": 200,
+      "finalUrl": "https://www.furdoszovetseg.hu/",
+      "error": null,
+      "deals": [
+        "Wellness Hét / fürdők akciói"
+      ]
+    },
+    {
+      "url": "https://www.furdoszovetseg.hu/programok/strandok-ejszakaja-2026-csatlakozo-furdok",
+      "status": 200,
+      "finalUrl": "https://www.furdoszovetseg.hu/programok/strandok-ejszakaja-2026-csatlakozo-furdok/",
+      "error": null,
+      "deals": [
+        "Strandok Éjszakája"
+      ]
+    },
+    {
+      "url": "https://www.ikea.com/hu/hu/",
+      "status": 200,
+      "finalUrl": "https://www.ikea.com/hu/hu/",
+      "error": null,
+      "deals": [
+        "IKEA Småland ingyenes játszóház"
+      ]
+    },
+    {
+      "url": "https://www.interrail.com/en",
+      "status": 200,
+      "finalUrl": "https://www.interrail.com/en",
+      "error": null,
+      "deals": [
+        "Interrail tavaszi akció"
+      ]
+    },
+    {
+      "url": "https://www.kerekparosklub.hu/",
+      "status": 200,
+      "finalUrl": "https://www.kerekparosklub.hu/",
+      "error": null,
+      "deals": [
+        "Bringás reggeli"
+      ]
+    },
+    {
+      "url": "https://www.maesteszinhaz.hu",
+      "status": 200,
+      "finalUrl": "https://www.maesteszinhaz.hu/",
+      "error": null,
+      "deals": [
+        "Ma este Színház!"
+      ]
+    },
+    {
+      "url": "https://www.magyarfilmnapja.hu/",
+      "status": 200,
+      "finalUrl": "https://www.magyarfilmnapja.hu/",
+      "error": null,
+      "deals": [
+        "Magyar Film Napja"
+      ]
+    },
+    {
+      "url": "https://www.mavcsoport.hu",
+      "status": 200,
+      "finalUrl": "https://www.mavcsoport.hu/",
+      "error": null,
+      "deals": [
+        "MÁV 65+ ingyenes"
+      ]
+    },
+    {
+      "url": "https://www.mavcsoport.hu/",
+      "status": 200,
+      "finalUrl": "https://www.mavcsoport.hu/",
+      "error": null,
+      "deals": [
+        "MÁV diák 50%",
+        "Csoportos / last-minute jegyek"
+      ]
+    },
+    {
+      "url": "https://www.mediamarkt.hu/",
+      "status": 200,
+      "finalUrl": "https://www.mediamarkt.hu/",
+      "error": null,
+      "deals": [
+        "Áruházi márkanapok / outlet"
+      ]
+    },
+    {
+      "url": "https://www.mobilityweek.eu/",
+      "status": 403,
+      "finalUrl": "https://mobilityweek.eu/",
+      "error": null,
+      "deals": [
+        "Autómentes nap"
+      ]
+    },
+    {
+      "url": "https://www.mok.hu/",
+      "status": 200,
+      "finalUrl": "https://mok.hu/",
+      "error": null,
+      "deals": [
+        "Ingyenes fogászati szűrés"
+      ]
+    },
+    {
+      "url": "https://www.museum.hu",
+      "status": 200,
+      "finalUrl": "https://www.museum.hu/",
+      "error": null,
+      "deals": [
+        "Nemzeti ünnepi múzeumok"
+      ]
+    },
+    {
+      "url": "https://www.museum.hu/muzeumokejszakaja",
+      "status": 200,
+      "finalUrl": "https://www.museum.hu/muzeumokejszakaja",
+      "error": null,
+      "deals": [
+        "Múzeumok Éjszakája"
+      ]
+    },
+    {
+      "url": "https://www.nnk.gov.hu/",
+      "status": 403,
+      "finalUrl": "https://nnk.gov.hu/",
+      "error": null,
+      "deals": [
+        "Ingyenes szűrőnapok",
+        "Egészségnapok"
+      ]
+    },
+    {
+      "url": "https://www.opera.hu/hu/jegyinformaciok/jegyarak-kedvezmenyek/",
+      "status": 200,
+      "finalUrl": "https://www.opera.hu/hu/jegyinformaciok/jegyarak-kedvezmenyek/opera/2026-2027/",
+      "error": null,
+      "deals": [
+        "Opera állóhely / diákjegy"
+      ]
+    },
+    {
+      "url": "https://www.opera.hu/hu/jegyinformaciok/jegyvasarlas/",
+      "status": 200,
+      "finalUrl": "https://opera.jegy.hu/",
+      "error": null,
+      "deals": [
+        "Opera állóhely / diákjegy"
+      ]
+    },
+    {
+      "url": "https://www.pcguru.hu/hirek/cinema-city-filmunnep-olcso-mozizas-felar-1690-forint-2d-3d-4xd-imax-filmek-marlasinger-/104246",
+      "status": 200,
+      "finalUrl": "https://www.pcguru.hu/hirek/cinema-city-filmunnep-olcso-mozizas-felar-1690-forint-2d-3d-4xd-imax-filmek-marlasinger-/104246",
+      "error": null,
+      "deals": [
+        "Cinema City Filmünnep"
+      ]
+    },
+    {
+      "url": "https://www.penzcentrum.hu/vasarlas/20251227/indulnak-a-nagy-leertekelesek-a-magyar-uzletekben-ne-maradj-le-van-ahol-70-szazalekkal-olcsobban-vasarolhatsz-1190710",
+      "status": 200,
+      "finalUrl": "https://www.penzcentrum.hu/vasarlas/20251227/indulnak-a-nagy-leertekelesek-a-magyar-uzletekben-ne-maradj-le-van-ahol-70-szazalekkal-olcsobban-vasarolhatsz-1190710",
+      "error": null,
+      "deals": [
+        "Januári leárazások"
+      ]
+    },
+    {
+      "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
+      "status": 200,
+      "finalUrl": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
+      "error": null,
+      "deals": [
+        "Bajai Halászléfőző Népünnepély"
+      ]
+    },
+    {
+      "url": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
+      "status": 200,
+      "finalUrl": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
+      "error": null,
+      "deals": [
+        "Budapest Borfesztivál"
+      ]
+    },
+    {
+      "url": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
+      "status": 200,
+      "finalUrl": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
+      "error": null,
+      "deals": [
+        "Gourmet Fesztivál"
+      ]
+    },
+    {
+      "url": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
+      "status": 200,
+      "finalUrl": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
+      "error": null,
+      "deals": [
+        "Nyitott Templomok Napja"
+      ]
+    },
+    {
+      "url": "https://www.revolut.com/",
+      "status": 403,
+      "finalUrl": "https://www.revolut.com/",
+      "error": null,
+      "deals": [
+        "Ajánlói bónuszok"
+      ]
+    },
+    {
+      "url": "https://www.ryanair.com/hu/hu",
+      "status": 200,
+      "finalUrl": "https://www.ryanair.com/hu/hu",
+      "error": null,
+      "deals": [
+        "Ryanair időszakos sale"
+      ]
+    },
+    {
+      "url": "https://www.sielok.hu/",
+      "status": 200,
+      "finalUrl": "https://sielok.hu/",
+      "error": null,
+      "deals": [
+        "Síbérlet early bird"
+      ]
+    },
+    {
+      "url": "https://www.sorfesztival.hu/",
+      "status": 200,
+      "finalUrl": "https://www.sorfesztival.hu/",
+      "error": null,
+      "deals": [
+        "Belvárosi Sörfesztivál"
+      ]
+    },
+    {
+      "url": "https://www.szabaduloszoba.hu/",
+      "status": 200,
+      "finalUrl": "https://www.szabaduloszoba.hu/",
+      "error": null,
+      "deals": [
+        "Escape room hétköznap nappali"
+      ]
+    },
+    {
+      "url": "https://www.szallas.hu/",
+      "status": 403,
+      "finalUrl": "https://www.szallas.hu/",
+      "error": null,
+      "deals": [
+        "Szálloda early booking"
+      ]
+    },
+    {
+      "url": "https://www.szallas.hu/balaton",
+      "status": 403,
+      "finalUrl": "https://www.szallas.hu/balaton",
+      "error": null,
+      "deals": [
+        "Balaton elő-/utószezon"
+      ]
+    },
+    {
+      "url": "https://www.taborfigyelo.hu/",
+      "status": 200,
+      "finalUrl": "https://www.taborfigyelo.hu/",
+      "error": null,
+      "deals": [
+        "Táborok early bird"
+      ]
+    },
+    {
+      "url": "https://www.tiplino.hu/cikk/nyari-akciok-leertekeles-2026",
+      "status": 200,
+      "finalUrl": "https://www.tiplino.hu/cikk/nyari-akciok-leertekeles-2026",
+      "error": null,
+      "deals": [
+        "Nyári szezonvégi leárazás"
+      ]
+    },
+    {
+      "url": "https://www.toogoodtogo.hu",
+      "status": 429,
+      "finalUrl": "https://www.toogoodtogo.com/",
+      "error": null,
+      "deals": [
+        "Too Good To Go / Munch"
+      ]
+    },
+    {
+      "url": "https://zeneakademia.hu",
+      "status": 200,
+      "finalUrl": "https://zeneakademia.hu/",
+      "error": null,
+      "deals": [
+        "Zeneakadémia ingyenes koncertek"
+      ]
+    },
+    {
+      "url": "https://zoobudapest.com",
+      "status": 200,
+      "finalUrl": "https://zoobudapest.com/",
+      "error": null,
+      "deals": [
+        "Állatkertek Éjszakája"
+      ]
+    },
+    {
+      "url": "https://zoobudapest.com/",
+      "status": 200,
+      "finalUrl": "https://zoobudapest.com/",
+      "error": null,
+      "deals": [
+        "Állatkert téli/előszezon jegy"
+      ]
+    },
+    {
+      "url": "https://zoobudapest.com/jegyek-es-berletek/jegy-es-berletarak/",
+      "status": 200,
+      "finalUrl": "https://zoobudapest.com/jegyek-es-berletek/jegy-es-berletarak/",
+      "error": null,
+      "deals": [
+        "Állatkert téli/előszezon jegy"
+      ]
+    },
+    {
+      "url": "https://zoobudapest.com/programok/allatkertek-ejszakaja-2026",
+      "status": 200,
+      "finalUrl": "https://zoobudapest.com/programok/allatkertek-ejszakaja-2026",
+      "error": null,
+      "deals": [
+        "Állatkertek Éjszakája"
+      ]
+    }
+  ]
+}

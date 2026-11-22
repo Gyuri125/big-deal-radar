@@ -659,6 +659,29 @@ mark {
   color: var(--muted);
 }
 
+.search-hint {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.search-hint span {
+  margin-right: 4px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.search-hint strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.search-hint[hidden] {
+  display: none;
+}
+
 #search {
   width: 100%;
   height: 58px;
@@ -1291,6 +1314,22 @@ mark {
   margin: 20px 0 0;
   font-size: 0.82rem;
   font-weight: 700;
+  color: var(--orange);
+}
+
+.dialog-route {
+  margin: 6px 0 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.dialog-route a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dialog-route a:hover {
   color: var(--orange);
 }
 

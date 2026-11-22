@@ -50,6 +50,12 @@ function dealTypeLabel(deal: Deal): string {
   return 'Különleges hozzáférés';
 }
 
+function googleMapsRouteUrl(deal: Deal): string {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    `${deal.location}, Hungary`
+  )}`;
+}
+
 function normalPriceLabel(deal: Deal): string {
   if (deal.normal_price !== null) return `Normál ár: ${formatHuf(deal.normal_price)}`;
   return '';
@@ -149,6 +155,7 @@ function pageCss(): string {
     .badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:#fff0e8;color:#b5471d;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
     h1{margin:14px 0 0;font-family:Georgia,serif;font-size:clamp(2rem,6vw,3.5rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy)}
     .meta{margin:14px 0 0;font-size:.85rem;font-weight:700;color:#b5471d}
+    .route-links{margin:6px 0 0;font-size:.76rem;font-weight:700}.route-links a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}.route-links a:hover{color:var(--orange)}
     .lead{margin:16px 0 0;font-size:1.02rem;color:#475467}
     .price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
     .old{font-size:.9rem;color:var(--muted);text-decoration:line-through}.new{font-size:1.7rem;font-weight:800;color:var(--navy)}.free{font-size:1.3rem;font-weight:800;color:#08685c}
@@ -315,6 +322,14 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
     })
     .join('');
   const radarLink = `../../?deal=${encodeURIComponent(deal.id)}`;
+  const routeLinks =
+    deal.location !== 'Online'
+      ? `<p class="route-links"><a href="${escapeHtml(googleMapsRouteUrl(deal))}" target="_blank" rel="noopener">Útvonal Google Mapsen</a>${
+          deal.location === 'Budapest'
+            ? ' · <a href="https://utvonalterv.hu/" target="_blank" rel="noopener">BKK útvonalterv</a>'
+            : ''
+        }</p>`
+      : '';
   const reportUrl = `https://github.com/Gyuri125/big-deal-radar/issues/new?title=${encodeURIComponent(
     `Hiba: ${deal.title}`
   )}&body=${encodeURIComponent(
@@ -406,6 +421,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
       <span class="badge">${deal.type === 'flat' ? '★ Prémium ugyanannyi' : deal.type === 'free' ? 'Ingyenes' : deal.type === 'money' ? 'Pénzügy' : deal.type === 'sale' ? 'Akció' : 'Különleges hozzáférés'}</span>
       <h1>${escapeHtml(deal.title)}</h1>
       <p class="meta">${escapeHtml(dateLabel)} · ${escapeHtml(deal.location)}${escapeHtml(checked)}</p>
+      ${routeLinks}
       <p class="lead">${escapeHtml(deal.deal)}</p>
 
       <div class="price">
@@ -431,7 +447,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
     </main>
 
     <footer class="footer">
-      <p>Big-deal radar · <a href="../../">a teljes lista</a> · <a href="../../gyujtemeny/">gyűjtemények</a> · <a href="${reportUrl}" target="_blank" rel="noopener">Hibát jelentek</a></p>
+      <p>Big-deal radar · <a href="../../">a teljes lista</a> · <a href="../../gyujtemeny/">gyűjtemények</a> · <a href="../../forrasok/">források</a> · <a href="${reportUrl}" target="_blank" rel="noopener">Hibát jelentek</a></p>
       <p>Az adatok évente változnak, ellenőrizd a hivatalos forráson.</p>
     </footer>
   </div>
@@ -634,6 +650,202 @@ function buildCollectionIndex(deals: Deal[]): string {
 </html>`;
 }
 
+interface LinkStatusEntry {
+  url: string;
+  status: number | string;
+  finalUrl: string | null;
+  error: string | null;
+  deals: string[];
+}
+
+interface LinkStatusFile {
+  checked_at: string;
+  total: number;
+  ok: number;
+  redirected: number;
+  blocked: number;
+  failed: number;
+  links: LinkStatusEntry[];
+}
+
+interface SourceMonitorReport {
+  checked_at: string;
+  changed: Array<{ label: string; url: string }>;
+  added: Array<{ label: string; url: string }>;
+  errors: Array<{ label: string; url: string; error: string }>;
+}
+
+function linkStatusKind(entry: LinkStatusEntry): 'ok' | 'blocked' | 'failed' {
+  const blockedCodes = [401, 403, 429, 511, 520];
+  if (entry.status === 'ERR') return 'failed';
+  if (typeof entry.status === 'number') {
+    if (blockedCodes.includes(entry.status)) return 'blocked';
+    if (entry.status >= 400) return 'failed';
+  }
+  return 'ok';
+}
+
+function buildSourcesPage(
+  status: LinkStatusFile | null,
+  monitor: SourceMonitorReport | null
+): string {
+  const checked = status?.checked_at
+    ? new Date(status.checked_at).toLocaleString('hu-HU', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      })
+    : null;
+  const monitorChecked = monitor?.checked_at
+    ? new Date(monitor.checked_at).toLocaleString('hu-HU', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      })
+    : null;
+  const monitorProblems: Array<{
+    label: string;
+    url: string;
+    kind: 'változott' | 'hiba';
+    error?: string;
+  }> = [
+    ...(monitor?.changed ?? []).map((item) => ({
+      ...item,
+      kind: 'változott' as const,
+    })),
+    ...(monitor?.errors ?? []).map((item) => ({
+      ...item,
+      kind: 'hiba' as const,
+      error: item.error,
+    })),
+  ];
+  const monitorSection = monitor
+    ? `<div class="monitor-box">
+        <strong>Automatikus forrásfigyelés</strong>
+        <span>Utolsó futás: ${escapeHtml(monitorChecked ?? '')} · változott: ${monitor.changed.length} · hiba: ${monitor.errors.length}</span>
+        ${
+          monitorProblems.length > 0
+            ? `<ul>${monitorProblems
+                .map(
+                  (item) =>
+                    `<li><b>${escapeHtml(item.kind)}:</b> <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.label)}</a>${item.error ? ` – ${escapeHtml(item.error)}` : ''}</li>`
+                )
+                .join('')}</ul>`
+            : '<span class="monitor-ok">Nincs friss változás vagy hiba.</span>'
+        }
+      </div>`
+    : '';
+
+  const rows = (status?.links ?? [])
+    .slice()
+    .sort((a, b) => {
+      const order = { failed: 0, blocked: 1, ok: 2 };
+      return order[linkStatusKind(a)] - order[linkStatusKind(b)] ||
+        a.url.localeCompare(b.url);
+    })
+    .map((entry) => {
+      const kind = linkStatusKind(entry);
+      const label =
+        kind === 'failed'
+          ? entry.status === 'ERR'
+            ? 'Hiba'
+            : String(entry.status)
+          : kind === 'blocked'
+            ? `${entry.status} botblokk`
+            : String(entry.status);
+      const final =
+        entry.finalUrl &&
+        entry.finalUrl.replace(/\/$/, '') !== entry.url.replace(/\/$/, '')
+          ? `<span class="source-final">→ ${escapeHtml(entry.finalUrl)}</span>`
+          : '';
+      return `<li class="source-row source-${kind}">
+        <span class="source-status">${escapeHtml(label)}</span>
+        <div class="source-main">
+          <a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">${escapeHtml(entry.url)}</a>
+          ${final}
+          <span class="source-deals">${escapeHtml(entry.deals.join(' · '))}</span>
+          ${entry.error ? `<span class="source-error">${escapeHtml(entry.error)}</span>` : ''}
+        </div>
+      </li>`;
+    })
+    .join('');
+
+  const summary = status
+    ? `<div class="source-summary">
+        <div><strong>${status.total}</strong><span>link</span></div>
+        <div><strong>${status.ok}</strong><span>OK</span></div>
+        <div><strong>${status.redirected}</strong><span>átirányítva</span></div>
+        <div><strong>${status.blocked}</strong><span>botblokk</span></div>
+        <div><strong>${status.failed}</strong><span>hiba</span></div>
+      </div>
+      <p class="source-note">Utolsó ellenőrzés: <strong>${escapeHtml(checked ?? '')}</strong>. A botblokkolt oldalak böngészőből általában elérhetők.</p>`
+    : `<p class="source-note">Még nem futott linkellenőrzés. Indítsd el a <a href="https://github.com/Gyuri125/big-deal-radar/actions/workflows/link-check.yml">Link check</a> workflow-t.</p>`;
+
+  return `<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#12212f"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <title>Forrás-egészség – Big-deal radar</title>
+  <meta name="description" content="A Big-deal radar forrásainak legutóbbi linkellenőrzési állapota."/>
+  <link rel="canonical" href="${escapeHtml(`${siteUrl}forrasok/`)}"/>
+  <style>${pageCss()}
+    .source-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;overflow:hidden;margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--line)}
+    .source-summary>div{display:flex;flex-direction:column;gap:2px;padding:14px;background:var(--paper)}
+    .source-summary strong{font-family:Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--navy)}
+    .source-summary span{font-size:.7rem;color:var(--muted)}
+    .source-note{font-size:.8rem;color:var(--muted)}
+    .monitor-box{display:flex;flex-direction:column;gap:5px;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);font-size:.8rem}
+    .monitor-box strong{color:var(--navy)}.monitor-box span{color:var(--muted)}
+    .monitor-box ul{margin:4px 0 0;padding-left:18px}.monitor-box li{font-size:.76rem}
+    .monitor-ok{color:#08685c!important;font-weight:700}
+    .source-list{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+    .source-row{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+    .source-status{flex:0 0 auto;min-width:86px;padding:3px 7px;border-radius:6px;font-size:.64rem;font-weight:800;text-align:center}
+    .source-ok .source-status{background:#e7f6f3;color:#08685c}
+    .source-blocked .source-status{background:#fff6d9;color:#8f6910}
+    .source-failed .source-status{background:#fdecea;color:#a02c20}
+    .source-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .source-main a{font-size:.8rem;font-weight:700;overflow-wrap:anywhere}
+    .source-final,.source-deals,.source-error{font-size:.68rem;color:var(--muted);overflow-wrap:anywhere}
+    .source-error{color:#a02c20}
+    @media(max-width:600px){.source-summary{grid-template-columns:repeat(2,1fr)}.source-row{flex-direction:column}.source-status{min-width:0}}
+    @media(prefers-color-scheme:dark){
+      :root{--navy:#e8eef5;--cream:#0a141d;--paper:#132230;--line:#293b4d;--muted:#9fb0c0}
+      body{color:#e8eef5;background:radial-gradient(circle at 10% 0%,rgba(242,107,56,.08),transparent 28rem),var(--cream)}
+      .hero,.source-row{background:var(--paper);color:#e8eef5}
+      .source-main a{color:#e8eef5}
+      .monitor-box{background:var(--paper);color:#e8eef5}
+      .monitor-ok{color:#7fe0d1!important}
+      .source-ok .source-status{background:#0d2c28;color:#7fe0d1}
+      .source-blocked .source-status{background:#33280d;color:#f0c65e}
+      .source-failed .source-status{background:#3a1715;color:#ffb3a8}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../"><span class="mark"><span class="dot"></span></span><span>BIG-DEAL<br/>RADAR</span></a>
+      <a class="back" href="../">← Vissza a radarhoz</a>
+    </header>
+    <main class="hero">
+      <span class="badge">Forrás-egészség</span>
+      <h1>Forrás-egészség</h1>
+      <p class="lead">Átláthatóan mutatjuk, mely források élnek, melyek botblokkoltak, és hol volt hiba a legutóbbi ellenőrzéskor.</p>
+      ${summary}
+      ${monitorSection}
+      <ul class="source-list">${rows}</ul>
+      <p class="source-note">A linkellenőrzés hetente fut. Ha hibát látsz, a <a href="https://github.com/Gyuri125/big-deal-radar/issues/new/choose">GitHub Issue űrlapon</a> jelezheted.</p>
+    </main>
+    <footer class="footer">
+      <p>Big-deal radar · <a href="../">a teljes lista</a> · <a href="../feed.xml">RSS</a></p>
+    </footer>
+  </div>
+</body>
+</html>`;
+}
+
 async function main(): Promise<void> {
   if (!fs.existsSync(dealsPath)) {
     throw new Error('Nincs data/deals.json – futtasd: npm run import');
@@ -686,6 +898,24 @@ async function main(): Promise<void> {
     'utf8'
   );
 
+  const linkStatusPath = path.join(root, 'data', 'link-status.json');
+  const linkStatus = fs.existsSync(linkStatusPath)
+    ? (JSON.parse(fs.readFileSync(linkStatusPath, 'utf8')) as LinkStatusFile)
+    : null;
+  const monitorReportPath = path.join(root, 'data', 'source-monitor-report.json');
+  const monitorReport = fs.existsSync(monitorReportPath)
+    ? (JSON.parse(
+        fs.readFileSync(monitorReportPath, 'utf8')
+      ) as SourceMonitorReport)
+    : null;
+  const sourcesDir = path.join(distDir, 'forrasok');
+  fs.mkdirSync(sourcesDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(sourcesDir, 'index.html'),
+    buildSourcesPage(linkStatus, monitorReport),
+    'utf8'
+  );
+
   const siteTitle = 'A legjobb magyar dealek, időben elkapva.';
   const siteSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
     <defs><radialGradient id="bg" cx="12%" cy="0%" r="90%"><stop offset="0%" stop-color="#29465d"/><stop offset="55%" stop-color="#12212f"/><stop offset="100%" stop-color="#0c1722"/></radialGradient></defs>
@@ -712,6 +942,7 @@ async function main(): Promise<void> {
     ...collections.map(
       (collection) => `${siteUrl}gyujtemeny/${collection.slug}/`
     ),
+    `${siteUrl}forrasok/`,
   ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -779,7 +1010,7 @@ ${feedItems
   fs.writeFileSync(path.join(distDir, 'feed.xml'), feed, 'utf8');
 
   console.log(
-    `✅ ${deals.length} deal-oldal + ${collections.length} gyűjtemény + OG kép + sitemap + ${feedItems.length} elemes RSS elkészült.`
+    `✅ ${deals.length} deal-oldal + ${collections.length} gyűjtemény + forrás-egészség + OG kép + sitemap + ${feedItems.length} elemes RSS elkészült.`
   );
 }
 

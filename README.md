@@ -49,10 +49,14 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **Mai dobás** blokkal nyit: mindennap egy kiemelt, aktuális dealet tesz eléd,
 - szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
 - **ékezetfüggetlen keresés és szinonimák**: „muzeum” is megtalálja a „Múzeum” dealeket,
+- **természetes nyelvű keresés**: „ingyenes mozi hétvégén”, „randi 10 ezer alatt”, „családi program vasárnap”, „borfesztivál 2027”,
 - **aktív szűrőchipek**: minden szűrő külön törölhető, egy kattintással,
+- **Szombat / Vasárnap** külön időszűrők, a folyamatos helyszíni programokkal együtt,
 - **Ezen a hétvégén** és **Neked ajánlott** blokk a főoldalon,
 - **saját lista költségösszesítővel**: ismert ár, becsült megtakarítás, ingyenes dealek,
 - **8 gyűjteményoldal**: ingyenes, mozi, gasztro, ünnepek, programok, prémium, család, pénzügy,
+- **Forrás-egészség oldal** és heti automatikus forrásfigyelés,
+- **„Útvonal” link** minden dealnél Google Mapshez, budapesti helyszíneknél BKK-hoz,
 - **sötét mód** rendszerbeállítás szerint vagy kézi kapcsolóval, mentett választással,
 - mobilon **összecsukható szűrőpanellel** és gyors „vissza a tetejére” gombbal,
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
@@ -107,6 +111,10 @@ flowchart LR
   B --> G[GitHub Pages]
   P --> DC[Discord webhook]
   P --> TG[Telegram placeholder]
+  P --> LC[Heti link check]
+  P --> SM[Heti forrásfigyelés]
+  LC --> H[Forrás-egészség]
+  SM --> I[GitHub Issue]
 ```
 
 ```mermaid
@@ -364,14 +372,15 @@ git push -u origin main
 
 ## GitHub Actions
 
-Három workflow van:
+Öt workflow van:
 
 | Workflow | Mikor fut? | Mit csinál? |
 |---|---|---|
 | `pipeline.yml` | Naponta 3x + kézzel | Validál, digestet küld, buildel, deployol, szükség esetén commitol |
-| `deploy.yml` | `main` pushra, ha data/site változik | Buildel és Pagesre deployol |
+| `deploy.yml` | `main` pushra, ha data/site változik | Buildel és Pagesre deployol, majd élő smoke testet futtat |
 | `ci.yml` | PR és `main` push (kivéve data) | Lint, teszt, titokellenőrzés, build |
-| `link-check.yml` | Hetente + kézzel | Forráslinkek ellenőrzése, hiba esetén Discord-riasztás |
+| `link-check.yml` | Hetente + kézzel | Forráslinkek ellenőrzése, `link-status.json` commit, hiba esetén Discord-riasztás |
+| `source-monitor.yml` | Hetente + kézzel | Kiemelt hivatalos oldalak figyelése, változás esetén GitHub Issue |
 
 A napi cron **UTC-ben** van:
 
@@ -574,6 +583,7 @@ Ezek az oldalak:
 - **schema.org Event** structured data-t tartalmaznak (dátum, helyszín, ár, jegyvásárlási link),
 - **saját `.ics` naptárfájlt** kínálnak, emlékeztetőkkel,
 - **Google Naptár linket** is adnak az egykattintásos hozzáadáshoz,
+- **Google Maps / BKK útvonal linket** is adnak,
 - **hasonló dealeket** ajánlanak a kategóriából,
 - a **Megosztás** gombbal másolható / megosztható a link,
 - a részletek ablakból is megnyithatók.
@@ -602,6 +612,36 @@ A gyűjtemények a sitemapba is bekerülnek, és a deal-oldalakról, illetve a f
 
 ---
 
+## Természetes nyelvű keresés
+
+A kereső nem csak szavakat keres, hanem felismeri a szándékot is:
+
+- „ingyenes mozi hétvégén”
+- „randi 10 ezer alatt”
+- „családi program vasárnap”
+- „borfesztivál 2027”
+
+A találatok felett megjelenik az **értelmezés** (pl. `Ingyenes · Mozi · Hétvége`), így látszik, miért szűkült a lista. A keresés továbbra is ékezetfüggetlen, és a szűrők az URL-ben is megmaradnak.
+
+---
+
+## Forrás-egészség és automatikus figyelés
+
+A **Forrás-egészség** oldal:
+
+```text
+https://gyuri125.github.io/big-deal-radar/forrasok/
+```
+
+- kilistázza az összes forrást,
+- mutatja, melyik él, melyik botblokkolt, hol volt hiba,
+- látszik az utolsó linkellenőrzés ideje,
+- a botblokkolt oldalakat külön jelöli.
+
+A **Forrásfigyelés** GitHub Action hetente figyeli a kiemelt hivatalos oldalakat (Cinema City, Restaurant Week, Müpa, SZIGET, állatkert, fesztiválok), és ha változást vagy hibát lát, GitHub Issue-t nyit. Így a forrásváltozások nem csúsznak el észrevétlenül.
+
+---
+
 ## Sötét mód
 
 A fejléc jobb felső sarkában lévő **☾ / ☀** kapcsolóval váltható a világos és a sötét téma. Alapból a rendszerbeállítást követi, a választás pedig a böngészőben marad. A statikus deal- és gyűjteményoldalak is követik a rendszer sötét beállítását.
@@ -621,9 +661,11 @@ Az oldal telepíthető telefonra:
 ## Hibabejelentés és linkellenőrzés
 
 - Minden deal részleteinél van **„Hibát jelentek”** gomb, ami előre kitöltött GitHub Issue-t nyit.
-- A **heti linkellenőrzés** GitHub Actions workflow (`link-check.yml`) végigfut a forrásokon.
-- Ha broken linket talál, Discordra megy a riasztás.
-- Kézzel: `npm run check:links`.
+- Az **Adatállapot** panelről és a láblécből elérhető a **Forrás-egészség** oldal.
+- A **heti linkellenőrzés** GitHub Actions workflow (`link-check.yml`) végigfut a forrásokon, és `data/link-status.json`-ba menti az eredményt.
+- Ha törött linket talál, Discordra megy a riasztás.
+- A **heti forrásfigyelés** (`source-monitor.yml`) a kiemelt hivatalos oldalakat figyeli, és változás vagy hiba esetén GitHub Issue-t nyit.
+- Kézzel: `npm run check:links`, `npm run monitor:sources`.
 
 ---
 
@@ -632,7 +674,7 @@ Az oldal telepíthető telefonra:
 | Parancs | Mit csinál? |
 |---|---|
 | `npm run dev` | Helyi Vite fejlesztői szerver |
-| `npm run build` | Éles build + deal-oldalak + OG képek + sitemap |
+| `npm run build` | Éles build + deal-oldalak + gyűjtemények + forrás-egészség + OG képek + sitemap |
 | `npm run import` | Markdown + overrides → `data/deals.json` |
 | `npm run validate` | Adatbázis validálása |
 | `npm run daily` | Napi pipeline (digest + build) |
@@ -645,7 +687,10 @@ Az oldal telepíthető telefonra:
 | `npm test` | Vitest tesztek |
 | `npm run lint` | TypeScript ellenőrzés |
 | `npm run check:secrets` | Titokszivárgás keresése |
-| `npm run check:links` | Forráslinkek ellenőrzése |
+| `npm run check:links` | Forráslinkek ellenőrzése + `data/link-status.json` |
+| `npm run check:live` | Élő oldal smoke testje |
+| `npm run monitor:sources` | Kiemelt hivatalos források figyelése |
+| `npm run monitor:issue` | Forrásváltozásból GitHub Issue szöveg |
 
 ---
 
@@ -702,6 +747,7 @@ big-deal-radar/
 │  ├─ pipeline.yml        # napi adatfrissítés + digest + deploy
 │  ├─ deploy.yml          # push → Pages deploy
 │  ├─ link-check.yml      # heti linkellenőrzés
+│  ├─ source-monitor.yml  # heti forrásfigyelés + issue
 │  └─ ci.yml              # lint, teszt, titokellenőrzés, build
 ├─ data/
 │  ├─ deals.json          # 100+ deal (generált a markdownból)
@@ -711,14 +757,21 @@ big-deal-radar/
 │  ├─ titles.json         # dealnevek pontosítása (pl. Coffee Week)
 │  ├─ price-notes.json    # ármagyarázatok
 │  ├─ meta.json           # utolsó ellenőrzés dátuma
+│  ├─ link-status.json    # legutóbbi linkellenőrzés eredménye
+│  ├─ source-monitor.json # figyelt hivatalos oldalak
+│  ├─ source-hashes.json  # forrásoldalak hash-ei
+│  ├─ source-monitor-report.json # változások / hibák
 │  └─ state.json          # generált, gitignore-olt
 ├─ public/
 │  └─ status.json         # generált, gitignore-olt
 ├─ scripts/
 │  ├─ import-markdown.ts  # markdown → JSON
 │  ├─ check-secrets.ts    # titokszivárgás-ellenőrzés
-│  ├─ check-links.ts      # forráslinkek ellenőrzése
-│  ├─ build-deal-pages.ts # egyedi deal-oldalak, OG képek, sitemap
+│  ├─ check-links.ts      # forráslinkek ellenőrzése + link-status.json
+│  ├─ monitor-sources.ts  # kiemelt források figyelése
+│  ├─ write-monitor-issue.ts # issue szöveg a változásokból
+│  ├─ smoke-test.ts       # élő oldal ellenőrzése deploy után
+│  ├─ build-deal-pages.ts # egyedi deal-oldalak, gyűjtemények, sitemap
 │  ├─ daily.ps1           # Task Scheduler belépő
 │  ├─ install-task.ps1    # 08:00 / 12:00 / 20:00 telepítés
 │  └─ remove-task.ps1     # feladatok törlése
@@ -757,6 +810,9 @@ big-deal-radar/
 - [x] Ékezetfüggetlen keresés, szinonimák, aktív szűrőchipek.
 - [x] Ezen a hétvégén, Neked ajánlott, saját lista költségösszesítő.
 - [x] 8 gyűjteményoldal, sötét mód, Google Naptár link.
+- [x] Természetes nyelvű keresés, Szombat/Vasárnap szűrők.
+- [x] Forrás-egészség oldal és heti automatikus forrásfigyelés.
+- [x] Google Maps / BKK útvonal linkek.
 - [x] Strukturált GitHub Issue űrlapok és deploy smoke test.
 - [ ] A maradék 49 dealnél pontos dátum, ahol értelmezhető (a folyamatos/heti dealek szándékosan dátum nélkül maradnak).
 - [ ] Normál árak feltöltése a top 30-hoz.

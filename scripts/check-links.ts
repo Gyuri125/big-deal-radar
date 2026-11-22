@@ -104,19 +104,47 @@ async function main(): Promise<void> {
 
   await Promise.all(Array.from({ length: concurrency }, worker));
 
-  const blockedStatuses = new Set<number | 'ERR'>([401, 403, 429, 511, 520]);
+  const blockedStatuses = new Set<number>([401, 403, 429, 511, 520]);
   const blocked = results.filter((result) =>
-    blockedStatuses.has(result.status)
+    typeof result.status === 'number' && blockedStatuses.has(result.status)
   );
   const failed = results.filter(
     (result) =>
       result.status === 'ERR' ||
-      (result.status >= 400 && !blockedStatuses.has(result.status))
+      (typeof result.status === 'number' &&
+        result.status >= 400 &&
+        !blockedStatuses.has(result.status))
   );
   const redirected = results.filter(
     (result) =>
       result.finalUrl &&
       result.finalUrl.replace(/\/$/, '') !== result.url.replace(/\/$/, '')
+  );
+
+  const statusFile = {
+    checked_at: new Date().toISOString(),
+    total: results.length,
+    ok: results.length - failed.length - blocked.length,
+    redirected: redirected.length,
+    blocked: blocked.length,
+    failed: failed.length,
+    links: results
+      .slice()
+      .sort((a, b) => a.url.localeCompare(b.url))
+      .map((result) => ({
+        url: result.url,
+        status: result.status,
+        finalUrl: result.finalUrl ?? null,
+        error: result.error ?? null,
+        deals: result.deals,
+      })),
+  };
+
+  fs.mkdirSync(path.join(root, 'data'), { recursive: true });
+  fs.writeFileSync(
+    path.join(root, 'data', 'link-status.json'),
+    `${JSON.stringify(statusFile, null, 2)}\n`,
+    'utf8'
   );
 
   console.log(`\n🔗 ${results.length} egyedi link ellenőrzése kész.`);
