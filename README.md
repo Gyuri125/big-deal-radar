@@ -623,6 +623,8 @@ A kereső nem csak szavakat keres, hanem felismeri a szándékot is:
 
 A találatok felett megjelenik az **értelmezés** (pl. `Ingyenes · Mozi · Hétvége`), így látszik, miért szűkült a lista. A keresés továbbra is ékezetfüggetlen, és a szűrők az URL-ben is megmaradnak.
 
+![Természetes nyelvű keresés](docs/search-preview.png)
+
 ---
 
 ## Forrás-egészség és automatikus figyelés
@@ -637,6 +639,8 @@ https://gyuri125.github.io/big-deal-radar/forrasok/
 - mutatja, melyik él, melyik botblokkolt, hol volt hiba,
 - látszik az utolsó linkellenőrzés ideje,
 - a botblokkolt oldalakat külön jelöli.
+
+![Forrás-egészség](docs/sources-preview.png)
 
 A **Forrásfigyelés** GitHub Action hetente figyeli a kiemelt hivatalos oldalakat (Cinema City, Restaurant Week, Müpa, SZIGET, állatkert, fesztiválok), és ha változást vagy hibát lát, GitHub Issue-t nyit. Így a forrásváltozások nem csúsznak el észrevétlenül.
 
