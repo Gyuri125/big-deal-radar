@@ -27,7 +27,7 @@ import {
 type StatusKind = 'live' | 'upcoming' | 'past' | 'continuous' | 'unknown';
 type SortMode = 'next' | 'value' | 'title';
 type Focus = 'all' | 'mozi' | 'gasztro' | 'program' | 'unnep' | 'free';
-type TimeFilter = 'all' | 'today' | 'weekend' | 'next7';
+type TimeFilter = 'all' | 'today' | 'weekend' | 'next7' | 'ending';
 type BudgetFilter = 'all' | 'free' | 'under5' | 'under10' | 'over10';
 type ViewMode = 'list' | 'calendar';
 
@@ -85,6 +85,7 @@ const TIME_FILTERS: Array<{ value: TimeFilter; label: string }> = [
   { value: 'today', label: 'Ma' },
   { value: 'weekend', label: 'Hétvége' },
   { value: 'next7', label: '7 nap' },
+  { value: 'ending', label: 'Hamarosan zárul' },
 ];
 
 const BUDGET_FILTERS: Array<{ value: BudgetFilter; label: string }> = [
@@ -466,6 +467,12 @@ function matchesFilters(deal: EnrichedDeal): boolean {
   if (state.focus === 'free' && deal.type !== 'free') return false;
   if (state.time === 'today') {
     if (!(deal.status === 'live' || deal.days === 0)) return false;
+  }
+  if (state.time === 'ending') {
+    if (!deal.effective) return false;
+    const end = deal.effective.end ?? deal.effective.start;
+    const daysLeft = diffDays(now, end);
+    if (daysLeft < 0 || daysLeft > 3) return false;
   }
   if (state.time === 'next7') {
     if (deal.days === null || deal.days < 0 || deal.days > 7) return false;
@@ -1276,6 +1283,7 @@ function renderShell(): void {
           placeholder="Keresés: mozi, múzeum, ingyenes, Balaton..."
           autocomplete="off"
           aria-label="Keresés a dealek között"
+          title="Gyorskeresés: /"
           value="${escapeHtml(state.query)}"
         />
         <div class="view-toggle" role="group" aria-label="Nézet">
@@ -1858,6 +1866,27 @@ document.addEventListener('focusout', (event) => {
 
 window.addEventListener('scroll', hideLinkTooltip, { passive: true });
 window.addEventListener('resize', hideLinkTooltip);
+
+document.addEventListener('keydown', (event) => {
+  const target = event.target as HTMLElement | null;
+  const isTyping = Boolean(
+    target?.closest('input, textarea, select, [contenteditable="true"]')
+  );
+
+  if (event.key === '/' && !isTyping && !event.metaKey && !event.ctrlKey && !event.altKey) {
+    event.preventDefault();
+    document.querySelector<HTMLInputElement>('#search')?.focus();
+    return;
+  }
+
+  if (event.key === 'Escape' && target?.id === 'search') {
+    const search = target as HTMLInputElement;
+    if (search.value) {
+      search.value = '';
+      search.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+});
 
 let toastTimer: number | undefined;
 

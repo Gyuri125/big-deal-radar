@@ -10,11 +10,18 @@
 
 A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor nem 10%-ot adnak, hanem 4 napig **minden mozijegy ugyanannyi**, a 4DX is. Ilyen még a Múzeumok Éjszakája, a Színházak Éjszakája, a Restaurant Week, a Corvin Mozi Éjszaka vagy a Budapest100.
 
+## Előnézet
+
+![Big-deal radar – főoldal](docs/preview.png)
+
+A főoldalon **Mai dobás**, gyorsszűrők, **Hamarosan zárul** jelzés, **Heti top 5**, következő 7 nap, havi radar és a teljes kínálat található. A kártyákon látszik az ár, a források száma, a foglalási lehetőség és a lejárat.
+
 ---
 
 ## Tartalom
 
 - [Mi ez?](#mi-ez)
+- [Előnézet](#előnézet)
 - [A 4 deal-típus](#a-4-deal-típus)
 - [Hogyan működik?](#hogyan-működik)
 - [Gyors indítás](#gyors-indítás)
@@ -47,7 +54,8 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
 - **RSS feed** a következő dealekkel, hogy olvasóban is követhető legyen,
 - **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
-- **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, Ingyenes, 5 ezer alatt, 10 ezer alatt,
+- **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, **Hamarosan zárul**, Ingyenes, 5 ezer alatt, 10 ezer alatt,
+- **gyorskeresés**: a `/` billentyű a keresőmezőre ugrik, az Escape törli a keresést,
 - **megosztható szűrők**: a keresés, a szűrők és a nézet az URL-ben maradnak,
 - **sürgősségi jelzés**: ha egy deal 3 napon belül zárul, a kártya jelzi,
 - **akadálymentes**: skip link, fókuszálható eredmények, Lighthouse 100 accessibility,
