@@ -1119,6 +1119,7 @@ function renderDataQuality(): void {
   const searchOnly = enriched.filter(
     (deal) => deal.sources.length === 1 && deal.sources[0].type === 'search'
   ).length;
+  const bookable = enriched.filter((deal) => deal.booking_url).length;
 
   element.innerHTML = `
     <div class="dq-head">
@@ -1133,6 +1134,7 @@ function renderDataQuality(): void {
       <div><strong>${sources}</strong><span>forrás</span></div>
       <div><strong>${dated}</strong><span>dátumos</span></div>
       <div><strong>${verified}</strong><span>ellenőrzött</span></div>
+      <div><strong>${bookable}</strong><span>jegy / foglalás</span></div>
       <div><strong>${searchOnly}</strong><span>keresőlink</span></div>
     </div>
     <p class="dq-note">

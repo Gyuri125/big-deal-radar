@@ -511,6 +511,11 @@
       "label": "Fővárosi Állat- és Növénykert",
       "url": "https://zoobudapest.com/",
       "type": "official"
+    },
+    {
+      "label": "Állatkert jegyek és bérletek",
+      "url": "https://zoobudapest.com/jegyek-es-berletek/jegy-es-berletarak/",
+      "type": "ticket"
     }
   ],
   "aquaworld-elmenyfurdo-szulinapi-akcio": [
@@ -610,6 +615,42 @@
       "label": "Programturizmus – Gourmet 2027",
       "url": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
       "type": "article"
+    }
+  ],
+  "art-mozi-kedvezmenyes-hetfo": [
+    {
+      "label": "Art mozik",
+      "url": "https://artmozi.hu",
+      "type": "official"
+    },
+    {
+      "label": "Art mozi jegyárak",
+      "url": "https://artmozi.hu/jegyarak",
+      "type": "official"
+    }
+  ],
+  "opera-allohely-diakjegy": [
+    {
+      "label": "Opera",
+      "url": "https://opera.hu",
+      "type": "official"
+    },
+    {
+      "label": "Opera jegyárak és kedvezmények",
+      "url": "https://www.opera.hu/hu/jegyinformaciok/jegyarak-kedvezmenyek/",
+      "type": "official"
+    }
+  ],
+  "mupa-nyilt-nap-ingyenes-proba": [
+    {
+      "label": "Müpa",
+      "url": "https://mupa.hu",
+      "type": "official"
+    },
+    {
+      "label": "Müpa jegyek és bérletek",
+      "url": "https://mupa.hu/jegyek-berletek/2027-tavasz",
+      "type": "ticket"
     }
   ]
 }

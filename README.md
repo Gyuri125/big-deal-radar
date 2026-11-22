@@ -49,7 +49,7 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - mobilon **összecsukható szűrőpanellel** és gyors „vissza a tetejére” gombbal,
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
 - **saját lista + prioritás** a böngészőben, regisztráció nélkül,
-- ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató,
+- ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató (jelenleg 24 dealnél),
 - **minden dealhez legalább egy forrás**, ahol releváns, több is; a részletek ablakban listázva,
 - **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
 - **RSS feed** a következő dealekkel, hogy olvasóban is követhető legyen,
@@ -511,9 +511,10 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
 
 - **106 deal**
-- **133 forrás**
+- **140 forrás**
 - **57 dátumos**
 - **53 ellenőrzött**
+- **24 jegy / foglalás link**
 - **0 keresőlinkes** – minden dealhez van legalább egy valós forrás
 
 Ez nem reklám, hanem átláthatóság: ahol lehet, több forrást is megadunk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.

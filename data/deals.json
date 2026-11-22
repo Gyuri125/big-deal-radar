@@ -1177,12 +1177,17 @@
     "location": "Budapest",
     "source_url": "https://mupa.hu",
     "booking_url": null,
-    "booking_note": null,
+    "booking_note": "A nyílt napok és ingyenes próbák részletei a Müpa oldalán; egyes programok regisztrációhoz kötöttek.",
     "sources": [
       {
-        "label": "Hivatalos oldal",
+        "label": "Müpa",
         "url": "https://mupa.hu",
         "type": "official"
+      },
+      {
+        "label": "Müpa jegyek és bérletek",
+        "url": "https://mupa.hu/jegyek-berletek/2027-tavasz",
+        "type": "ticket"
       }
     ],
     "confidence": "needs-check",
@@ -1382,13 +1387,23 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://opera.hu",
-    "booking_url": "https://opera.hu",
-    "booking_note": "Az állóhelyek és diákjegyek előadásonként, a jegyértékesítésben elérhetők.",
+    "booking_url": "https://www.opera.hu/hu/jegyinformaciok/jegyvasarlas/",
+    "booking_note": "Állóhely és diákjegy a hivatalos jegyoldalon; a kedvezmények részletei a jegyinformációs oldalon.",
     "sources": [
       {
-        "label": "Hivatalos oldal",
+        "label": "Opera",
         "url": "https://opera.hu",
         "type": "official"
+      },
+      {
+        "label": "Opera jegyárak és kedvezmények",
+        "url": "https://www.opera.hu/hu/jegyinformaciok/jegyarak-kedvezmenyek/",
+        "type": "official"
+      },
+      {
+        "label": "Jegyvásárlás / foglalás",
+        "url": "https://www.opera.hu/hu/jegyinformaciok/jegyvasarlas/",
+        "type": "ticket"
       }
     ],
     "confidence": "verified",
@@ -1421,13 +1436,23 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": "https://artmozi.hu",
-    "booking_url": "https://artmozi.hu",
-    "booking_note": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
+    "booking_url": "https://artmozi.hu/jegyar/online-vasarlas",
+    "booking_note": "Online jegyvásárlás az artmozik oldalán; a hétfői kedvezmény mozinként eltérhet.",
     "sources": [
       {
-        "label": "Hivatalos oldal",
+        "label": "Art mozik",
         "url": "https://artmozi.hu",
         "type": "official"
+      },
+      {
+        "label": "Art mozi jegyárak",
+        "url": "https://artmozi.hu/jegyarak",
+        "type": "official"
+      },
+      {
+        "label": "Jegyvásárlás / foglalás",
+        "url": "https://artmozi.hu/jegyar/online-vasarlas",
+        "type": "ticket"
       }
     ],
     "confidence": "verified",
@@ -3863,21 +3888,31 @@
     "currency": "HUF",
     "location": "Budapest",
     "source_url": null,
-    "booking_url": null,
-    "booking_note": null,
+    "booking_url": "https://tickets.zoobudapest.com/hu/",
+    "booking_note": "Téli/előszezon jegy a hivatalos online jegypénztárban vagy a helyszínen.",
     "sources": [
       {
         "label": "Fővárosi Állat- és Növénykert",
         "url": "https://zoobudapest.com/",
         "type": "official"
+      },
+      {
+        "label": "Állatkert jegyek és bérletek",
+        "url": "https://zoobudapest.com/jegyek-es-berletek/jegy-es-berletarak/",
+        "type": "ticket"
+      },
+      {
+        "label": "Jegyvásárlás / foglalás",
+        "url": "https://tickets.zoobudapest.com/hu/",
+        "type": "ticket"
       }
     ],
     "confidence": "unverified",
     "last_checked": null,
     "tags": [
+      "budapest",
       "csalad",
       "sale",
-      "budapest",
       "program"
     ],
     "notes": "Forrás: budapesti-100-big-deal.md #92",

@@ -315,7 +315,8 @@
     "currency": null,
     "source_url": "https://mupa.hu",
     "confidence": "needs-check",
-    "notes": "Évente több alkalmas; a pontos program a Müpa oldalán."
+    "notes": "Évente több alkalmas; a pontos program a Müpa oldalán.",
+    "booking_note": "A nyílt napok és ingyenes próbák részletei a Müpa oldalán; egyes programok regisztrációhoz kötöttek."
   },
   "ingyenes-varosi-setak": {
     "recurrence": "continuous",
@@ -365,8 +366,8 @@
     "source_url": "https://opera.hu",
     "confidence": "verified",
     "notes": "Az állóhelyek és diákjegyek elérhetősége előadásonként változik.",
-    "booking_url": "https://opera.hu",
-    "booking_note": "Az állóhelyek és diákjegyek előadásonként, a jegyértékesítésben elérhetők."
+    "booking_url": "https://www.opera.hu/hu/jegyinformaciok/jegyvasarlas/",
+    "booking_note": "Állóhely és diákjegy a hivatalos jegyoldalon; a kedvezmények részletei a jegyinformációs oldalon."
   },
   "art-mozi-kedvezmenyes-hetfo": {
     "recurrence": "weekly",
@@ -375,8 +376,8 @@
     "confidence": "verified",
     "notes": "Mozinként eltérő; érdemes az adott mozi műsorát nézni.",
     "category": "mozi",
-    "booking_url": "https://artmozi.hu",
-    "booking_note": "Mozinként eltérő; érdemes az adott mozi műsorát nézni."
+    "booking_url": "https://artmozi.hu/jegyar/online-vasarlas",
+    "booking_note": "Online jegyvásárlás az artmozik oldalán; a hétfői kedvezmény mozinként eltérhet."
   },
   "cinema-city-kedvezmenyes-nap": {
     "recurrence": "weekly",
@@ -790,5 +791,9 @@
     "date_end": "2026-09-22",
     "confidence": "verified",
     "notes": "Minden év szeptember 22. – Európai Mobilitási Hét autómentes napja."
+  },
+  "allatkert-teli-eloszezon-jegy": {
+    "booking_url": "https://tickets.zoobudapest.com/hu/",
+    "booking_note": "Téli/előszezon jegy a hivatalos online jegypénztárban vagy a helyszínen."
   }
 }
