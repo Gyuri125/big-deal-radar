@@ -79,6 +79,12 @@ jobs:
           timeout: 600000
           error_count: 20
 
+      - name: Élő oldal ellenőrzése
+        if: steps.deployment.outcome == 'success' || steps.deployment_retry.outcome == 'success'
+        env:
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}/', github.repository_owner, github.event.repository.name) }}
+        run: npm run check:live
+
       - name: Hibaértesítés Discordra
         if: failure() && steps.deployment_retry.outcome != 'success'
         env:

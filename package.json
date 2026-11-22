@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "lint": "tsc --noEmit",
     "check:secrets": "tsx scripts/check-secrets.ts",
-    "check:links": "tsx scripts/check-links.ts"
+    "check:links": "tsx scripts/check-links.ts",
+    "check:live": "tsx scripts/smoke-test.ts"
   },
   "engines": {
     "node": ">=20"

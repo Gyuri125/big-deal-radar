@@ -14,7 +14,9 @@ A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor 
 
 ![Big-deal radar – főoldal](docs/preview.png)
 
-A főoldalon **Mai dobás**, gyorsszűrők, **Hamarosan zárul** jelzés, **Heti top 5**, következő 7 nap, havi radar és a teljes kínálat található. A kártyákon látszik az ár, a források száma, a foglalási lehetőség és a lejárat.
+![Big-deal radar – sötét mód](docs/preview-dark.png)
+
+A főoldalon **Mai dobás**, gyorsszűrők, **Hamarosan zárul** jelzés, **Heti top 5**, **Ezen a hétvégén**, **Neked ajánlott**, következő 7 nap, havi radar és a teljes kínálat található. A kártyákon látszik az ár, a források száma, a foglalási lehetőség és a lejárat. A fejlécben **sötét mód** kapcsoló, a menüben **gyűjteményoldalak** segítenek eligazodni.
 
 ---
 
@@ -46,8 +48,15 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - a következő 7 nap eseményeit és a havi radarot mutatja,
 - **Mai dobás** blokkal nyit: mindennap egy kiemelt, aktuális dealet tesz eléd,
 - szűrhető típus, kategória, helyszín és szabadszöveges keresés szerint,
+- **ékezetfüggetlen keresés és szinonimák**: „muzeum” is megtalálja a „Múzeum” dealeket,
+- **aktív szűrőchipek**: minden szűrő külön törölhető, egy kattintással,
+- **Ezen a hétvégén** és **Neked ajánlott** blokk a főoldalon,
+- **saját lista költségösszesítővel**: ismert ár, becsült megtakarítás, ingyenes dealek,
+- **8 gyűjteményoldal**: ingyenes, mozi, gasztro, ünnepek, programok, prémium, család, pénzügy,
+- **sötét mód** rendszerbeállítás szerint vagy kézi kapcsolóval, mentett választással,
 - mobilon **összecsukható szűrőpanellel** és gyors „vissza a tetejére” gombbal,
 - minden eseményhez **naptárba tehető ICS** fájlt ad, **14 nappal, 7 nappal, 1 nappal és aznap** emlékeztetővel,
+- **Google Naptár link** egy kattintásos hozzáadáshoz,
 - **saját lista + prioritás** a böngészőben, regisztráció nélkül,
 - ahol van, **jegyvásárlási / foglalási link** és foglalási útmutató (jelenleg 24 dealnél),
 - **minden dealhez legalább egy forrás**, ahol releváns, több is; a részletek ablakban listázva,
@@ -56,13 +65,14 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
 - **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, **Hamarosan zárul**, Ingyenes, 5 ezer alatt, 10 ezer alatt,
 - **gyorskeresés**: a `/` billentyű a keresőmezőre ugrik, az Escape törli a keresést,
-- **megosztható szűrők**: a keresés, a szűrők és a nézet az URL-ben maradnak,
+- **megosztható szűrők**: a keresés, a szűrők, a nézet és a téma az URL-ben maradnak,
 - **sürgősségi jelzés**: ha egy deal 3 napon belül zárul, a kártya és a hero panel is jelzi,
 - **akadálymentes**: skip link, fókuszálható eredmények, Lighthouse 100 accessibility,
 - **naptárnézet** havi bontásban, hónap-naptár letöltéssel,
 - **egyedi deal-oldalak** SEO-val, OG képpel, Event structured data-val, saját ICS letöltéssel és hasonló dealekkel,
-- **PWA**: telepíthető, offline is működik,
-- **hibabejelentés** GitHub Issue-val, heti linkellenőrzéssel,
+- **PWA**: telepíthető, offline is működik, gyorsparancsokkal,
+- **hibabejelentés** strukturált GitHub Issue űrlapokkal, heti linkellenőrzéssel,
+- **deploy smoke test**: a deploy után automatikusan ellenőrzi az élő oldalt,
 - naponta **Discord digestet** küld,
 - Telegramhoz előkészített, de opcionális csatornával rendelkezik,
 - a laptopon és GitHub Actionsben is ugyanazt a pipeline-t futtatja.
@@ -529,7 +539,7 @@ A főoldalon a **Lista / Naptár** kapcsolóval havi nézetre válthatsz.
 - A cellákban a dealek kattinthatók, megnyitják a részleteket.
 - **Hónap naptárba** gombbal az adott hónap összes eseménye letölthető ICS-ben.
 - A **Következő 7 nap naptárba** gomb a következő hét eseményeit tölti le.
-- A **Ma / Hétvége / 7 nap** szűrők gyorsan leszűkítik a listát.
+- A **Ma / Hétvége / 7 nap / Hamarosan zárul** szűrők gyorsan leszűkítik a listát.
 - Az **Ár** szűrők: Ingyenes, 5 ezer alatt, 10 ezer alatt, 10 ezer felett.
 
 A **Heti top 5** doboz a szerkesztői válogatást mutatja a legnagyobb dobásokból.
@@ -563,11 +573,38 @@ Ezek az oldalak:
 - **OG / Twitter kártyát** kapnak (egyedi OG képpel),
 - **schema.org Event** structured data-t tartalmaznak (dátum, helyszín, ár, jegyvásárlási link),
 - **saját `.ics` naptárfájlt** kínálnak, emlékeztetőkkel,
+- **Google Naptár linket** is adnak az egykattintásos hozzáadáshoz,
 - **hasonló dealeket** ajánlanak a kategóriából,
 - a **Megosztás** gombbal másolható / megosztható a link,
 - a részletek ablakból is megnyithatók.
 
 A `sitemap.xml` és a `feed.xml` automatikusan elkészül, a `robots.txt` pedig hivatkozik a sitemapre.
+
+---
+
+## Gyűjtemények
+
+Nyolc statikus gyűjteményoldal segít eligazodni:
+
+```text
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/ingyenes/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/mozi/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/gasztro/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/unnep/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/program/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/premium/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/csalad/
+https://gyuri125.github.io/big-deal-radar/gyujtemeny/penzugy/
+```
+
+A gyűjtemények a sitemapba is bekerülnek, és a deal-oldalakról, illetve a főoldalról is elérhetők.
+
+---
+
+## Sötét mód
+
+A fejléc jobb felső sarkában lévő **☾ / ☀** kapcsolóval váltható a világos és a sötét téma. Alapból a rendszerbeállítást követi, a választás pedig a böngészőben marad. A statikus deal- és gyűjteményoldalak is követik a rendszer sötét beállítását.
 
 ---
 
@@ -717,6 +754,10 @@ big-deal-radar/
 - [x] RSS feed és deal-oldalanként letölthető ICS.
 - [x] Hasonló dealek ajánlása a részletekben és a deal-oldalakon.
 - [x] Gourmet Fesztivál és Budapest Borfesztivál 2027-es dátumozása; a becsült dátumok jelölése.
+- [x] Ékezetfüggetlen keresés, szinonimák, aktív szűrőchipek.
+- [x] Ezen a hétvégén, Neked ajánlott, saját lista költségösszesítő.
+- [x] 8 gyűjteményoldal, sötét mód, Google Naptár link.
+- [x] Strukturált GitHub Issue űrlapok és deploy smoke test.
 - [ ] A maradék 49 dealnél pontos dátum, ahol értelmezhető (a folyamatos/heti dealek szándékosan dátum nélkül maradnak).
 - [ ] Normál árak feltöltése a top 30-hoz.
 - [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.

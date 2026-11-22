@@ -42,6 +42,14 @@ function priceLabel(deal: Deal): string {
   return 'Ár a forrásban';
 }
 
+function dealTypeLabel(deal: Deal): string {
+  if (deal.type === 'flat') return '★ Prémium ugyanannyi';
+  if (deal.type === 'free') return 'Ingyenes';
+  if (deal.type === 'money') return 'Pénzügy';
+  if (deal.type === 'sale') return 'Akció';
+  return 'Különleges hozzáférés';
+}
+
 function normalPriceLabel(deal: Deal): string {
   if (deal.normal_price !== null) return `Normál ár: ${formatHuf(deal.normal_price)}`;
   return '';
@@ -158,6 +166,16 @@ function pageCss(): string {
     .footer{margin:36px 0 20px;color:var(--muted);font-size:.74rem;text-align:center}
     .footer a{color:var(--navy);font-weight:700}
     @media(max-width:600px){.wrap{padding:18px}.hero{padding:22px}.top{flex-direction:column;align-items:flex-start;gap:10px}}
+    @media(prefers-color-scheme:dark){
+      :root{--navy:#e8eef5;--cream:#0a141d;--paper:#132230;--line:#293b4d;--muted:#9fb0c0}
+      body{color:#e8eef5;background:radial-gradient(circle at 10% 0%,rgba(242,107,56,.08),transparent 28rem),var(--cream)}
+      .hero,.source,.related a{background:var(--paper);color:#e8eef5}
+      .lead{color:#aebdcc}.meta{color:#ff9d7a}.new{color:#e8eef5}.free{color:#7fe0d1}
+      .badge{background:#3a2118;color:#ffb59a}
+      .note{background:#33280d;color:#f0d58e}.booking-note{background:#0d2c28;color:#9ce0d4}
+      .btn-primary{background:#b5471d;color:#fff}.btn-ghost{color:#e8eef5}
+      .footer a{color:#e8eef5}
+    }
   `;
 }
 
@@ -260,6 +278,35 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
     : '';
   const ics = effective
     ? `<a class="btn btn-ghost" href="./${encodeURIComponent(deal.id)}.ics">Naptárba (.ics)</a>`
+    : '';
+  const googleUrl = effective
+    ? (() => {
+        const start = effective.start;
+        const end = effective.end ?? start;
+        const format = (date: Date): string =>
+          `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(
+            date.getDate()
+          ).padStart(2, '0')}`;
+        const details = [
+          deal.deal,
+          deal.booking_note
+            ? `${deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás'}: ${deal.booking_note}`
+            : '',
+          deal.sources[0]?.url ? `Forrás: ${deal.sources[0].url}` : '',
+        ]
+          .filter(Boolean)
+          .join('\n\n');
+        return `https://calendar.google.com/calendar/render?${new URLSearchParams({
+          action: 'TEMPLATE',
+          text: deal.title,
+          dates: `${format(start)}/${format(addDays(end, 1))}`,
+          details,
+          location: deal.location,
+        }).toString()}`;
+      })()
+    : '';
+  const google = googleUrl
+    ? `<a class="btn btn-ghost" href="${escapeHtml(googleUrl)}" target="_blank" rel="noopener">Google Naptárba</a>`
     : '';
   const relatedItems = related
     .map((item) => {
@@ -374,6 +421,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
         <a class="btn btn-primary" href="${radarLink}">Megnyitás a radarom</a>
         ${booking}
         ${ics}
+        ${google}
       </div>
 
       <h2>Források</h2>
@@ -383,8 +431,203 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
     </main>
 
     <footer class="footer">
-      <p>Big-deal radar · <a href="../../">a teljes lista</a> · <a href="${reportUrl}" target="_blank" rel="noopener">Hibát jelentek</a></p>
+      <p>Big-deal radar · <a href="../../">a teljes lista</a> · <a href="../../gyujtemeny/">gyűjtemények</a> · <a href="${reportUrl}" target="_blank" rel="noopener">Hibát jelentek</a></p>
       <p>Az adatok évente változnak, ellenőrizd a hivatalos forráson.</p>
+    </footer>
+  </div>
+</body>
+</html>`;
+}
+
+interface Collection {
+  slug: string;
+  title: string;
+  subtitle: string;
+  pick: (deal: Deal) => boolean;
+}
+
+const collections: Collection[] = [
+  {
+    slug: 'ingyenes',
+    title: 'Ingyenes dealek',
+    subtitle: 'Olyan helyek és programok, ahová máskor fizetnél.',
+    pick: (deal) => deal.type === 'free',
+  },
+  {
+    slug: 'mozi',
+    title: 'Mozi dealek',
+    subtitle: 'Filmünnepek, art mozi kedvezmények, szabadtéri vetítések.',
+    pick: (deal) => deal.category === 'mozi',
+  },
+  {
+    slug: 'gasztro',
+    title: 'Gasztro dealek',
+    subtitle: 'Restaurant Week, fesztiválok, kávé és bor.',
+    pick: (deal) => deal.category === 'gasztro',
+  },
+  {
+    slug: 'unnep',
+    title: 'Ünnepek és évfordulók',
+    subtitle: 'Karácsony, szülinap, húsvét és más kiemelt alkalmak.',
+    pick: (deal) => deal.tags.includes('unnep'),
+  },
+  {
+    slug: 'program',
+    title: 'Programok',
+    subtitle: 'Fesztiválok, koncertek, kiállítások és városi séták.',
+    pick: (deal) => deal.tags.includes('program'),
+  },
+  {
+    slug: 'premium',
+    title: 'Prémium ugyanannyi',
+    subtitle: 'Egy ár, a prémium élmény is benne.',
+    pick: (deal) => deal.type === 'flat',
+  },
+  {
+    slug: 'csalad',
+    title: 'Családi programok',
+    subtitle: 'Gyerekekkel is könnyen teljesíthető dealek.',
+    pick: (deal) => deal.category === 'csalad',
+  },
+  {
+    slug: 'penzugy',
+    title: 'Pénzügyi dobások',
+    subtitle: 'Támogatások, adójóváírások, banki bónuszok.',
+    pick: (deal) => deal.category === 'penzugy',
+  },
+];
+
+function collectionDeals(collection: Collection, deals: Deal[]): Deal[] {
+  return deals
+    .filter(collection.pick)
+    .sort((a, b) => {
+      const aStart = nextOccurrence(a)?.start.getTime() ?? Number.MAX_SAFE_INTEGER;
+      const bStart = nextOccurrence(b)?.start.getTime() ?? Number.MAX_SAFE_INTEGER;
+      return aStart - bStart || a.title.localeCompare(b.title, 'hu');
+    });
+}
+
+function collectionCss(): string {
+  return `${pageCss()}
+    .collection-hero{padding-bottom:24px}
+    .collection-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:22px}
+    .collection-card{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);text-decoration:none;transition:border-color 160ms ease,transform 160ms ease}
+    .collection-card:hover{border-color:#cfc5b6;transform:translateY(-2px)}
+    .collection-card .badge{align-self:flex-start}
+    .collection-card strong{font-family:Georgia,serif;font-size:1.08rem;font-weight:500;line-height:1.2;color:var(--navy)}
+    .collection-card .collection-date{font-size:.72rem;font-weight:700;color:#b5471d}
+    .collection-card .collection-deal{font-size:.78rem;color:var(--muted)}
+    .collection-card .collection-price{margin-top:auto;font-size:.86rem;font-weight:800;color:var(--navy)}
+    .collection-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+    .collection-links a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:.76rem;font-weight:700;text-decoration:none}
+    @media(prefers-color-scheme:dark){.collection-date{color:#ff9d7a}}
+  `;
+}
+
+function buildCollectionPage(collection: Collection, deals: Deal[]): string {
+  const items = collectionDeals(collection, deals);
+  const cards = items
+    .map((deal) => {
+      const effective = nextOccurrence(deal);
+      return `<a class="collection-card" href="../../deal/${encodeURIComponent(deal.id)}/">
+        <span class="badge">${escapeHtml(dealTypeLabel(deal))}</span>
+        <strong>${escapeHtml(deal.title)}</strong>
+        <span class="collection-date">${escapeHtml(effectiveDateLabel(deal, effective))}</span>
+        <span class="collection-deal">${escapeHtml(deal.deal)}</span>
+        <span class="collection-price">${escapeHtml(priceLabel(deal))}</span>
+      </a>`;
+    })
+    .join('');
+
+  const otherLinks = collections
+    .filter((item) => item.slug !== collection.slug)
+    .map(
+      (item) =>
+        `<a href="../${item.slug}/">${escapeHtml(item.title)}</a>`
+    )
+    .join('');
+
+  return `<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#12212f"/>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
+  <title>${escapeHtml(collection.title)} – Big-deal radar</title>
+  <meta name="description" content="${escapeHtml(collection.subtitle)}"/>
+  <link rel="canonical" href="${escapeHtml(`${siteUrl}gyujtemeny/${collection.slug}/`)}"/>
+  <link rel="alternate" type="application/rss+xml" title="Big-deal radar – következő dealek" href="../../feed.xml"/>
+  <style>${collectionCss()}</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../../"><span class="mark"><span class="dot"></span></span><span>BIG-DEAL<br/>RADAR</span></a>
+      <a class="back" href="../../">← Vissza a radarhoz</a>
+    </header>
+
+    <main class="hero collection-hero">
+      <span class="badge">Gyűjtemény</span>
+      <h1>${escapeHtml(collection.title)}</h1>
+      <p class="lead">${escapeHtml(collection.subtitle)}</p>
+      <p class="meta">${items.length} deal · Az adatokat a forrásnál ellenőrizd.</p>
+
+      <div class="collection-grid">${cards}</div>
+
+      <div class="collection-links">
+        <a href="../">Minden gyűjtemény</a>
+        ${otherLinks}
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Big-deal radar · <a href="../../">a teljes lista</a> · <a href="../../feed.xml">RSS</a></p>
+      <p>Az adatok évente változnak, ellenőrizd a hivatalos forráson.</p>
+    </footer>
+  </div>
+</body>
+</html>`;
+}
+
+function buildCollectionIndex(deals: Deal[]): string {
+  const cards = collections
+    .map((collection) => {
+      const count = collectionDeals(collection, deals).length;
+      return `<a class="collection-card" href="./${collection.slug}/">
+        <strong>${escapeHtml(collection.title)}</strong>
+        <span class="collection-date">${count} deal</span>
+        <span class="collection-deal">${escapeHtml(collection.subtitle)}</span>
+      </a>`;
+    })
+    .join('');
+
+  return `<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#12212f"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <title>Gyűjtemények – Big-deal radar</title>
+  <meta name="description" content="Válogatott dealgyűjtemények: ingyenes, mozi, gasztro, ünnepek, programok."/>
+  <link rel="canonical" href="${escapeHtml(`${siteUrl}gyujtemeny/`)}"/>
+  <style>${collectionCss()}</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../"><span class="mark"><span class="dot"></span></span><span>BIG-DEAL<br/>RADAR</span></a>
+      <a class="back" href="../">← Vissza a radarhoz</a>
+    </header>
+    <main class="hero collection-hero">
+      <span class="badge">Gyűjtemények</span>
+      <h1>Válogatott dealek</h1>
+      <p class="lead">Nem tudod, hol kezdd? Válassz egy témát, és nézd meg a hozzá tartozó dealeket.</p>
+      <div class="collection-grid">${cards}</div>
+    </main>
+    <footer class="footer">
+      <p>Big-deal radar · <a href="../">a teljes lista</a> · <a href="../feed.xml">RSS</a></p>
     </footer>
   </div>
 </body>
@@ -426,6 +669,23 @@ async function main(): Promise<void> {
       .toFile(path.join(distDir, 'og', `${deal.id}.png`));
   }
 
+  const collectionsDir = path.join(distDir, 'gyujtemeny');
+  fs.mkdirSync(collectionsDir, { recursive: true });
+  for (const collection of collections) {
+    const collectionDir = path.join(collectionsDir, collection.slug);
+    fs.mkdirSync(collectionDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(collectionDir, 'index.html'),
+      buildCollectionPage(collection, deals),
+      'utf8'
+    );
+  }
+  fs.writeFileSync(
+    path.join(collectionsDir, 'index.html'),
+    buildCollectionIndex(deals),
+    'utf8'
+  );
+
   const siteTitle = 'A legjobb magyar dealek, időben elkapva.';
   const siteSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
     <defs><radialGradient id="bg" cx="12%" cy="0%" r="90%"><stop offset="0%" stop-color="#29465d"/><stop offset="55%" stop-color="#12212f"/><stop offset="100%" stop-color="#0c1722"/></radialGradient></defs>
@@ -448,6 +708,10 @@ async function main(): Promise<void> {
   const urls = [
     siteUrl,
     ...deals.map((deal) => `${siteUrl}deal/${deal.id}/`),
+    `${siteUrl}gyujtemeny/`,
+    ...collections.map(
+      (collection) => `${siteUrl}gyujtemeny/${collection.slug}/`
+    ),
   ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -515,7 +779,7 @@ ${feedItems
   fs.writeFileSync(path.join(distDir, 'feed.xml'), feed, 'utf8');
 
   console.log(
-    `✅ ${deals.length} deal-oldal + OG kép + sitemap + ${feedItems.length} elemes RSS elkészült.`
+    `✅ ${deals.length} deal-oldal + ${collections.length} gyűjtemény + OG kép + sitemap + ${feedItems.length} elemes RSS elkészült.`
   );
 }
 

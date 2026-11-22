@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Élő Big-deal radar
+    url: https://gyuri125.github.io/big-deal-radar/
+    about: Böngészd a dealeket, szűrj, és nézd meg a forrásokat.
+  - name: RSS feed
+    url: https://gyuri125.github.io/big-deal-radar/feed.xml
+    about: Iratkozz fel a következő dealekre RSS-olvasóban.

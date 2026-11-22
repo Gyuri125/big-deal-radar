@@ -1,0 +1,43 @@
+name: Hibás adat vagy link
+description: Jelezd, ha egy deal ára, dátuma, forrása vagy linkje hibás.
+title: "[Hiba] "
+body:
+  - type: input
+    id: deal
+    attributes:
+      label: Melyik deal?
+      placeholder: Deal neve vagy oldal URL-je
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: Mi a probléma?
+      options:
+        - Hibás ár
+        - Hibás dátum
+        - Nem működő link
+        - Hiányzó vagy hibás forrás
+        - Elavult program
+        - Egyéb
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Mit tapasztaltál?
+      placeholder: Írd le a hibát, és ha tudod, a helyes adatot.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Helyes forrás URL (ha van)
+      placeholder: https://...
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Ellenőrzés
+      options:
+        - label: Megnéztem a hivatalos forráson is.
+          required: false

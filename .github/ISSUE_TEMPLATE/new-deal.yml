@@ -1,0 +1,73 @@
+name: Új deal javaslat
+description: Javasolj egy új, valós forrással rendelkező dealet a radarhoz.
+title: "[Deal] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Köszönjük, hogy segítesz! Kérünk legalább egy hivatalos vagy megbízható forrást.
+        Ha a dátum vagy az ár bizonytalan, írd oda, hogy „ellenőrizendő”.
+  - type: input
+    id: deal-title
+    attributes:
+      label: Deal neve
+      placeholder: Pl. Budapesti Borfesztivál 2027
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Kategória
+      options:
+        - Mozi
+        - Kultúra
+        - Múzeum
+        - Gasztronómia
+        - Utazás
+        - Vásárlás
+        - Pénzügy
+        - Egészség
+        - Család
+        - Egyéb
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Dátum vagy időszak
+      placeholder: Pl. 2027. szeptember 15–18.
+    validations:
+      required: true
+  - type: input
+    id: price
+    attributes:
+      label: Ár / kedvezmény
+      placeholder: Pl. 6900 Ft, ingyenes, 30% kedvezmény
+  - type: input
+    id: source
+    attributes:
+      label: Hivatalos forrás URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: input
+    id: booking
+    attributes:
+      label: Jegy / foglalás URL (ha van)
+      placeholder: https://...
+  - type: textarea
+    id: why
+    attributes:
+      label: Miért jó deal?
+      placeholder: Mit kap a látogató, miért éri meg, mennyi ideig tart?
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Ellenőrzés
+      options:
+        - label: A forrás valós, és a deal szerepel rajta.
+          required: true
+        - label: Nem keresőlinket adtam meg forrásként.
+          required: true

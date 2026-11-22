@@ -26,6 +26,7 @@ import {
 
 type StatusKind = 'live' | 'upcoming' | 'past' | 'continuous' | 'unknown';
 type SortMode = 'next' | 'value' | 'title';
+type Theme = 'light' | 'dark';
 type Focus = 'all' | 'mozi' | 'gasztro' | 'program' | 'unnep' | 'free';
 type TimeFilter = 'all' | 'today' | 'weekend' | 'next7' | 'ending';
 type BudgetFilter = 'all' | 'free' | 'under5' | 'under10' | 'over10';
@@ -131,6 +132,52 @@ const state = {
 };
 
 let watchlist: Watchlist = loadWatchlist();
+
+const THEME_KEY = 'big-deal-radar-theme';
+
+function loadTheme(): Theme {
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored === 'dark' || stored === 'light') return stored;
+  } catch {
+    // A localStorage nem elérhető – marad a rendszerbeállítás.
+  }
+  const param = new URLSearchParams(window.location.search).get('theme');
+  if (param === 'dark' || param === 'light') return param;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+}
+
+let theme: Theme = loadTheme();
+document.documentElement.dataset.theme = theme;
+
+function updateThemeButton(): void {
+  const button = document.querySelector<HTMLButtonElement>(
+    '[data-action="toggle-theme"]'
+  );
+  if (!button) return;
+  button.textContent = theme === 'dark' ? '☀' : '☾';
+  button.setAttribute(
+    'aria-label',
+    theme === 'dark' ? 'Világos mód' : 'Sötét mód'
+  );
+  button.setAttribute('title', theme === 'dark' ? 'Világos mód' : 'Sötét mód');
+  button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+}
+
+function applyTheme(next: Theme): void {
+  theme = next;
+  document.documentElement.dataset.theme = next;
+  try {
+    localStorage.setItem(THEME_KEY, next);
+  } catch {
+    // A téma mentése nem kötelező.
+  }
+  const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+  if (meta) meta.content = next === 'dark' ? '#0a141d' : '#12212f';
+  updateThemeButton();
+}
 
 const initialParams = new URLSearchParams(window.location.search);
 const initialQuery = initialParams.get('q');
@@ -300,6 +347,53 @@ function escapeHtml(value: string): string {
   });
 }
 
+const SEARCH_SYNONYMS: Record<string, string[]> = {
+  mozi: ['film', 'cinema', 'art mozi'],
+  film: ['mozi', 'cinema'],
+  ingyen: ['ingyenes', 'free', 'díjmentes'],
+  ingyenes: ['ingyen', 'free', 'díjmentes'],
+  randi: ['színház', 'étterem', 'kávé', 'program', 'koncert'],
+  gyerek: ['család', 'családi', 'gyerek'],
+  csalad: ['gyerek', 'családi'],
+  etel: ['gasztro', 'étterem', 'kávé', 'bor', 'fagylalt'],
+  program: ['fesztivál', 'koncert', 'kiállítás', 'színház'],
+  fesztival: ['program', 'koncert'],
+  utazas: ['repülő', 'szálloda', 'balaton', 'vonat'],
+  nyaralas: ['balaton', 'szálloda', 'utazás'],
+  penz: ['pénzügy', 'támogatás', 'adó', 'bank'],
+  konyv: ['könyv', 'könyvfesztivál', 'könyvhét'],
+  bor: ['borfesztivál', 'kóstoló', 'pincészet'],
+};
+
+function normalizeSearch(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlightMatch(value: string, query: string): string {
+  const escaped = escapeHtml(value);
+  const tokens = query
+    .trim()
+    .split(/\s+/)
+    .filter((token) => token.length >= 2);
+  if (tokens.length === 0) return escaped;
+
+  const pattern = tokens.map(escapeRegExp).join('|');
+  return escaped.replace(
+    new RegExp(`(${pattern})`, 'gi'),
+    '<mark>$1</mark>'
+  );
+}
+
 function typeLabel(type: DealType): string {
   return TYPE_LABELS[type];
 }
@@ -392,6 +486,31 @@ function daysUntilEnd(deal: EnrichedDeal): number | null {
   return end ? diffDays(now, end) : null;
 }
 
+function googleCalendarUrl(deal: EnrichedDeal): string | null {
+  if (!deal.effective) return null;
+  const start = deal.effective.start;
+  const end = deal.effective.end ?? start;
+  const format = (date: Date): string =>
+    `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(
+      date.getDate()
+    ).padStart(2, '0')}`;
+  const details = [
+    deal.deal,
+    deal.booking_note ? `${bookingNoteLabel(deal)}: ${deal.booking_note}` : '',
+    deal.sources[0]?.url ? `Forrás: ${deal.sources[0].url}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n\n');
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: deal.title,
+    dates: `${format(start)}/${format(addDays(end, 1))}`,
+    details,
+    location: deal.location,
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
 function cardMarkup(deal: EnrichedDeal): string {
   const watched = isWatched(deal.id);
   const priority = priorityOf(deal.id);
@@ -422,9 +541,9 @@ function cardMarkup(deal: EnrichedDeal): string {
           <button class="watch-btn ${watched ? 'active' : ''}" data-action="watch" type="button" aria-pressed="${watched}" title="${watched ? `Követve – ${priorityLabel(priority)}` : 'Követem'}">${watched ? '★' : '☆'}</button>
         </div>
       </div>
-      <h3 class="card-title">${escapeHtml(deal.title)}</h3>
+      <h3 class="card-title">${highlightMatch(deal.title, state.query)}</h3>
       <p class="card-date">${escapeHtml(deal.dateLabel)} <span class="card-location">· ${escapeHtml(deal.location)}</span></p>
-      <p class="card-deal">${escapeHtml(deal.deal)}</p>
+      <p class="card-deal">${highlightMatch(deal.deal, state.query)}</p>
       <div class="price-row">${priceMarkup(deal)}</div>
       <div class="card-footer">
         <div class="tags">${priorityTag}${endingTag}${bookingTag}${sourceTag}${tags}</div>
@@ -514,13 +633,21 @@ function matchesFilters(deal: EnrichedDeal): boolean {
   if (state.category !== 'all' && deal.category !== state.category) return false;
   if (state.location !== 'all' && deal.location !== state.location) return false;
 
-  const query = state.query.trim().toLowerCase();
+  const query = normalizeSearch(state.query);
   if (!query) return true;
 
-  return [deal.title, deal.deal, deal.timing, deal.location, ...deal.tags]
-    .join(' ')
-    .toLowerCase()
-    .includes(query);
+  const haystack = normalizeSearch(
+    [deal.title, deal.deal, deal.timing, deal.location, ...deal.tags].join(' ')
+  );
+  const tokens = query.split(' ').filter(Boolean);
+
+  return tokens.every((token) => {
+    if (haystack.includes(token)) return true;
+    const synonyms = SEARCH_SYNONYMS[token] ?? [];
+    return synonyms.some((synonym) =>
+      haystack.includes(normalizeSearch(synonym))
+    );
+  });
 }
 
 function hasActiveFilters(): boolean {
@@ -536,9 +663,107 @@ function hasActiveFilters(): boolean {
   );
 }
 
-function updateFilterReset(): void {
-  const button = document.querySelector<HTMLButtonElement>('.filter-reset');
-  if (button) button.hidden = !hasActiveFilters();
+function renderActiveFilters(): void {
+  const element = document.querySelector<HTMLElement>('#active-filters');
+  if (!element) return;
+
+  const chips: string[] = [];
+  const add = (key: string, label: string): void => {
+    chips.push(
+      `<button class="active-filter" type="button" data-remove-filter="${escapeHtml(key)}" aria-label="${escapeHtml(`${label} szűrő törlése`)}">${escapeHtml(label)} <span aria-hidden="true">×</span></button>`
+    );
+  };
+
+  if (state.query.trim()) add('query', `Keresés: ${state.query.trim()}`);
+  if (state.focus !== 'all') {
+    add(
+      'focus',
+      FOCUS_FILTERS.find((filter) => filter.value === state.focus)?.label ??
+        state.focus
+    );
+  }
+  if (state.time !== 'all') {
+    add(
+      'time',
+      TIME_FILTERS.find((filter) => filter.value === state.time)?.label ??
+        state.time
+    );
+  }
+  if (state.budget !== 'all') {
+    add(
+      'budget',
+      BUDGET_FILTERS.find((filter) => filter.value === state.budget)?.label ??
+        state.budget
+    );
+  }
+  if (state.type !== 'all') {
+    add(
+      'type',
+      TYPE_FILTERS.find((filter) => filter.value === state.type)?.label ??
+        state.type
+    );
+  }
+  if (state.category !== 'all') {
+    add(
+      'category',
+      CATEGORY_FILTERS.find((filter) => filter.value === state.category)
+        ?.label ?? state.category
+    );
+  }
+  if (state.location !== 'all') add('location', `Helyszín: ${state.location}`);
+  if (state.watchlistOnly) add('watchlist', '★ Saját listám');
+
+  if (chips.length === 0) {
+    element.hidden = true;
+    element.innerHTML = '';
+    return;
+  }
+
+  element.hidden = false;
+  element.innerHTML = `${chips.join('')}<button class="active-filter active-filter-clear" type="button" data-action="reset-filters">Összes törlése</button>`;
+}
+
+function removeFilterValue(key: string): void {
+  switch (key) {
+    case 'query': {
+      state.query = '';
+      const search = document.querySelector<HTMLInputElement>('#search');
+      if (search) search.value = '';
+      break;
+    }
+    case 'focus':
+      state.focus = 'all';
+      break;
+    case 'time':
+      state.time = 'all';
+      break;
+    case 'budget':
+      state.budget = 'all';
+      break;
+    case 'type':
+      state.type = 'all';
+      break;
+    case 'category':
+      state.category = 'all';
+      break;
+    case 'location': {
+      state.location = 'all';
+      const location = document.querySelector<HTMLSelectElement>(
+        '#location-filter'
+      );
+      if (location) location.value = 'all';
+      break;
+    }
+    case 'watchlist':
+      state.watchlistOnly = false;
+      break;
+    default:
+      break;
+  }
+
+  state.visible = 24;
+  updateFilterButtons();
+  renderResults();
 }
 
 function resetFilters(): void {
@@ -559,7 +784,7 @@ function resetFilters(): void {
   if (locationSelect) locationSelect.value = 'all';
 
   updateFilterButtons();
-  updateFilterReset();
+  renderActiveFilters();
   renderResults();
   showToast('Minden szűrő törölve.');
 }
@@ -781,6 +1006,63 @@ function topDeals(): EnrichedDeal[] {
   return [...featured, ...rest].slice(0, 5);
 }
 
+function upcomingWeekend(): { start: Date; end: Date } {
+  const today = startOfDay(now);
+  const day = today.getDay();
+  const saturday =
+    day === 6 ? today : day === 0 ? addDays(today, -1) : addDays(today, 6 - day);
+  return { start: saturday, end: addDays(saturday, 1) };
+}
+
+function weekendDeals(): EnrichedDeal[] {
+  const weekend = upcomingWeekend();
+
+  return enriched
+    .filter((deal) => {
+      if (!deal.effective) return false;
+      const start = startOfDay(deal.effective.start);
+      const end = startOfDay(deal.effective.end ?? deal.effective.start);
+      return start <= weekend.end && end >= weekend.start;
+    })
+    .sort(
+      (a, b) =>
+        Number(b.featured) - Number(a.featured) ||
+        (a.days ?? 9999) - (b.days ?? 9999)
+    )
+    .slice(0, 3);
+}
+
+function recommendedDeals(): EnrichedDeal[] {
+  const watched = enriched.filter((deal) => isWatched(deal.id));
+  if (watched.length === 0) return [];
+
+  const weights = new Map<string, number>();
+  for (const deal of watched) {
+    for (const tag of [deal.category, deal.type, ...deal.tags]) {
+      weights.set(tag, (weights.get(tag) ?? 0) + 1);
+    }
+  }
+
+  return enriched
+    .filter((deal) => !isWatched(deal.id) && deal.status !== 'past')
+    .map((deal) => ({
+      deal,
+      score: [deal.category, deal.type, ...deal.tags].reduce(
+        (sum, tag) => sum + (weights.get(tag) ?? 0),
+        0
+      ),
+    }))
+    .filter((item) => item.score > 0)
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        Number(b.deal.featured) - Number(a.deal.featured) ||
+        (a.deal.days ?? 9999) - (b.deal.days ?? 9999)
+    )
+    .slice(0, 3)
+    .map((item) => item.deal);
+}
+
 function sectionMarkup(
   title: string,
   subtitle: string,
@@ -992,12 +1274,38 @@ function renderCalendar(): void {
   `;
 }
 
+function watchlistSummaryMarkup(deals: EnrichedDeal[]): string {
+  if (deals.length === 0) return '';
+
+  const knownPrice = deals.reduce(
+    (sum, deal) => sum + (deal.deal_price ?? 0),
+    0
+  );
+  const hasKnownPrice = deals.some((deal) => deal.deal_price !== null);
+  const savings = deals.reduce((sum, deal) => {
+    if (deal.normal_price === null || deal.deal_price === null) return sum;
+    return sum + Math.max(0, deal.normal_price - deal.deal_price);
+  }, 0);
+  const free = deals.filter(
+    (deal) => deal.type === 'free' || deal.deal_price === 0
+  ).length;
+
+  return `
+    <div class="watchlist-summary">
+      <div><span>Követett deal</span><strong>${deals.length}</strong></div>
+      <div><span>Ismert ár összesen</span><strong>${hasKnownPrice ? formatHuf(knownPrice) : '—'}</strong></div>
+      <div><span>Becsült megtakarítás</span><strong>${savings > 0 ? formatHuf(savings) : '—'}</strong></div>
+      <div><span>Ingyenes</span><strong>${free}</strong></div>
+    </div>
+  `;
+}
+
 function renderResults(): void {
   const results = document.querySelector<HTMLElement>('#results');
   if (!results) return;
 
   updateWatchCount();
-  updateFilterReset();
+  renderActiveFilters();
   syncUrl();
 
   if (state.view === 'calendar') {
@@ -1008,12 +1316,14 @@ function renderResults(): void {
   const filtered = sortDeals(enriched.filter(matchesFilters), state.sort);
 
   if (state.watchlistOnly) {
-    results.innerHTML = sectionMarkup(
-      'Saját listám',
-      `${filtered.length} követett deal – prioritás szerint`,
-      filtered.slice(0, state.visible),
-      'Még nincs követett deal. Kattints a kártyákon a ☆ ikonra, és itt gyűjtheted őket.'
-    );
+    results.innerHTML =
+      watchlistSummaryMarkup(filtered) +
+      sectionMarkup(
+        'Saját listám',
+        `${filtered.length} követett deal – prioritás szerint`,
+        filtered.slice(0, state.visible),
+        'Még nincs követett deal. Kattints a kártyákon a ☆ ikonra, és itt gyűjtheted őket.'
+      );
 
     if (filtered.some((deal) => deal.effective)) {
       results.innerHTML += `
@@ -1051,7 +1361,31 @@ function renderResults(): void {
   const upcoming = upcomingDeals();
   const month = monthDeals();
   const top = topDeals();
+  const weekend = weekendDeals();
+  const recommendations = recommendedDeals();
   const all = sortDeals(filtered, state.sort).slice(0, state.visible);
+
+  const weekendSection =
+    weekend.length > 0
+      ? sectionMarkup(
+          'Ezen a hétvégén',
+          'Szombat–vasárnapra, ha még nincs terv.',
+          weekend,
+          undefined,
+          'weekend-section'
+        )
+      : '';
+
+  const recommendSection =
+    recommendations.length >= 2
+      ? sectionMarkup(
+          'Neked ajánlott',
+          'A saját listád alapján – követés nélkül is megnézheted.',
+          recommendations,
+          undefined,
+          'recommend-section'
+        )
+      : '';
 
   const upcomingSection =
     sectionMarkup(
@@ -1080,7 +1414,9 @@ function renderResults(): void {
           'top-section'
         )
       : '',
+    weekendSection,
     upcomingSection,
+    recommendSection,
     month.length > 0
       ? sectionMarkup(
           `${monthLabel(now.getMonth() + 1)} – havi radar`,
@@ -1127,7 +1463,7 @@ function renderDataQuality(): void {
         <h2>Adatállapot</h2>
         <p>Átláthatóan mutatjuk, hol tartunk – és mit érdemes még pontosítani.</p>
       </div>
-      <a class="btn btn-ghost" href="https://github.com/Gyuri125/big-deal-radar/issues/new" target="_blank" rel="noopener">Hibát jelentek</a>
+      <a class="btn btn-ghost" href="https://github.com/Gyuri125/big-deal-radar/issues/new/choose" target="_blank" rel="noopener">Hibát jelentek</a>
     </div>
     <div class="dq-grid">
       <div><strong>${total}</strong><span>deal</span></div>
@@ -1261,6 +1597,7 @@ function renderShell(): void {
       <div class="topbar-right">
         <span class="live-dot"></span>
         <span>napi frissítés</span>
+        <button class="theme-toggle" data-action="toggle-theme" type="button" aria-label="Sötét mód" title="Sötét mód" aria-pressed="false">☾</button>
       </div>
     </header>
 
@@ -1275,6 +1612,7 @@ function renderShell(): void {
         </p>
         <div class="hero-actions">
           <a class="btn btn-solid" href="#results">Böngészem a dealeket</a>
+          <a class="btn btn-ghost" href="./gyujtemeny/">Gyűjtemények</a>
           <a class="btn btn-ghost" href="#results" data-action="jump-flat">★ Prémium ugyanannyi</a>
         </div>
       </div>
@@ -1327,7 +1665,7 @@ function renderShell(): void {
       </div>
 
       <button class="filter-toggle btn btn-ghost" type="button" data-action="toggle-filters" aria-expanded="false">Szűrők</button>
-      <button class="filter-reset btn btn-ghost" type="button" data-action="reset-filters" hidden>× Szűrők törlése</button>
+      <div id="active-filters" class="active-filters" hidden></div>
 
       <div class="filter-block focus-block">
         <span class="filter-label">Nekem</span>
@@ -1449,6 +1787,7 @@ function renderShell(): void {
       </div>
       <div id="footer-status" class="footer-status"></div>
       <div class="footer-links">
+        <a href="./gyujtemeny/">Gyűjtemények</a>
         <a href="./feed.xml" type="application/rss+xml">RSS</a>
         <a href="${escapeHtml(repoUrl())}" target="_blank" rel="noopener">GitHub</a>
         <a href="#results">Vissza a tetejére</a>
@@ -1500,9 +1839,13 @@ function openDialog(id: string): void {
     `
     : `<div><span>Ár</span><strong>${deal.type === 'free' ? 'Ingyenes' : 'A forrásban'}</strong></div>`;
 
+  const checkedDays = deal.last_checked
+    ? diffDays(now, parseISODate(deal.last_checked))
+    : null;
+  const staleCheck = checkedDays !== null && checkedDays > 120;
   const confidenceLabel =
     deal.confidence === 'verified'
-      ? `Ellenőrzött${deal.last_checked ? ` · ${formatHuDate(parseISODate(deal.last_checked))}` : ''}`
+      ? `Ellenőrzött${deal.last_checked ? ` · ${formatHuDate(parseISODate(deal.last_checked))}` : ''}${staleCheck ? ' · Ellenőrzés esedékes' : ''}`
       : deal.confidence === 'needs-check'
         ? 'Ellenőrizendő'
         : 'Nem ellenőrzött';
@@ -1523,6 +1866,10 @@ function openDialog(id: string): void {
 
   const bookingLink = deal.booking_url
     ? `<a class="btn btn-solid" href="${escapeHtml(deal.booking_url)}" target="_blank" rel="noopener" data-link-preview="${escapeHtml(deal.booking_url)}" data-link-label="Jegyvásárlás / foglalás">Jegyvásárlás / foglalás</a>`
+    : '';
+
+  const googleLink = deal.effective
+    ? `<a class="btn btn-ghost" href="${escapeHtml(googleCalendarUrl(deal) ?? '')}" target="_blank" rel="noopener">Google Naptárba</a>`
     : '';
 
   const sources = sourcesMarkup(deal);
@@ -1611,6 +1958,7 @@ function openDialog(id: string): void {
 
     <div class="dialog-actions">
       <button class="btn btn-solid" data-dialog-action="ics" type="button" ${deal.effective ? '' : 'disabled'}>Naptárba emlékeztetővel</button>
+      ${googleLink}
       ${bookingLink}
       <button class="btn btn-ghost" data-dialog-action="share" type="button">Megosztás</button>
       <a class="btn btn-ghost" href="${reportIssueUrl(deal)}" target="_blank" rel="noopener">Hibát jelentek</a>
@@ -1934,6 +2282,11 @@ function showToast(message: string): void {
 }
 
 function handleAction(action: string, target: HTMLElement): void {
+  if (action === 'toggle-theme') {
+    applyTheme(theme === 'dark' ? 'light' : 'dark');
+    return;
+  }
+
   if (action === 'more') {
     state.visible += 24;
     renderResults();
@@ -2086,6 +2439,12 @@ function handleAction(action: string, target: HTMLElement): void {
 
 appRoot.addEventListener('click', (event) => {
   const target = event.target as HTMLElement;
+
+  const removeFilter = target.closest<HTMLElement>('[data-remove-filter]');
+  if (removeFilter?.dataset.removeFilter) {
+    removeFilterValue(removeFilter.dataset.removeFilter);
+    return;
+  }
 
   const viewButton = target.closest<HTMLButtonElement>('[data-view]');
   if (viewButton) {
@@ -2274,6 +2633,7 @@ function openDealFromQuery(): void {
 
 async function init(): Promise<void> {
   renderShell();
+  applyTheme(theme);
 
   const locationSelect = document.querySelector<HTMLSelectElement>('#location-filter');
   if (locationSelect) locationSelect.value = state.location;
