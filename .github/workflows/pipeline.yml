@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment_retry.outputs.page_url || steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -75,13 +75,26 @@ jobs:
 
       - name: Deploy
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v5
         with:
-          timeout: 1200000
+          timeout: 600000
+          error_count: 20
+
+      - name: Várakozás a deploy újrapróbálására
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 15
+
+      - name: Deploy újrapróbálás
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5
+        with:
+          timeout: 600000
           error_count: 20
 
       - name: Hibaértesítés Discordra
-        if: failure()
+        if: failure() && steps.deployment_retry.outcome != 'success'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
