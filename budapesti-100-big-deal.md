@@ -189,6 +189,14 @@
 
 ---
 
+## 12. Gasztro kiemelések (106)
+
+| # | Esemény | Mikor | Mi a deal |
+|---|---------|-------|-----------|
+| 106 | Gourmet Fesztivál | Május 27–30. | Négy nap, top éttermek és séfek, kóstolók a Millenárison |
+
+---
+
 ## Bónusz: 10 külföldi, ha később nemzetközire is nyitnál
 
 1. **USA National Park free days** – évi 5–6 nap, ingyenes belépés a nemzeti parkokba.

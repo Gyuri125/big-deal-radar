@@ -44,6 +44,7 @@ const SECTION_MAP: Array<{
   { test: /Egészség/, category: 'egeszseg', fallbackType: 'free' },
   { test: /Család/, category: 'csalad', fallbackType: 'access' },
   { test: /Új ünnepi/, category: 'kultura', fallbackType: 'free' },
+  { test: /Gasztro kiemelések/, category: 'gasztro', fallbackType: 'access' },
 ];
 
 const MONTHS: Record<string, number> = {

@@ -510,10 +510,10 @@ Ez végigfut az összes forráson, és jelzi a 404-et, a törött linket és a b
 
 A főoldal alján egy **Adatállapot** panel mutatja, hol tartunk:
 
-- **105 deal**
-- **128 forrás**
-- **51 dátumos**
-- **50 ellenőrzött**
+- **106 deal**
+- **133 forrás**
+- **57 dátumos**
+- **53 ellenőrzött**
 - **0 keresőlinkes** – minden dealhez van legalább egy valós forrás
 
 Ez nem reklám, hanem átláthatóság: ahol lehet, több forrást is megadunk, és a „Hibát jelentek” gombbal bárki jelezheti, ha elavult adatot lát.
@@ -715,7 +715,8 @@ big-deal-radar/
 - [x] Mai dobás blokk, mobil szűrőpanel, vissza a tetejére gomb.
 - [x] RSS feed és deal-oldalanként letölthető ICS.
 - [x] Hasonló dealek ajánlása a részletekben és a deal-oldalakon.
-- [ ] A maradék 54 dealhez pontos dátum, ahol lehet.
+- [x] Gourmet Fesztivál és Budapest Borfesztivál 2027-es dátumozása; a becsült dátumok jelölése.
+- [ ] A maradék 49 dealnél pontos dátum, ahol értelmezhető (a folyamatos/heti dealek szándékosan dátum nélkül maradnak).
 - [ ] Normál árak feltöltése a top 30-hoz.
 - [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.
 - [ ] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).
@@ -737,6 +738,9 @@ A dátumok és árak 2026-os példák, és évente változnak. A részleteket mi
 - Advent Bazilika – [adventbazilika.hu](https://adventbazilika.hu)
 - Vörösmarty Classic Xmas – [vorosmartyclassicxmas.hu](https://vorosmartyclassicxmas.hu)
 - SZIGET – [szigetfestival.com](https://szigetfestival.com)
+- Gourmet Fesztivál – [gourmetfesztival.hu](https://gourmetfesztival.hu)
+- Budapest Borfesztivál – [aborfesztival.hu](https://aborfesztival.hu)
+- Ünnepi Könyvhét – [unnepikonyvhet.hu](https://unnepikonyvhet.hu)
 - Erőművek Éjszakája – [eromuvekejszakaja.hu](https://eromuvekejszakaja.hu)
 - Fővárosi Nagycirkusz – [fovarosinagycirkusz.hu](https://fovarosinagycirkusz.hu)
 

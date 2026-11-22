@@ -45,32 +45,46 @@ function collectLinks(deals: Deal[]): Map<string, Set<string>> {
 }
 
 async function checkOne(url: string, dealTitles: string[]): Promise<LinkCheck> {
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      redirect: 'follow',
-      signal: AbortSignal.timeout(25_000),
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36',
-        Accept: 'text/html,application/xhtml+xml',
-      },
-    });
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+        signal: AbortSignal.timeout(25_000),
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36',
+          Accept: 'text/html,application/xhtml+xml',
+        },
+      });
 
-    return {
-      url,
-      status: response.status,
-      finalUrl: response.url,
-      deals: dealTitles,
-    };
-  } catch (error) {
-    return {
-      url,
-      status: 'ERR',
-      error: error instanceof Error ? error.message : String(error),
-      deals: dealTitles,
-    };
+      return {
+        url,
+        status: response.status,
+        finalUrl: response.url,
+        deals: dealTitles,
+      };
+    } catch (error) {
+      if (attempt === 2) {
+        return {
+          url,
+          status: 'ERR',
+          error: error instanceof Error ? error.message : String(error),
+          deals: dealTitles,
+        };
+      }
+
+      // Átmeneti hálózati hiba esetén egyszer újrapróbáljuk.
+      await new Promise((resolve) => setTimeout(resolve, 800));
+    }
   }
+
+  return {
+    url,
+    status: 'ERR',
+    error: 'Ismeretlen hiba',
+    deals: dealTitles,
+  };
 }
 
 async function main(): Promise<void> {

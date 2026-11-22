@@ -542,7 +542,23 @@
     "notes": "Nincs egységes országos akció; helyenként eltér."
   },
   "budapest-borfesztival": {
-    "type": "access"
+    "type": "access",
+    "date_start": "2027-09-15",
+    "date_end": "2027-09-18",
+    "source_url": "https://aborfesztival.hu/",
+    "booking_url": "https://aborfesztival.hu/",
+    "booking_note": "Napi karszalag a hivatalos oldalon; a kóstolópohár és a programok benne vannak.",
+    "price_note": "A napi karszalag ára a hivatalos oldalon; 2026-ban 8 900–9 900 Ft volt.",
+    "confidence": "verified",
+    "featured": true,
+    "tags": [
+      "program",
+      "gasztro",
+      "fesztival",
+      "budapest",
+      "bor"
+    ],
+    "notes": "2027. szeptember 15–18., Budavári Palota. 36. Budapest Borfesztivál, szerdától szombatig."
   },
   "budapest-coffee-festival": {
     "date_start": "2026-09-21",
@@ -719,5 +735,60 @@
       "budapest"
     ],
     "notes": "2027. augusztus 10–14., Óbudai-sziget. A jegyárak a készlet függvényében emelkednek."
+  },
+  "gourmet-fesztival": {
+    "type": "access",
+    "date_start": "2027-05-27",
+    "date_end": "2027-05-30",
+    "source_url": "https://gourmetfesztival.hu/hu/",
+    "booking_url": "https://gourmetfesztival.hu/hu/",
+    "booking_note": "Jegyek a hivatalos oldalon; a séfek és éttermek programja előre látható.",
+    "price_note": "A belépőjegy ára a hivatalos oldalon; a kóstolók külön fizetendők.",
+    "confidence": "verified",
+    "featured": true,
+    "tags": [
+      "program",
+      "gasztro",
+      "fesztival",
+      "budapest"
+    ],
+    "notes": "2027. május 27–30., Millenáris Park. Négy nap, top éttermek és séfek, kóstolók."
+  },
+  "balatoni-bor-es-kenyer-unnep-siofok": {
+    "date_start": "2026-08-14",
+    "date_end": "2026-08-22",
+    "confidence": "needs-check",
+    "notes": "A 2026-os esemény augusztus 14–22. között volt; a 2027-es dátum még nem hivatalos, ezért a naptár becsült dátumot mutat.",
+    "tags": [
+      "program",
+      "gasztro",
+      "fesztival",
+      "balaton",
+      "bor"
+    ]
+  },
+  "unnepi-konyvhet": {
+    "date_start": "2026-06-11",
+    "date_end": "2026-06-14",
+    "confidence": "needs-check",
+    "notes": "A 97. Ünnepi Könyvhét 2026. június 11–14. között volt; a 2027-es dátum még nem hivatalos, ezért becsült.",
+    "tags": [
+      "program",
+      "vasarlas",
+      "budapest",
+      "konyv"
+    ]
+  },
+  "single-s-day-11-11": {
+    "date_start": "2026-11-11",
+    "date_end": "2026-11-11",
+    "confidence": "needs-check",
+    "notes": "Minden év november 11.; a 2026-os akciók már lezárultak, a következő a 2027-es."
+  },
+  "automentes-nap": {
+    "date_start": "2026-09-22",
+    "date_end": "2026-09-22",
+    "confidence": "verified",
+    "notes": "Minden év szeptember 22. – Európai Mobilitási Hét autómentes napja."
   }
 }

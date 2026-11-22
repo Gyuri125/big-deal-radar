@@ -1776,8 +1776,8 @@
     "category": "gasztro",
     "type": "access",
     "timing": "Szeptember",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2027-09-15",
+    "date_end": "2027-09-18",
     "booking_opens": null,
     "month": 9,
     "months": [
@@ -1787,30 +1787,37 @@
     "deal": "Kóstolójegyek, pincészetek, ingyenes koncertek.",
     "normal_price": null,
     "deal_price": null,
-    "price_note": null,
+    "price_note": "A napi karszalag ára a hivatalos oldalon; 2026-ban 8 900–9 900 Ft volt.",
     "currency": "HUF",
     "location": "Budapest",
-    "source_url": null,
-    "booking_url": null,
-    "booking_note": null,
+    "source_url": "https://aborfesztival.hu/",
+    "booking_url": "https://aborfesztival.hu/",
+    "booking_note": "Napi karszalag a hivatalos oldalon; a kóstolópohár és a programok benne vannak.",
     "sources": [
       {
         "label": "Budapest Borfesztivál",
-        "url": "https://www.borfesztival.hu/",
+        "url": "https://aborfesztival.hu/",
         "type": "official"
+      },
+      {
+        "label": "Programturizmus – Borfesztivál 2027",
+        "url": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "program",
+      "fesztival",
       "budapest",
+      "bor",
       "gasztro",
       "access",
-      "program",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #42",
-    "featured": false
+    "notes": "2027. szeptember 15–18., Budavári Palota. 36. Budapest Borfesztivál, szerdától szombatig.",
+    "featured": true
   },
   {
     "id": "budapest-sorfesztival",
@@ -2089,8 +2096,8 @@
     "category": "gasztro",
     "type": "access",
     "timing": "Augusztus",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-08-14",
+    "date_end": "2026-08-22",
     "booking_opens": null,
     "month": 8,
     "months": [
@@ -2111,18 +2118,25 @@
         "label": "Siófok",
         "url": "https://siofok.hu/",
         "type": "official"
+      },
+      {
+        "label": "VisitBalaton365 – Bor és Kenyér Ünnep",
+        "url": "https://visitbalaton365.hu/informacio/kilenc-napon-at-unnepel-siofok-ismet-erkezik-a-bor-es-kenyer-unnepe",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "program",
+      "fesztival",
+      "balaton",
+      "bor",
       "gasztro",
       "access",
-      "siófok",
-      "program",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #49",
+    "notes": "A 2026-os esemény augusztus 14–22. között volt; a 2027-es dátum még nem hivatalos, ezért a naptár becsült dátumot mutat.",
     "featured": false
   },
   {
@@ -2639,8 +2653,8 @@
     "category": "vasarlas",
     "type": "sale",
     "timing": "November 11.",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-11-11",
+    "date_end": "2026-11-11",
     "booking_opens": null,
     "month": 11,
     "months": [
@@ -2663,14 +2677,14 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "online",
       "vasarlas",
-      "sale",
-      "online"
+      "sale"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #63",
+    "notes": "Minden év november 11.; a 2026-os akciók már lezárultak, a következő a 2027-es.",
     "featured": false
   },
   {
@@ -2801,8 +2815,8 @@
     "category": "vasarlas",
     "type": "sale",
     "timing": "Június",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-06-11",
+    "date_end": "2026-06-14",
     "booking_opens": null,
     "month": 6,
     "months": [
@@ -2823,17 +2837,24 @@
         "label": "Ünnepi Könyvhét",
         "url": "https://unnepikonyvhet.hu/",
         "type": "official"
+      },
+      {
+        "label": "Telex – 97. Ünnepi Könyvhét",
+        "url": "https://telex.hu/karakter/konyvespolc/2026/02/11/unnepi-konyvhet-david-szalay-booker-dij",
+        "type": "article"
       }
     ],
-    "confidence": "unverified",
+    "confidence": "needs-check",
     "last_checked": null,
     "tags": [
+      "program",
+      "budapest",
+      "konyv",
       "vasarlas",
       "sale",
-      "budapest",
       "unnep"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #67",
+    "notes": "A 97. Ünnepi Könyvhét 2026. június 11–14. között volt; a 2027-es dátum még nem hivatalos, ezért becsült.",
     "featured": false
   },
   {
@@ -3746,8 +3767,8 @@
     "category": "egeszseg",
     "type": "free",
     "timing": "Szeptember 22.",
-    "date_start": null,
-    "date_end": null,
+    "date_start": "2026-09-22",
+    "date_end": "2026-09-22",
     "booking_opens": null,
     "month": 9,
     "months": [
@@ -3770,14 +3791,14 @@
         "type": "official"
       }
     ],
-    "confidence": "unverified",
-    "last_checked": null,
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
     "tags": [
+      "budapest",
       "egeszseg",
-      "free",
-      "budapest"
+      "free"
     ],
-    "notes": "Forrás: budapesti-100-big-deal.md #90",
+    "notes": "Minden év szeptember 22. – Európai Mobilitási Hét autómentes napja.",
     "featured": false
   },
   {
@@ -4410,6 +4431,53 @@
       "sale"
     ],
     "notes": "2027. augusztus 10–14., Óbudai-sziget. A jegyárak a készlet függvényében emelkednek.",
+    "featured": true
+  },
+  {
+    "id": "gourmet-fesztival",
+    "title": "Gourmet Fesztivál",
+    "category": "gasztro",
+    "type": "access",
+    "timing": "Május 27–30.",
+    "date_start": "2027-05-27",
+    "date_end": "2027-05-30",
+    "booking_opens": null,
+    "month": 5,
+    "months": [
+      5
+    ],
+    "recurrence": "annual",
+    "deal": "Négy nap, top éttermek és séfek, kóstolók a Millenárison",
+    "normal_price": null,
+    "deal_price": null,
+    "price_note": "A belépőjegy ára a hivatalos oldalon; a kóstolók külön fizetendők.",
+    "currency": "HUF",
+    "location": "Budapest",
+    "source_url": "https://gourmetfesztival.hu/hu/",
+    "booking_url": "https://gourmetfesztival.hu/hu/",
+    "booking_note": "Jegyek a hivatalos oldalon; a séfek és éttermek programja előre látható.",
+    "sources": [
+      {
+        "label": "Gourmet Fesztivál",
+        "url": "https://gourmetfesztival.hu/hu/",
+        "type": "official"
+      },
+      {
+        "label": "Programturizmus – Gourmet 2027",
+        "url": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
+        "type": "article"
+      }
+    ],
+    "confidence": "verified",
+    "last_checked": "2026-11-22",
+    "tags": [
+      "program",
+      "fesztival",
+      "budapest",
+      "gasztro",
+      "access"
+    ],
+    "notes": "2027. május 27–30., Millenáris Park. Négy nap, top éttermek és séfek, kóstolók.",
     "featured": true
   }
 ]

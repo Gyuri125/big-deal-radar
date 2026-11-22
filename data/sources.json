@@ -185,8 +185,13 @@
   "budapest-borfesztival": [
     {
       "label": "Budapest Borfesztivál",
-      "url": "https://www.borfesztival.hu/",
+      "url": "https://aborfesztival.hu/",
       "type": "official"
+    },
+    {
+      "label": "Programturizmus – Borfesztivál 2027",
+      "url": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
+      "type": "article"
     }
   ],
   "budapest-sorfesztival": [
@@ -236,6 +241,11 @@
       "label": "Siófok",
       "url": "https://siofok.hu/",
       "type": "official"
+    },
+    {
+      "label": "VisitBalaton365 – Bor és Kenyér Ünnep",
+      "url": "https://visitbalaton365.hu/informacio/kilenc-napon-at-unnepel-siofok-ismet-erkezik-a-bor-es-kenyer-unnepe",
+      "type": "article"
     }
   ],
   "ryanair-idoszakos-sale": [
@@ -341,6 +351,11 @@
       "label": "Ünnepi Könyvhét",
       "url": "https://unnepikonyvhet.hu/",
       "type": "official"
+    },
+    {
+      "label": "Telex – 97. Ünnepi Könyvhét",
+      "url": "https://telex.hu/karakter/konyvespolc/2026/02/11/unnepi-konyvhet-david-szalay-booker-dij",
+      "type": "article"
     }
   ],
   "budapesti-konyvfesztival": [
@@ -583,6 +598,18 @@
       "label": "SZIGET 2027 – fesztiválinfó",
       "url": "https://szigetfestival.com/en/festival-info",
       "type": "official"
+    }
+  ],
+  "gourmet-fesztival": [
+    {
+      "label": "Gourmet Fesztivál",
+      "url": "https://gourmetfesztival.hu/hu/",
+      "type": "official"
+    },
+    {
+      "label": "Programturizmus – Gourmet 2027",
+      "url": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
+      "type": "article"
     }
   ]
 }
