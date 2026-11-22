@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: big-deal-radar-daily
+  group: github-pages
   cancel-in-progress: false
 
 jobs:
@@ -76,6 +76,9 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1200000
+          error_count: 20
 
       - name: Hibaértesítés Discordra
         if: failure()
