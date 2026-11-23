@@ -386,7 +386,7 @@ git push -u origin main
 | `pipeline.yml` | Naponta 3x + kézzel | Import + generált adat ellenőrzése, validálás, digest, build, deploy, szükség esetén commit |
 | `deploy.yml` | `main` pushra, ha data/site változik | Buildel és Pagesre deployol, majd élő smoke testet futtat |
 | `ci.yml` | PR és `main` push (data és markdown változásra is) | Import + generált adat ellenőrzése, validálás, lint, teszt, titokellenőrzés, build |
-| `link-check.yml` | Hetente + kézzel | Forráslinkek ellenőrzése 3 próbálkozással, `link-status.json` commit; HTTP-hiba esetén Discord-riasztás, átmeneti elérhetetlenség figyelmeztetés |
+| `link-check.yml` | Hetente, kézzel, vagy a checker változásakor | Forráslinkek ellenőrzése 3 próbálkozással, `link-status.json` commit; HTTP-hiba esetén Discord-riasztás, átmeneti elérhetetlenség figyelmeztetés |
 | `source-monitor.yml` | Hetente + kézzel | Kiemelt hivatalos oldalak figyelése, változás esetén GitHub Issue |
 
 A napi cron **UTC-ben** van:
