@@ -92,10 +92,10 @@ Nem a napi aprókedvezményekre fókuszál, hanem az évente visszatérő vagy r
 | Jegy / foglalás linkkel rendelkező deal | **25** |
 | Keresőlinkes deal | **0** |
 | Egyedi ellenőrzött link | **138** |
-| OK link | **129** |
-| Átirányított link | **27** |
-| Botblokkolt link | **9** |
-| Elérhetetlen link | **0** |
+| OK link | **116** |
+| Átirányított link | **24** |
+| Botblokkolt link | **17** |
+| Elérhetetlen link | **5** |
 | Törött link (HTTP-hiba) | **0** |
 | Gyűjteményoldal | **8** |
 | RSS elem | **55** |
@@ -578,7 +578,7 @@ Ezek böngészőből jellemzően elérhetők; a fontosabb dealekhez alternatív,
 
 - **43/43 Vitest teszt zöld.**
 - Tesztek: dátumkezelés, digest, adatbetöltés, input sémák és kereszt-referenciák, ICS escape/sorhajtás, digest-slotszámítás, linkstátusz-osztályozás.
-- Linkellenőrzés: 138 egyedi link; a legutóbbi futásban 129 OK, 27 átirányítás, 9 botblokk, 0 elérhetetlen, 0 HTTP-hiba.
+- Linkellenőrzés: 138 egyedi link; a legutóbbi futásban 116 OK, 24 átirányítás, 17 botblokk, 5 átmeneti elérhetetlenség, 0 HTTP-hiba.
 - Titokellenőrzés: tiszta.
 - Lighthouse: 100/100/100 (Accessibility, Best Practices, SEO; Performance nincs mérve; a UI-t érdemes újramérni nagyobb változás után).
 - Deploy smoke test: sikeres.
