@@ -15,6 +15,7 @@ import {
   valueScore,
   type EffectiveDate,
 } from '../utils/dates';
+import { buildVCalendar, type IcsEvent } from '../utils/ics';
 import {
   loadWatchlist,
   priorityLabel,
@@ -356,6 +357,16 @@ function escapeHtml(value: string): string {
   });
 }
 
+function safeExternalHref(value: string | null | undefined): string {
+  if (!value) return '#';
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:' ? value : '#';
+  } catch {
+    return '#';
+  }
+}
+
 const SEARCH_SYNONYMS: Record<string, string[]> = {
   mozi: ['film', 'cinema', 'art mozi'],
   film: ['mozi', 'cinema'],
@@ -441,10 +452,10 @@ function sourcesMarkup(deal: EnrichedDeal): string {
           (source) => `
             <a
               class="source-item"
-              href="${escapeHtml(source.url)}"
+              href="${escapeHtml(safeExternalHref(source.url))}"
               target="_blank"
               rel="noopener"
-              data-link-preview="${escapeHtml(source.url)}"
+              data-link-preview="${escapeHtml(safeExternalHref(source.url))}"
               data-link-label="${escapeHtml(source.label)}"
             >
               <span class="source-type source-${source.type}">${sourceTypeLabel(source.type)}</span>
@@ -632,7 +643,11 @@ function matchesTimeFilter(deal: EnrichedDeal, filter: TimeFilter): boolean {
     return daysLeft !== null && daysLeft >= 0 && daysLeft <= 3;
   }
   if (filter === 'next7') {
-    return deal.days !== null && deal.days >= 0 && deal.days <= 7;
+    if (!deal.effective) return false;
+    const start = startOfDay(deal.effective.start);
+    const end = startOfDay(deal.effective.end ?? deal.effective.start);
+    const today = startOfDay(now);
+    return start <= addDays(today, 7) && end >= today;
   }
   if (filter === 'weekend') return occursOnWeekdays(deal, [0, 6]);
   if (filter === 'saturday') return occursOnWeekdays(deal, [6]);
@@ -1152,10 +1167,13 @@ function datesForDealInMonth(
 
   const monthStart = new Date(year, month, 1);
   const monthEnd = new Date(year, month + 1, 0, 23, 59, 59, 999);
+  const firstYear = refStart.getFullYear();
   const years =
     deal.recurrence === 'oneoff'
-      ? [refStart.getFullYear()]
-      : [year - 1, year, year + 1];
+      ? [firstYear]
+      : [year - 1, year, year + 1].filter(
+          (candidateYear) => candidateYear >= firstYear
+        );
 
   const results: Array<{ start: Date; end: Date }> = [];
   for (const candidateYear of years) {
@@ -2173,9 +2191,11 @@ function openDialog(id: string): void {
     )
     .join('');
 
-  const bookingLink = deal.booking_url
-    ? `<a class="btn btn-solid" href="${escapeHtml(deal.booking_url)}" target="_blank" rel="noopener" data-link-preview="${escapeHtml(deal.booking_url)}" data-link-label="Jegyvásárlás / foglalás">Jegyvásárlás / foglalás</a>`
-    : '';
+  const bookingHref = safeExternalHref(deal.booking_url);
+  const bookingLink =
+    deal.booking_url && bookingHref !== '#'
+      ? `<a class="btn btn-solid" href="${escapeHtml(bookingHref)}" target="_blank" rel="noopener" data-link-preview="${escapeHtml(bookingHref)}" data-link-label="Jegyvásárlás / foglalás">Jegyvásárlás / foglalás</a>`
+      : '';
 
   const googleLink = deal.effective
     ? `<a class="btn btn-ghost" href="${escapeHtml(googleCalendarUrl(deal) ?? '')}" target="_blank" rel="noopener">Google Naptárba</a>`
@@ -2292,75 +2312,43 @@ function openDialog(id: string): void {
   dialogEl.showModal();
 }
 
-function icsDate(date: Date): string {
-  return `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(
-    date.getDate()
-  ).padStart(2, '0')}`;
-}
-
-function icsDateTime(date: Date): string {
-  return `${date.toISOString().replace(/[-:]/g, '').split('.')[0]}Z`;
-}
-
-function escapeIcs(value: string): string {
-  return value
-    .replace(/\\/g, '\\\\')
-    .replace(/\n/g, '\\n')
-    .replace(/,/g, '\\,')
-    .replace(/;/g, '\\;');
-}
-
-function alarmLines(summary: string): string[] {
-  const description = escapeIcs(`Big-deal radar: ${summary}`);
-  return ['-P14D', '-P7D', '-P1D', 'PT0S'].flatMap((trigger) => [
-    'BEGIN:VALARM',
-    `TRIGGER:${trigger}`,
-    'ACTION:DISPLAY',
-    `DESCRIPTION:${description}`,
-    'END:VALARM',
-  ]);
-}
-
-function eventLines(
+function calendarEventsForDeal(
   deal: EnrichedDeal,
   override?: { start: Date; end: Date }
-): string[] {
+): IcsEvent[] {
   const start = override?.start ?? deal.effective?.start;
   if (!start) return [];
   const end = override?.end ?? deal.effective?.end ?? start;
+  const sourceHref = safeExternalHref(deal.source_url);
 
-  const lines = [
-    'BEGIN:VEVENT',
-    `UID:${deal.id}@big-deal-radar`,
-    `DTSTAMP:${icsDateTime(new Date())}`,
-    `DTSTART;VALUE=DATE:${icsDate(start)}`,
-    `DTEND;VALUE=DATE:${icsDate(addDays(end, 1))}`,
-    `SUMMARY:${escapeIcs(deal.title)}`,
-    `DESCRIPTION:${escapeIcs(
-      `${deal.deal}${deal.booking_note ? `\n\n${bookingNoteLabel(deal)}: ${deal.booking_note}` : ''}`
-    )}`,
-    `LOCATION:${escapeIcs(deal.location)}`,
-    ...(deal.source_url ? [`URL:${deal.source_url}`] : []),
-    ...alarmLines(deal.title),
-    'END:VEVENT',
+  const events: IcsEvent[] = [
+    {
+      uid: `${deal.id}@big-deal-radar`,
+      start,
+      end,
+      summary: deal.title,
+      description: `${deal.deal}${
+        deal.booking_note
+          ? `\n\n${bookingNoteLabel(deal)}: ${deal.booking_note}`
+          : ''
+      }`,
+      location: deal.location,
+      url: sourceHref === '#' ? null : sourceHref,
+    },
   ];
 
   if (deal.booking_opens && !override) {
     const bookingDate = parseISODate(deal.booking_opens);
-    lines.push(
-      'BEGIN:VEVENT',
-      `UID:${deal.id}-booking@big-deal-radar`,
-      `DTSTAMP:${icsDateTime(new Date())}`,
-      `DTSTART;VALUE=DATE:${icsDate(bookingDate)}`,
-      `DTEND;VALUE=DATE:${icsDate(addDays(bookingDate, 1))}`,
-      `SUMMARY:${escapeIcs(`Foglalás nyílik: ${deal.title}`)}`,
-      `DESCRIPTION:${escapeIcs(deal.booking_note ?? deal.deal)}`,
-      ...alarmLines(`Foglalás nyílik: ${deal.title}`),
-      'END:VEVENT'
-    );
+    events.push({
+      uid: `${deal.id}-booking@big-deal-radar`,
+      start: bookingDate,
+      end: bookingDate,
+      summary: `Foglalás nyílik: ${deal.title}`,
+      description: deal.booking_note ?? deal.deal,
+    });
   }
 
-  return lines;
+  return events;
 }
 
 function downloadBlob(content: string, filename: string): void {
@@ -2384,14 +2372,7 @@ function downloadIcs(id: string): void {
     return;
   }
 
-  const content = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Big-deal radar//HU',
-    'CALSCALE:GREGORIAN',
-    ...eventLines(deal),
-    'END:VCALENDAR',
-  ].join('\r\n');
+  const content = buildVCalendar(calendarEventsForDeal(deal));
 
   downloadBlob(content, `${deal.id}.ics`);
   showToast(
@@ -2413,14 +2394,9 @@ function downloadWatchlistIcs(): void {
     return;
   }
 
-  const content = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Big-deal radar//HU',
-    'CALSCALE:GREGORIAN',
-    ...watched.flatMap((deal) => eventLines(deal)),
-    'END:VCALENDAR',
-  ].join('\r\n');
+  const content = buildVCalendar(
+    watched.flatMap((deal) => calendarEventsForDeal(deal))
+  );
 
   downloadBlob(content, 'big-deal-radar-sajat-lista.ics');
   showToast(
@@ -2436,14 +2412,9 @@ function downloadUpcomingIcs(): void {
     return;
   }
 
-  const content = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Big-deal radar//HU',
-    'CALSCALE:GREGORIAN',
-    ...deals.flatMap((deal) => eventLines(deal)),
-    'END:VCALENDAR',
-  ].join('\r\n');
+  const content = buildVCalendar(
+    deals.flatMap((deal) => calendarEventsForDeal(deal))
+  );
 
   downloadBlob(content, 'big-deal-radar-kovetkezo-7-nap.ics');
   showToast(
@@ -2453,11 +2424,11 @@ function downloadUpcomingIcs(): void {
 
 function downloadMonthIcs(year: number, month: number): void {
   const deals = enriched.filter(matchesFilters);
-  const events: string[] = [];
+  const events: IcsEvent[] = [];
 
   for (const deal of deals) {
     for (const range of datesForDealInMonth(deal, year, month)) {
-      events.push(...eventLines(deal, range));
+      events.push(...calendarEventsForDeal(deal, range));
     }
   }
 
@@ -2466,14 +2437,7 @@ function downloadMonthIcs(year: number, month: number): void {
     return;
   }
 
-  const content = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Big-deal radar//HU',
-    'CALSCALE:GREGORIAN',
-    ...events,
-    'END:VCALENDAR',
-  ].join('\r\n');
+  const content = buildVCalendar(events);
 
   const monthName = new Intl.DateTimeFormat('hu-HU', {
     year: 'numeric',

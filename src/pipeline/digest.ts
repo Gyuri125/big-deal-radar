@@ -2,10 +2,12 @@ import type { Deal } from '../types';
 import {
   daysUntil,
   effectiveDateLabel,
+  formatHuDate,
   formatHuf,
   isInMonth,
   monthLabel,
   nextOccurrence,
+  parseISODate,
   startOfDay,
   type EffectiveDate,
 } from '../utils/dates';
@@ -21,6 +23,7 @@ export interface Digest {
   generatedAt: string;
   upcoming: DigestItem[];
   booking: DigestItem[];
+  bookingOpens: DigestItem[];
   month: DigestItem[];
   money: DigestItem[];
   counts: {
@@ -29,6 +32,7 @@ export interface Digest {
     month: number;
     money: number;
     booking: number;
+    bookingOpens: number;
   };
 }
 
@@ -109,19 +113,23 @@ export function buildDigest(deals: Deal[], now = new Date()): Digest {
   const filteredMonth = month.filter((item) => !upcomingIds.has(item.deal.id));
 
   const bookingById = new Map<string, DigestItem>();
+  const bookingOpens: DigestItem[] = [];
   const today = startOfDay(now);
 
   for (const deal of deals) {
+    const item = toItem(deal, now);
     let shouldInclude = false;
 
     if (deal.booking_opens) {
       const bookingDate = new Date(`${deal.booking_opens}T00:00:00`);
       const diff = daysUntil(bookingDate, now);
-      if (diff >= 0 && diff <= 14) shouldInclude = true;
+      if (diff >= 0 && diff <= 14) {
+        shouldInclude = true;
+        bookingOpens.push(item);
+      }
     }
 
     if (deal.booking_url) {
-      const item = toItem(deal, now);
       const isLive = Boolean(
         item.effective &&
           item.effective.start <= today &&
@@ -136,16 +144,22 @@ export function buildDigest(deals: Deal[], now = new Date()): Digest {
     }
 
     if (shouldInclude) {
-      bookingById.set(deal.id, toItem(deal, now));
+      bookingById.set(deal.id, item);
     }
   }
 
-  const booking = [...bookingById.values()];
+  const bookingOpeningIds = new Set(
+    bookingOpens.map((item) => item.deal.id)
+  );
+  const booking = [...bookingById.values()].filter(
+    (item) => !bookingOpeningIds.has(item.deal.id)
+  );
 
   return {
     generatedAt: now.toISOString(),
     upcoming: sortItems(upcoming),
     booking: sortItems(booking),
+    bookingOpens: sortItems(bookingOpens),
     month: sortItems(filteredMonth),
     money: sortItems(money),
     counts: {
@@ -154,6 +168,7 @@ export function buildDigest(deals: Deal[], now = new Date()): Digest {
       month: filteredMonth.length,
       money: money.length,
       booking: booking.length,
+      bookingOpens: bookingOpens.length,
     },
   };
 }
@@ -173,6 +188,13 @@ function itemLine(item: DigestItem): string {
   const parts = [deal.title, item.dateLabel, deal.deal];
   if (price) parts.push(price);
   return parts.join(' • ');
+}
+
+function bookingOpenLabel(item: DigestItem): string {
+  const value = item.deal.booking_opens;
+  return value
+    ? `Foglalás nyílik: ${formatHuDate(parseISODate(value))}`
+    : item.dateLabel;
 }
 
 export interface DiscordEmbed {
@@ -255,6 +277,25 @@ export function toDiscordEmbeds(digest: Digest, siteUrl: string): DiscordEmbed[]
     });
   }
 
+  if (digest.bookingOpens.length > 0) {
+    embeds.push({
+      title: '🎟️ Foglalás nyílik',
+      description:
+        'Ezeknél hamarosan indul a jegy- vagy asztalfoglalás. Ne maradj le a nyitásról.',
+      color: 0x7c5cff,
+      fields: digest.bookingOpens.slice(0, 8).map((item) => ({
+        name: item.deal.title,
+        value: `${bookingOpenLabel(item)}\n${
+          item.deal.booking_note ?? item.deal.deal
+        }`,
+        inline: false,
+      })),
+      footer,
+      timestamp: digest.generatedAt,
+      url: siteUrl,
+    });
+  }
+
   if (digest.booking.length > 0) {
     embeds.push({
       title: '🎟️ Jegyvásárlás / foglalás',
@@ -300,6 +341,18 @@ export function toPlainText(digest: Digest, siteUrl: string): string {
     lines.push('');
   }
 
+  if (digest.bookingOpens.length > 0) {
+    lines.push('🎟️ Foglalás nyílik');
+    for (const item of digest.bookingOpens.slice(0, 8)) {
+      lines.push(
+        `• ${item.deal.title} – ${bookingOpenLabel(item)}: ${
+          item.deal.booking_note ?? item.deal.deal
+        }`
+      );
+    }
+    lines.push('');
+  }
+
   if (digest.booking.length > 0) {
     lines.push('🎟️ Jegyvásárlás / foglalás');
     for (const item of digest.booking.slice(0, 8)) {
@@ -330,6 +383,7 @@ export function digestSummary(digest: Digest): string {
     `következő 7 nap: ${digest.counts.upcoming}`,
     `havi: ${digest.counts.month}`,
     `foglalás: ${digest.counts.booking}`,
+    `foglalásnyílás: ${digest.counts.bookingOpens}`,
     `pénzügy: ${digest.counts.money}`,
   ].join(', ');
 }

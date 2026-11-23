@@ -92,19 +92,20 @@ Nem a napi aprókedvezményekre fókuszál, hanem az évente visszatérő vagy r
 | Jegy / foglalás linkkel rendelkező deal | **25** |
 | Keresőlinkes deal | **0** |
 | Egyedi ellenőrzött link | **138** |
-| OK link | **128** |
+| OK link | **129** |
 | Átirányított link | **27** |
-| Botblokkolt link | **10** |
-| Törött link | **0** |
+| Botblokkolt link | **9** |
+| Elérhetetlen link | **0** |
+| Törött link (HTTP-hiba) | **0** |
 | Gyűjteményoldal | **8** |
 | RSS elem | **55** |
 | Figyelt hivatalos forrás | **15** |
-| Teszt | **12/12 zöld** |
+| Teszt | **43/43 zöld** |
 
 ### Fontos értelmezés
 
 - **Ellenőrzött** = legalább egy forrás elérhető (200/3xx), nem keresőlink, és a deal szerepel rajta. Ez nem garancia arra, hogy az ár/dátum a jövőben is ugyanaz.
-- A `status.json` `booking` mezője a **`booking_opens` dátumok** számát jelöli (jelenleg 2), **nem** a 25 jegy/foglalás linket. Ne keverd össze.
+- A `status.json` `booking` mezője a szélesebb foglalási szekció mérete (jelenleg 2): 30 napon belüli esemény `booking_url`-lel, a közeli foglalásnyílások kivételével. A `bookingOpens` mező külön a 14 napon belüli `booking_opens` száma (jelenleg 0); csak ez indít sürgős digestet, és külön digest-szekciót kap.
 - A 49 dátum nélküli deal többsége **folyamatos, heti vagy napi** jellegű; ezeknél szándékosan nincs naptári dátum.
 - A becsült dátumokat a UI `(becsült)` jelöléssel mutatja.
 
@@ -124,9 +125,8 @@ Nem a napi aprókedvezményekre fókuszál, hanem az évente visszatérő vagy r
 
 ### Legutóbbi deploy
 
-- Commit: `2a9d551`
-- Pages deploy: **sikeres** – `45053698557`
-- CI: **sikeres** – `45053698569`
+- Utolsó ismert sikeres deploy commit: `2a9d551` (Pages: `45053698557`, CI: `45053698569`).
+- A P0 audit/refaktor és a linkellenőrzés javítása a `main` ágra kerül; a Pages deploy a push után automatikusan indul.
 
 ---
 
@@ -180,15 +180,16 @@ GitHub Pages
 
 ### Napi pipeline
 
-- Laptopon: 08:00 / 12:00 / 20:00 helyi idő.
-- GitHub Actions: 07:00 / 11:00 / 19:00 UTC (télen 08/12/20 Budapest; nyáron 09/13/21 helyi).
-- A pipeline digestet küld Discordra, frissíti a státuszt, buildel, deployol, és ha kell, adatot commitol.
+- Laptopon: 08:00 / 12:00 / 20:00 helyi idő, `--no-notify` adatfrissítés és commit.
+- GitHub Actions: 07:00 / 11:00 / 19:00 UTC (télen 08/12/20 Budapest; nyáron 09/13/21 helyi), ez az elsődleges digestküldő.
+- A pipeline importál, validál, digestet küld Discordra, frissíti a státuszt, buildel, deployol, és ha kell, adatot commitol.
 
 ### Hibrid működés
 
-- A laptopos Task Scheduler és a GitHub Actions ugyanazt a pipeline-t futtatja.
+- A laptopos Task Scheduler `npm run import` + `npm run daily -- --commit --no-notify` módban fut: adatot generál és commitol, de nem küld digestet.
+- A GitHub Actions az elsődleges digestküldő, és akkor is lefut, ha a laptop ki van kapcsolva.
+- A közös `data/digest-state.json` ledger megakadályozza, hogy ugyanaz a reggeli vagy sürgős digest kétszer menjen ki.
 - Csak akkor commitol adatot, ha tényleg változott.
-- A GitHub Actions fallback akkor is lefut, ha a laptop ki van kapcsolva.
 
 ---
 
@@ -215,6 +216,7 @@ data/
   titles.json           # megjelenő címek (ID stabil marad)
   price-notes.json      # ármagyarázatok
   meta.json             # utolsó ellenőrzés dátuma
+  digest-state.json     # commitolt digest-slot ledger (laptop + Actions)
   link-status.json      # legutóbbi linkellenőrzés eredménye
   source-monitor.json   # figyelt hivatalos oldalak
   source-hashes.json    # forrásoldalak szöveg-hash/elemhalmaz
@@ -242,13 +244,13 @@ src/
   cli.ts                # napi pipeline CLI
   config.ts             # .env + Zod
   types.ts              # Deal típusok
-  pipeline/             # load, digest
+  pipeline/             # load, digest, schemas, notify-schedule
   notifiers/            # discord, telegram
   site/
     main.ts             # teljes frontend logika
     style.css           # teljes design
     watchlist.ts        # localStorage saját lista
-  utils/                # dátumok, logger
+  utils/                # dátumok, ICS, logger
 
 docs/
   preview.png           # világos előnézet
@@ -362,10 +364,11 @@ A `Deal` fő mezői (`src/types.ts`):
 
 - `npm run check:links`
 - Eredmény: `data/link-status.json`.
-- A 401/403/429/511/520 státuszok **botblokknak** számítanak, nem törött linknek.
-- Átmeneti hálózati hibánál a checker **egyszer újrapróbálja**.
+- A 401/403/429/511/520–524 státuszok **botblokknak** számítanak, nem törött linknek.
+- Átmeneti hálózati hibánál a checker **háromszor próbálkozik**, növekvő várakozással.
+- A tartósan `ERR` link **elérhetetlen** kategóriába kerül: látszik a forrás-egészség oldalon és a logban, de nem buktatja meg a workflow-t. Csak a valódi HTTP-hiba (pl. 404) fail.
 - A heti `link-check.yml` commitolja a `link-status.json`-t.
-- A `forrasok/` oldal ebből generálódik.
+- A `forrasok/` oldal ebből generálódik, külön „elérhetetlen” összesítővel.
 
 ### Forrásfigyelés
 
@@ -484,11 +487,11 @@ Ezek böngészőből jellemzően elérhetők; a fontosabb dealekhez alternatív,
 
 - **RSS** – `feed.xml`, 55 elem.
 - **PWA** – telepíthető, offline, manifest shortcutok.
-- **Sötét mód** – ☾/☀ kapcsoló, localStorage, rendszerbeállítás.
+- **Sötét mód** – ☾/☀ kapcsoló, localStorage; a statikus deal-/gyűjtemény-/forrásoldalak is átveszik a mentett témát, rendszerbeállítás fallbackkel.
 - **Megosztás** – natív share vagy linkmásolás.
 - **Hibabejelentés** – strukturált GitHub Issue űrlapok.
 - **Smoke test** – deploy után automatikusan ellenőrzi az élő oldalt.
-- **Lighthouse** – legutóbbi mérés: 100/100/100 (Accessibility, Best Practices, SEO).
+- **Lighthouse** – legutóbbi mérés: 100/100/100 (Accessibility, Best Practices, SEO); a Performance kategória nincs mérve.
 - **Akadálymentesség** – skip link, fókuszáható találati lista, aria-label-ek.
 
 ---
@@ -497,10 +500,10 @@ Ezek böngészőből jellemzően elérhetők; a fontosabb dealekhez alternatív,
 
 | Workflow | Mikor fut? | Mit csinál? |
 |---|---|---|
-| `pipeline.yml` | Naponta 3x + kézzel | Validál, digestet küld, buildel, deployol, szükség esetén commitol |
+| `pipeline.yml` | Naponta 3x + kézzel | Import + generált adat ellenőrzése, validálás, digest, build, deploy, szükség esetén commit |
 | `deploy.yml` | `main` pushra, ha data/site változik | Buildel, Pagesre deployol, majd élő smoke testet futtat |
-| `ci.yml` | PR és `main` push (kivéve data) | Lint, teszt, titokellenőrzés, build |
-| `link-check.yml` | Hetente + kézzel | Linkellenőrzés, `link-status.json` commit, Discord-riasztás hiba esetén |
+| `ci.yml` | PR és `main` push (data/markdown változásra is) | Import + generált adat ellenőrzése, validálás, lint, teszt, titokellenőrzés, build |
+| `link-check.yml` | Hetente + kézzel | Linkellenőrzés 3 próbálkozással, `link-status.json` commit; HTTP-hiba esetén Discord-riasztás, átmeneti elérhetetlenség figyelmeztetés |
 | `source-monitor.yml` | Hetente + kézzel | 15 hivatalos forrás figyelése, változás esetén GitHub Issue |
 
 ### Deploy működése
@@ -516,6 +519,7 @@ Ezek böngészőből jellemzően elérhetők; a fontosabb dealekhez alternatív,
 - A pipeline csak akkor commitol, ha a `data/` változott.
 - A link-check és source-monitor `[skip ci]` commitokat használ.
 - A `data/state.json` és `public/status.json` gitignore-olt, generált.
+- A `data/digest-state.json` **commitolt** küldési ledger: ebből tudja a laptop és a GitHub Actions, hogy melyik digest-slot már ment ki.
 
 ---
 
@@ -572,11 +576,11 @@ Ezek böngészőből jellemzően elérhetők; a fontosabb dealekhez alternatív,
 
 ## 14. Tesztek és minőség
 
-- **12/12 Vitest teszt zöld.**
-- Tesztek: dátumkezelés, digest, adatbetöltés.
-- Linkellenőrzés: 138 egyedi link, 0 hiba, 10 botblokk.
+- **43/43 Vitest teszt zöld.**
+- Tesztek: dátumkezelés, digest, adatbetöltés, input sémák és kereszt-referenciák, ICS escape/sorhajtás, digest-slotszámítás, linkstátusz-osztályozás.
+- Linkellenőrzés: 138 egyedi link; a legutóbbi futásban 129 OK, 27 átirányítás, 9 botblokk, 0 elérhetetlen, 0 HTTP-hiba.
 - Titokellenőrzés: tiszta.
-- Lighthouse: 100/100/100 (utolsó mérés; a UI-t érdemes újramérni nagyobb változás után).
+- Lighthouse: 100/100/100 (Accessibility, Best Practices, SEO; Performance nincs mérve; a UI-t érdemes újramérni nagyobb változás után).
 - Deploy smoke test: sikeres.
 - Forrásfigyelés: 15 forrás, 0 változás / 0 hiba a baseline után.
 

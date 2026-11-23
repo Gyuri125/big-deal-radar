@@ -64,6 +64,44 @@ describe('napi digest', () => {
     expect(digest.counts.booking).toBe(1);
   });
 
+  it('a közeli foglalásnyílást külön gyűjti a sürgős értesítéshez', () => {
+    const openingDeal: Deal = {
+      ...deal,
+      booking_opens: '2026-11-24',
+    };
+    const digest = buildDigest([openingDeal], new Date(2026, 10, 20));
+
+    expect(digest.bookingOpens).toHaveLength(1);
+    expect(digest.counts.bookingOpens).toBe(1);
+    expect(toPlainText(digest, 'https://example.com')).toContain(
+      'Foglalás nyílik'
+    );
+  });
+
+  it('a foglalásnyílás nem duplikálódik a széles booking szekcióba', () => {
+    const openingDeal: Deal = {
+      ...deal,
+      booking_opens: '2026-11-24',
+      booking_url: 'https://example.com/foglalas',
+    };
+    const digest = buildDigest([openingDeal], new Date(2026, 10, 20));
+
+    expect(digest.bookingOpens).toHaveLength(1);
+    expect(digest.booking).toHaveLength(0);
+    expect(digest.counts.booking).toBe(0);
+  });
+
+  it('a távoli foglalásnyílás nem lesz sürgős', () => {
+    const openingDeal: Deal = {
+      ...deal,
+      booking_opens: '2027-02-01',
+    };
+    const digest = buildDigest([openingDeal], new Date(2026, 10, 20));
+
+    expect(digest.bookingOpens).toHaveLength(0);
+    expect(digest.counts.bookingOpens).toBe(0);
+  });
+
   it('a szöveges digest tartalmazza a címet és a linket', () => {
     const digest = buildDigest([deal], new Date(2026, 10, 20));
     const text = toPlainText(digest, 'https://example.github.io/big-deal-radar/');

@@ -1,66 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { z } from 'zod';
 import type { Deal } from '../types';
-
-const isoDate = z
-  .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Érvénytelen dátumformátum (YYYY-MM-DD)');
-
-const dealSchema = z.object({
-  id: z.string().min(1),
-  title: z.string().min(1),
-  category: z.enum([
-    'mozi',
-    'kultura',
-    'muzeum',
-    'gasztro',
-    'utazas',
-    'vasarlas',
-    'penzugy',
-    'egeszseg',
-    'csalad',
-    'egyeb',
-  ]),
-  type: z.enum(['flat', 'free', 'sale', 'money', 'access']),
-  timing: z.string().min(1),
-  date_start: isoDate.nullable(),
-  date_end: isoDate.nullable(),
-  booking_opens: isoDate.nullable(),
-  month: z.number().int().min(1).max(12).nullable(),
-  months: z.array(z.number().int().min(1).max(12)),
-  recurrence: z.enum([
-    'annual',
-    'monthly',
-    'weekly',
-    'daily',
-    'continuous',
-    'oneoff',
-  ]),
-  deal: z.string().min(1),
-  normal_price: z.number().nonnegative().nullable(),
-  deal_price: z.number().nonnegative().nullable(),
-  price_note: z.string().nullable(),
-  currency: z.enum(['HUF', 'EUR']).nullable(),
-  location: z.string().min(1),
-  source_url: z.string().url().nullable(),
-  booking_url: z.string().url().nullable(),
-  booking_note: z.string().nullable(),
-  sources: z.array(
-    z.object({
-      label: z.string().min(1),
-      url: z.string().url(),
-      type: z.enum(['official', 'ticket', 'article', 'search']),
-    })
-  ),
-  confidence: z.enum(['verified', 'unverified', 'needs-check']),
-  last_checked: isoDate.nullable(),
-  tags: z.array(z.string()),
-  notes: z.string().nullable(),
-  featured: z.boolean(),
-});
-
-const dealsSchema = z.array(dealSchema).min(1);
+import { dealsSchema, validateDeals } from './schemas';
 
 export interface LoadResult {
   deals: Deal[];
@@ -97,13 +38,14 @@ export function loadDeals(filePath = path.resolve(process.cwd(), 'data/deals.jso
   }
 
   const deals = result.data as Deal[];
-  const seen = new Set<string>();
-
-  for (const deal of deals) {
-    if (seen.has(deal.id)) {
-      throw new Error(`Duplikált deal id: ${deal.id}`);
-    }
-    seen.add(deal.id);
+  const validationErrors = validateDeals(deals);
+  if (validationErrors.length > 0) {
+    throw new Error(
+      `A deal adatbázis konzisztencia-hibás:\n${validationErrors
+        .slice(0, 20)
+        .map((error) => `- ${error}`)
+        .join('\n')}`
+    );
   }
 
   return { deals, filePath };

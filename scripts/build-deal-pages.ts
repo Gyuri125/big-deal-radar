@@ -11,6 +11,13 @@ import {
   toISODate,
   addDays,
 } from '../src/utils/dates';
+import { buildVCalendar, type IcsEvent } from '../src/utils/ics';
+import {
+  classifyLinkStatus,
+  summarizeLinkStatuses,
+  type LinkStatusKind,
+} from '../src/utils/link-status';
+import { loadDeals } from '../src/pipeline/load';
 
 const root = process.cwd();
 const distDir = path.join(root, 'dist');
@@ -142,28 +149,49 @@ function iconSvg(size: number): string {
 </svg>`;
 }
 
+function themeBootstrapScript(): string {
+  return `<script>
+  try {
+    var stored = localStorage.getItem('big-deal-radar-theme');
+    var param = new URLSearchParams(window.location.search).get('theme');
+    document.documentElement.dataset.theme =
+      stored === 'dark' || stored === 'light'
+        ? stored
+        : param === 'dark' || param === 'light'
+          ? param
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+  } catch (error) {
+    document.documentElement.dataset.theme = 'light';
+  }
+</script>`;
+}
+
 function pageCss(): string {
   return `
-    :root{--navy:#12212f;--cream:#f6f1e7;--paper:#fffdf8;--line:#e5ded2;--orange:#f26b38;--teal:#0f8f7e;--gold:#c9941a;--muted:#667085}
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;color:#1c2530;background:radial-gradient(circle at 10% 0%,rgba(242,107,56,.1),transparent 28rem),var(--cream);line-height:1.55}
+    :root{--navy:#12212f;--cream:#f6f1e7;--paper:#fffdf8;--line:#e5ded2;--orange:#f26b38;--teal:#0f8f7e;--gold:#c9941a;--muted:#667085;--text:#1c2530;--lead:#475467;--meta:#b5471d;--price-note:#667085;--free:#08685c;--badge-bg:#fff0e8;--badge-text:#b5471d;--note-bg:#fff6d9;--note-text:#6f5310;--booking-bg:#e7f6f3;--booking-text:#25564e;--btn-bg:var(--navy);--btn-text:var(--paper);--error:#a02c20;--ok-bg:#e7f6f3;--ok-text:#08685c;--warn-bg:#fff6d9;--warn-text:#8f6910;--fail-bg:#fdecea;--fail-text:#a02c20;color-scheme:light}
+    :root[data-theme="dark"]{--navy:#e8eef5;--cream:#0a141d;--paper:#132230;--line:#293b4d;--muted:#9fb0c0;--text:#e8eef5;--lead:#aebdcc;--meta:#ff9d7a;--price-note:#aebdcc;--free:#7fe0d1;--badge-bg:#3a2118;--badge-text:#ffb59a;--note-bg:#33280d;--note-text:#f0d58e;--booking-bg:#0d2c28;--booking-text:#9ce0d4;--btn-bg:#b5471d;--btn-text:#fff;--error:#ffb3a8;--ok-bg:#0d2c28;--ok-text:#7fe0d1;--warn-bg:#33280d;--warn-text:#f0c65e;--fail-bg:#3a1715;--fail-text:#ffb3a8;color-scheme:dark}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#e8eef5;--cream:#0a141d;--paper:#132230;--line:#293b4d;--muted:#9fb0c0;--text:#e8eef5;--lead:#aebdcc;--meta:#ff9d7a;--price-note:#aebdcc;--free:#7fe0d1;--badge-bg:#3a2118;--badge-text:#ffb59a;--note-bg:#33280d;--note-text:#f0d58e;--booking-bg:#0d2c28;--booking-text:#9ce0d4;--btn-bg:#b5471d;--btn-text:#fff;--error:#ffb3a8;--ok-bg:#0d2c28;--ok-text:#7fe0d1;--warn-bg:#33280d;--warn-text:#f0c65e;--fail-bg:#3a1715;--fail-text:#ffb3a8;color-scheme:dark}}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;color:var(--text);background:radial-gradient(circle at 10% 0%,rgba(242,107,56,.1),transparent 28rem),var(--cream);line-height:1.55}
     a{color:inherit}.wrap{max-width:820px;margin:0 auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:.72rem;font-weight:800;letter-spacing:.18em;line-height:1.05}
     .mark{display:grid;place-items:center;width:34px;height:34px;border:2px solid var(--navy);border-radius:50%;position:relative}.mark:before,.mark:after{content:"";position:absolute;border:1.5px solid var(--navy);border-radius:50%;opacity:.55}.mark:before{inset:7px}.mark:after{inset:13px}
     .dot{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--orange)}
     .back{font-size:.78rem;font-weight:700;color:var(--muted);text-decoration:none}
     .hero{margin-top:28px;padding:32px;border:1px solid var(--line);border-top:5px solid var(--orange);border-radius:24px;background:var(--paper);box-shadow:0 18px 50px rgba(18,33,47,.08)}
-    .badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:#fff0e8;color:#b5471d;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:var(--badge-bg);color:var(--badge-text);font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
     h1{margin:14px 0 0;font-family:Georgia,serif;font-size:clamp(2rem,6vw,3.5rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy)}
-    .meta{margin:14px 0 0;font-size:.85rem;font-weight:700;color:#b5471d}
+    .meta{margin:14px 0 0;font-size:.85rem;font-weight:700;color:var(--meta)}
     .route-links{margin:6px 0 0;font-size:.76rem;font-weight:700}.route-links a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}.route-links a:hover{color:var(--orange)}
-    .lead{margin:16px 0 0;font-size:1.02rem;color:#475467}
+    .lead{margin:16px 0 0;font-size:1.02rem;color:var(--lead)}
     .price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
-    .old{font-size:.9rem;color:var(--muted);text-decoration:line-through}.new{font-size:1.7rem;font-weight:800;color:var(--navy)}.free{font-size:1.3rem;font-weight:800;color:#08685c}
-    .note{margin:18px 0 0;padding:12px 14px;border-left:3px solid var(--gold);border-radius:8px;background:#fff6d9;font-size:.82rem;color:#6f5310}
-    .booking-note{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--teal);border-radius:8px;background:#e7f6f3;font-size:.82rem;color:#25564e}
+    .old{font-size:.9rem;color:var(--muted);text-decoration:line-through}.new{font-size:1.7rem;font-weight:800;color:var(--navy)}.free{font-size:1.3rem;font-weight:800;color:var(--free)}
+    .note{margin:18px 0 0;padding:12px 14px;border-left:3px solid var(--gold);border-radius:8px;background:var(--note-bg);font-size:.82rem;color:var(--note-text)}
+    .booking-note{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--teal);border-radius:8px;background:var(--booking-bg);font-size:.82rem;color:var(--booking-text)}
     .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border:1px solid transparent;border-radius:999px;font-size:.88rem;font-weight:700;text-decoration:none;cursor:pointer}
-    .btn-primary{background:var(--navy);color:var(--paper)}.btn-ghost{background:transparent;border-color:var(--line);color:var(--navy)}
+    .btn-primary{background:var(--btn-bg);color:var(--btn-text)}.btn-ghost{background:transparent;border-color:var(--line);color:var(--navy)}
     h2{margin:28px 0 10px;font-family:Georgia,serif;font-size:1.4rem;font-weight:500;color:var(--navy)}
     .sources{display:grid;gap:8px}.source{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-decoration:none}
     .source b{font-size:.8rem}.source span{margin-left:auto;font-size:.7rem;color:var(--muted)}
@@ -173,16 +201,6 @@ function pageCss(): string {
     .footer{margin:36px 0 20px;color:var(--muted);font-size:.74rem;text-align:center}
     .footer a{color:var(--navy);font-weight:700}
     @media(max-width:600px){.wrap{padding:18px}.hero{padding:22px}.top{flex-direction:column;align-items:flex-start;gap:10px}}
-    @media(prefers-color-scheme:dark){
-      :root{--navy:#e8eef5;--cream:#0a141d;--paper:#132230;--line:#293b4d;--muted:#9fb0c0}
-      body{color:#e8eef5;background:radial-gradient(circle at 10% 0%,rgba(242,107,56,.08),transparent 28rem),var(--cream)}
-      .hero,.source,.related a{background:var(--paper);color:#e8eef5}
-      .lead{color:#aebdcc}.meta{color:#ff9d7a}.new{color:#e8eef5}.free{color:#7fe0d1}
-      .badge{background:#3a2118;color:#ffb59a}
-      .note{background:#33280d;color:#f0d58e}.booking-note{background:#0d2c28;color:#9ce0d4}
-      .btn-primary{background:#b5471d;color:#fff}.btn-ghost{color:#e8eef5}
-      .footer a{color:#e8eef5}
-    }
   `;
 }
 
@@ -201,77 +219,49 @@ function domainOf(url: string): string {
   }
 }
 
-function icsDate(date: Date): string {
-  return `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(
-    date.getDate()
-  ).padStart(2, '0')}`;
-}
+function calendarEventsForDeal(
+  deal: Deal,
+  effective: ReturnType<typeof nextOccurrence>
+): IcsEvent[] {
+  if (!effective) return [];
 
-function icsDateTime(date: Date): string {
-  return `${date.toISOString().replace(/[-:]/g, '').split('.')[0]}Z`;
-}
-
-function escapeIcs(value: string): string {
-  return value
-    .replace(/\\/g, '\\\\')
-    .replace(/\n/g, '\\n')
-    .replace(/,/g, '\\,')
-    .replace(/;/g, '\\;');
-}
-
-function alarmLines(summary: string): string[] {
-  const description = escapeIcs(`Big-deal radar: ${summary}`);
-  return ['-P14D', '-P7D', '-P1D', 'PT0S'].flatMap((trigger) => [
-    'BEGIN:VALARM',
-    `TRIGGER:${trigger}`,
-    'ACTION:DISPLAY',
-    `DESCRIPTION:${description}`,
-    'END:VALARM',
-  ]);
-}
-
-function icsForDeal(deal: Deal, effective: ReturnType<typeof nextOccurrence>): string {
-  if (!effective) return '';
-
-  const start = effective.start;
-  const end = effective.end ?? start;
-  const lines = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Big-deal radar//HU',
-    'CALSCALE:GREGORIAN',
-    'BEGIN:VEVENT',
-    `UID:${deal.id}@big-deal-radar`,
-    `DTSTAMP:${icsDateTime(new Date())}`,
-    `DTSTART;VALUE=DATE:${icsDate(start)}`,
-    `DTEND;VALUE=DATE:${icsDate(addDays(end, 1))}`,
-    `SUMMARY:${escapeIcs(deal.title)}`,
-    `DESCRIPTION:${escapeIcs(
-      `${deal.deal}${deal.booking_note ? `\n\n${deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás'}: ${deal.booking_note}` : ''}`
-    )}`,
-    `LOCATION:${escapeIcs(deal.location)}`,
-    ...(deal.source_url ? [`URL:${deal.source_url}`] : []),
-    ...alarmLines(deal.title),
-    'END:VEVENT',
+  const events: IcsEvent[] = [
+    {
+      uid: `${deal.id}@big-deal-radar`,
+      start: effective.start,
+      end: effective.end ?? effective.start,
+      summary: deal.title,
+      description: `${deal.deal}${
+        deal.booking_note
+          ? `\n\n${deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás'}: ${deal.booking_note}`
+          : ''
+      }`,
+      location: deal.location,
+      url: deal.source_url,
+    },
   ];
 
   if (deal.booking_opens) {
     const bookingDate = parseISODate(deal.booking_opens);
-    lines.push(
-      'BEGIN:VEVENT',
-      `UID:${deal.id}-booking@big-deal-radar`,
-      `DTSTAMP:${icsDateTime(new Date())}`,
-      `DTSTART;VALUE=DATE:${icsDate(bookingDate)}`,
-      `DTEND;VALUE=DATE:${icsDate(addDays(bookingDate, 1))}`,
-      `SUMMARY:${escapeIcs(`Foglalás nyílik: ${deal.title}`)}`,
-      `DESCRIPTION:${escapeIcs(deal.booking_note ?? deal.deal)}`,
-      ...alarmLines(`Foglalás nyílik: ${deal.title}`),
-      'END:VEVENT'
-    );
+    events.push({
+      uid: `${deal.id}-booking@big-deal-radar`,
+      start: bookingDate,
+      end: bookingDate,
+      summary: `Foglalás nyílik: ${deal.title}`,
+      description: deal.booking_note ?? deal.deal,
+    });
   }
 
-  lines.push('END:VCALENDAR');
-  return `${lines.join('\r\n')}\r\n`;
+  return events;
+}
+
+function icsForDeal(
+  deal: Deal,
+  effective: ReturnType<typeof nextOccurrence>,
+  now = new Date()
+): string {
+  const events = calendarEventsForDeal(deal, effective);
+  return events.length > 0 ? buildVCalendar(events, { now }) : '';
 }
 
 function buildDealPage(deal: Deal, related: Deal[] = []): string {
@@ -342,6 +332,22 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
     )
     .join('');
 
+  const jsonLdPrice =
+    deal.type === 'free' || deal.deal_price === 0 ? 0 : deal.deal_price;
+  const offer =
+    jsonLdPrice !== null
+      ? {
+          '@type': 'Offer',
+          price: jsonLdPrice,
+          priceCurrency: deal.currency ?? 'HUF',
+          availability: 'https://schema.org/InStock',
+          url:
+            deal.booking_url ??
+            deal.source_url ??
+            `${siteUrl}deal/${deal.id}/`,
+        }
+      : null;
+
   const jsonLd = effective
     ? {
         '@context': 'https://schema.org',
@@ -363,13 +369,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
             addressCountry: 'HU',
           },
         },
-        offers: {
-          '@type': 'Offer',
-          price: deal.deal_price ?? 0,
-          priceCurrency: 'HUF',
-          availability: 'https://schema.org/InStock',
-          url: deal.booking_url ?? deal.source_url ?? `${siteUrl}deal/${deal.id}/`,
-        },
+        ...(offer ? { offers: offer } : {}),
       }
     : {
         '@context': 'https://schema.org',
@@ -390,6 +390,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <meta name="theme-color" content="#12212f"/>
+  <meta name="color-scheme" content="light dark"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <title>${escapeHtml(deal.title)} – Big-deal radar</title>
   <meta name="description" content="${escapeHtml(`${deal.deal} ${dateLabel} · ${deal.location}`)}"/>
@@ -408,6 +409,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
   <meta name="twitter:description" content="${escapeHtml(deal.deal)}"/>
   <meta name="twitter:image" content="${escapeHtml(`${siteUrl}og/${deal.id}.png`)}"/>
   <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
+  ${themeBootstrapScript()}
   <style>${pageCss()}</style>
 </head>
 <body>
@@ -427,7 +429,7 @@ function buildDealPage(deal: Deal, related: Deal[] = []): string {
       <div class="price">
         ${deal.normal_price !== null ? `<span class="old">${escapeHtml(normalPriceLabel(deal).replace('Normál ár: ', ''))}</span>` : ''}
         <span class="${deal.type === 'free' || deal.deal_price === 0 ? 'free' : 'new'}">${escapeHtml(priceLabel(deal))}</span>
-        ${deal.price_note ? `<span style="font-size:.78rem;color:#667085">${escapeHtml(deal.price_note)}</span>` : ''}
+        ${deal.price_note ? `<span style="font-size:.78rem;color:var(--price-note)">${escapeHtml(deal.price_note)}</span>` : ''}
       </div>
 
       ${deal.booking_note ? `<p class="booking-note"><strong>${deal.type === 'free' ? 'Tudnivaló' : 'Jegyvásárlás'}:</strong> ${escapeHtml(deal.booking_note)}</p>` : ''}
@@ -531,12 +533,11 @@ function collectionCss(): string {
     .collection-card:hover{border-color:#cfc5b6;transform:translateY(-2px)}
     .collection-card .badge{align-self:flex-start}
     .collection-card strong{font-family:Georgia,serif;font-size:1.08rem;font-weight:500;line-height:1.2;color:var(--navy)}
-    .collection-card .collection-date{font-size:.72rem;font-weight:700;color:#b5471d}
+    .collection-card .collection-date{font-size:.72rem;font-weight:700;color:var(--meta)}
     .collection-card .collection-deal{font-size:.78rem;color:var(--muted)}
     .collection-card .collection-price{margin-top:auto;font-size:.86rem;font-weight:800;color:var(--navy)}
     .collection-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
     .collection-links a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:.76rem;font-weight:700;text-decoration:none}
-    @media(prefers-color-scheme:dark){.collection-date{color:#ff9d7a}}
   `;
 }
 
@@ -574,6 +575,7 @@ function buildCollectionPage(collection: Collection, deals: Deal[]): string {
   <meta name="description" content="${escapeHtml(collection.subtitle)}"/>
   <link rel="canonical" href="${escapeHtml(`${siteUrl}gyujtemeny/${collection.slug}/`)}"/>
   <link rel="alternate" type="application/rss+xml" title="Big-deal radar – következő dealek" href="../../feed.xml"/>
+  ${themeBootstrapScript()}
   <style>${collectionCss()}</style>
 </head>
 <body>
@@ -628,6 +630,7 @@ function buildCollectionIndex(deals: Deal[]): string {
   <title>Gyűjtemények – Big-deal radar</title>
   <meta name="description" content="Válogatott dealgyűjtemények: ingyenes, mozi, gasztro, ünnepek, programok."/>
   <link rel="canonical" href="${escapeHtml(`${siteUrl}gyujtemeny/`)}"/>
+  ${themeBootstrapScript()}
   <style>${collectionCss()}</style>
 </head>
 <body>
@@ -665,6 +668,7 @@ interface LinkStatusFile {
   redirected: number;
   blocked: number;
   failed: number;
+  unreachable?: number;
   links: LinkStatusEntry[];
 }
 
@@ -673,16 +677,6 @@ interface SourceMonitorReport {
   changed: Array<{ label: string; url: string }>;
   added: Array<{ label: string; url: string }>;
   errors: Array<{ label: string; url: string; error: string }>;
-}
-
-function linkStatusKind(entry: LinkStatusEntry): 'ok' | 'blocked' | 'failed' {
-  const blockedCodes = [401, 403, 429, 511, 520];
-  if (entry.status === 'ERR') return 'failed';
-  if (typeof entry.status === 'number') {
-    if (blockedCodes.includes(entry.status)) return 'blocked';
-    if (entry.status >= 400) return 'failed';
-  }
-  return 'ok';
 }
 
 function buildSourcesPage(
@@ -694,6 +688,9 @@ function buildSourcesPage(
         dateStyle: 'medium',
         timeStyle: 'short',
       })
+    : null;
+  const linkCounts = status
+    ? summarizeLinkStatuses(status.links.map((entry) => entry.status))
     : null;
   const monitorChecked = monitor?.checked_at
     ? new Date(monitor.checked_at).toLocaleString('hu-HU', {
@@ -734,23 +731,31 @@ function buildSourcesPage(
       </div>`
     : '';
 
+  const kindOrder: Record<LinkStatusKind, number> = {
+    failed: 0,
+    unreachable: 1,
+    blocked: 2,
+    ok: 3,
+  };
   const rows = (status?.links ?? [])
     .slice()
     .sort((a, b) => {
-      const order = { failed: 0, blocked: 1, ok: 2 };
-      return order[linkStatusKind(a)] - order[linkStatusKind(b)] ||
-        a.url.localeCompare(b.url);
+      return (
+        kindOrder[classifyLinkStatus(a.status)] -
+          kindOrder[classifyLinkStatus(b.status)] ||
+        a.url.localeCompare(b.url)
+      );
     })
     .map((entry) => {
-      const kind = linkStatusKind(entry);
+      const kind = classifyLinkStatus(entry.status);
       const label =
         kind === 'failed'
-          ? entry.status === 'ERR'
-            ? 'Hiba'
-            : String(entry.status)
-          : kind === 'blocked'
-            ? `${entry.status} botblokk`
-            : String(entry.status);
+          ? String(entry.status)
+          : kind === 'unreachable'
+            ? 'Elérhetetlen'
+            : kind === 'blocked'
+              ? `${entry.status} botblokk`
+              : String(entry.status);
       const final =
         entry.finalUrl &&
         entry.finalUrl.replace(/\/$/, '') !== entry.url.replace(/\/$/, '')
@@ -771,12 +776,13 @@ function buildSourcesPage(
   const summary = status
     ? `<div class="source-summary">
         <div><strong>${status.total}</strong><span>link</span></div>
-        <div><strong>${status.ok}</strong><span>OK</span></div>
+        <div><strong>${linkCounts?.ok ?? status.ok}</strong><span>OK</span></div>
         <div><strong>${status.redirected}</strong><span>átirányítva</span></div>
-        <div><strong>${status.blocked}</strong><span>botblokk</span></div>
-        <div><strong>${status.failed}</strong><span>hiba</span></div>
+        <div><strong>${linkCounts?.blocked ?? status.blocked}</strong><span>botblokk</span></div>
+        <div><strong>${linkCounts?.unreachable ?? status.unreachable ?? 0}</strong><span>elérhetetlen</span></div>
+        <div><strong>${linkCounts?.failed ?? status.failed}</strong><span>hiba</span></div>
       </div>
-      <p class="source-note">Utolsó ellenőrzés: <strong>${escapeHtml(checked ?? '')}</strong>. A botblokkolt oldalak böngészőből általában elérhetők.</p>`
+      <p class="source-note">Utolsó ellenőrzés: <strong>${escapeHtml(checked ?? '')}</strong>. A botblokkolt oldalak böngészőből általában elérhetők; az „elérhetetlen” átmeneti hálózati hibát is jelenthet.</p>`
     : `<p class="source-note">Még nem futott linkellenőrzés. Indítsd el a <a href="https://github.com/Gyuri125/big-deal-radar/actions/workflows/link-check.yml">Link check</a> workflow-t.</p>`;
 
   return `<!doctype html>
@@ -789,8 +795,9 @@ function buildSourcesPage(
   <title>Forrás-egészség – Big-deal radar</title>
   <meta name="description" content="A Big-deal radar forrásainak legutóbbi linkellenőrzési állapota."/>
   <link rel="canonical" href="${escapeHtml(`${siteUrl}forrasok/`)}"/>
+  ${themeBootstrapScript()}
   <style>${pageCss()}
-    .source-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;overflow:hidden;margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--line)}
+    .source-summary{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;overflow:hidden;margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--line)}
     .source-summary>div{display:flex;flex-direction:column;gap:2px;padding:14px;background:var(--paper)}
     .source-summary strong{font-family:Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--navy)}
     .source-summary span{font-size:.7rem;color:var(--muted)}
@@ -798,29 +805,19 @@ function buildSourcesPage(
     .monitor-box{display:flex;flex-direction:column;gap:5px;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);font-size:.8rem}
     .monitor-box strong{color:var(--navy)}.monitor-box span{color:var(--muted)}
     .monitor-box ul{margin:4px 0 0;padding-left:18px}.monitor-box li{font-size:.76rem}
-    .monitor-ok{color:#08685c!important;font-weight:700}
+    .monitor-ok{color:var(--ok-text)!important;font-weight:700}
     .source-list{display:grid;gap:6px;margin:0;padding:0;list-style:none}
     .source-row{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
     .source-status{flex:0 0 auto;min-width:86px;padding:3px 7px;border-radius:6px;font-size:.64rem;font-weight:800;text-align:center}
-    .source-ok .source-status{background:#e7f6f3;color:#08685c}
-    .source-blocked .source-status{background:#fff6d9;color:#8f6910}
-    .source-failed .source-status{background:#fdecea;color:#a02c20}
+    .source-ok .source-status{background:var(--ok-bg);color:var(--ok-text)}
+    .source-blocked .source-status{background:var(--warn-bg);color:var(--warn-text)}
+    .source-unreachable .source-status{background:var(--warn-bg);color:var(--warn-text)}
+    .source-failed .source-status{background:var(--fail-bg);color:var(--fail-text)}
     .source-main{display:flex;flex-direction:column;gap:2px;min-width:0}
     .source-main a{font-size:.8rem;font-weight:700;overflow-wrap:anywhere}
     .source-final,.source-deals,.source-error{font-size:.68rem;color:var(--muted);overflow-wrap:anywhere}
-    .source-error{color:#a02c20}
+    .source-error{color:var(--error)}
     @media(max-width:600px){.source-summary{grid-template-columns:repeat(2,1fr)}.source-row{flex-direction:column}.source-status{min-width:0}}
-    @media(prefers-color-scheme:dark){
-      :root{--navy:#e8eef5;--cream:#0a141d;--paper:#132230;--line:#293b4d;--muted:#9fb0c0}
-      body{color:#e8eef5;background:radial-gradient(circle at 10% 0%,rgba(242,107,56,.08),transparent 28rem),var(--cream)}
-      .hero,.source-row{background:var(--paper);color:#e8eef5}
-      .source-main a{color:#e8eef5}
-      .monitor-box{background:var(--paper);color:#e8eef5}
-      .monitor-ok{color:#7fe0d1!important}
-      .source-ok .source-status{background:#0d2c28;color:#7fe0d1}
-      .source-blocked .source-status{background:#33280d;color:#f0c65e}
-      .source-failed .source-status{background:#3a1715;color:#ffb3a8}
-    }
   </style>
 </head>
 <body>
@@ -851,9 +848,11 @@ async function main(): Promise<void> {
     throw new Error('Nincs data/deals.json – futtasd: npm run import');
   }
 
-  const deals = JSON.parse(fs.readFileSync(dealsPath, 'utf8')) as Deal[];
+  const { deals } = loadDeals(dealsPath);
   fs.mkdirSync(distDir, { recursive: true });
   fs.mkdirSync(path.join(distDir, 'og'), { recursive: true });
+
+  const buildNow = new Date();
 
   for (const deal of deals) {
     const effective = nextOccurrence(deal);
@@ -870,7 +869,7 @@ async function main(): Promise<void> {
     fs.mkdirSync(pageDir, { recursive: true });
     fs.writeFileSync(path.join(pageDir, 'index.html'), buildDealPage(deal, related), 'utf8');
 
-    const ics = icsForDeal(deal, effective);
+    const ics = icsForDeal(deal, effective, buildNow);
     if (ics) {
       fs.writeFileSync(path.join(pageDir, `${deal.id}.ics`), ics, 'utf8');
     }

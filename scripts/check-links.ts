@@ -1,6 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Deal, DealSource } from '../src/types';
+import {
+  classifyLinkStatus,
+  summarizeLinkStatuses,
+} from '../src/utils/link-status';
 
 interface LinkCheck {
   url: string;
@@ -44,8 +48,23 @@ function collectLinks(deals: Deal[]): Map<string, Set<string>> {
   return links;
 }
 
+function describeFetchError(error: unknown): string {
+  if (!(error instanceof Error)) return String(error);
+
+  const cause = error.cause;
+  if (cause instanceof Error && cause.message) {
+    return `${error.message}: ${cause.message}`;
+  }
+  if (cause && typeof cause === 'object' && 'code' in cause) {
+    return `${error.message}: ${String(cause.code)}`;
+  }
+  return error.message;
+}
+
 async function checkOne(url: string, dealTitles: string[]): Promise<LinkCheck> {
-  for (let attempt = 1; attempt <= 2; attempt += 1) {
+  const maxAttempts = 3;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -65,17 +84,17 @@ async function checkOne(url: string, dealTitles: string[]): Promise<LinkCheck> {
         deals: dealTitles,
       };
     } catch (error) {
-      if (attempt === 2) {
+      if (attempt === maxAttempts) {
         return {
           url,
           status: 'ERR',
-          error: error instanceof Error ? error.message : String(error),
+          error: describeFetchError(error),
           deals: dealTitles,
         };
       }
 
-      // Átmeneti hálózati hiba esetén egyszer újrapróbáljuk.
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      // Átmeneti hálózati hiba esetén növekvő várakozással újrapróbáljuk.
+      await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
     }
   }
 
@@ -104,16 +123,15 @@ async function main(): Promise<void> {
 
   await Promise.all(Array.from({ length: concurrency }, worker));
 
-  const blockedStatuses = new Set<number>([401, 403, 429, 511, 520]);
-  const blocked = results.filter((result) =>
-    typeof result.status === 'number' && blockedStatuses.has(result.status)
+  const counts = summarizeLinkStatuses(results.map((result) => result.status));
+  const blocked = results.filter(
+    (result) => classifyLinkStatus(result.status) === 'blocked'
   );
   const failed = results.filter(
-    (result) =>
-      result.status === 'ERR' ||
-      (typeof result.status === 'number' &&
-        result.status >= 400 &&
-        !blockedStatuses.has(result.status))
+    (result) => classifyLinkStatus(result.status) === 'failed'
+  );
+  const unreachable = results.filter(
+    (result) => classifyLinkStatus(result.status) === 'unreachable'
   );
   const redirected = results.filter(
     (result) =>
@@ -124,10 +142,11 @@ async function main(): Promise<void> {
   const statusFile = {
     checked_at: new Date().toISOString(),
     total: results.length,
-    ok: results.length - failed.length - blocked.length,
+    ok: counts.ok,
     redirected: redirected.length,
-    blocked: blocked.length,
-    failed: failed.length,
+    blocked: counts.blocked,
+    failed: counts.failed,
+    unreachable: counts.unreachable,
     links: results
       .slice()
       .sort((a, b) => a.url.localeCompare(b.url))
@@ -148,19 +167,31 @@ async function main(): Promise<void> {
   );
 
   console.log(`\n🔗 ${results.length} egyedi link ellenőrzése kész.`);
-  console.log(
-    `✅ OK: ${results.length - failed.length - blocked.length}`
-  );
+  console.log(`✅ OK: ${counts.ok}`);
   console.log(`↪️  Átirányítva: ${redirected.length}`);
   console.log(
-    `⚠️  Botblokk (böngészőben valószínűleg ok): ${blocked.length}`
+    `⚠️  Botblokk (böngészőben valószínűleg ok): ${counts.blocked}`
   );
-  console.log(`❌ Hiba: ${failed.length}`);
+  console.log(
+    `⚠️  Elérhetetlen (átmeneti hálózati hiba): ${counts.unreachable}`
+  );
+  console.log(`❌ HTTP hiba: ${counts.failed}`);
 
   if (blocked.length > 0) {
     console.log('\nBotblokkolt oldalak:');
     for (const result of blocked.sort((a, b) => a.url.localeCompare(b.url))) {
       console.log(`- [${result.status}] ${result.url}`);
+    }
+  }
+
+  if (unreachable.length > 0) {
+    console.log('\nElérhetetlen linkek (nem buktatják meg a workflow-t):');
+    for (const result of unreachable.sort((a, b) =>
+      a.url.localeCompare(b.url)
+    )) {
+      console.log(
+        `- ${result.url}${result.error ? ` – ${result.error}` : ''}\n  Deale(k): ${result.deals.join(', ')}`
+      );
     }
   }
 

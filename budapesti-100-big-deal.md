@@ -4,12 +4,13 @@
 >
 > Az alábbi lista 100 ilyen és ehhez hasonló, főleg budapesti/belföldi alkalmat gyűjt össze. A dátumok 2026-os példák; évente változnak, ezért a radar minden tételnél frissítse a hivatalos forrást.
 
-## A 4 nagy deal-típus
+## Az 5 nagy deal-típus
 
 1. **★ Prémium ugyanannyi** – egy ár, minden formátum/helyszín benne (Filmünnep, Múzeumok Éjszakája, Színházak Éjszakája).
 2. **🎟️ Egy jegy, sok helyszín** – egy karszalag/jegy, több intézmény vagy program.
 3. **🆓 Ingyenes, de nagy értékű** – olyan helyek nyílnak meg, ahová máskor fizetni kellene.
 4. **💰 Évi nagy pénzügyi dobás** – támogatás, adójóváírás, banki bónusz.
+5. **🔑 Különleges hozzáférés** – elővásárlási időablak, zárt kör vagy exkluzív hozzáférés.
 
 ---
 

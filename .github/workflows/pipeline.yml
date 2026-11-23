@@ -21,6 +21,9 @@ concurrency:
 jobs:
   radar:
     runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Budapest
+      SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}/', github.repository_owner, github.event.repository.name) }}
     environment:
       name: github-pages
       url: ${{ steps.deployment_retry.outputs.page_url || steps.deployment.outputs.page_url }}
@@ -39,6 +42,12 @@ jobs:
 
       - name: Függőségek
         run: npm ci
+
+      - name: Adatok generálása
+        run: npm run import
+
+      - name: Generált adatok ellenőrzése
+        run: git diff --exit-code -- data/deals.json
 
       - name: Adatok validálása
         run: npm run validate

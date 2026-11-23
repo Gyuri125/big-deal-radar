@@ -12,6 +12,7 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
+$env:TZ = "Europe/Budapest"
 
 $logDir = Join-Path $root "logs"
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
@@ -42,7 +43,15 @@ Write-Log "npm: $($npmCommand.Source)"
 try {
     # cmd /c-n keresztül futtatjuk, így a natív stderr nem vált ki PowerShell NativeCommandError-t.
     $ErrorActionPreference = "Continue"
-    $commandLine = "`"$($npmCommand.Source)`" run daily -- --commit 2>&1"
+    $importLine = "`"$($npmCommand.Source)`" run import 2>&1"
+    cmd /c $importLine | Tee-Object -FilePath $logFile -Append
+    $importExitCode = $LASTEXITCODE
+    if ($importExitCode -ne 0) {
+        throw "Az import hibával lépett ki: $importExitCode"
+    }
+
+    # A Discord-digest elsődleges küldője a GitHub Actions; a laptop csak adatot generál és commitol.
+    $commandLine = "`"$($npmCommand.Source)`" run daily -- --commit --no-notify 2>&1"
     cmd /c $commandLine | Tee-Object -FilePath $logFile -Append
     $exitCode = $LASTEXITCODE
     $ErrorActionPreference = "Stop"

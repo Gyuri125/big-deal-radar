@@ -4,6 +4,14 @@ import path from 'node:path';
 import { getConfig, isDiscordConfigured, isTelegramConfigured } from './config';
 import { buildDigest, digestSummary, TYPE_LABELS } from './pipeline/digest';
 import { loadDeals, summarize } from './pipeline/load';
+import { loadInputData, validateInputKeys } from './pipeline/schemas';
+import {
+  budapestDate,
+  budapestHour,
+  decideNotification,
+  readDigestState,
+  writeDigestState,
+} from './pipeline/notify-schedule';
 import { notifyDigest, notifyError } from './notifiers';
 import { sendDiscordTest } from './notifiers/discord';
 import { sendTelegramTest } from './notifiers/telegram';
@@ -30,19 +38,6 @@ function parseFlags(args: string[]): Flags {
     ci: set.has('--ci'),
     forceNotify: set.has('--force-notify'),
   };
-}
-
-function shouldNotify(
-  digest: ReturnType<typeof buildDigest>,
-  now: Date,
-  force: boolean
-): boolean {
-  if (force) return true;
-  if (now.getHours() < 10) return true;
-  if (digest.booking.length > 0) return true;
-  return digest.upcoming.some(
-    (item) => item.days !== null && item.days >= 0 && item.days <= 3
-  );
 }
 
 function writeStatusFile(params: {
@@ -172,39 +167,94 @@ async function daily(flags: Flags): Promise<void> {
     logger.info('Nincs pontos dátumos esemény a következő 7 napban.');
   }
 
-  if (!flags.dryRun) {
-    writeStatusFile({
-      now,
-      source,
-      counts: {
-        total: summary.total,
-        verified: summary.verified,
-        dated: summary.dated,
-        featured: summary.featured,
-        upcoming7: digest.counts.upcoming,
-        month: digest.counts.month,
-        booking: digest.counts.booking,
-        money: digest.counts.money,
-      },
-      errors: [],
-    });
-  }
-
   if (flags.dryRun) {
     logger.info('Dry-run: értesítés, build és commit kihagyva.');
     return;
   }
 
+  const errors: string[] = [];
+
   if (!flags.noNotify) {
-    if (shouldNotify(digest, now, flags.forceNotify)) {
-      await notifyDigest(digest);
+    const previousState = readDigestState();
+    const decision = decideNotification({
+      digest,
+      now,
+      force: flags.forceNotify,
+      state: previousState,
+    });
+
+    if (decision.notify) {
+      const result = await notifyDigest(digest);
+      const attemptedSlot = `${budapestDate(now)}T${budapestHour(now)}`;
+
+      if (result.anySent) {
+        writeDigestState({
+          ...previousState,
+          last_sent_slot: decision.slot,
+          last_sent_at: now.toISOString(),
+          source,
+          last_attempt_slot: attemptedSlot,
+          last_attempt_at: now.toISOString(),
+          last_attempt_ok: true,
+        });
+        logger.info(
+          `Digest elküldve (${decision.slot}; Discord: ${result.discord}, Telegram: ${result.telegram}).`
+        );
+        if (result.discord === 'failed') {
+          logger.warn(
+            'A Discord digest küldése sikertelen, de a Telegram értesítés kiment.'
+          );
+        }
+        if (result.telegram === 'failed') {
+          logger.warn(
+            'A Telegram digest küldése sikertelen, de a Discord értesítés kiment.'
+          );
+        }
+      } else if (result.discord === 'failed' || result.telegram === 'failed') {
+        const failure = [
+          result.discord === 'failed' ? 'Discord' : null,
+          result.telegram === 'failed' ? 'Telegram' : null,
+        ]
+          .filter(Boolean)
+          .join(', ');
+
+        errors.push(`Értesítési hiba: ${failure} digestküldés sikertelen`);
+        writeDigestState({
+          ...previousState,
+          last_attempt_slot: attemptedSlot,
+          last_attempt_at: now.toISOString(),
+          last_attempt_ok: false,
+        });
+        logger.error(`Értesítési hiba: ${failure} digestküldés sikertelen.`);
+      } else {
+        logger.info('Nincs beállított értesítési csatorna – digest kihagyva.');
+      }
     } else {
-      logger.info(
-        'Nincs 3 napon belüli esemény vagy foglalásnyitás – csendes futás, értesítés kihagyva.'
-      );
+      logger.info(`Értesítés kihagyva: ${decision.reason}.`);
     }
   } else {
     logger.info('Értesítés kihagyva (--no-notify).');
+  }
+
+  writeStatusFile({
+    now,
+    source,
+    counts: {
+      total: summary.total,
+      verified: summary.verified,
+      dated: summary.dated,
+      featured: summary.featured,
+      upcoming7: digest.counts.upcoming,
+      month: digest.counts.month,
+      booking: digest.counts.booking,
+      bookingOpens: digest.counts.bookingOpens,
+      money: digest.counts.money,
+    },
+    errors,
+  });
+
+  if (errors.length > 0) {
+    throw new Error(errors.join('\n'));
   }
 
   if (!flags.noBuild) {
@@ -221,6 +271,20 @@ async function daily(flags: Flags): Promise<void> {
 async function validate(): Promise<void> {
   const { deals, filePath } = loadDeals();
   const summary = summarize(deals);
+
+  const inputs = loadInputData();
+  const inputErrors = validateInputKeys(
+    new Set(deals.map((deal) => deal.id)),
+    inputs
+  );
+  if (inputErrors.length > 0) {
+    throw new Error(
+      `Az input JSON-ok hibásak:\n${inputErrors
+        .slice(0, 30)
+        .map((error) => `- ${error}`)
+        .join('\n')}`
+    );
+  }
 
   logger.info(`Adatfájl: ${path.relative(process.cwd(), filePath)}`);
   logger.info(`Összes deal: ${summary.total}`);

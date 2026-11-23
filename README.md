@@ -2,13 +2,13 @@
 
 > **Ritka, nagy dobások. Nem a napi aprókedvezmények.**
 >
-> Budapest és Magyarország legjobb évente visszatérő dealjei egy helyen – szűrhető weboldalon, napi Discord-digesttel, GitHub Actions fallbackkel.
+> Budapest és Magyarország legjobb évente visszatérő dealjei egy helyen – szűrhető weboldalon, napi Discord-digesttel, elsődleges GitHub Actions küldéssel.
 >
 > **Élő oldal:** [https://gyuri125.github.io/big-deal-radar/](https://gyuri125.github.io/big-deal-radar/)
 >
 > **AI handoff / teljes projektállapot:** [PROJECT_STATUS.md](PROJECT_STATUS.md)
 >
-> **Minőség:** Lighthouse 100/100/100 (Accessibility, Best Practices, SEO) · 12 automata teszt · titokszivárgás-ellenőrzés minden CI futásban.
+> **Minőség:** Lighthouse 100/100/100 (Accessibility, Best Practices, SEO; Performance nincs mérve) · 43 automata teszt · titokszivárgás-ellenőrzés minden CI futásban.
 
 A projekt a **„Cinema City Filmünnep”** típusú alkalmakra épül: amikor nem 10%-ot adnak, hanem 4 napig **minden mozijegy ugyanannyi**, a 4DX is. Ilyen még a Múzeumok Éjszakája, a Színházak Éjszakája, a Restaurant Week, a Corvin Mozi Éjszaka vagy a Budapest100.
 
@@ -26,7 +26,7 @@ A főoldalon **Mai dobás**, gyorsszűrők, **Hamarosan zárul** jelzés, **Heti
 
 - [Mi ez?](#mi-ez)
 - [Előnézet](#előnézet)
-- [A 4 deal-típus](#a-4-deal-típus)
+- [A deal-típusok](#a-deal-típusok)
 - [Hogyan működik?](#hogyan-működik)
 - [Gyors indítás](#gyors-indítás)
 - [Titkok és biztonság](#titkok-és-biztonság)
@@ -69,7 +69,7 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **3 másodperces hover tooltip** a linkeken: megmutatja, hová visz,
 - **RSS feed** a következő dealekkel, hogy olvasóban is követhető legyen,
 - **„Nekem” gyorsszűrők**: mozi, ételek, programok, ünnepek, ingyenes,
-- **Mikor / Ár szűrők**: Ma, Hétvége, 7 nap, **Hamarosan zárul**, Ingyenes, 5 ezer alatt, 10 ezer alatt,
+- **Mikor / Ár szűrők**: Ma, Hétvége, Szombat, Vasárnap, 7 nap, **Hamarosan zárul**, Ingyenes, 5 ezer alatt, 10 ezer alatt,
 - **gyorskeresés**: a `/` billentyű a keresőmezőre ugrik, az Escape törli a keresést,
 - **megosztható szűrők**: a keresés, a szűrők, a nézet és a téma az URL-ben maradnak,
 - **sürgősségi jelzés**: ha egy deal 3 napon belül zárul, a kártya és a hero panel is jelzi,
@@ -79,15 +79,15 @@ Egy statikus, GitHub Pagesen futó **deal-radar**, ami:
 - **PWA**: telepíthető, offline is működik, gyorsparancsokkal,
 - **hibabejelentés** strukturált GitHub Issue űrlapokkal, heti linkellenőrzéssel,
 - **deploy smoke test**: a deploy után automatikusan ellenőrzi az élő oldalt,
-- naponta **Discord digestet** küld,
+- naponta **Discord digestet** küld (elsődlegesen a GitHub Actions),
 - Telegramhoz előkészített, de opcionális csatornával rendelkezik,
-- a laptopon és GitHub Actionsben is ugyanazt a pipeline-t futtatja.
+- a laptop csak adatot generál és commitol; a digestet a GitHub Actions küldi, közös `data/digest-state.json` deduplikációval.
 
 A cél nem az, hogy minden akciót összegyűjtsön. Hanem hogy **időben elkapd a nagyokat**.
 
 ---
 
-## A 4 deal-típus
+## A deal-típusok
 
 | Típus | Mit jelent | Példa |
 |---|---|---|
@@ -95,6 +95,7 @@ A cél nem az, hogy minden akciót összegyűjtsön. Hanem hogy **időben elkapd
 | 🎟️ **Egy jegy, sok helyszín** | Egy karszalag/jegy, több intézmény | Múzeumok Éjszakája, Corvin Mozi Éjszaka |
 | 🆓 **Ingyenes, de nagy értékű** | Olyan helyek nyílnak meg, ahová máskor fizetnél | Budapest100, Erőművek Éjszakája |
 | 💰 **Évi nagy pénzügyi dobás** | Támogatás, adójóváírás, banki bónusz | Nyugdíjpénztári 20%, otthonfelújítási támogatás |
+| 🔑 **Különleges hozzáférés** | Elővásárlási időablak, zárt kör vagy exkluzív hozzáférés | Elővásárlási akciók, tagi nyitások |
 
 A weboldalon ezek a szűrők: **★ Prémium**, **Ingyenes**, **Akció**, **Pénzügy**, **Hozzáférés**.
 
@@ -127,26 +128,26 @@ sequenceDiagram
   participant P as Pages
   participant D as Discord
 
-  L->>L: npm run daily -- --commit
-  L->>D: napi digest
+  L->>L: npm run import + daily --commit --no-notify
   L->>GH: data commit (csak ha változott)
   GH->>A: push → deploy.yml
   A->>P: build + deploy
 
-  Note over A: 08:00 / 12:00 / 20:00 fallback
+  Note over A: 08:00 / 12:00 / 20:00 elsődleges digest
   A->>D: digest vagy hiba
   A->>P: friss build
 ```
 
 A pipeline lépései:
 
-1. Beolvassa a `data/deals.json`-t.
-2. Zod-dal validálja a mezőket és az egyedi ID-ket.
-3. Kiszámolja a következő 7 napot, a havi radarot és a pénzügyi határidőket.
-4. Kiírja a `public/status.json`-t (a weboldal ezt jeleníti meg a láblécben).
-5. Discordra (és opcionálisan Telegramra) küldi a digestet.
-6. Buildinget készít a `dist/` mappába.
-7. Csak akkor commitol, ha a `data/` alatt tényleg változás történt.
+1. A `npm run import` a markdownból és az input JSON-okból újragenerálja a `data/deals.json`-t.
+2. Zod-dal validálja a dealeket, az input fájlokat és a kereszt-referenciákat (árva kulcs, keresőlink, URL-séma).
+3. Kiszámolja a következő 7 napot, a havi radarot, a foglalásnyílásokat és a pénzügyi határidőket.
+4. A commitolt `data/digest-state.json` alapján eldönti, kell-e digestet küldeni.
+5. Discordra (és opcionálisan Telegramra) küldi a digestet; hibánál a státuszfájlba is bekerül.
+6. Kiírja a `public/status.json`-t (a weboldal ezt jeleníti meg a láblécben).
+7. Buildinget készít a `dist/` mappába.
+8. Csak akkor commitol, ha a `data/` alatt tényleg változás történt.
 
 ---
 
@@ -297,15 +298,18 @@ Ez három Windows Task Scheduler feladatot hoz létre:
 
 A feladat a `scripts/daily.ps1`-t futtatja, ami:
 
-1. a projekt gyökerébe lép,
+1. a projekt gyökerébe lép, és `Europe/Budapest` időzónát állít,
 2. logot ír a `logs/daily-YYYY-MM-DD.log` fájlba,
-3. lefuttatja a `npm run daily -- --commit` parancsot,
-4. hibánál nem némul el, hanem láthatóan elbukik.
+3. lefuttatja a `npm run import` parancsot, hogy a `data/deals.json` a markdownból és az input JSON-okból épüljön újra,
+4. lefuttatja a `npm run daily -- --commit --no-notify` parancsot,
+5. hibánál nem némul el, hanem láthatóan elbukik.
 
 ### Mikor küld értesítést?
 
-- **08:00:** teljes napi digest.
-- **12:00 és 20:00:** csak akkor, ha van 3 napon belüli esemény vagy foglalásnyitás. Így nem spam.
+- A **GitHub Actions** az elsődleges küldő; a laptop `--no-notify` móddal csak adatot generál és commitol.
+- **Reggel (10 óra előtt):** naponta egyszer teljes digest.
+- **12:00 és 20:00:** csak 3 napon belüli esemény vagy 14 napon belüli foglalásnyílás miatt, naponta legfeljebb egyszer.
+- A küldési slotot a commitolt `data/digest-state.json` őrzi, így a laptop és az Actions nem küldi el ugyanazt.
 - Kényszerített digest: `npm run daily -- --force-notify`.
 
 ### Kézi futtatás
@@ -317,7 +321,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/daily.ps1
 Vagy közvetlenül:
 
 ```bash
-npm run daily -- --commit
+npm run import
+npm run daily -- --commit --no-notify
 ```
 
 ### Törlés
@@ -328,7 +333,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/remove-task.ps1
 
 ### Ha a laptop ki van kapcsolva
 
-A Task Scheduler `StartWhenAvailable` beállítása miatt a feladat a következő bekapcsoláskor lefut. Emellett a GitHub Actions napi fallbackje is fut, tehát a Pages oldal nem marad üresen.
+A Task Scheduler `StartWhenAvailable` beállítása miatt a feladat a következő bekapcsoláskor lefut. Emellett a GitHub Actions napi futása az elsődleges digest- és deployútvonal, tehát a Pages oldal nem marad üresen.
 
 ---
 
@@ -378,10 +383,10 @@ git push -u origin main
 
 | Workflow | Mikor fut? | Mit csinál? |
 |---|---|---|
-| `pipeline.yml` | Naponta 3x + kézzel | Validál, digestet küld, buildel, deployol, szükség esetén commitol |
+| `pipeline.yml` | Naponta 3x + kézzel | Import + generált adat ellenőrzése, validálás, digest, build, deploy, szükség esetén commit |
 | `deploy.yml` | `main` pushra, ha data/site változik | Buildel és Pagesre deployol, majd élő smoke testet futtat |
-| `ci.yml` | PR és `main` push (kivéve data) | Lint, teszt, titokellenőrzés, build |
-| `link-check.yml` | Hetente + kézzel | Forráslinkek ellenőrzése, `link-status.json` commit, hiba esetén Discord-riasztás |
+| `ci.yml` | PR és `main` push (data és markdown változásra is) | Import + generált adat ellenőrzése, validálás, lint, teszt, titokellenőrzés, build |
+| `link-check.yml` | Hetente + kézzel | Forráslinkek ellenőrzése 3 próbálkozással, `link-status.json` commit; HTTP-hiba esetén Discord-riasztás, átmeneti elérhetetlenség figyelmeztetés |
 | `source-monitor.yml` | Hetente + kézzel | Kiemelt hivatalos oldalak figyelése, változás esetén GitHub Issue |
 
 A napi cron **UTC-ben** van:
@@ -392,20 +397,21 @@ A napi cron **UTC-ben** van:
 - cron: '0 19 * * *'  # 20:00 Budapest (téli idő)
 ```
 
-Nyáron ezek 09:00 / 13:00 / 21:00 helyi idő szerint futnak, mert a cron nem kezeli a nyári időszámítást. Ez tudatos kompromisszum; a laptopos futás a pontos.
+Nyáron ezek 09:00 / 13:00 / 21:00 helyi idő szerint futnak, mert a cron nem kezeli a nyári időszámítást. A digest-slotszámítás és a build is `Europe/Budapest` időzónát használ, így a dátumok nem csúsznak el.
 
 ---
 
 ## Hibrid működés
 
-A laptop az elsődleges, a GitHub Actions a fallback.
+A GitHub Actions az elsődleges digestküldő és deployútvonal; a laptop adatot generál és commitol.
 
+- A laptop `--no-notify` módban fut, így nem küldi el ugyanazt a digestet, mint az Actions.
 - A laptop **csak akkor commitol**, ha a `data/` alatt változás van. Napi üres commit nincs.
 - A laptop futása után a push triggereli a `deploy.yml`-t, tehát a Pages frissül.
 - Ha a laptop nem futott, a GitHub Actions 3x naponta lefut, és frissíti az oldalt.
 - A `public/status.json` és a `data/state.json` generált, ezért nincs a repóban.
 - A weboldal a `status.json`-ból mutatja az utolsó futást és a következő időpontokat.
-- Ha 48 óránál régebbi az adat, a weboldalon figyelmeztetés jelenik meg (a `status.json` időbélyege alapján).
+- Ha 48 óránál régebbi az adat, a weboldalon figyelmeztetés jelenik meg (a `status.json` időbélyege alapján). Helyi `local` futásnál ez szándékosan nem jelenik meg.
 
 ---
 
@@ -668,8 +674,8 @@ Az oldal telepíthető telefonra:
 
 - Minden deal részleteinél van **„Hibát jelentek”** gomb, ami előre kitöltött GitHub Issue-t nyit.
 - Az **Adatállapot** panelről és a láblécből elérhető a **Forrás-egészség** oldal.
-- A **heti linkellenőrzés** GitHub Actions workflow (`link-check.yml`) végigfut a forrásokon, és `data/link-status.json`-ba menti az eredményt.
-- Ha törött linket talál, Discordra megy a riasztás.
+- A **heti linkellenőrzés** GitHub Actions workflow (`link-check.yml`) végigfut a forrásokon, és `data/link-status.json`-ba menti az eredményt. Átmeneti hálózati hibánál háromszor próbálkozik.
+- HTTP-hiba esetén Discordra megy a riasztás. A tartósan „elérhetetlen” link figyelmeztetés a forrás-egészség oldalon, de nem buktatja meg a heti workflow-t.
 - A **heti forrásfigyelés** (`source-monitor.yml`) a kiemelt hivatalos oldalakat figyeli, és változás vagy hiba esetén GitHub Issue-t nyit.
 - Kézzel: `npm run check:links`, `npm run monitor:sources`.
 
@@ -824,7 +830,7 @@ big-deal-radar/
 - [ ] A maradék 49 dealnél pontos dátum, ahol értelmezhető (a folyamatos/heti dealek szándékosan dátum nélkül maradnak).
 - [ ] Normál árak feltöltése a top 30-hoz.
 - [ ] Foglalásnyílási dátumok (booking_opens) a top 10-hez.
-- [ ] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).
+- [x] Automatikus forrásfigyelés (Cinema City, Múzeumok Éjszakája, Restaurant Week).
 - [ ] Közösségi szavazás: „megérte?” / „nem érte meg” (backend kell hozzá).
 - [ ] Telegram bot élesítése, ha lesz token.
 - [ ] Angol nyelvű verzió (opcionális).

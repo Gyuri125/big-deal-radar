@@ -9,16 +9,16 @@ import type {
   DealType,
   Recurrence,
 } from '../src/types';
+import {
+  dealsSchema,
+  loadInputData,
+  validateDeals,
+  validateInputKeys,
+} from '../src/pipeline/schemas';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const markdownPath = path.join(root, 'budapesti-100-big-deal.md');
-const overridesPath = path.join(root, 'data', 'overrides.json');
-const sourcesPath = path.join(root, 'data', 'sources.json');
-const tagsPath = path.join(root, 'data', 'tags.json');
-const titlesPath = path.join(root, 'data', 'titles.json');
-const metaPath = path.join(root, 'data', 'meta.json');
-const priceNotesPath = path.join(root, 'data', 'price-notes.json');
 const outputPath = path.join(root, 'data', 'deals.json');
 
 const PROGRAM_CATEGORIES = new Set<DealCategory>([
@@ -219,43 +219,6 @@ function parseRows(markdown: string): Deal[] {
   return deals;
 }
 
-function loadOverrides(): Record<string, DealOverride> {
-  if (!fs.existsSync(overridesPath)) return {};
-  const raw = fs.readFileSync(overridesPath, 'utf8');
-  return JSON.parse(raw) as Record<string, DealOverride>;
-}
-
-function loadSourceOverrides(): Record<string, DealSource[]> {
-  if (!fs.existsSync(sourcesPath)) return {};
-  const raw = fs.readFileSync(sourcesPath, 'utf8');
-  return JSON.parse(raw) as Record<string, DealSource[]>;
-}
-
-function loadTagOverrides(): Record<string, string[]> {
-  if (!fs.existsSync(tagsPath)) return {};
-  const raw = fs.readFileSync(tagsPath, 'utf8');
-  return JSON.parse(raw) as Record<string, string[]>;
-}
-
-function loadTitleOverrides(): Record<string, string> {
-  if (!fs.existsSync(titlesPath)) return {};
-  const raw = fs.readFileSync(titlesPath, 'utf8');
-  return JSON.parse(raw) as Record<string, string>;
-}
-
-function loadLastChecked(): string | null {
-  if (!fs.existsSync(metaPath)) return null;
-  const raw = fs.readFileSync(metaPath, 'utf8');
-  const meta = JSON.parse(raw) as { last_checked?: string };
-  return meta.last_checked ?? null;
-}
-
-function loadPriceNotes(): Record<string, string> {
-  if (!fs.existsSync(priceNotesPath)) return {};
-  const raw = fs.readFileSync(priceNotesPath, 'utf8');
-  return JSON.parse(raw) as Record<string, string>;
-}
-
 function mergeSources(
   deals: Deal[],
   sourceOverrides: Record<string, DealSource[]>
@@ -278,15 +241,6 @@ function mergeSources(
         label: 'Jegyvásárlás / foglalás',
         url: deal.booking_url,
         type: 'ticket',
-      });
-    }
-    if (sources.length === 0) {
-      add({
-        label: 'Keresés',
-        url: `https://www.google.com/search?q=${encodeURIComponent(
-          `${deal.title} 2026`
-        )}`,
-        type: 'search',
       });
     }
 
@@ -339,72 +293,101 @@ function main() {
 
   const markdown = fs.readFileSync(markdownPath, 'utf8');
   const parsed = parseRows(markdown);
-  const overrides = loadOverrides();
+  const inputs = loadInputData(root);
 
   const parsedIds = new Set(parsed.map((deal) => deal.id));
-  for (const id of Object.keys(overrides)) {
-    if (!parsedIds.has(id)) {
-      console.warn(`⚠️  Az overridesban szereplő id nem található a markdownban: ${id}`);
+  const duplicateIds = parsed.length !== parsedIds.size;
+  if (duplicateIds) {
+    const seen = new Set<string>();
+    const duplicates = new Set<string>();
+    for (const deal of parsed) {
+      if (seen.has(deal.id)) duplicates.add(deal.id);
+      seen.add(deal.id);
     }
+    throw new Error(
+      `Duplikált deal id a markdownból: ${[...duplicates].join(', ')}`
+    );
   }
 
-  const sourceOverrides = loadSourceOverrides();
-  for (const id of Object.keys(sourceOverrides)) {
-    if (!parsedIds.has(id)) {
-      console.warn(`⚠️  A sources.json-ban szereplő id nem található: ${id}`);
-    }
+  const keyErrors = validateInputKeys(parsedIds, inputs);
+  if (keyErrors.length > 0) {
+    throw new Error(
+      `Az input JSON-ok hibásak:\n${keyErrors
+        .slice(0, 30)
+        .map((error) => `- ${error}`)
+        .join('\n')}`
+    );
   }
 
   const merged = mergeSources(
-    mergeOverrides(parsed, overrides),
-    sourceOverrides
+    mergeOverrides(parsed, inputs.overrides),
+    inputs.sources
   );
-
-  const tagOverrides = loadTagOverrides();
-  for (const id of Object.keys(tagOverrides)) {
-    if (!parsedIds.has(id)) {
-      console.warn(`⚠️  A tags.json-ban szereplő id nem található: ${id}`);
-    }
-  }
-
-  const titleOverrides = loadTitleOverrides();
-  for (const id of Object.keys(titleOverrides)) {
-    if (!parsedIds.has(id)) {
-      console.warn(`⚠️  A titles.json-ban szereplő id nem található: ${id}`);
-    }
-  }
 
   const titled = merged.map((deal) => ({
     ...deal,
-    title: titleOverrides[deal.id] ?? deal.title,
+    title: inputs.titles[deal.id] ?? deal.title,
   }));
 
-  const lastChecked = loadLastChecked();
-  const priceNotes = loadPriceNotes();
   const withTags = titled.map((deal) => {
     const tags = new Set(deal.tags);
     if (PROGRAM_CATEGORIES.has(deal.category)) tags.add('program');
-    for (const tag of tagOverrides[deal.id] ?? []) tags.add(tag);
+    for (const tag of inputs.tags[deal.id] ?? []) tags.add(tag);
     return {
       ...deal,
       tags: [...tags],
-      price_note: deal.price_note ?? priceNotes[deal.id] ?? null,
+      price_note:
+        deal.price_note ?? inputs.priceNotes[deal.id] ?? null,
       last_checked:
         deal.last_checked ??
-        (deal.confidence === 'verified' ? lastChecked : null),
+        (deal.confidence === 'verified'
+          ? inputs.meta.last_checked ?? null
+          : null),
     };
   });
 
+  const dealErrors = validateDeals(withTags);
+  if (dealErrors.length > 0) {
+    throw new Error(
+      `A generált deal adatok hibásak:\n${dealErrors
+        .slice(0, 30)
+        .map((error) => `- ${error}`)
+        .join('\n')}`
+    );
+  }
+
+  const schemaResult = dealsSchema.safeParse(withTags);
+  if (!schemaResult.success) {
+    throw new Error(
+      `A generált deal adatok sémája hibás:\n${schemaResult.error.issues
+        .slice(0, 30)
+        .map(
+          (issue) =>
+            `- ${issue.path.join('.') || '(gyökér)'}: ${issue.message}`
+        )
+        .join('\n')}`
+    );
+  }
+
+  const outputDeals = schemaResult.data;
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, `${JSON.stringify(withTags, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(
+    outputPath,
+    `${JSON.stringify(outputDeals, null, 2)}\n`,
+    'utf8'
+  );
 
-  const verified = withTags.filter((d) => d.confidence === 'verified').length;
-  const dated = withTags.filter((d) => d.date_start).length;
-  const sourced = withTags.filter((d) => d.sources.length > 0).length;
-  const programs = withTags.filter((d) => d.tags.includes('program')).length;
-  const celebrations = withTags.filter((d) => d.tags.includes('unnep')).length;
+  const verified = outputDeals.filter(
+    (d) => d.confidence === 'verified'
+  ).length;
+  const dated = outputDeals.filter((d) => d.date_start).length;
+  const sourced = outputDeals.filter((d) => d.sources.length > 0).length;
+  const programs = outputDeals.filter((d) => d.tags.includes('program')).length;
+  const celebrations = outputDeals.filter((d) =>
+    d.tags.includes('unnep')
+  ).length;
 
-  console.log(`✅ ${withTags.length} deal beolvasva.`);
+  console.log(`✅ ${outputDeals.length} deal beolvasva.`);
   console.log(
     `   Ebből dátumos: ${dated}, ellenőrzött: ${verified}, forrással: ${sourced}`
   );
