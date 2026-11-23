@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-23T18:48:25.605Z",
+  "checked_at": "2026-11-23T18:52:19.758Z",
   "total": 138,
-  "ok": 129,
-  "redirected": 27,
-  "blocked": 9,
+  "ok": 116,
+  "redirected": 24,
+  "blocked": 17,
   "failed": 0,
-  "unreachable": 0,
+  "unreachable": 5,
   "links": [
     {
       "url": "https://aborfesztival.hu/",
@@ -136,7 +136,7 @@
     },
     {
       "url": "https://bpsze.hu",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://bpsze.hu/",
       "error": null,
       "deals": [
@@ -229,9 +229,9 @@
     },
     {
       "url": "https://eromuvekejszakaja.hu",
-      "status": 200,
-      "finalUrl": "https://eromuvekejszakaja.hu/",
-      "error": null,
+      "status": "ERR",
+      "finalUrl": null,
+      "error": "fetch failed: Connect Timeout Error (attempted address: eromuvekejszakaja.hu:443, timeout: 10000ms)",
       "deals": [
         "Erőművek Éjszakája"
       ]
@@ -430,9 +430,9 @@
     },
     {
       "url": "https://nav.gov.hu",
-      "status": 200,
-      "finalUrl": "https://nav.gov.hu/",
-      "error": null,
+      "status": "ERR",
+      "finalUrl": null,
+      "error": "fetch failed: Connect Timeout Error (attempted address: nav.gov.hu:443, timeout: 10000ms)",
       "deals": [
         "Nyugdíjpénztári 20% adójóváírás",
         "Egészségpénztári 10% adójóváírás",
@@ -478,9 +478,9 @@
     },
     {
       "url": "https://oroksegnapok.gov.hu/",
-      "status": 200,
-      "finalUrl": "https://oroksegnapok.gov.hu/",
-      "error": null,
+      "status": "ERR",
+      "finalUrl": null,
+      "error": "fetch failed: Connect Timeout Error (attempted address: oroksegnapok.gov.hu:443, timeout: 10000ms)",
       "deals": [
         "Kulturális Örökség Napjai"
       ]
@@ -496,8 +496,8 @@
     },
     {
       "url": "https://palinkafesztival.hu/",
-      "status": 200,
-      "finalUrl": "https://gyulaipalinkafesztival.hu/",
+      "status": 403,
+      "finalUrl": "https://palinkafesztival.hu/",
       "error": null,
       "deals": [
         "Pálinkafesztivál"
@@ -704,7 +704,7 @@
     {
       "url": "https://www.aliexpress.com/",
       "status": 200,
-      "finalUrl": "https://www.aliexpress.com/",
+      "finalUrl": "https://www.aliexpress.us/?gatewayAdapt=glo2usa&_randl_shipto=US",
       "error": null,
       "deals": [
         "Single's Day 11.11"
@@ -721,7 +721,7 @@
     },
     {
       "url": "https://www.amazon.com/",
-      "status": 202,
+      "status": 200,
       "finalUrl": "https://www.amazon.com/",
       "error": null,
       "deals": [
@@ -757,9 +757,9 @@
     },
     {
       "url": "https://www.boraszat.hu/",
-      "status": 200,
-      "finalUrl": "https://boraszat.hu/",
-      "error": null,
+      "status": "ERR",
+      "finalUrl": null,
+      "error": "fetch failed: Connect Timeout Error (attempted address: www.boraszat.hu:443, timeout: 10000ms)",
       "deals": [
         "Szüreti fesztiválok"
       ]
@@ -857,7 +857,7 @@
     },
     {
       "url": "https://www.emag.hu/",
-      "status": 200,
+      "status": 511,
       "finalUrl": "https://www.emag.hu/",
       "error": null,
       "deals": [
@@ -1003,7 +1003,7 @@
     },
     {
       "url": "https://www.mediamarkt.hu/",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.mediamarkt.hu/",
       "error": null,
       "deals": [
@@ -1013,7 +1013,7 @@
     {
       "url": "https://www.mobilityweek.eu/",
       "status": 403,
-      "finalUrl": "https://mobilityweek.eu/",
+      "finalUrl": "https://www.mobilityweek.eu/",
       "error": null,
       "deals": [
         "Autómentes nap"
@@ -1048,9 +1048,9 @@
     },
     {
       "url": "https://www.nnk.gov.hu/",
-      "status": 403,
-      "finalUrl": "https://nnk.gov.hu/",
-      "error": null,
+      "status": "ERR",
+      "finalUrl": null,
+      "error": "fetch failed: Connect Timeout Error (attempted address: www.nnk.gov.hu:443, timeout: 10000ms)",
       "deals": [
         "Ingyenes szűrőnapok",
         "Egészségnapok"
@@ -1094,7 +1094,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
       "error": null,
       "deals": [
@@ -1103,7 +1103,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
       "error": null,
       "deals": [
@@ -1112,7 +1112,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
       "error": null,
       "deals": [
@@ -1121,7 +1121,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
       "error": null,
       "deals": [
@@ -1193,7 +1193,7 @@
     },
     {
       "url": "https://www.taborfigyelo.hu/",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.taborfigyelo.hu/",
       "error": null,
       "deals": [
