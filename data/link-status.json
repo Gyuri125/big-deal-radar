@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-11-22T18:10:12.656Z",
+  "checked_at": "2026-11-23T17:24:48.629Z",
   "total": 138,
-  "ok": 128,
-  "redirected": 27,
-  "blocked": 10,
-  "failed": 0,
+  "ok": 119,
+  "redirected": 26,
+  "blocked": 18,
+  "failed": 1,
   "links": [
     {
       "url": "https://aborfesztival.hu/",
@@ -135,7 +135,7 @@
     },
     {
       "url": "https://bpsze.hu",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://bpsze.hu/",
       "error": null,
       "deals": [
@@ -495,8 +495,8 @@
     },
     {
       "url": "https://palinkafesztival.hu/",
-      "status": 200,
-      "finalUrl": "https://gyulaipalinkafesztival.hu/",
+      "status": 403,
+      "finalUrl": "https://palinkafesztival.hu/",
       "error": null,
       "deals": [
         "Pálinkafesztivál"
@@ -513,7 +513,7 @@
     },
     {
       "url": "https://recordstoreday.com/",
-      "status": 202,
+      "status": 200,
       "finalUrl": "https://recordstoreday.com/",
       "error": null,
       "deals": [
@@ -703,7 +703,7 @@
     {
       "url": "https://www.aliexpress.com/",
       "status": 200,
-      "finalUrl": "https://www.aliexpress.com/",
+      "finalUrl": "https://www.aliexpress.us/?gatewayAdapt=glo2usa&_randl_shipto=US",
       "error": null,
       "deals": [
         "Single's Day 11.11"
@@ -720,7 +720,7 @@
     },
     {
       "url": "https://www.amazon.com/",
-      "status": 202,
+      "status": 200,
       "finalUrl": "https://www.amazon.com/",
       "error": null,
       "deals": [
@@ -765,9 +765,9 @@
     },
     {
       "url": "https://www.bowling.hu/",
-      "status": 200,
-      "finalUrl": "https://www.bowling.hu/",
-      "error": null,
+      "status": "ERR",
+      "finalUrl": null,
+      "error": "fetch failed",
       "deals": [
         "Bowling/lézerharc happy hour"
       ]
@@ -1002,7 +1002,7 @@
     },
     {
       "url": "https://www.mediamarkt.hu/",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.mediamarkt.hu/",
       "error": null,
       "deals": [
@@ -1012,7 +1012,7 @@
     {
       "url": "https://www.mobilityweek.eu/",
       "status": 403,
-      "finalUrl": "https://mobilityweek.eu/",
+      "finalUrl": "https://www.mobilityweek.eu/",
       "error": null,
       "deals": [
         "Autómentes nap"
@@ -1093,7 +1093,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-baja-halfozo-fesztival.html",
       "error": null,
       "deals": [
@@ -1102,7 +1102,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-budapest-borfesztival.html",
       "error": null,
       "deals": [
@@ -1111,7 +1111,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-gourmet-fesztival.html",
       "error": null,
       "deals": [
@@ -1120,7 +1120,7 @@
     },
     {
       "url": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.programturizmus.hu/ajanlat-nyitott-templomok-napja.html",
       "error": null,
       "deals": [
@@ -1192,7 +1192,7 @@
     },
     {
       "url": "https://www.taborfigyelo.hu/",
-      "status": 200,
+      "status": 403,
       "finalUrl": "https://www.taborfigyelo.hu/",
       "error": null,
       "deals": [
