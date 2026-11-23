@@ -1,6 +1,12 @@
 {
-  "checked_at": "2026-11-22T17:56:32.205Z",
+  "checked_at": "2026-11-23T19:53:03.952Z",
   "changed": [],
   "added": [],
-  "errors": []
+  "errors": [
+    {
+      "label": "Budapesti Színházak Éjszakája",
+      "url": "https://bpsze.hu/",
+      "error": "HTTP 403"
+    }
+  ]
 }
